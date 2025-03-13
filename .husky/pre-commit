@@ -1,0 +1,28 @@
+echo "🔍 Running pre-commit checks..."
+
+# Run type and code quality checks
+npx run-p type-check code-quality-checks
+
+# Get current branch and check for rebase in progress
+local_branch="$(git rev-parse --abbrev-ref HEAD)"
+git_dir="$(git rev-parse --git-dir)"
+rebase_in_progress_dir="$git_dir/rebase-merge $git_dir/rebase-apply"
+
+# Define branch name regex pattern
+# valid_branch_regex="^TICKET-{3,5}/[a-zA-Z0-9\-_]+$"
+
+# Error messages
+invalid_branch_message="Invalid branch name: $local_branch. Expected format: 'TICKET-XXX/description'."
+rebase_in_progress_message="Rebase in progress, skipping branch name check."
+
+# Skip check if rebase is in progress
+if [ -d $rebase_in_progress_dir ]; then
+  echo "$rebase_in_progress_message"
+  exit 0
+fi
+
+# Check if branch name matches the pattern
+# if [[ ! $local_branch =~ $valid_branch_regex ]]; then
+#   echo "$invalid_branch_message"
+#   exit 1
+# fi
