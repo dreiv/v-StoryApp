@@ -1,4 +1,4 @@
-name: Build and Deploy Vue Vite App
+name: Build and Deploy Vue Vite App (with Extra Debugging)
 
 on:
   push:
@@ -9,16 +9,14 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
-    # Permissions are set at the JOB level:
     permissions:
       contents: read
       pages: write
       id-token: write
 
-    # Environment is set at the JOB level:
     environment:
       name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }} # Corrected step ID reference
+      url: ${{ steps.deploy.outputs.page_url }}
 
     steps:
       - name: Checkout code
@@ -28,7 +26,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 'lts/*'
-          cache: 'npm' # Corrected cache key
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
@@ -36,9 +34,18 @@ jobs:
       - name: Build Vue App
         run: npm run build
 
-      - name: List files (for debugging) # Good practice to include
+      - name: List files BEFORE dist listing (for debugging)
+        run: ls -la
+
+      - name: List files in dist (for debugging)
         run: ls -la dist
 
+      - name: List files AFTER dist (for debugging - check for unexpected changes)
+        run: ls -la
+
+      - name: Print Current Working Directory (for debugging)
+        run: pwd
+
       - name: Deploy to GitHub Pages
-        id: deploy # Corrected ID - MUST match in the environment.url
+        id: deploy
         uses: actions/deploy-pages@v4
