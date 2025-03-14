@@ -9,6 +9,17 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
+    # Permissions are set at the JOB level:
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+    # Environment is set at the JOB level:
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }} # Corrected step ID reference
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -16,8 +27,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: lts/*
-          cache: npm
+          node-version: 'lts/*'
+          cache: 'npm' # Corrected cache key
 
       - name: Install dependencies
         run: npm ci
@@ -25,13 +36,9 @@ jobs:
       - name: Build Vue App
         run: npm run build
 
+      - name: List files (for debugging) # Good practice to include
+        run: ls -la dist
+
       - name: Deploy to GitHub Pages
+        id: deploy # Corrected ID - MUST match in the environment.url
         uses: actions/deploy-pages@v4
-        permissions:
-          contents: read
-          pages: write
-          id-token: write
-        environment:
-          name: github-pages
-          url: ${{ steps.deploy.outputs.page_url }}
-        id: deploy # Added id for environment URL
