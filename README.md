@@ -25,11 +25,12 @@ The project relies on a set of dependencies for development and runtime. Here's 
 
 ### Application Dependencies
 
-| Dependency | Description                                                    | License | WWW                                                    |
-| ---------- | -------------------------------------------------------------- | ------- | ------------------------------------------------------ |
-| Vue        | The core framework for building the user interface.            | MIT     | [https://vuejs.org/](https://vuejs.org/)               |
-| Vue Router | Official router for Vue.js, enabling navigation between views. | MIT     | [https://router.vuejs.org/](https://router.vuejs.org/) |
-| Pinia      | State management library for Vue, facilitating state sharing.  | MIT     | [https://pinia.vuejs.org/](https://pinia.vuejs.org/)   |
+| Dependency   | Description                                                    | License | WWW                                                    |
+| ------------ | -------------------------------------------------------------- | ------- | ------------------------------------------------------ |
+| Vue          | The core framework for building the user interface.            | MIT     | [https://vuejs.org/](https://vuejs.org/)               |
+| Vue Router   | Official router for Vue.js, enabling navigation between views. | MIT     | [https://router.vuejs.org/](https://router.vuejs.org/) |
+| Pinia        | State management library for Vue, facilitating state sharing.  | MIT     | [https://pinia.vuejs.org/](https://pinia.vuejs.org/)   |
+| Lucide Icons | A collection of beautiful SVG icons as Vue components.         | MIT     | [https://lucide.dev/](https://lucide.dev/)             |
 
 ### Development Dependencies
 
