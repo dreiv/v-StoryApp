@@ -9,6 +9,12 @@
   --color-orange-10: #fcf0e7;
   --color-orange-20: #fae0ce;
   --color-orange-30: #f5c3a1;
+
+  /* Neutral palette */
+  --color-neutral-10: #f2f3f5;
+  --color-neutral-20: #e2e4e9;
+  --color-neutral-30: #cccfd7;
+  --color-neutral-60: #6f7687;
 }
 
 *,
