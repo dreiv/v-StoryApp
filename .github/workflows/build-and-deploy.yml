@@ -16,6 +16,8 @@ jobs:
           cache: 'npm'
       - run: |
           npm ci
+          npm run lint
+          npm run test
           npm run build
           npm run build-storybook
           mkdir -p dist/ux
@@ -35,6 +37,9 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - run: |
+          npx playwright install --with-deps
+          npm run test-e2e
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
