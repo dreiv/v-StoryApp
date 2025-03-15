@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  hello world!
+  <h1>hello world!</h1>
 
   <RouterView />
 </template>
