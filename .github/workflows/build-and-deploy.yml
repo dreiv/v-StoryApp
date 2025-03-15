@@ -22,6 +22,11 @@ jobs:
           npm run build-storybook
           mkdir -p dist/ux
           mv storybook-static/* dist/ux/
+      - name: E2E Tests
+        if: github.ref == 'refs/heads/main'
+        run: |
+          npx playwright install --with-deps
+          npm run test-e2e
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist/
@@ -37,9 +42,6 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - run: |
-          npx playwright install --with-deps
-          npm run test-e2e
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
