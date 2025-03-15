@@ -1,9 +1,14 @@
 :root {
-  /* color palette */
+  /* primary palette */
   --color-cyan-60: #377ea0;
   --color-cyan-70: #2a6480;
   --color-cyan-80: #1f4e66;
   --color-cyan-90: #133445;
+
+  /* secondary palette */
+  --color-orange-10: #fcf0e7;
+  --color-orange-20: #fae0ce;
+  --color-orange-30: #f5c3a1;
 }
 
 *,

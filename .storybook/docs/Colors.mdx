@@ -4,11 +4,11 @@ import { Meta } from '@storybook/addon-docs'
 
 # Color Tokens
 
-Welcome to the Design System's color token documentation. This page provides an overview of our color palette, including Primary colors, Secondary colors, and grayscales.
+Welcome to the Design System's color token documentation. This page provides an overview of our color palette, including Primary colors, Secondary colors, and Grayscale.
 
 ## Primary Colors
 
-These colors represent our core identity and should be used consistently across all components.
+Our primary color palette features varying shades of _Cyan_, chosen for their visual appeal and practical benefits.
 
 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '16px' }}>
   <div>
@@ -17,7 +17,7 @@ These colors represent our core identity and should be used consistently across 
     ></div>
     <p><code>--color-cyan-60</code></p>
     <p><code>#377EA0</code></p>
-    <p>Contrast to white: 2.9:1 (AA)</p>
+    <p>Contrast to white: 4.51 (AA)</p>
   </div>
 
 <div>
@@ -30,7 +30,7 @@ These colors represent our core identity and should be used consistently across 
   <p>
     <code>#2A6480</code>
   </p>
-  <p>Contrast to white: 3.8:1 (AA)</p>
+  <p>Contrast to white: 6.49 (AA)</p>
 </div>
 
   <div>
@@ -39,7 +39,7 @@ These colors represent our core identity and should be used consistently across 
     ></div>
     <p><code>--color-cyan-80</code></p>
     <p><code>#1F4E66</code></p>
-    <p>Contrast to white: 5.7:1 (AAA)</p>
+    <p>Contrast to white: 8.97 (AAA)</p>
   </div>
   
   <div>
@@ -48,6 +48,57 @@ These colors represent our core identity and should be used consistently across 
     ></div>
     <p><code>--color-cyan-90</code></p>
     <p><code>#133445</code></p>
-    <p>Contrast to white: 9.3:1 (AAA)</p>
+    <p>Contrast to white: 13.08 (AAA)</p>
+  </div>
+</div>
+
+## Secondary Colors
+
+The secondary color palette contains _Orange_ tones to complement the primary Cyan palette, adding warmth and balance.
+
+<div
+  style={{
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+    gap: '16px',
+  }}
+>
+  <div>
+    <div
+      style={{ aspectRatio: '1/1', marginBottom: '5px', backgroundColor: 'var(--color-orange-10)' }}
+    ></div>
+    <p>
+      <code>--color-orange-10</code>
+    </p>
+    <p>
+      <code>#FCF0E7</code>
+    </p>
+    <p>Contrast to cyan-90: 11.69 (AAA)</p>
+  </div>
+
+<div>
+  <div
+    style={{ aspectRatio: '1/1', marginBottom: '5px', backgroundColor: 'var(--color-orange-20)' }}
+  ></div>
+  <p>
+    <code>--color-orange-20</code>
+  </p>
+  <p>
+    <code>#FAE0CE</code>
+  </p>
+  <p>Contrast to cyan-90: 10.36 (AAA)</p>
+</div>
+
+<div>
+   <div
+      style={{ aspectRatio: '1/1', marginBottom: '5px', backgroundColor: 'var(--color-orange-30)' }}
+    ></div>
+    <p>
+      <code>--color-orange-30</code>
+    </p>
+    <p>
+      <code>#F5C3A1</code>
+    </p>
+    <p>Contrast to cyan-90: 8.23 (AAA)</p>
   </div>
 </div>
