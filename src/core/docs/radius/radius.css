@@ -12,7 +12,8 @@
 
 .radius-visual {
   margin-bottom: 8px;
-  background-color: var(--color-cyan-60);
+  border: 1px solid var(--color-neutral-60);
+  background-color: var(--color-neutral-30);
   width: 80px;
   height: 40px;
 }
