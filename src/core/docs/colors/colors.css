@@ -14,50 +14,50 @@
 }
 
 /* Primary Colors */
-.color-cyan-60 {
-  background-color: var(--color-cyan-60);
+.ga-color-cyan-60 {
+  background-color: var(--ga-color-cyan-60);
 }
 
-.color-cyan-70 {
-  background-color: var(--color-cyan-70);
+.ga-color-cyan-70 {
+  background-color: var(--ga-color-cyan-70);
 }
 
-.color-cyan-80 {
-  background-color: var(--color-cyan-80);
+.ga-color-cyan-80 {
+  background-color: var(--ga-color-cyan-80);
 }
 
-.color-cyan-90 {
-  background-color: var(--color-cyan-90);
+.ga-color-cyan-90 {
+  background-color: var(--ga-color-cyan-90);
 }
 
 /* Secondary Colors */
-.color-orange-10 {
-  background-color: var(--color-orange-10);
+.ga-color-orange-10 {
+  background-color: var(--ga-color-orange-10);
 }
 
-.color-orange-20 {
-  background-color: var(--color-orange-20);
+.ga-color-orange-20 {
+  background-color: var(--ga-color-orange-20);
 }
 
-.color-orange-30 {
-  background-color: var(--color-orange-30);
+.ga-color-orange-30 {
+  background-color: var(--ga-color-orange-30);
 }
 
 /* Neutral Colors */
-.color-neutral-10 {
-  background-color: var(--color-neutral-10);
+.ga-color-neutral-10 {
+  background-color: var(--ga-color-neutral-10);
 }
 
-.color-neutral-20 {
-  background-color: var(--color-neutral-20);
+.ga-color-neutral-20 {
+  background-color: var(--ga-color-neutral-20);
 }
 
-.color-neutral-30 {
-  background-color: var(--color-neutral-30);
+.ga-color-neutral-30 {
+  background-color: var(--ga-color-neutral-30);
 }
 
-.color-neutral-60 {
-  background-color: var(--color-neutral-60);
+.ga-color-neutral-60 {
+  background-color: var(--ga-color-neutral-60);
 }
 
 .color-swatch-item p {
