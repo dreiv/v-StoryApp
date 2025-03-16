@@ -1,0 +1,65 @@
+.color-swatch-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.color-swatch-item {
+  width: 180px;
+}
+
+.color-swatch {
+  margin-bottom: 5px;
+  aspect-ratio: 3/2;
+}
+
+/* Primary Colors */
+.color-cyan-60 {
+  background-color: var(--color-cyan-60);
+}
+
+.color-cyan-70 {
+  background-color: var(--color-cyan-70);
+}
+
+.color-cyan-80 {
+  background-color: var(--color-cyan-80);
+}
+
+.color-cyan-90 {
+  background-color: var(--color-cyan-90);
+}
+
+/* Secondary Colors */
+.color-orange-10 {
+  background-color: var(--color-orange-10);
+}
+
+.color-orange-20 {
+  background-color: var(--color-orange-20);
+}
+
+.color-orange-30 {
+  background-color: var(--color-orange-30);
+}
+
+/* Neutral Colors */
+.color-neutral-10 {
+  background-color: var(--color-neutral-10);
+}
+
+.color-neutral-20 {
+  background-color: var(--color-neutral-20);
+}
+
+.color-neutral-30 {
+  background-color: var(--color-neutral-30);
+}
+
+.color-neutral-60 {
+  background-color: var(--color-neutral-60);
+}
+
+.color-swatch-item p {
+  margin: 2px 0;
+}
