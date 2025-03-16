@@ -1,0 +1,46 @@
+import { Meta } from '@storybook/addon-docs'
+import './radius.css'
+
+<Meta title="Documentation/Radius" />
+
+# Radius
+
+Consistent border radii are essential for creating a polished and visually appealing user interface.
+
+## Radius Tokens
+
+<div className="radius-grid">
+  <div className="radius-item">
+    <div className="radius-visual default"></div>
+    <div>
+      <code>--radius-default</code>
+    </div>
+    <div>
+      <code>4px</code>
+    </div>
+  </div>
+  <div className="radius-item">
+    <div className="radius-visual sharp"></div>
+    <div>
+      <code>--radius-sharp</code>
+    </div>
+    <div>
+      <code>0.02em</code>
+    </div>
+  </div>
+  <div className="radius-item">
+    <div className="radius-visual round"></div>
+    <div>
+      <code>--radius-round</code>
+    </div>
+    <div>
+      <code>999px</code>
+    </div>
+  </div>
+</div>
+
+## Usage Guidelines
+
+- **Consistency:** Use these radius tokens consistently throughout your designs to maintain a unified look and feel.
+- **Context:** Choose the appropriate radius based on the element's function and the overall design aesthetic.
+- **Accessibility:** Ensure that rounded corners do not interfere with the usability of interactive elements.
