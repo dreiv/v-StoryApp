@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
+import GaButton from '@/core/components/GaButton.vue'
 import { icons } from 'lucide-vue-next'
 
 type IconKeys = keyof typeof icons
@@ -38,7 +39,8 @@ const copyToClipboard = (key: string) => {
   <hr />
 
   <div class="container">
-    <button
+    <ga-button
+      icon
       v-for="key in filteredIcons"
       :key
       :title="key"
@@ -46,7 +48,7 @@ const copyToClipboard = (key: string) => {
       @click="copyToClipboard(key)"
     >
       <component :is="icons[key]" class="icon" />
-    </button>
+    </ga-button>
   </div>
 </template>
 
@@ -66,18 +68,5 @@ const copyToClipboard = (key: string) => {
   flex-wrap: wrap;
   gap: 8px;
   padding: 8px;
-}
-
-.item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  padding: 8px;
-}
-
-.icon {
-  width: 24px;
-  height: 24px;
 }
 </style>

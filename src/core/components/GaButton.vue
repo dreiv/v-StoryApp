@@ -56,7 +56,8 @@ const classes = computed(() => [
   background: var(--ga-color-surface-action);
   color: var(--ga-color-text-on-action);
 
-  &:hover {
+  &:hover,
+  &:focus {
     background: var(--ga-color-surface-action-hover);
   }
 
@@ -75,7 +76,8 @@ const classes = computed(() => [
   background: var(--ga-color-surface-primary);
   color: var(--ga-color-text-action);
 
-  &:hover {
+  &:hover,
+  &:focus {
     background: var(--ga-color-border-action-hover-2);
   }
 
@@ -95,7 +97,8 @@ const classes = computed(() => [
   background: transparent;
   color: var(--ga-color-text-action);
 
-  &:hover {
+  &:hover,
+  &:focus {
     background: var(--ga-color-border-action-hover-2);
   }
 
@@ -114,7 +117,8 @@ const classes = computed(() => [
   background: transparent;
   color: var(--ga-color-text-action);
 
-  &:hover {
+  &:hover,
+  &:focus {
     background: var(--ga-color-border-action-hover-2);
   }
 
