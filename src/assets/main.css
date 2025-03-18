@@ -1,1 +1,23 @@
-@import './base.css';
+@import './tokens.css';
+@import './theme.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  font-weight: normal;
+}
+
+body {
+  transition: color 0.5s;
+  min-height: 100vh;
+  color: var(--ga-color-text-body);
+
+  font-size: 14px;
+  line-height: 1.6;
+  font-family: var(--default-font-family);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

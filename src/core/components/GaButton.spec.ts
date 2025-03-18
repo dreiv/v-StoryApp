@@ -11,11 +11,11 @@ describe('BaseButton', () => {
     expect(wrapper.html()).toMatchSnapshot()
   })
 
-  it('should apply the default class when no props are set', () => {
-    expect(wrapper.find('.default').exists()).toBe(true)
+  it('should apply the secondary class when no props are set', () => {
+    expect(wrapper.find('.secondary').exists()).toBe(true)
   })
 
-  it.each(['primary', 'transparent', 'icon'])(
+  it.each(['primary', 'ghost', 'transparent', 'icon'])(
     'should apply the correct class when the %s prop is set to true',
     async (prop) => {
       await wrapper.setProps({ [prop]: true })
