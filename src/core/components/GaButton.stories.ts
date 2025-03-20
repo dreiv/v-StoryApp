@@ -13,7 +13,7 @@ import {
 } from 'lucide-vue-next'
 
 import GaBadge from './GaBadge.vue'
-import GaButton, { type ButtonProps } from '@/core/components/GaButton.vue'
+import GaButton, { type ButtonProps } from './GaButton.vue'
 
 const meta = {
   component: GaButton,

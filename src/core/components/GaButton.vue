@@ -13,7 +13,7 @@ const style = useCssModule()
 
 const isSecondary = computed(() => !primary && !ghost && !transparent)
 const classes = computed(() => [
-  style.base,
+  style.button,
   { [style.primary]: primary },
   { [style.secondary]: isSecondary.value },
   { [style.ghost]: ghost },
@@ -27,7 +27,7 @@ const classes = computed(() => [
 </template>
 
 <style module>
-.base {
+.button {
   display: inline-flex;
   align-items: center;
   gap: var(--ga-size-8);
