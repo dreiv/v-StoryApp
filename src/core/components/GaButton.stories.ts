@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 import { DownloadIcon } from 'lucide-vue-next'
 
-import GaButton from '@/core/components/GaButton.vue'
+import GaButton, { type ButtonProps } from '@/core/components/GaButton.vue'
 
 const meta = {
   component: GaButton,
@@ -32,13 +32,7 @@ type Story = StoryObj<typeof meta>
 
 interface ButtonVariation {
   name: 'Primary' | 'Secondary' | 'Ghost' | 'Transparent' | 'Icon'
-  props: {
-    default?: string
-    primary?: boolean
-    ghost?: boolean
-    transparent?: boolean
-    icon?: boolean
-  }
+  props: ButtonProps & { default?: string }
 }
 
 const variations: ButtonVariation[] = [
@@ -62,7 +56,6 @@ const createButtonStory = (variation: ButtonVariation): Story => ({
 })
 
 const stories: { [key: string]: Story } = {}
-
 variations.forEach((variation) => {
   stories[variation.name] = createButtonStory(variation)
 })

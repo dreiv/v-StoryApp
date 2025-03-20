@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import IconGrid from './IconGrid.vue'
 
 const meta: Meta<typeof IconGrid> = {
-  title: 'Documentation/Icons',
+  title: 'Atoms/Icons',
   component: IconGrid,
   tags: ['!dev'],
 }

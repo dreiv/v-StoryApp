@@ -1,18 +1,21 @@
 <script setup lang="ts">
 import { computed, useCssModule } from 'vue'
 
-const { primary, transparent, ghost, icon } = defineProps<{
+export interface ButtonProps {
   primary?: boolean
-  transparent?: boolean
   ghost?: boolean
+  transparent?: boolean
   icon?: boolean
-}>()
+}
+
+const { primary, transparent, ghost, icon } = defineProps<ButtonProps>()
 const style = useCssModule()
 
+const isSecondary = computed(() => !primary && !ghost && !transparent)
 const classes = computed(() => [
   style.base,
   { [style.primary]: primary },
-  { [style.secondary]: !(primary || ghost || transparent) },
+  { [style.secondary]: isSecondary.value },
   { [style.ghost]: ghost },
   { [style.transparent]: transparent },
   { [style.icon]: icon },
@@ -53,82 +56,82 @@ const classes = computed(() => [
 
 .primary {
   border: none;
-  background: var(--ga-color-surface-action);
+  background-color: var(--ga-color-surface-action);
   color: var(--ga-color-text-on-action);
 
   &:hover,
   &:focus {
-    background: var(--ga-color-surface-action-hover);
+    background-color: var(--ga-color-surface-action-hover);
   }
 
   &:active {
-    background: var(--ga-color-surface-action);
+    background-color: var(--ga-color-surface-action);
   }
 
   &:disabled {
-    background: var(--ga-color-surface-disabled);
+    background-color: var(--ga-color-surface-disabled);
     color: var(--ga-color-text-disable-selected);
   }
 }
 
 .secondary {
   border: 1px solid var(--ga-color-border-action);
-  background: var(--ga-color-surface-primary);
+  background-color: var(--ga-color-surface-primary);
   color: var(--ga-color-text-action);
 
   &:hover,
   &:focus {
-    background: var(--ga-color-border-action-hover-2);
+    background-color: var(--ga-color-border-action-hover-2);
   }
 
   &:active {
-    background: var(--ga-color-surface-primary);
+    background-color: var(--ga-color-surface-primary);
   }
 
   &:disabled {
     border-color: var(--ga-color-border-disabled);
-    background: var(--ga-color-surface-page);
+    background-color: var(--ga-color-surface-page);
     color: var(--ga-color-text-disabled);
   }
 }
 
 .ghost {
   border: none;
-  background: transparent;
+  background-color: transparent;
   color: var(--ga-color-text-action);
 
   &:hover,
   &:focus {
-    background: var(--ga-color-border-action-hover-2);
+    background-color: var(--ga-color-border-action-hover-2);
   }
 
   &:active {
-    background: transparent;
+    background-color: transparent;
   }
 
   &:disabled {
-    background: transparent;
+    background-color: transparent;
     color: var(--ga-color-text-disabled);
   }
 }
 
 .transparent {
   border: 1px solid var(--ga-color-border-action);
-  background: transparent;
+  background-color: transparent;
   color: var(--ga-color-text-action);
 
   &:hover,
   &:focus {
-    background: var(--ga-color-border-action-hover-2);
+    background-color: var(--ga-color-border-action-hover-2);
   }
 
   &:active {
-    background: var(--ga-color-surface-primary);
+    background-color: var(--ga-color-surface-primary);
   }
 
   &:disabled {
     border-color: var(--ga-color-border-disabled);
-    background: transparent;
+    background-color: transparent;
     color: var(--ga-color-text-disable-selected);
   }
 }
