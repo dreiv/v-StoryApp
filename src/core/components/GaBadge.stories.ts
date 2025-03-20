@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
+import { BellIcon, BellDot, MailIcon } from 'lucide-vue-next'
+
 import GaBadge, { type BadgeProps } from '@/core/components/GaBadge.vue'
 
 const meta = {
@@ -8,7 +10,7 @@ const meta = {
   decorators: [
     (story) => ({
       components: { story },
-      template: `<div :style="{display:'flex',alignItems:'center',gap:'8px',padding:'1rem'}"><story /></div>`,
+      template: `<div :style="{display:'flex',flexWrap:'wrap',alignItems:'center',gap:'8px',padding:'1rem'}"><story /></div>`,
     }),
   ],
   tags: ['autodocs'],
@@ -59,6 +61,105 @@ const stories: { [key: string]: Story } = {}
 variations.forEach((variation) => {
   stories[variation.name] = createBadgeStory(variation)
 })
+
+export const Examples: Story = {
+  args: {},
+  render: () => ({
+    components: { GaBadge, BellIcon, BellDot, MailIcon },
+    template: `
+    <div :style="{display:'flex',flexDirection:'column',gap:'24px'}">
+      <div :style="{display:'flex',gap:'16px'}">
+        <ga-badge>25</ga-badge>
+        <ga-badge inverted>99</ga-badge>
+        <ga-badge muted>7</ga-badge>
+        <ga-badge information>+25</ga-badge>
+        <ga-badge error>-369%</ga-badge>
+        <ga-badge warning>9</ga-badge>
+        <ga-badge success>+25K</ga-badge>
+      </div>
+
+      <div :style="{display:'flex',flexWrap:'wrap',alignItems:'center',gap:'16px'}">
+        <div><ga-badge success /> User online</div>
+        <div><ga-badge disabled /> User offline</div>
+        <div><ga-badge information /> Last sync was <a href='#'>13 minutes ago</a></div>
+        <div><ga-badge error /> Retrieval error (timeout)</div>
+      </div>
+
+      <div :style="{display:'flex',gap:'16px'}">
+        <div :style="{position:'relative'}">
+          <bell-dot />
+          <ga-badge success style="position:absolute;top:4px;right:2px" />
+        </div>
+        <div :style="{position:'relative'}">
+          <bell-dot />
+          <ga-badge warning style="position:absolute;top:4px;right:2px" />
+        </div>
+        <div :style="{position:'relative'}">
+          <bell-dot />
+          <ga-badge information style="position:absolute;top:4px;right:2px" />
+        </div>
+        <div :style="{position:'relative'}">
+          <bell-dot />
+          <ga-badge error style="position:absolute;top:4px;right:2px" />
+        </div>
+      </div>
+
+      <div :style="{display:'flex',gap:'16px'}">
+        <div :style="{display:'flex',alignItems:'center',gap:'8px'}">
+          <bell-icon /><ga-badge>99+</ga-badge>
+        </div>
+        <div :style="{display:'flex',alignItems:'center',gap:'8px'}">
+          <bell-icon /><ga-badge inverted>99+</ga-badge>
+        </div>
+        <div :style="{display:'flex',alignItems:'center',gap:'8px'}">
+          <mail-icon /><ga-badge>123456</ga-badge>
+        </div>
+        <div :style="{display:'flex',alignItems:'center',gap:'8px'}">
+          <mail-icon /><ga-badge inverted>123456</ga-badge>
+        </div>
+      </div>
+
+      <div :style="{display:'flex',flexWrap:'wrap',gap:'16px'}">
+        <div :style="{display:'flex',alignItems:'center',gap:'8px'}">
+          <span>12 new incidents detected</span><ga-badge error>12 ↓</ga-badge>
+        </div>
+        <div :style="{display:'flex',alignItems:'center',gap:'8px'}">
+          <span>New sales</span><ga-badge success>4.2K ↑</ga-badge>
+        </div>
+        <div :style="{display:'flex',alignItems:'center',gap:'8px'}">
+          <span>Missing payments</span><ga-badge warning>9</ga-badge>
+        </div>
+        <div :style="{display:'flex',alignItems:'center',gap:'8px'}">
+          <span>Revenue increased by <a href='#'>789.00 NOK</a></span><ga-badge information>5.4%</ga-badge>
+        </div>
+      </div>
+
+      <div :style="{display:'flex',gap:'16px',width:'96px',backgroundColor:'var(--ga-color-surface-action)',padding:'16px',borderRadius:'var(--ga-radius)'}">
+        <ga-badge inverted>99</ga-badge>
+        <ga-badge muted>99</ga-badge>
+      </div>
+
+      <div :style="{display:'flex',flexDirection:'column',gap:'8px',width:'240px'}">
+        <div :style="{display:'flex',alignItems:'center',justifyContent:'space-between'}">
+          <span>Personal Inbox</span><ga-badge inverted>32</ga-badge>
+        </div>
+        <div :style="{display:'flex',alignItems:'center',justifyContent:'space-between'}">
+          <span>Invoices</span><ga-badge muted>32</ga-badge>
+        </div>
+        <div :style="{display:'flex',alignItems:'center',justifyContent:'space-between'}">
+          <span>Credit notes</span><ga-badge disabled inverted>32</ga-badge>
+        </div>
+        <div :style="{display:'flex',alignItems:'center',justifyContent:'space-between'}">
+          <span>Leave requests</span><ga-badge>32</ga-badge>
+        </div>
+        <div :style="{display:'flex',alignItems:'center',justifyContent:'space-between'}">
+          <span>Expense claim</span><ga-badge disabled>0</ga-badge>
+        </div>
+      </div>
+    </div>
+    `,
+  }),
+}
 
 export const Default: Story = stories.Default
 export const Inverted: Story = stories.Inverted

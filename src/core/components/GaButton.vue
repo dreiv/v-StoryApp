@@ -38,6 +38,7 @@ const classes = computed(() => [
   height: var(--ga-size-40);
 
   font-weight: var(--font-weight-medium);
+  line-height: var(--text-md--line-height);
   font-family: var(--default-font-family);
 
   &:enabled {
