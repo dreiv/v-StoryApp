@@ -3,11 +3,11 @@ import { computed, useCssModule } from 'vue'
 
 export interface BadgeProps {
   inverted?: boolean
+  muted?: boolean
   information?: boolean
   error?: boolean
   warning?: boolean
   success?: boolean
-  muted?: boolean
   disabled?: boolean
 }
 
@@ -75,7 +75,7 @@ const classes = computed(() => [
 }
 
 .muted {
-  background-color: var(--ga-color-on-primary);
+  background-color: var(--ga-color-icon-on-primary);
   color: var(--ga-color-text-action);
 
   &:empty {
