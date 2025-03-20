@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
-import { Bell, BellDot, Mail } from 'lucide-vue-next'
+import { BellIcon, BellDot, MailIcon } from 'lucide-vue-next'
 
 import GaBadge, { type BadgeProps } from '@/core/components/GaBadge.vue'
 
@@ -65,7 +65,7 @@ variations.forEach((variation) => {
 export const Examples: Story = {
   args: {},
   render: () => ({
-    components: { GaBadge, Bell, BellDot, Mail },
+    components: { GaBadge, BellIcon, BellDot, MailIcon },
     template: `
     <div :style="{display:'flex',flexDirection:'column',gap:'24px'}">
       <div :style="{display:'flex',gap:'16px'}">
@@ -106,16 +106,16 @@ export const Examples: Story = {
 
       <div :style="{display:'flex',gap:'16px'}">
         <div :style="{display:'flex',alignItems:'center',gap:'8px'}">
-          <bell /><ga-badge>99+</ga-badge>
+          <bell-icon /><ga-badge>99+</ga-badge>
         </div>
         <div :style="{display:'flex',alignItems:'center',gap:'8px'}">
-          <bell /><ga-badge inverted>99+</ga-badge>
+          <bell-icon /><ga-badge inverted>99+</ga-badge>
         </div>
         <div :style="{display:'flex',alignItems:'center',gap:'8px'}">
-          <mail /><ga-badge>123456</ga-badge>
+          <mail-icon /><ga-badge>123456</ga-badge>
         </div>
         <div :style="{display:'flex',alignItems:'center',gap:'8px'}">
-          <mail /><ga-badge inverted>123456</ga-badge>
+          <mail-icon /><ga-badge inverted>123456</ga-badge>
         </div>
       </div>
 
