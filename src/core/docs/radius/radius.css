@@ -19,7 +19,7 @@
 }
 
 .radius-visual.default {
-  border-radius: var(--ga-radius-default);
+  border-radius: var(--ga-radius);
 }
 
 .radius-visual.sharp {
