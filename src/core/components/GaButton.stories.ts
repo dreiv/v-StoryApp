@@ -125,8 +125,8 @@ export const Examples: Story = {
             <ga-button><filter-x />Clear estimate</ga-button>
           </div>
           <div :style="{display:'flex',gap:'8px'}">
-            <ga-button><thumbs-up width='16'/> 1</ga-button>
-            <ga-button><thumbs-down width='16'/> 0</ga-button>
+            <ga-button><thumbs-up size='16'/> 1</ga-button>
+            <ga-button><thumbs-down size='16'/> 0</ga-button>
           </div>
         </div>
 
