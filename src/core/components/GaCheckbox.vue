@@ -4,6 +4,8 @@ import { CheckIcon, MinusIcon } from 'lucide-vue-next'
 
 export interface CheckboxProps {
   checked?: boolean
+  disabled?: boolean
+  indeterminate?: boolean
   error?: boolean
 }
 
@@ -16,7 +18,7 @@ const aria = computed(() => (error ? { 'aria-invalid': true } : {}))
 
 <template>
   <label :class="classes" v-bind="aria">
-    <input type="checkbox" :checked :class="$style.native" />
+    <input type="checkbox" :class="$style.native" :checked :disabled :indeterminate />
     <div :class="$style.marker">
       <CheckIcon :class="$style.checked" :size="12" :stroke-width="4" />
       <MinusIcon :class="$style.indeterminate" :size="12" :stroke-width="4" />
@@ -30,35 +32,20 @@ const aria = computed(() => (error ? { 'aria-invalid': true } : {}))
 .checkbox {
   display: inline-flex;
   position: relative;
-  gap: var(--ga-size-4);
+  gap: var(--ga-size-8);
 }
 
+.native,
 .marker {
-  position: absolute;
-  top: 0;
-  left: 0;
-
-  border: 2px solid var(--ga-color-border-action);
-  border-radius: var(--ga-radius);
-
+  margin: var(--ga-size-2);
   width: var(--ga-size-16);
   height: var(--ga-size-16);
-  pointer-events: none;
-  color: var(--ga-color-icon-on-primary);
-
-  & > .checked,
-  & > .indeterminate {
-    display: none;
-  }
 }
 
 .native {
   flex-shrink: 0;
   opacity: 0;
   cursor: pointer;
-
-  width: var(--ga-size-16);
-  height: var(--ga-size-16);
 
   &:focus-visible + .marker {
     outline: 2px solid var(--ga-color-border-focus);
@@ -92,7 +79,7 @@ const aria = computed(() => (error ? { 'aria-invalid': true } : {}))
     + .marker {
       border-color: var(--ga-color-border-disabled);
       background-color: var(--ga-color-surface-disabled);
-      color: var(--ga-color-icon-disabled);
+      color: var(--ga-color-icon-on-disabled);
     }
 
     + .label {
@@ -101,12 +88,36 @@ const aria = computed(() => (error ? { 'aria-invalid': true } : {}))
   }
 }
 
-.error {
-  & > .marker {
-    border-color: var(--ga-color-border-error);
-    background-color: var(--ga-color-surface-error);
-    color: var(--ga-color-icon-error);
+.marker {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  border: 2px solid var(--ga-color-border-action);
+  border-radius: var(--ga-radius);
+
+  pointer-events: none;
+  color: var(--ga-color-icon-on-primary);
+
+  & > .checked,
+  & > .indeterminate {
+    display: none;
   }
+}
+
+:not(.error) > .native:hover:not(:disabled) {
+  &:checked,
+  &:indeterminate {
+    + .marker {
+      background-color: var(--ga-color-surface-action-hover);
+    }
+  }
+}
+
+.error > .marker {
+  border-color: var(--ga-color-border-error);
+  background-color: var(--ga-color-surface-error);
+  color: var(--ga-color-icon-error);
 }
 
 .label {
