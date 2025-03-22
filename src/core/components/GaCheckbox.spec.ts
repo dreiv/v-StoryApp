@@ -36,6 +36,7 @@ describe('Checkbox', () => {
 
     const input = wrapper.find('input')
 
+    expect(input.element.checked).toBe(true)
     expect(wrapper.find('.checked').isVisible()).toBe(true)
   })
 })
