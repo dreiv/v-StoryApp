@@ -27,8 +27,8 @@ const aria = computed(() => (error ? { 'aria-invalid': true } : {}))
     <span :class="$style.label"><slot /></span>
   </label>
 
-  <div v-if="$slots.subItems" :class="$style.subItems">
-    <slot name="subItems" />
+  <div v-if="$slots.children" :class="$style.children">
+    <slot name="children" />
   </div>
 </template>
 
@@ -79,28 +79,21 @@ const aria = computed(() => (error ? { 'aria-invalid': true } : {}))
       background-color: var(--ga-color-surface-action-hover-2);
     }
 
-    &:checked,
-    &:indeterminate {
-      + .marker {
-        background-color: var(--ga-color-surface-action-hover);
-      }
+    &:checked + .marker,
+    &:indeterminate + .marker {
+      background-color: var(--ga-color-surface-action-hover);
     }
   }
 
-  &:checked + .marker {
-    background-color: var(--ga-color-surface-action);
-
-    & > .checked {
-      display: block;
-    }
-  }
-
+  &:checked + .marker,
   &:indeterminate + .marker {
     background-color: var(--ga-color-surface-action);
-
-    & > .indeterminate {
-      display: block;
-    }
+  }
+  &:checked + .marker > .checked {
+    display: block;
+  }
+  &:indeterminate + .marker > .indeterminate {
+    display: block;
   }
 
   &:disabled {
@@ -126,11 +119,9 @@ const aria = computed(() => (error ? { 'aria-invalid': true } : {}))
   }
 
   > .native {
-    &:checked,
-    &:indeterminate {
-      + .marker {
-        background-color: var(--ga-color-surface-error);
-      }
+    &:checked + .marker,
+    &:indeterminate + .marker {
+      background-color: var(--ga-color-surface-error);
     }
 
     &:hover:enabled + .marker {
@@ -150,7 +141,7 @@ const aria = computed(() => (error ? { 'aria-invalid': true } : {}))
   }
 }
 
-.subItems {
+.children {
   display: flex;
   flex-direction: column;
   gap: var(--ga-size-8);

@@ -20,6 +20,38 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
+interface CheckboxVariation {
+  name: 'Default' | 'Checked' | 'Indeterminate' | 'Error' | 'ErrorChecked' | 'ErrorIndeterminate'
+  props: CheckboxProps & { default?: string }
+}
+
+const variations: CheckboxVariation[] = [
+  { name: 'Default', props: {} },
+  { name: 'Checked', props: { checked: true } },
+  { name: 'Indeterminate', props: { indeterminate: true } },
+  { name: 'Error', props: { error: true } },
+  { name: 'ErrorChecked', props: { error: true, checked: true } },
+  { name: 'ErrorIndeterminate', props: { error: true, indeterminate: true } },
+]
+
+const createCheckboxStory = (variation: CheckboxVariation): Story => ({
+  args: {},
+  render: () => ({
+    components: { GaCheckbox },
+    template: `
+      <ga-checkbox v-bind="variation.props" />
+      <ga-checkbox v-bind="variation.props" disabled />
+      <ga-checkbox v-bind="variation.props">With Label</ga-checkbox>
+    `,
+    data: () => ({ variation }),
+  }),
+})
+
+const stories: { [key: string]: Story } = {}
+variations.forEach((variation) => {
+  stories[variation.name] = createCheckboxStory(variation)
+})
+
 export const Examples: Story = {
   args: {},
   render: () => ({
@@ -51,7 +83,7 @@ export const Examples: Story = {
         <ga-checkbox>Expense</ga-checkbox>
         <ga-checkbox disabled indeterminate>
           Payroll
-          <template #subItems>
+          <template #children>
             <ga-checkbox checked disabled>Absence tracking</ga-checkbox>
             <ga-checkbox disabled>Leave requests</ga-checkbox>
           </template>
@@ -63,7 +95,7 @@ export const Examples: Story = {
       <div :style="{display:'flex',flexDirection:'column',gap:'8px'}">
         <ga-checkbox indeterminate>
           Check in all team members
-          <template #subItems>
+          <template #children>
             <ga-checkbox>Managers</ga-checkbox>
             <ga-checkbox checked>Developers</ga-checkbox>
             <ga-checkbox>QA</ga-checkbox>
@@ -84,7 +116,7 @@ export const Examples: Story = {
 
         <ga-checkbox indeterminate>
           Daily updates
-          <template #subItems>
+          <template #children>
             <ga-checkbox>Messages from my inbox</ga-checkbox>
             <ga-checkbox>New invoices</ga-checkbox>
             <ga-checkbox disabled>Comments</ga-checkbox>
@@ -93,7 +125,7 @@ export const Examples: Story = {
 
         <ga-checkbox>
           Weekly updates
-          <template #subItems>
+          <template #children>
             <ga-checkbox>Unpaid totals of invoices</ga-checkbox>
             <ga-checkbox>Summary of amounts payed</ga-checkbox>
           </template>
@@ -142,6 +174,49 @@ export const Examples: Story = {
       </div>
 
     </div>
+    `,
+  }),
+}
+
+export const Default: Story = stories.Default
+export const Checked: Story = stories.Checked
+export const Indeterminate: Story = stories.Indeterminate
+export const Error: Story = stories.Error
+export const ErrorChecked: Story = stories.ErrorChecked
+export const ErrorIndeterminate: Story = stories.ErrorIndeterminate
+
+export const WithDetail: Story = {
+  args: {},
+  render: () => ({
+    components: { GaCheckbox, GaFormDetail },
+    template: `
+      <div :style="{display:'flex',flexDirection:'column',gap:'8px'}">
+        <ga-checkbox>I agree to the <a href="#">terms</a> and <a href="#">conditions</a>.</ga-checkbox>
+        <ga-form-detail>
+          <template #icon><octagon-alert strokeWidth="2.5" color="#CC453E"/></template>
+          Error message goes here and is present in two lines in this case<br>but it can be short an concise and show in one line.
+        </ga-form-detail>
+      </div>
+    `,
+  }),
+}
+
+export const WithChildren: Story = {
+  args: {},
+  render: () => ({
+    components: { GaCheckbox },
+    template: `
+      <div :style="{display:'flex',flexDirection:'column',gap:'8px'}">
+        <ga-checkbox indeterminate>
+          Check in all team members
+          <template #children>
+            <ga-checkbox>Managers</ga-checkbox>
+            <ga-checkbox checked>Developers</ga-checkbox>
+            <ga-checkbox>QA</ga-checkbox>
+            <ga-checkbox>Designers</ga-checkbox>
+          </template>
+        </ga-checkbox>
+      </div>
     `,
   }),
 }
