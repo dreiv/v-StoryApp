@@ -2,6 +2,7 @@
 import { computed, useCssModule } from 'vue'
 
 export interface ButtonProps {
+  label?: string
   primary?: boolean
   ghost?: boolean
   transparent?: boolean
@@ -23,7 +24,9 @@ const classes = computed(() => [
 </script>
 
 <template>
-  <button :class="classes"><slot /></button>
+  <button :class="classes">
+    <slot>{{ label }}</slot>
+  </button>
 </template>
 
 <style module>

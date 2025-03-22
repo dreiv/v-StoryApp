@@ -2,6 +2,7 @@
 import { computed, useCssModule } from 'vue'
 
 export interface BadgeProps {
+  label?: string
   inverted?: boolean
   muted?: boolean
   information?: boolean
@@ -33,7 +34,9 @@ const classes = computed(() => [
 </script>
 
 <template>
-  <span :class="classes"><slot /></span>
+  <span :class="classes">
+    <slot>{{ label }}</slot>
+  </span>
 </template>
 
 <style module>

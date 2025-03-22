@@ -7,6 +7,7 @@ export interface CheckboxProps {
   disabled?: boolean
   indeterminate?: boolean
   error?: boolean
+  label?: string
 }
 
 const { checked, error } = defineProps<CheckboxProps>()
@@ -24,7 +25,9 @@ const aria = computed(() => (error ? { 'aria-invalid': true } : {}))
       <MinusIcon :class="$style.indeterminate" :size="12" :stroke-width="4" />
     </div>
 
-    <span :class="$style.label"><slot /></span>
+    <span :class="$style.label">
+      <slot>{{ label }}</slot>
+    </span>
   </label>
 
   <div v-if="$slots.children" :class="$style.children">
