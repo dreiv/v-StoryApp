@@ -23,6 +23,7 @@
   flex-shrink: 0;
   justify-content: center;
   align-items: center;
+  align-self: start;
 
   padding: var(--ga-size-2);
   width: var(--ga-size-20);

@@ -188,7 +188,7 @@ export const ErrorIndeterminate: Story = stories.ErrorIndeterminate
 export const WithDetail: Story = {
   args: {},
   render: () => ({
-    components: { GaCheckbox, GaFormDetail },
+    components: { GaCheckbox, GaFormDetail, OctagonAlert },
     template: `
       <div :style="{display:'flex',flexDirection:'column',gap:'8px'}">
         <ga-checkbox>I agree to the <a href="#">terms</a> and <a href="#">conditions</a>.</ga-checkbox>
