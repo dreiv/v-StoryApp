@@ -1,10 +1,14 @@
+<script setup lang="ts">
+defineProps<{ label?: string }>()
+</script>
+
 <template>
   <div :class="$style.container">
     <div :class="$style.iconWrapper">
       <slot name="icon" />
     </div>
 
-    <slot />
+    <slot>{{ label }}</slot>
   </div>
 </template>
 

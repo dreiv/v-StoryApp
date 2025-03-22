@@ -3,6 +3,7 @@ import { GlobeLock, OctagonAlert, TriangleAlert } from 'lucide-vue-next'
 
 import GaCheckbox, { type CheckboxProps } from './GaCheckbox.vue'
 import GaFormDetail from './GaFormDetail.vue'
+import GaFormNest from './GaFormNest.vue'
 
 const meta = {
   component: GaCheckbox,
@@ -61,7 +62,7 @@ variations.forEach((variation) => {
 export const Examples: Story = {
   args: {},
   render: () => ({
-    components: { GaCheckbox, GaFormDetail, GlobeLock, OctagonAlert, TriangleAlert },
+    components: { GaCheckbox, GaFormDetail, GaFormNest, GlobeLock, OctagonAlert, TriangleAlert },
     template: `
     <div :style="{display:'flex',flexDirection:'column',gap:'24px'}">
       <ga-checkbox>I agree to the <a href="#">terms</a> and <a href="#">conditions</a>.</ga-checkbox>
@@ -76,7 +77,7 @@ export const Examples: Story = {
       </div>
 
       <div :style="{display:'flex',flexDirection:'column',gap:'8px'}">
-        <ga-checkbox>The checkbox component offers a clear depiction of a binary choice, enabling users to select from several options or toggle a single option on or off.</ga-checkbox>
+        <ga-checkbox label='The checkbox component offers a clear depiction of a binary choice, enabling users to select from several options or toggle a single option on or off.' />
         <ga-form-detail>This callout ensures that the checkmark is explained in even more detail.</ga-form-detail>
       </div>
 
@@ -85,61 +86,59 @@ export const Examples: Story = {
           <h3>Module selection</h3>
           <p>Select the modules you want to include in your project.</p>
         </div>
-        <ga-checkbox modelValue='true'>Approval</ga-checkbox>
-        <ga-checkbox>Expense</ga-checkbox>
-        <ga-checkbox disabled indeterminate>
-          Payroll
-          <template #children>
-            <ga-checkbox modelValue='true' disabled>Absence tracking</ga-checkbox>
-            <ga-checkbox disabled>Leave requests</ga-checkbox>
+
+        <ga-checkbox modelValue='true' label='Approval' />
+        <ga-checkbox label='Expense' />
+        <ga-form-nest>
+          <ga-checkbox disabled indeterminate label='Payroll' />
+          <template #nested>
+            <ga-checkbox modelValue='true' disabled label='Absence tracking' />
+            <ga-checkbox disabled label='Leave requests' />
           </template>
-        </ga-checkbox>
-        <ga-checkbox>Reporting</ga-checkbox>
-        <ga-checkbox>Taxation</ga-checkbox>
+        </ga-form-nest>
+        <ga-checkbox label='Reporting' />
+        <ga-checkbox label='Taxation' />
       </div>
 
       <div :style="{display:'flex',flexDirection:'column',gap:'8px'}">
-        <ga-checkbox indeterminate>
-          Check in all team members
-          <template #children>
-            <ga-checkbox>Managers</ga-checkbox>
-            <ga-checkbox modelValue='true'>Developers</ga-checkbox>
-            <ga-checkbox>QA</ga-checkbox>
-            <ga-checkbox>Designers</ga-checkbox>
+        <ga-form-nest>
+          <ga-checkbox indeterminate label='Check in all team members' />
+          <template #nested>
+            <ga-checkbox label='Managers' />
+            <ga-checkbox modelValue='true' label='Developers' />
+            <ga-checkbox label='QA' />
+            <ga-checkbox label='Designers' />
           </template>
-        </ga-checkbox>
+        </ga-form-nest>
       </div>
 
       <div :style="{display:'flex',flexDirection:'column',gap:'8px'}">
-        <ga-checkbox modelValue='true' disabled>Receive security updates via email</ga-checkbox>
-        <ga-form-detail>Only sent when major security flaws detected on your account.</ga-form-detail>
+        <ga-checkbox modelValue='true' disabled label='Receive security updates via email' />
+        <ga-form-detail label='Only sent when major security flaws detected on your account.' />
       </div>
 
       <div :style="{display:'flex',flexDirection:'column',gap:'8px'}">
-        <div>
-          <h3>Email me</h3>
-        </div>
+        <h3>Email me</h3>
 
-        <ga-checkbox indeterminate>
-          Daily updates
-          <template #children>
-            <ga-checkbox>Messages from my inbox</ga-checkbox>
-            <ga-checkbox>New invoices</ga-checkbox>
-            <ga-checkbox disabled>Comments</ga-checkbox>
+        <ga-form-nest>
+          <ga-checkbox indeterminate label='Daily updates' />
+          <template #nested>
+            <ga-checkbox label='Messages from my inbox' />
+            <ga-checkbox label='New invoices' />
+            <ga-checkbox label='Comments' disabled />
           </template>
-        </ga-checkbox>
+        </ga-form-nest>
 
-        <ga-checkbox>
-          Weekly updates
-          <template #children>
-            <ga-checkbox>Unpaid totals of invoices</ga-checkbox>
-            <ga-checkbox>Summary of amounts payed</ga-checkbox>
+        <ga-form-nest>
+          <ga-checkbox label='Weekly updates' />
+          <template #nested>
+            <ga-checkbox label='Unpaid totals of invoices' />
+            <ga-checkbox label='Summary of amounts payed' />
           </template>
-        </ga-checkbox>
+        </ga-form-nest>
 
-        <ga-form-detail>
+        <ga-form-detail label='All messages are SSL secured.'>
           <template #icon><globe-lock/></template>
-          All messages are SSL secured.
         </ga-form-detail>
       </div>
 
@@ -150,14 +149,13 @@ export const Examples: Story = {
         </div>
 
          <div :style="{display:'flex',gap:'8px'}">
-          <ga-checkbox error>Invoices</ga-checkbox>
-          <ga-checkbox error>Credit notes</ga-checkbox>
-          <ga-checkbox error>Expense requests</ga-checkbox>
+          <ga-checkbox error label='Invoices' />
+          <ga-checkbox error label='Credit notes' />
+          <ga-checkbox error label='Expense requests' />
          </div>
 
-         <ga-form-detail>
+         <ga-form-detail label='You need to select at least one document type.'>
           <template #icon><octagon-alert strokeWidth="2.5" color="#CC453E"/></template>
-          You need to select at least one document type.
         </ga-form-detail>
       </div>
 
@@ -167,18 +165,16 @@ export const Examples: Story = {
           <p>Only future documents will be included in this workflow.</p>
         </div>
 
-         <div :style="{display:'flex',gap:'8px'}">
-          <ga-checkbox>Invoices</ga-checkbox>
-          <ga-checkbox modelValue='true'>Credit notes</ga-checkbox>
-          <ga-checkbox>Expense requests</ga-checkbox>
-         </div>
+        <div :style="{display:'flex',gap:'8px'}">
+          <ga-checkbox label='Invoices' />
+          <ga-checkbox modelValue='true' label='Credit notes' />
+          <ga-checkbox label='Expense requests' />
+        </div>
 
-         <ga-form-detail>
+        <ga-form-detail label='Vodafone ASA did not sent any credit notes so far.'>
           <template #icon><triangle-alert strokeWidth="2.5" color="#BB5822"/></template>
-          Vodafone ASA did not sent any credit notes so far.
         </ga-form-detail>
       </div>
-
     </div>
     `,
   }),
@@ -210,18 +206,18 @@ export const WithDetail: Story = {
 export const WithChildren: Story = {
   args: {},
   render: () => ({
-    components: { GaCheckbox },
+    components: { GaCheckbox, GaFormNest },
     template: `
       <div :style="{display:'flex',flexDirection:'column',gap:'8px'}">
-        <ga-checkbox indeterminate>
-          Check in all team members
-          <template #children>
-            <ga-checkbox>Managers</ga-checkbox>
-            <ga-checkbox modelValue='true'>Developers</ga-checkbox>
-            <ga-checkbox>QA</ga-checkbox>
-            <ga-checkbox>Designers</ga-checkbox>
+        <ga-form-nest>
+          <ga-checkbox indeterminate label='Check in all team members' />
+          <template #nested>
+            <ga-checkbox label='Managers' />
+            <ga-checkbox modelValue='true' label='Developers' />
+            <ga-checkbox label='QA' />
+            <ga-checkbox label='Designers' />
           </template>
-        </ga-checkbox>
+        </ga-form-nest>
       </div>
     `,
   }),

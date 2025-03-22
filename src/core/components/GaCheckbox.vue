@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, useCssModule, defineModel } from 'vue'
 import { CheckIcon, MinusIcon } from 'lucide-vue-next'
+import { computed, useCssModule } from 'vue'
 
 export interface CheckboxProps {
   modelValue?: boolean
@@ -34,10 +34,6 @@ const aria = computed(() => ({
       <slot>{{ label }}</slot>
     </span>
   </label>
-
-  <div v-if="$slots.children" :class="$style.children">
-    <slot name="children" />
-  </div>
 </template>
 
 <style module>
@@ -148,13 +144,5 @@ const aria = computed(() => ({
   &:empty {
     display: none;
   }
-}
-
-.children {
-  display: flex;
-  flex-direction: column;
-  gap: var(--ga-size-8);
-
-  margin-left: calc(var(--ga-size-16) + var(--ga-size-10));
 }
 </style>
