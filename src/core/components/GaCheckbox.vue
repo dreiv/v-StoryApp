@@ -26,6 +26,10 @@ const aria = computed(() => (error ? { 'aria-invalid': true } : {}))
 
     <span :class="$style.label"><slot /></span>
   </label>
+
+  <div v-if="$slots.subItems" :class="$style.subItems">
+    <slot name="subItems" />
+  </div>
 </template>
 
 <style module>
@@ -42,6 +46,23 @@ const aria = computed(() => (error ? { 'aria-invalid': true } : {}))
   height: var(--ga-size-16);
 }
 
+.marker {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  border: 2px solid var(--ga-color-border-action);
+  border-radius: var(--ga-radius);
+
+  pointer-events: none;
+  color: var(--ga-color-icon-on-primary);
+
+  & > .checked,
+  & > .indeterminate {
+    display: none;
+  }
+}
+
 .native {
   flex-shrink: 0;
   opacity: 0;
@@ -52,9 +73,18 @@ const aria = computed(() => (error ? { 'aria-invalid': true } : {}))
     outline-offset: 2px;
   }
 
-  &:hover + .marker {
-    border-color: var(--ga-color-border-action-hover);
-    background-color: var(--ga-color-surface-action-hover-2);
+  &:hover:enabled {
+    &:not(:checked, :indeterminate) + .marker {
+      border-color: var(--ga-color-border-action-hover);
+      background-color: var(--ga-color-surface-action-hover-2);
+    }
+
+    &:checked,
+    &:indeterminate {
+      + .marker {
+        background-color: var(--ga-color-surface-action-hover);
+      }
+    }
   }
 
   &:checked + .marker {
@@ -82,42 +112,32 @@ const aria = computed(() => (error ? { 'aria-invalid': true } : {}))
       color: var(--ga-color-icon-on-disabled);
     }
 
-    + .label {
+    ~ .label {
       color: var(--ga-color-text-disabled);
     }
   }
 }
 
-.marker {
-  position: absolute;
-  top: 0;
-  left: 0;
-
-  border: 2px solid var(--ga-color-border-action);
-  border-radius: var(--ga-radius);
-
-  pointer-events: none;
-  color: var(--ga-color-icon-on-primary);
-
-  & > .checked,
-  & > .indeterminate {
-    display: none;
+.error {
+  > .marker {
+    border-color: var(--ga-color-border-error);
+    background-color: var(--ga-color-surface-error);
+    color: var(--ga-color-icon-error);
   }
-}
 
-:not(.error) > .native:hover:not(:disabled) {
-  &:checked,
-  &:indeterminate {
-    + .marker {
-      background-color: var(--ga-color-surface-action-hover);
+  > .native {
+    &:checked,
+    &:indeterminate {
+      + .marker {
+        background-color: var(--ga-color-surface-error);
+      }
+    }
+
+    &:hover:enabled + .marker {
+      border-color: var(--ga-color-border-error-hover);
+      background-color: var(--ga-color-surface-action-hover-2);
     }
   }
-}
-
-.error > .marker {
-  border-color: var(--ga-color-border-error);
-  background-color: var(--ga-color-surface-error);
-  color: var(--ga-color-icon-error);
 }
 
 .label {
@@ -128,5 +148,13 @@ const aria = computed(() => (error ? { 'aria-invalid': true } : {}))
   &:empty {
     display: none;
   }
+}
+
+.subItems {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ga-size-8);
+
+  margin-left: calc(var(--ga-size-16) + var(--ga-size-10));
 }
 </style>
