@@ -13,7 +13,7 @@ import {
 } from 'lucide-vue-next'
 
 import GaBadge from './GaBadge.vue'
-import GaButton, { type ButtonProps } from '@/core/components/GaButton.vue'
+import GaButton, { type ButtonProps } from './GaButton.vue'
 
 const meta = {
   component: GaButton,
@@ -125,8 +125,8 @@ export const Examples: Story = {
             <ga-button><filter-x />Clear estimate</ga-button>
           </div>
           <div :style="{display:'flex',gap:'8px'}">
-            <ga-button><thumbs-up width='16'/> 1</ga-button>
-            <ga-button><thumbs-down width='16'/> 0</ga-button>
+            <ga-button><thumbs-up size='16' strokeWidth="2.5"/> 1</ga-button>
+            <ga-button><thumbs-down size='16' strokeWidth="2.5"/> 0</ga-button>
           </div>
         </div>
 

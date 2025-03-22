@@ -2,6 +2,7 @@
 import { computed, useCssModule } from 'vue'
 
 export interface ButtonProps {
+  label?: string
   primary?: boolean
   ghost?: boolean
   transparent?: boolean
@@ -13,7 +14,7 @@ const style = useCssModule()
 
 const isSecondary = computed(() => !primary && !ghost && !transparent)
 const classes = computed(() => [
-  style.base,
+  style.button,
   { [style.primary]: primary },
   { [style.secondary]: isSecondary.value },
   { [style.ghost]: ghost },
@@ -23,11 +24,13 @@ const classes = computed(() => [
 </script>
 
 <template>
-  <button :class="classes"><slot /></button>
+  <button :class="classes">
+    <slot>{{ label }}</slot>
+  </button>
 </template>
 
 <style module>
-.base {
+.button {
   display: inline-flex;
   align-items: center;
   gap: var(--ga-size-8);
