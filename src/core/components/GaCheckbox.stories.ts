@@ -27,11 +27,17 @@ interface CheckboxVariation {
 
 const variations: CheckboxVariation[] = [
   { name: 'Default', props: {} },
-  { name: 'Checked', props: { checked: true } },
+  { name: 'Checked', props: { modelValue: true } },
   { name: 'Indeterminate', props: { indeterminate: true } },
-  { name: 'Error', props: { error: true } },
-  { name: 'ErrorChecked', props: { error: true, checked: true } },
-  { name: 'ErrorIndeterminate', props: { error: true, indeterminate: true } },
+  { name: 'Error', props: { error: true, errorMessage: 'Something happened' } },
+  {
+    name: 'ErrorChecked',
+    props: { error: true, errorMessage: 'Something happened', modelValue: true },
+  },
+  {
+    name: 'ErrorIndeterminate',
+    props: { error: true, errorMessage: 'Something happened', indeterminate: true },
+  },
 ]
 
 const createCheckboxStory = (variation: CheckboxVariation): Story => ({
@@ -79,12 +85,12 @@ export const Examples: Story = {
           <h3>Module selection</h3>
           <p>Select the modules you want to include in your project.</p>
         </div>
-        <ga-checkbox checked>Approval</ga-checkbox>
+        <ga-checkbox modelValue='true'>Approval</ga-checkbox>
         <ga-checkbox>Expense</ga-checkbox>
         <ga-checkbox disabled indeterminate>
           Payroll
           <template #children>
-            <ga-checkbox checked disabled>Absence tracking</ga-checkbox>
+            <ga-checkbox modelValue='true' disabled>Absence tracking</ga-checkbox>
             <ga-checkbox disabled>Leave requests</ga-checkbox>
           </template>
         </ga-checkbox>
@@ -97,7 +103,7 @@ export const Examples: Story = {
           Check in all team members
           <template #children>
             <ga-checkbox>Managers</ga-checkbox>
-            <ga-checkbox checked>Developers</ga-checkbox>
+            <ga-checkbox modelValue='true'>Developers</ga-checkbox>
             <ga-checkbox>QA</ga-checkbox>
             <ga-checkbox>Designers</ga-checkbox>
           </template>
@@ -105,7 +111,7 @@ export const Examples: Story = {
       </div>
 
       <div :style="{display:'flex',flexDirection:'column',gap:'8px'}">
-        <ga-checkbox checked disabled>Receive security updates via email</ga-checkbox>
+        <ga-checkbox modelValue='true' disabled>Receive security updates via email</ga-checkbox>
         <ga-form-detail>Only sent when major security flaws detected on your account.</ga-form-detail>
       </div>
 
@@ -163,7 +169,7 @@ export const Examples: Story = {
 
          <div :style="{display:'flex',gap:'8px'}">
           <ga-checkbox>Invoices</ga-checkbox>
-          <ga-checkbox checked>Credit notes</ga-checkbox>
+          <ga-checkbox modelValue='true'>Credit notes</ga-checkbox>
           <ga-checkbox>Expense requests</ga-checkbox>
          </div>
 
@@ -211,7 +217,7 @@ export const WithChildren: Story = {
           Check in all team members
           <template #children>
             <ga-checkbox>Managers</ga-checkbox>
-            <ga-checkbox checked>Developers</ga-checkbox>
+            <ga-checkbox modelValue='true'>Developers</ga-checkbox>
             <ga-checkbox>QA</ga-checkbox>
             <ga-checkbox>Designers</ga-checkbox>
           </template>

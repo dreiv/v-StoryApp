@@ -1,25 +1,30 @@
 <script setup lang="ts">
-import { computed, useCssModule } from 'vue'
+import { computed, useCssModule, defineModel } from 'vue'
 import { CheckIcon, MinusIcon } from 'lucide-vue-next'
 
 export interface CheckboxProps {
-  checked?: boolean
+  modelValue?: boolean
   disabled?: boolean
   indeterminate?: boolean
   error?: boolean
+  errorMessage?: string
   label?: string
 }
 
-const { checked, error } = defineProps<CheckboxProps>()
+const { error, errorMessage } = defineProps<CheckboxProps>()
 const style = useCssModule()
+const model = defineModel()
 
 const classes = computed(() => [style.checkbox, { [style.error]: error }])
-const aria = computed(() => (error ? { 'aria-invalid': true } : {}))
+const aria = computed(() => ({
+  'aria-invalid': error ? true : undefined,
+  'aria-errormessage': errorMessage ?? undefined,
+}))
 </script>
 
 <template>
   <label :class="classes" v-bind="aria">
-    <input type="checkbox" :class="$style.native" :checked :disabled :indeterminate />
+    <input type="checkbox" :class="$style.native" v-model="model" :disabled :indeterminate />
     <div :class="$style.marker">
       <CheckIcon :class="$style.checked" :size="12" :stroke-width="4" />
       <MinusIcon :class="$style.indeterminate" :size="12" :stroke-width="4" />
@@ -40,6 +45,7 @@ const aria = computed(() => (error ? { 'aria-invalid': true } : {}))
   display: inline-flex;
   position: relative;
   gap: var(--ga-size-8);
+  user-select: none;
 }
 
 .native,
