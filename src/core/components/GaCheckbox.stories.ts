@@ -16,6 +16,15 @@ const meta = {
     }),
   ],
   tags: ['autodocs'],
+  argTypes: {
+    modelValue: { control: 'boolean', description: 'The checked state of the checkbox.' },
+    error: { control: 'boolean', description: 'Indicates an error state for the checkbox.' },
+    errorMessage: {
+      control: 'text',
+      description: 'The error message to display when the checkbox is in error state.',
+    },
+    default: { control: 'text', description: 'The label text for the checkbox.' },
+  },
 } satisfies Meta<typeof GaCheckbox>
 
 export default meta
@@ -41,26 +50,29 @@ const variations: CheckboxVariation[] = [
   },
 ]
 
-const createCheckboxStory = (variation: CheckboxVariation): Story => ({
-  args: {},
-  render: () => ({
+const createStory = (variation: CheckboxVariation): Story => ({
+  args: variation.props,
+  render: (args) => ({
     components: { GaCheckbox },
     template: `
-      <ga-checkbox v-bind="variation.props" />
-      <ga-checkbox v-bind="variation.props" disabled />
-      <ga-checkbox v-bind="variation.props">With Label</ga-checkbox>
+      <ga-checkbox v-bind="args" />
+      <ga-checkbox v-bind="args" disabled />
+      <ga-checkbox v-bind="args">
+        {{ args.default || 'With Label' }}
+      </ga-checkbox>
     `,
-    data: () => ({ variation }),
+    setup: () => ({ args }),
   }),
 })
 
 const stories: { [key: string]: Story } = {}
 variations.forEach((variation) => {
-  stories[variation.name] = createCheckboxStory(variation)
+  stories[variation.name] = createStory(variation)
 })
 
 export const Examples: Story = {
   args: {},
+  parameters: { controls: { disable: true } },
   render: () => ({
     components: { GaCheckbox, GaFormDetail, GaFormNest, GlobeLock, OctagonAlert, TriangleAlert },
     template: `
@@ -189,22 +201,24 @@ export const ErrorIndeterminate: Story = stories.ErrorIndeterminate
 
 export const WithDetail: Story = {
   args: {},
-  render: () => ({
+  render: (args) => ({
     components: { GaCheckbox, GaFormDetail, OctagonAlert },
     template: `
       <div :style="{display:'flex',flexDirection:'column',gap:'8px'}">
-        <ga-checkbox>I agree to the <a href="#">terms</a> and <a href="#">conditions</a>.</ga-checkbox>
+        <ga-checkbox v-bind="args">I agree to the <a href="#">terms</a> and <a href="#">conditions</a>.</ga-checkbox>
         <ga-form-detail>
           <template #icon><octagon-alert strokeWidth="2.5" color="#CC453E"/></template>
           Error message goes here and is present in two lines in this case<br>but it can be short an concise and show in one line.
         </ga-form-detail>
       </div>
     `,
+    setup: () => ({ args }),
   }),
 }
 
-export const WithChildren: Story = {
+export const WithNestedItems: Story = {
   args: {},
+  parameters: { controls: { disable: true } },
   render: () => ({
     components: { GaCheckbox, GaFormNest },
     template: `

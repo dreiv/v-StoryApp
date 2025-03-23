@@ -23,21 +23,41 @@ const meta = {
     (story) => ({
       components: { story },
       template: `
-      <div
-        :style="{
-          display: 'flex',
-          justifyContent: 'center',
-          gap: '8px',
-          padding: '1rem',
-          background: 'repeating-linear-gradient(45deg, #eee 0px, #eee 10px, #fff 10px, #fff 20px)'
-        }"
-      >
-        <story />
-      </div>
-    `,
+        <div
+          :style="{
+            display: 'flex',
+            justifyContent: 'center',
+            gap: '8px',
+            padding: '1rem',
+            background: 'repeating-linear-gradient(45deg, #eee 0px, #eee 10px, #fff 10px, #fff 20px)'
+          }"
+        >
+          <story />
+        </div>
+      `,
     }),
   ],
   tags: ['autodocs'],
+  argTypes: {
+    default: { control: 'text', description: 'The text or content displayed within the button.' },
+    primary: {
+      control: 'boolean',
+      description: 'Applies the primary button style, typically used for main actions.',
+    },
+    ghost: {
+      control: 'boolean',
+      description: 'Applies a ghost button style, with a transparent background and border.',
+    },
+    transparent: {
+      control: 'boolean',
+      description: 'Applies a transparent button style, with no background or border.',
+    },
+    icon: {
+      control: 'boolean',
+      description:
+        'Indicates the button is an icon button, designed to display only an icon or short text.',
+    },
+  },
 } satisfies Meta<typeof GaButton>
 
 export default meta
@@ -45,7 +65,7 @@ type Story = StoryObj<typeof meta>
 
 interface ButtonVariation {
   name: 'Primary' | 'Secondary' | 'Ghost' | 'Transparent' | 'Icon'
-  props: ButtonProps & { default?: string }
+  props: ButtonProps & { default?: string; disabled?: boolean }
 }
 
 const variations: ButtonVariation[] = [
@@ -56,25 +76,30 @@ const variations: ButtonVariation[] = [
   { name: 'Icon', props: { icon: true, default: '✅' } },
 ]
 
-const createButtonStory = (variation: ButtonVariation): Story => ({
-  args: {},
-  render: () => ({
+const createStory = (variation: ButtonVariation): Story => ({
+  args: variation.props,
+  render: (args) => ({
     components: { GaButton },
     template: `
-      <ga-button v-bind="variation.props">Button</ga-button>
-      <ga-button v-bind="variation.props" disabled>Button</ga-button>
+      <ga-button v-bind="args">
+        ${args.default || 'Button'}
+      </ga-button>
+      <ga-button v-bind="args" disabled>
+        ${args.default || 'Button'}
+      </ga-button>
     `,
-    data: () => ({ variation }),
+    setup: () => ({ args }),
   }),
 })
 
 const stories: { [key: string]: Story } = {}
 variations.forEach((variation) => {
-  stories[variation.name] = createButtonStory(variation)
+  stories[variation.name] = createStory(variation)
 })
 
 export const Examples: Story = {
   args: {},
+  parameters: { controls: { disable: true } },
   render: () => ({
     components: {
       GaBadge,
@@ -154,6 +179,7 @@ export const Transparent = stories.Transparent
 
 export const Icon = {
   args: {},
+  parameters: { controls: { disable: true } },
   render: () => ({
     components: { GaButton, DownloadIcon },
     template: `
@@ -168,6 +194,7 @@ export const Icon = {
 
 export const IconAndText = {
   args: {},
+  parameters: { controls: { disable: true } },
   render: () => ({
     components: { GaButton, DownloadIcon },
     template: `
