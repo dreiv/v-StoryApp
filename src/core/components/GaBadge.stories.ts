@@ -14,6 +14,16 @@ const meta = {
     }),
   ],
   tags: ['autodocs'],
+  argTypes: {
+    default: { control: 'text', description: 'Content of the badge' },
+    inverted: { control: 'boolean', description: 'Inverted badge style' },
+    muted: { control: 'boolean', description: 'Muted badge style' },
+    information: { control: 'boolean', description: 'Information badge style' },
+    error: { control: 'boolean', description: 'Error badge style' },
+    warning: { control: 'boolean', description: 'Warning badge style' },
+    success: { control: 'boolean', description: 'Success badge style' },
+    disabled: { control: 'boolean', description: 'Disabled badge style' },
+  },
 } satisfies Meta<typeof GaBadge>
 
 export default meta
@@ -46,7 +56,7 @@ const variations: BadgeVariation[] = [
 ]
 
 const createBadgeStory = (variation: BadgeVariation): Story => ({
-  args: {},
+  args: variation.props,
   render: () => ({
     components: { GaBadge },
     template: `

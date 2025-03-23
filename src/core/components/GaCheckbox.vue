@@ -4,13 +4,12 @@ import { computed, useCssModule } from 'vue'
 
 export interface CheckboxProps {
   modelValue?: boolean
-  disabled?: boolean
-  indeterminate?: boolean
   error?: boolean
   errorMessage?: string
   label?: string
 }
 
+defineOptions({ inheritAttrs: false })
 const { error, errorMessage } = defineProps<CheckboxProps>()
 const style = useCssModule()
 const model = defineModel()
@@ -24,7 +23,7 @@ const aria = computed(() => ({
 
 <template>
   <label :class="classes" v-bind="aria">
-    <input type="checkbox" :class="$style.native" v-model="model" :disabled :indeterminate />
+    <input type="checkbox" :class="$style.native" v-model="model" v-bind="$attrs" />
     <div :class="$style.marker">
       <CheckIcon :class="$style.checked" :size="12" :stroke-width="4" />
       <MinusIcon :class="$style.indeterminate" :size="12" :stroke-width="4" />
