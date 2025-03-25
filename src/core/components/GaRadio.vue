@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed, useCssModule } from 'vue'
+import { computed, inject, useCssModule } from 'vue'
+import { radioGroupKey } from '../constants'
 
 export interface RadioProps {
   modelValue?: boolean
@@ -13,6 +14,7 @@ const { error, errorMessage } = defineProps<RadioProps>()
 const style = useCssModule()
 const model = defineModel()
 
+const { name } = inject(radioGroupKey, { name: '' })
 const classes = computed(() => [style.radio, { [style.error]: error }])
 const aria = computed(() => ({
   'aria-invalid': error ? true : undefined,
@@ -22,7 +24,7 @@ const aria = computed(() => ({
 
 <template>
   <label :class="classes" v-bind="aria">
-    <input type="radio" :class="$style.native" v-model="model" v-bind="$attrs" />
+    <input type="radio" :class="$style.native" v-model="model" :name v-bind="$attrs" />
     <div :class="$style.marker" />
 
     <span :class="$style.label">
