@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
+import { CircleCheck, OctagonAlert, TriangleAlert } from 'lucide-vue-next'
 
 import GaSwitch, { type SwitchProps } from './GaSwitch.vue'
+import GaFormDetail from './GaFormDetail.vue'
 
 const meta = {
   component: GaSwitch,
@@ -65,22 +67,63 @@ export const Examples: Story = {
   args: {},
   parameters: { controls: { disable: true } },
   render: () => ({
-    components: { GaSwitch },
+    components: { GaSwitch, GaFormDetail, CircleCheck, OctagonAlert, TriangleAlert },
     template: `
       <div :style="{display:'flex',flexDirection:'column',gap:'24px'}">
-        <ga-switch v-bind="args" disabled>
+        <ga-switch disabled>
           Set invoice date automatically.<br />
           <span :style="{fontSize:'11px'}">Hint is an accessible way to provide additional information that might help the user.</span>
         </ga-switch>
 
-        <ga-switch v-bind="args" disabled checked>
+        <ga-switch disabled checked>
           Set invoice date automatically.<br />
           <span :style="{fontSize:'11px'}">Hint is an accessible way to provide additional information that might help the user.</span>
         </ga-switch>
 
-        <ga-switch v-bind="args">
+        <ga-switch>
           Set invoice date automatically.<br />
           <span :style="{fontSize:'11px'}">Hint is an accessible way to provide <strong>additional information</strong> that might help the user.</span>
+        </ga-switch>
+
+        <ga-switch checked>
+          Daily invoice reminders<br />
+          <ga-form-detail label='Invoice reminders will be sent daily at 9:00 am.'>
+            <template #icon><circle-check color="#448548"/></template>
+          </ga-form-detail>
+        </ga-switch>
+
+        <ga-switch checked>
+          Dark mode<br />
+          <ga-form-detail label='Due to your access rights only partial dark mode is enabled for your account.'>
+            <template #icon><triangle-alert color="#BB5822"/></template>
+          </ga-form-detail>
+        </ga-switch>
+
+        <ga-switch checked>
+          Show admin view<br />
+          <ga-form-detail>
+            <template #icon><triangle-alert color="#BB5822"/></template>
+            <span>We detected maintenance mode for one of your modules and this view might be incomplete. <a href='#'>View module status</a></span>
+          </ga-form-detail>
+        </ga-switch>
+
+        <div :style="{display:'flex',flexDirection:'column',gap:'8px'}">
+          <h3 :style="{textDecoration:'underline wavy'}">Weekly reminders</h3>
+           <ga-switch checked label="On">
+        </div>
+
+        <ga-switch checked error>
+          Fraud detection<br />
+          <ga-form-detail label='There are no documents available to check as this is a demo account.'>
+            <template #icon><octagon-alert strokeWidth="2.5" color="#CC453E"/></template>
+          </ga-form-detail>
+        </ga-switch>
+
+        <ga-switch error>
+          Show admin view<br />
+          <ga-form-detail label='Admin view failed to initialize. Try again later.'>
+            <template #icon><octagon-alert strokeWidth="2.5" color="#CC453E"/></template>
+          </ga-form-detail>
         </ga-switch>
       </div>
     `,
