@@ -43,7 +43,6 @@ const aria = computed(() => ({
 
 .native,
 .marker {
-  margin: var(--ga-size-2);
   width: var(--ga-size-48);
   height: var(--ga-size-24);
 }
@@ -131,7 +130,11 @@ const aria = computed(() => ({
     }
 
     ~ .label {
-      color: var(--ga-color-icon);
+      color: var(--ga-color-text-disabled);
+    }
+
+    &:checked ~ .label {
+      color: var(--ga-color-text-disable-selected);
     }
   }
 }
@@ -147,7 +150,7 @@ const aria = computed(() => ({
     }
   }
 
-  > .native {
+  > .native:enabled {
     &:checked + .marker {
       background-color: var(--ga-color-surface-error);
 
@@ -156,7 +159,7 @@ const aria = computed(() => ({
       }
     }
 
-    &:hover:enabled + .marker {
+    &:hover + .marker {
       border-color: var(--ga-color-border-error-hover);
       background-color: var(--ga-color-surface-action-hover-2);
 
@@ -168,9 +171,9 @@ const aria = computed(() => ({
 }
 
 .label {
-  min-height: var(--ga-size-16);
+  min-height: var(--ga-size-24);
   font-size: var(--text-md);
-  line-height: var(--text-md--line-height);
+  line-height: var(--text-lg--line-height);
 
   &:empty {
     display: none;

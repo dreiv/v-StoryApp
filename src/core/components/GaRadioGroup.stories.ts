@@ -42,7 +42,7 @@ export const Examples: Story = {
         </ga-radio-group>
 
         <ga-radio-group title="Account alert notifications">
-          <ga-radio value="1" checked disabled>
+          <ga-radio value="1" disabled>
             Push notification<br/>
             <span :style="{fontSize:'12px'}">Linked with Expense mobile application</span>
           </ga-radio>
