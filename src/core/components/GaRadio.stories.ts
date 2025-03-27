@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 
 import GaRadio, { type RadioProps } from './GaRadio.vue'
+import GaRadioGroup from './GaRadioGroup.vue'
 
 const meta = {
   component: GaRadio,
@@ -45,13 +46,15 @@ const variations: RadioVariation[] = [
 const createStory = (variation: RadioVariation): Story => ({
   args: variation.props,
   render: (args) => ({
-    components: { GaRadio },
+    components: { GaRadio, GaRadioGroup },
     template: `
-      <ga-radio v-bind="args" />
-      <ga-radio v-bind="args" disabled />
-      <ga-radio v-bind="args">
-        {{ args.default || 'With Label' }}
-      </ga-radio>
+      <ga-radio-group direction='horizontal'>
+        <ga-radio v-bind="args" />
+        <ga-radio v-bind="args" disabled />
+        <ga-radio v-bind="args">
+          {{ args.default || 'With Label' }}
+        </ga-radio>
+      </ga-radio-group>
     `,
     setup: () => ({ args }),
   }),

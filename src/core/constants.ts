@@ -1,3 +1,7 @@
-import type { InjectionKey } from 'vue'
+import type { InjectionKey, Ref } from 'vue'
 
-export const radioGroupKey: InjectionKey<{ name: string }> = Symbol('radioGroup')
+export interface RadioGroupContext {
+  name: string
+  model: Ref<string>
+}
+export const radioGroupKey: InjectionKey<RadioGroupContext> = Symbol('radioGroup')

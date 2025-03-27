@@ -1,10 +1,15 @@
 import { shallowMount, type VueWrapper } from '@vue/test-utils'
 import GaRadio from './GaRadio.vue'
 
+vi.mock('../constants', () => ({ radioGroupKey: 'radioGroup' }))
+
 describe('Radio', () => {
   let wrapper: VueWrapper
   beforeAll(() => {
-    wrapper = shallowMount(GaRadio, { slots: { default: 'mock content' } })
+    wrapper = shallowMount(GaRadio, {
+      slots: { default: 'mock content' },
+      global: { provide: { radioGroup: { name: 'mockName', model: { value: '' } } } },
+    })
   })
 
   it('should render correctly', () => {

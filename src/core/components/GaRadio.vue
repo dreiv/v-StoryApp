@@ -3,17 +3,18 @@ import { computed, inject, useCssModule } from 'vue'
 import { radioGroupKey } from '../constants'
 
 export interface RadioProps {
+  label?: string
   error?: boolean
   errorMessage?: string
-  label?: string
 }
 
 defineOptions({ inheritAttrs: false })
 const { error, errorMessage } = defineProps<RadioProps>()
 const style = useCssModule()
-const model = defineModel()
 
-const { name } = inject(radioGroupKey, { name: '' })
+const group = inject(radioGroupKey)
+if (!group) throw new Error('GaRadio must be used inside a GaRadioGroup')
+
 const classes = computed(() => [style.radio, { [style.error]: error }])
 const aria = computed(() => ({
   'aria-invalid': error ? true : undefined,
@@ -23,7 +24,14 @@ const aria = computed(() => ({
 
 <template>
   <label :class="classes" v-bind="aria">
-    <input type="radio" :class="$style.native" v-model="model" :name v-bind="$attrs" />
+    <input
+      type="radio"
+      :class="$style.native"
+      :name="group?.name"
+      :checked="group?.model?.value === $attrs.value"
+      @change="group.model.value = `${$attrs.value}`"
+      v-bind="$attrs"
+    />
     <div :class="$style.marker" />
 
     <span :class="$style.label">

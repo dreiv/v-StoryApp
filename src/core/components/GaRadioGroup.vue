@@ -10,11 +10,12 @@ export interface RadioGroupProps {
 }
 
 const { direction = 'vertical', name = uniqueId('group') } = defineProps<RadioGroupProps>()
+const model = defineModel<string>({ default: '' })
 const style = useCssModule()
 
 const classes = computed(() => [style.content, { [style.horizontal]: direction === 'horizontal' }])
 
-provide(radioGroupKey, { name })
+provide(radioGroupKey, { name, model })
 </script>
 
 <template>
