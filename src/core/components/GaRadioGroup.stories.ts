@@ -23,6 +23,7 @@ type Story = StoryObj<typeof meta>
 
 export const Examples: Story = {
   args: {},
+  parameters: { controls: { disable: true } },
   render: () => ({
     components: { GaRadioGroup, GaRadio, GaFormDetail, ChartSpline, OctagonAlert, TriangleAlert },
     template: `
