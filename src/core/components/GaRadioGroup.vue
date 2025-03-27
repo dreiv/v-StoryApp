@@ -37,12 +37,15 @@ provide(radioGroupKey, { name, model })
   padding: 0;
 
   .title {
-    margin-bottom: var(--ga-size-8);
     padding-left: 0;
 
     font-weight: var(--font-weight-medium);
     line-height: var(--text-md--line-height);
     font-family: var(--default-font-family);
+
+    &:not(:empty) {
+      margin-bottom: var(--ga-size-8);
+    }
   }
 
   .content {
