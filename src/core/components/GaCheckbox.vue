@@ -3,7 +3,6 @@ import { CheckIcon, MinusIcon } from 'lucide-vue-next'
 import { computed, useCssModule } from 'vue'
 
 export interface CheckboxProps {
-  modelValue?: boolean
   error?: boolean
   errorMessage?: string
   label?: string

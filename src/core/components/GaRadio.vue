@@ -3,7 +3,6 @@ import { computed, inject, useCssModule } from 'vue'
 import { radioGroupKey } from '../constants'
 
 export interface RadioProps {
-  modelValue?: boolean
   error?: boolean
   errorMessage?: string
   label?: string
