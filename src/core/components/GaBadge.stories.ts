@@ -14,6 +14,47 @@ const meta = {
     }),
   ],
   tags: ['autodocs'],
+  argTypes: {
+    default: {
+      control: 'text',
+      description: 'The text displayed within the badge. Leave empty for a simple indicator.',
+    },
+    inverted: {
+      control: 'boolean',
+      description:
+        'Applies an inverted color scheme, typically used on darker backgrounds for better visibility.',
+    },
+    muted: {
+      control: 'boolean',
+      description:
+        'Applies a muted, less prominent color scheme, suitable for secondary information.',
+    },
+    information: {
+      control: 'boolean',
+      description:
+        'Styles the badge to indicate informational content, often with a blue or similar color.',
+    },
+    error: {
+      control: 'boolean',
+      description:
+        'Styles the badge to indicate an error or negative state, commonly using a red color.',
+    },
+    warning: {
+      control: 'boolean',
+      description:
+        'Styles the badge to indicate a warning or potential issue, often using a yellow or orange color.',
+    },
+    success: {
+      control: 'boolean',
+      description:
+        'Styles the badge to indicate a successful or positive state, typically using a green color.',
+    },
+    disabled: {
+      control: 'boolean',
+      description:
+        'Applies a disabled appearance, indicating the badge is inactive or not applicable.',
+    },
+  },
 } satisfies Meta<typeof GaBadge>
 
 export default meta
@@ -45,25 +86,28 @@ const variations: BadgeVariation[] = [
   { name: 'DisabledInverted', props: { disabled: true, inverted: true } },
 ]
 
-const createBadgeStory = (variation: BadgeVariation): Story => ({
-  args: {},
-  render: () => ({
+const createStory = (variation: BadgeVariation): Story => ({
+  args: variation.props,
+  render: (args) => ({
     components: { GaBadge },
     template: `
-      <ga-badge v-bind="variation.props">99</ga-badge>
-      <ga-badge v-bind="variation.props" />
+      <ga-badge v-bind="args">
+        ${args.default || '99'}
+      </ga-badge>
+      <ga-badge v-bind="args" v-if="!args.default"/>
     `,
-    data: () => ({ variation }),
+    setup: () => ({ args }),
   }),
 })
 
 const stories: { [key: string]: Story } = {}
 variations.forEach((variation) => {
-  stories[variation.name] = createBadgeStory(variation)
+  stories[variation.name] = createStory(variation)
 })
 
 export const Examples: Story = {
   args: {},
+  parameters: { controls: { disable: true } },
   render: () => ({
     components: { GaBadge, BellIcon, BellDot, MailIcon },
     template: `

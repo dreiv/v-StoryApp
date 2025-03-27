@@ -1,0 +1,10 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`GaRadioGroup > should render correctly 1`] = `
+"<fieldset class="group">
+  <legend class="title"></legend>
+  <div class="content">
+    <div>group-1 - </div>
+  </div>
+</fieldset>"
+`;

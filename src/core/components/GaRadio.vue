@@ -1,19 +1,21 @@
 <script setup lang="ts">
-import { CheckIcon, MinusIcon } from 'lucide-vue-next'
-import { computed, useCssModule } from 'vue'
+import { computed, inject, useCssModule } from 'vue'
+import { radioGroupKey } from '../constants'
 
-export interface CheckboxProps {
+export interface RadioProps {
+  label?: string
   error?: boolean
   errorMessage?: string
-  label?: string
 }
 
 defineOptions({ inheritAttrs: false })
-const { error, errorMessage } = defineProps<CheckboxProps>()
+const { error, errorMessage } = defineProps<RadioProps>()
 const style = useCssModule()
-const model = defineModel()
 
-const classes = computed(() => [style.checkbox, { [style.error]: error }])
+const group = inject(radioGroupKey)
+if (!group) throw new Error('GaRadio must be used inside a GaRadioGroup')
+
+const classes = computed(() => [style.radio, { [style.error]: error }])
 const aria = computed(() => ({
   'aria-invalid': error ? true : undefined,
   'aria-errormessage': errorMessage ?? undefined,
@@ -22,11 +24,15 @@ const aria = computed(() => ({
 
 <template>
   <label :class="classes" v-bind="aria">
-    <input type="checkbox" :class="$style.native" v-model="model" v-bind="$attrs" />
-    <div :class="$style.marker">
-      <CheckIcon :class="$style.checked" :size="12" :stroke-width="4" />
-      <MinusIcon :class="$style.indeterminate" :size="12" :stroke-width="4" />
-    </div>
+    <input
+      type="radio"
+      :class="$style.native"
+      :name="group?.name"
+      :checked="group?.model?.value === $attrs.value"
+      @change="group.model.value = `${$attrs.value}`"
+      v-bind="$attrs"
+    />
+    <div :class="$style.marker" />
 
     <span :class="$style.label">
       <slot>{{ label }}</slot>
@@ -35,7 +41,7 @@ const aria = computed(() => ({
 </template>
 
 <style module>
-.checkbox {
+.radio {
   display: inline-flex;
   position: relative;
   gap: var(--ga-size-8);
@@ -55,15 +61,10 @@ const aria = computed(() => ({
   left: 0;
 
   border: 2px solid var(--ga-color-border-action);
-  border-radius: var(--ga-radius);
+  border-radius: var(--ga-radius-round);
 
   pointer-events: none;
   color: var(--ga-color-icon-on-primary);
-
-  & > .checked,
-  & > .indeterminate {
-    display: none;
-  }
 }
 
 .native {
@@ -77,26 +78,31 @@ const aria = computed(() => ({
   }
 
   &:hover:enabled {
-    &:not(:checked, :indeterminate) + .marker {
+    + .marker {
       border-color: var(--ga-color-border-action-hover);
+    }
+
+    &:not(:checked) + .marker {
       background-color: var(--ga-color-surface-action-hover-2);
     }
-
-    &:checked + .marker,
-    &:indeterminate + .marker {
-      background-color: var(--ga-color-surface-action-hover);
-    }
   }
 
-  &:checked + .marker,
-  &:indeterminate + .marker {
+  &:checked + .marker {
     background-color: var(--ga-color-surface-action);
-  }
-  &:checked + .marker > .checked {
-    display: block;
-  }
-  &:indeterminate + .marker > .indeterminate {
-    display: block;
+
+    &::after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      border-radius: var(--ga-radius-round);
+      background-color: var(--ga-color-icon-on-primary);
+
+      width: var(--ga-size-4);
+      height: var(--ga-size-4);
+      content: '';
+    }
   }
 
   &:disabled {
@@ -106,6 +112,15 @@ const aria = computed(() => ({
       border-color: var(--ga-color-border-disabled);
       background-color: var(--ga-color-surface-disabled);
       color: var(--ga-color-icon-on-disabled);
+    }
+
+    &:checked {
+      + .marker::after {
+        background-color: var(--ga-color-icon-on-disabled);
+      }
+      ~ .label {
+        color: var(--ga-color-text-disable-selected);
+      }
     }
 
     ~ .label {
@@ -122,14 +137,12 @@ const aria = computed(() => ({
   }
 
   > .native {
-    &:checked + .marker,
-    &:indeterminate + .marker {
-      background-color: var(--ga-color-surface-error);
+    &:checked:enabled + .marker {
+      background-color: var(--ga-color-icon-error);
     }
 
     &:hover:enabled + .marker {
-      border-color: var(--ga-color-border-error-hover);
-      background-color: var(--ga-color-surface-action-hover-2);
+      border-color: var(--ga-color-red-70);
     }
   }
 }
