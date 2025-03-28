@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 
-import GaRadio, { type RadioProps } from './GaRadio.vue'
+import { type FormInputProps } from '../composables/useFormInput'
+import GaRadio from './GaRadio.vue'
 import GaRadioGroup from './GaRadioGroup.vue'
 
 const meta = {
@@ -30,7 +31,7 @@ type Story = StoryObj<typeof meta>
 
 interface RadioVariation {
   name: 'Default' | 'Checked' | 'Indeterminate' | 'Error' | 'ErrorChecked' | 'ErrorIndeterminate'
-  props: RadioProps & { default?: string; checked?: boolean; disabled?: boolean }
+  props: FormInputProps & { default?: string; checked?: boolean; disabled?: boolean }
 }
 
 const variations: RadioVariation[] = [

@@ -2,7 +2,7 @@ import { defineComponent, inject } from 'vue'
 import { mount, VueWrapper } from '@vue/test-utils'
 import GaRadioGroup from './GaRadioGroup.vue'
 
-vi.mock('../constants', () => ({ radioGroupKey: 'radioGroup' }))
+vi.mock('../constants')
 
 const MockRadioConsumer = defineComponent({
   template: '<div>{{ injectedName }} - {{ injectedModel }}</div>',

@@ -1,6 +1,8 @@
 import { shallowMount, type VueWrapper } from '@vue/test-utils'
 import GaCheckbox from './GaCheckbox.vue'
 
+vi.mock('../composables/useFormInput')
+
 describe('Checkbox', () => {
   let wrapper: VueWrapper
   beforeAll(() => {
@@ -17,7 +19,7 @@ describe('Checkbox', () => {
     const label = wrapper.find('label')
 
     expect(wrapper.html()).toMatchSnapshot()
-    expect(label.classes('error')).toBe(true)
+    expect(label.classes('mock-error')).toBe(true)
     expect(label.attributes('aria-invalid')).toBe('true')
     expect(label.attributes('aria-errormessage')).toBe('Test Error')
   })

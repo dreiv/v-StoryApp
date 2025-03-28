@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 import { CircleCheck, OctagonAlert, TriangleAlert } from 'lucide-vue-next'
 
-import GaSwitch, { type SwitchProps } from './GaSwitch.vue'
+import { type FormInputProps } from '../composables/useFormInput'
+import GaSwitch from './GaSwitch.vue'
 import GaFormDetail from './GaFormDetail.vue'
 
 const meta = {
@@ -30,7 +31,7 @@ type Story = StoryObj<typeof meta>
 
 interface SwitchVariation {
   name: 'Default' | 'Checked' | 'Error' | 'ErrorChecked'
-  props: SwitchProps & { default?: string; modelValue?: boolean; disabled?: boolean }
+  props: FormInputProps & { default?: string; modelValue?: boolean; disabled?: boolean }
 }
 
 const variations: SwitchVariation[] = [

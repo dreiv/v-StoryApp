@@ -1,7 +1,8 @@
 import { shallowMount, type VueWrapper } from '@vue/test-utils'
 import GaRadio from './GaRadio.vue'
 
-vi.mock('../constants', () => ({ radioGroupKey: 'radioGroup' }))
+vi.mock('../composables/useFormInput')
+vi.mock('../constants')
 
 describe('Radio', () => {
   let wrapper: VueWrapper
@@ -22,7 +23,7 @@ describe('Radio', () => {
     const label = wrapper.find('label')
 
     expect(wrapper.html()).toMatchSnapshot()
-    expect(label.classes('error')).toBe(true)
+    expect(label.classes('mock-error')).toBe(true)
     expect(label.attributes('aria-invalid')).toBe('true')
     expect(label.attributes('aria-errormessage')).toBe('Test Error')
   })
