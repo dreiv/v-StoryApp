@@ -1,5 +1,5 @@
 import { computed, type ComputedRef } from 'vue'
-import { type FormInputProps } from './useFormInput'
+import { type FormInputProps } from '../useFormInput'
 
 export interface UseFormInputMock {
   style: Record<string, string>
@@ -7,7 +7,7 @@ export interface UseFormInputMock {
   aria: ComputedRef<Record<string, string | undefined | boolean>>
 }
 
-export function useFormInputMock(props: FormInputProps): UseFormInputMock {
+export function useFormInput(props: FormInputProps): UseFormInputMock {
   return {
     style: { input: 'mock-input', error: 'mock-error' },
     classes: computed(() => ['mock-input', props.error ? 'mock-error' : '']),

@@ -8,7 +8,6 @@ export interface FormInputProps {
 
 export function useFormInput(props: FormInputProps) {
   const style = useCssModule()
-
   const classes = computed(() => [style.input, { [style.error]: props.error }])
 
   const aria = computed(() => ({
