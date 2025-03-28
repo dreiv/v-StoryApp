@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 import { GlobeLock, OctagonAlert, TriangleAlert } from 'lucide-vue-next'
 
-import GaCheckbox, { type CheckboxProps } from './GaCheckbox.vue'
+import { type FormInputProps } from '../composables/useFormInput'
+import GaCheckbox from './GaCheckbox.vue'
 import GaFormDetail from './GaFormDetail.vue'
 import GaFormNest from './GaFormNest.vue'
 
@@ -32,7 +33,7 @@ type Story = StoryObj<typeof meta>
 
 interface CheckboxVariation {
   name: 'Default' | 'Checked' | 'Indeterminate' | 'Error' | 'ErrorChecked' | 'ErrorIndeterminate'
-  props: CheckboxProps & {
+  props: FormInputProps & {
     default?: string
     modelValue?: boolean
     indeterminate?: boolean
