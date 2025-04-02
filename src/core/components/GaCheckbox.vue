@@ -1,23 +1,11 @@
 <script setup lang="ts">
 import { CheckIcon, MinusIcon } from 'lucide-vue-next'
-import { computed, useCssModule } from 'vue'
-
-export interface CheckboxProps {
-  error?: boolean
-  errorMessage?: string
-  label?: string
-}
+import { useFormInput, type FormInputProps } from '../composables/useFormInput'
 
 defineOptions({ inheritAttrs: false })
-const { error, errorMessage } = defineProps<CheckboxProps>()
-const style = useCssModule()
-const model = defineModel()
-
-const classes = computed(() => [style.checkbox, { [style.error]: error }])
-const aria = computed(() => ({
-  'aria-invalid': error ? true : undefined,
-  'aria-errormessage': errorMessage ?? undefined,
-}))
+const props = defineProps<FormInputProps>()
+const { classes, aria } = useFormInput(props)
+const model = defineModel<boolean>()
 </script>
 
 <template>
@@ -35,7 +23,7 @@ const aria = computed(() => ({
 </template>
 
 <style module>
-.checkbox {
+.input {
   display: inline-flex;
   position: relative;
   gap: var(--ga-size-8);

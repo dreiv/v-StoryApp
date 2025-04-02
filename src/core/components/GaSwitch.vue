@@ -1,23 +1,11 @@
 <script setup lang="ts">
 import { CheckIcon } from 'lucide-vue-next'
-import { computed, useCssModule } from 'vue'
-
-export interface SwitchProps {
-  error?: boolean
-  errorMessage?: string
-  label?: string
-}
+import { useFormInput, type FormInputProps } from '../composables/useFormInput'
 
 defineOptions({ inheritAttrs: false })
-const { error, errorMessage } = defineProps<SwitchProps>()
-const style = useCssModule()
-const model = defineModel()
-
-const classes = computed(() => [style.switch, { [style.error]: error }])
-const aria = computed(() => ({
-  'aria-invalid': error ? true : undefined,
-  'aria-errormessage': errorMessage ?? undefined,
-}))
+const props = defineProps<FormInputProps>()
+const { classes, aria } = useFormInput(props)
+const model = defineModel<boolean>()
 </script>
 
 <template>
@@ -34,10 +22,10 @@ const aria = computed(() => ({
 </template>
 
 <style module>
-.switch {
+.input {
   display: inline-flex;
   position: relative;
-  gap: var(--ga-size-8);
+  gap: var(--ga-size-12);
   user-select: none;
 }
 

@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Switch > should render correctly 1`] = `
-"<label class="switch"><input type="checkbox" class="native">
+"<label class="mock-input"><input type="checkbox" class="native">
   <div class="marker">
     <anonymous-stub class="checked" size="16"></anonymous-stub>
   </div><span class="label">mock content</span>
@@ -9,7 +9,7 @@ exports[`Switch > should render correctly 1`] = `
 `;
 
 exports[`Switch > should render with an error prop 1`] = `
-"<label class="switch error" aria-invalid="true" aria-errormessage="Test Error"><input type="checkbox" class="native">
+"<label class="mock-input mock-error" aria-invalid="true" aria-errormessage="Test Error"><input type="checkbox" class="native">
   <div class="marker">
     <anonymous-stub class="checked" size="16"></anonymous-stub>
   </div><span class="label">mock content</span>

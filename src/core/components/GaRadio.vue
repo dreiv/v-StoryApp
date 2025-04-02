@@ -1,25 +1,14 @@
 <script setup lang="ts">
-import { computed, inject, useCssModule } from 'vue'
+import { inject } from 'vue'
+import { useFormInput, type FormInputProps } from '../composables/useFormInput'
 import { radioGroupKey } from '../constants'
 
-export interface RadioProps {
-  label?: string
-  error?: boolean
-  errorMessage?: string
-}
-
 defineOptions({ inheritAttrs: false })
-const { error, errorMessage } = defineProps<RadioProps>()
-const style = useCssModule()
+const props = defineProps<FormInputProps>()
+const { classes, aria } = useFormInput(props)
 
 const group = inject(radioGroupKey)
 if (!group) throw new Error('GaRadio must be used inside a GaRadioGroup')
-
-const classes = computed(() => [style.radio, { [style.error]: error }])
-const aria = computed(() => ({
-  'aria-invalid': error ? true : undefined,
-  'aria-errormessage': errorMessage ?? undefined,
-}))
 </script>
 
 <template>
@@ -41,7 +30,7 @@ const aria = computed(() => ({
 </template>
 
 <style module>
-.radio {
+.input {
   display: inline-flex;
   position: relative;
   gap: var(--ga-size-8);
