@@ -39,7 +39,7 @@ if (!group) throw new Error('GaRadio must be used inside a GaRadioGroup')
 
 .native,
 .marker {
-  margin: var(--ga-size-2);
+  margin: var(--ga-size-2) 0 var(--ga-size-2) var(--ga-size-2);
   width: var(--ga-size-16);
   height: var(--ga-size-16);
 }

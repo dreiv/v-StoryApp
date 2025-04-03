@@ -28,10 +28,11 @@ defineProps<{ label?: string }>()
   justify-content: center;
   align-items: center;
   align-self: start;
+  box-sizing: content-box;
 
-  padding: var(--ga-size-2);
-  width: var(--ga-size-20);
-  height: var(--ga-size-20);
+  margin: var(--ga-size-2) 0 var(--ga-size-2) var(--ga-size-2);
+  width: var(--ga-size-16);
+  height: var(--ga-size-16);
 
   overflow: hidden;
 }
