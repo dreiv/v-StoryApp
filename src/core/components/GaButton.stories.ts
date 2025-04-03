@@ -13,6 +13,7 @@ import {
 } from 'lucide-vue-next'
 
 import GaBadge from './GaBadge.vue'
+import GaSpinner from './GaSpinner.vue'
 import GaButton, { type ButtonProps } from './GaButton.vue'
 
 const meta = {
@@ -104,6 +105,7 @@ export const Examples: Story = {
     components: {
       GaBadge,
       GaButton,
+      GaSpinner,
       ArrowLeft,
       ChevronDown,
       DownloadIcon,
@@ -142,6 +144,12 @@ export const Examples: Story = {
             <ga-button icon ghost><folder-sync /></ga-button>
           </div>
           <ga-button primary><download-icon /> Download as PDF <chevron-down /></ga-button>
+        </div>
+
+        <div :style="{display:'flex',justifyContent:'space-between',gap:'8px'}">
+        <ga-button disabled>
+          <ga-spinner size="sm" label='Uploading file...'/>
+        </ga-button>
         </div>
 
         <div :style="{display:'flex',justifyContent:'space-between',gap:'8px'}">

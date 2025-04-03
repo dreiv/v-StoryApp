@@ -22,7 +22,7 @@ const meta = {
     error: { control: 'boolean', description: 'Indicates an error state for the checkbox.' },
     errorMessage: {
       control: 'text',
-      description: 'The error message to display when the checkbox is in error state.',
+      description: 'The error message to display when the checkbox is in an error state.',
     },
     default: { control: 'text', description: 'The label text for the checkbox.' },
   },

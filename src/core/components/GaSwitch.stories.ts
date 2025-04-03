@@ -20,7 +20,7 @@ const meta = {
     error: { control: 'boolean', description: 'Indicates an error state for the switch input.' },
     errorMessage: {
       control: 'text',
-      description: 'The error message to display when the switch input is in error state.',
+      description: 'The error message to display when the switch input is in an error state.',
     },
     default: { control: 'text', description: 'The label text for the switch input.' },
   },

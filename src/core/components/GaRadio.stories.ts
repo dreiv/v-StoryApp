@@ -20,7 +20,7 @@ const meta = {
     error: { control: 'boolean', description: 'Indicates an error state for the radio input.' },
     errorMessage: {
       control: 'text',
-      description: 'The error message to display when the radio input is in error state.',
+      description: 'The error message to display when the radio input is in an error state.',
     },
     default: { control: 'text', description: 'The label text for the radio input.' },
   },
