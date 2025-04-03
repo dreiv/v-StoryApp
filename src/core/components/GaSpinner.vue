@@ -1,51 +1,37 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, useCssModule } from 'vue'
 export interface SpinnerProps {
   size?: 'sm' | 'default' | 'lg'
   label?: string
 }
 
 const { size = 'default' } = defineProps<SpinnerProps>()
-const sizeMap = {
-  sm: { size: 16, strokeWidth: 3.2 },
-  default: { size: 32, strokeWidth: 6.3 },
-  lg: { size: 48, strokeWidth: 9.6 },
-}
-
-const pixelSize = computed(() => sizeMap[size].size)
-const strokeWidth = computed(() => sizeMap[size].strokeWidth)
-const radius = computed(() => pixelSize.value / 2 - strokeWidth.value / 2)
-const dashArray = computed(() => (radius.value * Math.PI) / 2 + ' ' + radius.value * Math.PI * 2)
+const style = useCssModule()
+const classes = computed(() => [
+  style.spinner,
+  { [style.small]: size === 'sm', [style.large]: size === 'lg' },
+])
 </script>
 
 <template>
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    :width="pixelSize"
-    :height="pixelSize"
-    :viewBox="`0 0 ${pixelSize} ${pixelSize}`"
-    :class="$style.load"
+    width="32"
+    height="32"
+    viewBox="0 0 32 32"
+    stroke-width="6.4"
+    :class="classes"
     :aria-label="label"
   >
-    <circle
-      :cx="pixelSize / 2"
-      :cy="pixelSize / 2"
-      :r="radius"
-      fill="none"
-      :stroke-width="strokeWidth"
-      stroke="pink"
-    />
+    <defs><circle id="circle" cx="16" cy="16" r="12.8" fill="none" /></defs>
 
-    <circle
+    <use href="#circle" stroke="pink" />
+    <use
+      href="#circle"
       :class="$style.circle"
-      fill="none"
-      :cx="pixelSize / 2"
-      :cy="pixelSize / 2"
-      :r="radius"
-      :stroke-width="strokeWidth"
       stroke="lime"
       stroke-linecap="round"
-      :stroke-dasharray="dashArray"
+      stroke-dasharray="21 84"
     />
   </svg>
 </template>
@@ -60,7 +46,13 @@ const dashArray = computed(() => (radius.value * Math.PI) / 2 + ' ' + radius.val
   }
 }
 
-.load {
+.small {
+  width: var(--ga-size-16);
+  height: var(--ga-size-16);
+}
+.large {
+  width: var(--ga-size-48);
+  height: var(--ga-size-48);
 }
 
 .circle {
