@@ -33,12 +33,7 @@ type Story = StoryObj<typeof meta>
 
 interface CheckboxVariation {
   name: 'Default' | 'Checked' | 'Indeterminate' | 'Error' | 'ErrorChecked' | 'ErrorIndeterminate'
-  props: FormInputProps & {
-    default?: string
-    modelValue?: boolean
-    indeterminate?: boolean
-    disabled?: boolean
-  }
+  props: FormInputProps & { default?: string; modelValue?: boolean }
 }
 
 const variations: CheckboxVariation[] = [

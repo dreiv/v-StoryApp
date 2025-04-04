@@ -1,19 +1,23 @@
 <script setup lang="ts">
-import { inject } from 'vue'
+import { inject, useTemplateRef } from 'vue'
 import { useFormInput, type FormInputProps } from '../composables/useFormInput'
 import { radioGroupKey } from '../constants'
 
 defineOptions({ inheritAttrs: false })
 const props = defineProps<FormInputProps>()
+const inputRef = useTemplateRef<HTMLElement>('inputRef')
 const { classes, aria } = useFormInput(props)
 
 const group = inject(radioGroupKey)
 if (!group) throw new Error('GaRadio must be used inside a GaRadioGroup')
+
+defineExpose({ inputRef })
 </script>
 
 <template>
   <label :class="classes" v-bind="aria">
     <input
+      ref="inputRef"
       type="radio"
       :class="$style.native"
       :name="group?.name"

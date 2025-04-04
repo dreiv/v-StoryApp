@@ -37,7 +37,7 @@ type Story = StoryObj<typeof meta>
 
 interface SpinnerVariation {
   name: 'Default' | 'Small' | 'Large' | 'Label' | 'LabelVertical'
-  props: SpinnerProps & { default?: string; disabled?: boolean }
+  props: SpinnerProps & { default?: string }
 }
 
 const variations: SpinnerVariation[] = [

@@ -31,7 +31,7 @@ type Story = StoryObj<typeof meta>
 
 interface RadioVariation {
   name: 'Default' | 'Checked' | 'Indeterminate' | 'Error' | 'ErrorChecked' | 'ErrorIndeterminate'
-  props: FormInputProps & { default?: string; checked?: boolean; disabled?: boolean }
+  props: FormInputProps & { default?: string }
 }
 
 const variations: RadioVariation[] = [

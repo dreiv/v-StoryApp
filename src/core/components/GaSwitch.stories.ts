@@ -31,7 +31,7 @@ type Story = StoryObj<typeof meta>
 
 interface SwitchVariation {
   name: 'Default' | 'Checked' | 'Error' | 'ErrorChecked'
-  props: FormInputProps & { default?: string; modelValue?: boolean; disabled?: boolean }
+  props: FormInputProps & { default?: string; modelValue?: boolean }
 }
 
 const variations: SwitchVariation[] = [

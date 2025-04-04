@@ -66,7 +66,7 @@ type Story = StoryObj<typeof meta>
 
 interface ButtonVariation {
   name: 'Primary' | 'Secondary' | 'Ghost' | 'Transparent' | 'Icon'
-  props: ButtonProps & { default?: string; disabled?: boolean }
+  props: ButtonProps & { default?: string }
 }
 
 const variations: ButtonVariation[] = [
