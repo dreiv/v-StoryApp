@@ -1,24 +1,24 @@
-<script setup lang="ts">
-import { useTemplateRef } from 'vue'
-import { useFloating } from '../composables/useFloating'
+<script lang="ts">
+import { PopperWrapper } from 'floating-vue'
 
-const reference = useTemplateRef('reference')
-const floating = useTemplateRef('floating')
-const { floatingStyles } = useFloating(reference, floating)
+export default {
+  ...PopperWrapper,
+  vPopperTheme: 'tooltip',
+}
 </script>
 
-<template>
-  <span ref="reference" :class="$style.reference">
-    <slot />
-  </span>
+<style>
+.v-popper--theme-tooltip {
+  display: inline-flex;
 
-  <teleport to="body">
-    <div ref="floating" :style="floatingStyles">Tooltip</div>
-  </teleport>
-</template>
+  .v-popper__inner {
+    background-color: var(--ga-color-surface-action-hover);
+    padding: var(--ga-size-8);
+    color: var(--ga-color-text-on-action);
+  }
 
-<style module>
-.reference {
-  /* display: contents; */
+  .v-popper__arrow-outer {
+    border-color: var(--ga-color-surface-action-hover);
+  }
 }
 </style>
