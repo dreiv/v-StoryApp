@@ -27,7 +27,7 @@ export const Examples: Story = {
     components: { GaTooltip, GaButton, CircleHelp, PlusIcon },
     directives: { tooltip },
     template: `
-      <div :style="{display:'flex',alignItems:'center',flexDirection:'column',gap:'24px'}">
+      <div :style="{display:'flex',alignItems:'center',flexDirection:'column',gap:'16px'}">
         <ga-tooltip>
           <input type="text" placeholder="Hover me!" />
 
@@ -59,7 +59,7 @@ export const Examples: Story = {
         </ga-tooltip>
 
         <ga-tooltip :auto-hide="false" :popper-triggers="['hover','focus']">
-          <ga-button label='Auto-Process Emails' />
+          <ga-button label='Auto-Process Emails (actions)' />
 
           <template #header>Automatic email expenses</template>
           <template #content>
