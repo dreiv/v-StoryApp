@@ -5,7 +5,7 @@ defineProps<{ content?: string }>()
 </script>
 
 <template>
-  <PopperWrapper theme="tooltip" :distance="10">
+  <PopperWrapper theme="tooltip">
     <slot />
 
     <template #popper>

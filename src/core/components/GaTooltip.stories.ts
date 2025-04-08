@@ -33,7 +33,9 @@ export const Examples: Story = {
 
           <template #header>International Bank Account Number (IBAN)</template>
           <template #content>
-          This number represents an internationally agreed upon system of identifying bank accounts across national borders to facilitate the communication and processing of cross border transactions with a reduced risk of transcription errors.
+            This number represents an internationally agreed upon system of identifying bank accounts
+            across national borders to facilitate the communication and processing of cross border
+            transactions with a reduced risk of transcription errors.
           </template>
         </ga-tooltip>
 
@@ -56,7 +58,7 @@ export const Examples: Story = {
           </template>
         </ga-tooltip>
 
-        <ga-tooltip>
+        <ga-tooltip :auto-hide="false" :popper-triggers="['hover','focus']">
           <ga-button label='Auto-Process Emails' />
 
           <template #header>Automatic email expenses</template>
