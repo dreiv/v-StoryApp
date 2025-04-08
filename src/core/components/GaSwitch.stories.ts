@@ -79,7 +79,7 @@ export const Examples: Story = {
           <span :style="{fontSize:'11px'}">Hint is an accessible way to provide additional information that might help the user.</span>
         </ga-switch>
 
-        <ga-switch disabled checked>
+        <ga-switch disabled modelValue='true'>
           Set invoice date automatically.<br />
           <span :style="{fontSize:'11px'}">Hint is an accessible way to provide additional information that might help the user.</span>
         </ga-switch>
@@ -89,21 +89,23 @@ export const Examples: Story = {
           <span :style="{fontSize:'11px'}">Hint is an accessible way to provide <strong>additional information</strong> that might help the user.</span>
         </ga-switch>
 
-        <ga-switch checked>
+        <ga-switch label="Set invoice date automatically" modelValue='true' v-tooltip="'Automatic date'" />
+
+        <ga-switch modelValue='true'>
           Daily invoice reminders<br />
           <ga-form-detail label='Invoice reminders will be sent daily at 9:00 am.'>
             <template #icon><circle-check color="#448548"/></template>
           </ga-form-detail>
         </ga-switch>
 
-        <ga-switch checked>
+        <ga-switch modelValue='true'>
           Dark mode<br />
           <ga-form-detail label='Due to your access rights only partial dark mode is enabled for your account.'>
             <template #icon><triangle-alert color="#BB5822"/></template>
           </ga-form-detail>
         </ga-switch>
 
-        <ga-switch checked>
+        <ga-switch modelValue='true'>
           Show admin view<br />
           <ga-form-detail>
             <template #icon><triangle-alert color="#BB5822"/></template>
@@ -113,10 +115,10 @@ export const Examples: Story = {
 
         <div :style="{display:'flex',flexDirection:'column',gap:'8px'}">
           <h3 :style="{textDecoration:'underline wavy'}">Weekly reminders</h3>
-           <ga-switch checked label="On">
+           <ga-switch modelValue='true' label="On">
         </div>
 
-        <ga-switch checked error>
+        <ga-switch modelValue='true' error>
           Fraud detection<br />
           <ga-form-detail label='There are no documents available to check as this is a demo account.'>
             <template #icon><octagon-alert strokeWidth="2.5" color="#CC453E"/></template>
