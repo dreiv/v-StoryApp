@@ -33,12 +33,7 @@ type Story = StoryObj<typeof meta>
 
 interface CheckboxVariation {
   name: 'Default' | 'Checked' | 'Indeterminate' | 'Error' | 'ErrorChecked' | 'ErrorIndeterminate'
-  props: FormInputProps & {
-    default?: string
-    modelValue?: boolean
-    indeterminate?: boolean
-    disabled?: boolean
-  }
+  props: FormInputProps & { default?: string; modelValue?: boolean }
 }
 
 const variations: CheckboxVariation[] = [
@@ -76,6 +71,9 @@ variations.forEach((variation) => {
   stories[variation.name] = createStory(variation)
 })
 
+/**
+ * Enable users to select multiple independent options or toggle a single option on/off, with an optional indeterminate state.
+ */
 export const Examples: Story = {
   args: {},
   parameters: { controls: { disable: true } },

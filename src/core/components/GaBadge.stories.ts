@@ -105,6 +105,9 @@ variations.forEach((variation) => {
   stories[variation.name] = createStory(variation)
 })
 
+/**
+ * Conveys status, counts, or labels via small, often overlaid elements, highlighting updates or categorizing items at a glance.
+ */
 export const Examples: Story = {
   args: {},
   parameters: { controls: { disable: true } },

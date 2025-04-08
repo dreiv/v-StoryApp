@@ -1,6 +1,6 @@
-import { computed, useCssModule } from 'vue'
+import { computed, useCssModule, type InputHTMLAttributes } from 'vue'
 
-export interface FormInputProps {
+export interface FormInputProps extends /* @vue-ignore */ InputHTMLAttributes {
   label?: string
   error?: boolean
   errorMessage?: string

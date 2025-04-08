@@ -13,6 +13,7 @@ import {
 } from 'lucide-vue-next'
 
 import GaBadge from './GaBadge.vue'
+import GaTooltip from './GaTooltip.vue'
 import GaSpinner from './GaSpinner.vue'
 import GaButton, { type ButtonProps } from './GaButton.vue'
 
@@ -66,7 +67,7 @@ type Story = StoryObj<typeof meta>
 
 interface ButtonVariation {
   name: 'Primary' | 'Secondary' | 'Ghost' | 'Transparent' | 'Icon'
-  props: ButtonProps & { default?: string; disabled?: boolean }
+  props: ButtonProps & { default?: string }
 }
 
 const variations: ButtonVariation[] = [
@@ -98,6 +99,9 @@ variations.forEach((variation) => {
   stories[variation.name] = createStory(variation)
 })
 
+/**
+ * Initiates an action on click. Versatile for navigation, forms, and functions, with consistent styling to signify importance and intent across the UI.
+ */
 export const Examples: Story = {
   args: {},
   parameters: { controls: { disable: true } },
@@ -105,6 +109,7 @@ export const Examples: Story = {
     components: {
       GaBadge,
       GaButton,
+      GaTooltip,
       GaSpinner,
       ArrowLeft,
       ChevronDown,
@@ -147,6 +152,10 @@ export const Examples: Story = {
         </div>
 
         <div :style="{display:'flex',justifyContent:'space-between',gap:'8px'}">
+        <ga-tooltip content='Payment cannot be accepted without bank login.'>
+          <ga-button primary disabled>Accept payment</ga-button>
+        </ga-tooltip>
+
         <ga-button disabled>
           <ga-spinner size="sm" label='Uploading file...'/>
         </ga-button>

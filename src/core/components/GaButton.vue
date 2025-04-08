@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed, useCssModule } from 'vue'
+import { computed, useCssModule, type ButtonHTMLAttributes } from 'vue'
 
-export interface ButtonProps {
+export interface ButtonProps extends /* @vue-ignore */ ButtonHTMLAttributes {
   label?: string
   primary?: boolean
   ghost?: boolean

@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
-import GaButton from '@/core/components/GaButton.vue'
 import { icons } from 'lucide-vue-next'
+import { vTooltip } from 'floating-vue'
+import GaButton from '@/core/components/GaButton.vue'
 
 type IconKeys = keyof typeof icons
 
@@ -43,9 +44,9 @@ const copyToClipboard = (key: string) => {
       icon
       v-for="key in filteredIcons"
       :key
-      :title="key"
       class="item"
       @click="copyToClipboard(key)"
+      v-tooltip="`${key}`"
     >
       <component :is="icons[key]" class="icon" />
     </ga-button>

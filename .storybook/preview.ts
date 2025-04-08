@@ -1,5 +1,12 @@
-import type { Preview } from '@storybook/vue3'
+import { type Preview, setup } from '@storybook/vue3'
+import { App } from 'vue'
+
+import floating from '../src/plugins/floatingVue'
 import '@/assets/main.css'
+
+setup((app: App) => {
+  app.use(floating)
+})
 
 const preview: Preview = {
   parameters: { controls: { matchers: { color: /(background|color)$/i, date: /Date$/i } } },

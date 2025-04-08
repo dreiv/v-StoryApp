@@ -1,16 +1,20 @@
 <script setup lang="ts">
+import { useTemplateRef } from 'vue'
 import { CheckIcon, MinusIcon } from 'lucide-vue-next'
 import { useFormInput, type FormInputProps } from '../composables/useFormInput'
 
 defineOptions({ inheritAttrs: false })
 const props = defineProps<FormInputProps>()
 const { classes, aria } = useFormInput(props)
+const inputRef = useTemplateRef<HTMLElement>('inputRef')
 const model = defineModel<boolean>()
+
+defineExpose({ inputRef })
 </script>
 
 <template>
   <label :class="classes" v-bind="aria">
-    <input type="checkbox" :class="$style.native" v-model="model" v-bind="$attrs" />
+    <input ref="inputRef" type="checkbox" :class="$style.native" v-model="model" v-bind="$attrs" />
     <div :class="$style.marker">
       <CheckIcon :class="$style.checked" :size="12" :stroke-width="4" />
       <MinusIcon :class="$style.indeterminate" :size="12" :stroke-width="4" />

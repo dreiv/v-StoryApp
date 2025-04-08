@@ -37,7 +37,7 @@ type Story = StoryObj<typeof meta>
 
 interface SpinnerVariation {
   name: 'Default' | 'Small' | 'Large' | 'Label' | 'LabelVertical'
-  props: SpinnerProps & { default?: string; disabled?: boolean }
+  props: SpinnerProps & { default?: string }
 }
 
 const variations: SpinnerVariation[] = [
@@ -64,6 +64,9 @@ variations.forEach((variation) => {
   stories[variation.name] = createStory(variation)
 })
 
+/**
+ * Signals an ongoing, indeterminate operation, assuring users that a process is underway during loading or processing.
+ */
 export const Examples: Story = {
   args: {},
   parameters: { controls: { disable: true } },
