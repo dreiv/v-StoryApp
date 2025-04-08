@@ -64,6 +64,9 @@ variations.forEach((variation) => {
   stories[variation.name] = createStory(variation)
 })
 
+/**
+ * Signals an ongoing, indeterminate operation, assuring users that a process is underway during loading or processing.
+ */
 export const Examples: Story = {
   args: {},
   parameters: { controls: { disable: true } },

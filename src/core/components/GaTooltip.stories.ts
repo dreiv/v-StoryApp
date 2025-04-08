@@ -7,7 +7,7 @@ import GaButton from './GaButton.vue'
 import GaTooltip from './GaTooltip.vue'
 
 const meta = {
-  component: GaTooltip as unknown as ConcreteComponent, // Corrected: Use GaTooltip
+  component: GaTooltip as unknown as ConcreteComponent,
   title: 'Molecules/Tooltip',
   decorators: [
     (story) => ({
@@ -16,11 +16,20 @@ const meta = {
     }),
   ],
   tags: ['autodocs'],
-} satisfies Meta<typeof GaTooltip> // Corrected: Use GaTooltip
+} satisfies Meta<typeof GaTooltip>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
+/**
+ *  This component provides a tooltip functionality.
+ *
+    It is based on the <a href="https://floating-vue.starpad.dev/" target="_blank">floating-vue</a> library,
+    which offers advanced positioning and interaction capabilities.
+
+    For detailed configuration options and usage, please refer to the
+    <a href="https://floating-vue.starpad.dev/guide/" target="_blank">floating-vue documentation</a>.
+ */
 export const Examples: Story = {
   parameters: { controls: { disable: true } },
   render: () => ({
@@ -54,7 +63,7 @@ export const Examples: Story = {
 
           <template #header>Automatic email expenses</template>
           <template #content>
-          Forward mails containing an invoice or receipt to<br/> Expense to use for your expenses!
+            Forward mails containing an invoice or receipt to<br/> Expense to use for your expenses!
           </template>
         </ga-tooltip>
 
@@ -63,9 +72,9 @@ export const Examples: Story = {
 
           <template #header>Automatic email expenses</template>
           <template #content>
-          You can now forward mails containing an invoice or<br/> receipt to Expense to use for your expenses!
-          <br/> <br/>
-          Set it up in the additional services page.
+            You can now forward mails containing an invoice or<br/> receipt to Expense to use for your expenses!
+            <br/> <br/>
+            Set it up in the additional services page.
           </template>
 
           <template #footer>

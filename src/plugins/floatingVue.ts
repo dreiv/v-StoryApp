@@ -4,7 +4,7 @@ import FloatingVue from 'floating-vue'
 const floating: Plugin = {
   install(app, options) {
     app.use(FloatingVue, {
-      distance: 10,
+      distance: 9,
       ...options,
     })
   },

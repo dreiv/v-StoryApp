@@ -71,6 +71,9 @@ variations.forEach((variation) => {
   stories[variation.name] = createStory(variation)
 })
 
+/**
+ * Enable users to select multiple independent options or toggle a single option on/off, with an optional indeterminate state.
+ */
 export const Examples: Story = {
   args: {},
   parameters: { controls: { disable: true } },

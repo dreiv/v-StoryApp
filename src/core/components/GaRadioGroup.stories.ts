@@ -21,6 +21,9 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
+/**
+ * Allows users to select a single option from a visible set of mutually exclusive choices.
+ */
 export const Examples: Story = {
   args: {},
   parameters: { controls: { disable: true } },

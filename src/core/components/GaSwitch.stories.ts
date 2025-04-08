@@ -64,6 +64,9 @@ variations.forEach((variation) => {
   stories[variation.name] = createStory(variation)
 })
 
+/**
+ * A Switch component toggles a single option on or off, ideal for binary settings. It provides immediate, visible feedback and is touch-friendly, enhancing clear and efficient user experiences.
+ */
 export const Examples: Story = {
   args: {},
   parameters: { controls: { disable: true } },
