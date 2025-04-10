@@ -3,26 +3,26 @@
   --font-inter--font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
   --default-font-family: var(--font-inter);
 
-  --text-xs: var(--ga-size-font-xs);
-  --text-xs--line-height: calc(var(--spacing) * 4 * 1);
+  --text-xs: var(--ga-text-xs-font-size);
+  --text-xs--line-height: var(--ga-text-xs-line-height);
   --text-xs--letter-spacing: calc(var(--spacing) * 4 * 0.005);
-  --text-sm: var(--ga-size-font-sm);
-  --text-sm--line-height: calc(var(--spacing) * 4 * 1.25);
+  --text-sm: var(--ga-text-sm-font-size);
+  --text-sm--line-height: var(--ga-text-sm-line-height);
   --text-sm--letter-spacing: 0;
-  --text-md: var(--ga-size-font-md);
-  --text-md--line-height: calc(var(--spacing) * 4 * 1.25);
+  --text-md: var(--ga-text-md-font-size);
+  --text-md--line-height: var(--ga-text-md-line-height);
   --text-md--letter-spacing: calc(var(--spacing) * 4 * -0.006);
-  --text-lg: var(--ga-size-font-lg);
-  --text-lg--line-height: calc(var(--spacing) * 4 * 1.5);
+  --text-lg: var(--ga-text-lg-font-size);
+  --text-lg--line-height: var(--ga-text-lg-line-height);
   --text-lg--letter-spacing: calc(var(--spacing) * 4 * -0.011);
-  --text-xl: var(--ga-size-font-xl);
-  --text-xl--line-height: calc(var(--spacing) * 4 * 2);
+  --text-xl: var(--ga-text-xl-font-size);
+  --text-xl--line-height: var(--ga-text-xl-line-height);
   --text-xl--letter-spacing: calc(var(--spacing) * 4 * -0.017);
-  --text-2xl: var(--ga-size-font-2xl);
-  --text-2xl--line-height: calc(var(--spacing) * 4 * 2.25);
+  --text-2xl: var(--ga-text-2xl-font-size);
+  --text-2xl--line-height: var(--ga-text-2xl-line-height);
   --text-2xl--letter-spacing: calc(var(--spacing) * 4 * -0.019);
-  --text-3xl: var(--ga-size-font-3xl);
-  --text-3xl--line-height: calc(var(--spacing) * 4 * 3.5);
+  --text-3xl: var(--ga-text-3xl-font-size);
+  --text-3xl--line-height: var(--ga-text-3xl-line-height);
   --text-3xl--letter-spacing: calc(var(--spacing) * 4 * -0.022);
 
   --font-weight-normal: 400;
