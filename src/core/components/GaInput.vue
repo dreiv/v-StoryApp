@@ -30,8 +30,8 @@ defineExpose({ inputRef })
 <style module>
 .input {
   display: flex;
-  gap: var(--ga-size-8);
-  border: 1px solid var(--ga-color-border-primary);
+  gap: var(--ga-size-spacing-03);
+  border: var(--ga-size-border-width-sm) solid var(--ga-color-border-primary);
   border-radius: var(--ga-radius);
 
   background-color: var(--ga-color-bg-primary);

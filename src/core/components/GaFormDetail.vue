@@ -16,7 +16,7 @@ defineProps<{ label?: string }>()
 .container {
   display: flex;
   align-items: center;
-  gap: var(--ga-size-8);
+  gap: var(--ga-size-spacing-03);
 
   font-size: var(--text-xs);
   line-height: var(--text-xs--line-height);

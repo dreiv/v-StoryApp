@@ -29,7 +29,7 @@ defineProps<{ content?: string }>()
 
 .footer {
   display: flex;
-  gap: var(--ga-size-8);
+  gap: var(--ga-size-spacing-03);
   margin-top: var(--ga-size-16);
 }
 </style>

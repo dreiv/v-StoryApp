@@ -33,24 +33,26 @@ const classes = computed(() => [
 .button {
   display: inline-flex;
   align-items: center;
-  gap: var(--ga-size-8);
+  gap: var(--ga-size-spacing-03);
 
   border-radius: var(--ga-radius);
-  padding: 0 var(--ga-size-16);
-  min-width: var(--ga-size-40);
-  height: var(--ga-size-40);
+  padding: 0 var(--ga-size-spacing-05);
+  min-width: var(--ga-size-spacing-08);
+  height: var(--ga-size-spacing-08);
 
-  font-weight: var(--font-weight-medium);
-  line-height: var(--text-md--line-height);
-  font-family: var(--default-font-family);
+  font-weight: var(--ga-font-weight-medium);
+  font-size: var(--ga-text-md-font-size);
+  line-height: var(--ga-text-md-line-height);
+  font-family: var(--ga-font-family-primary);
+  letter-spacing: var(--ga-text-md-tracking);
 
   &:enabled {
     cursor: pointer;
   }
 
   &:focus-visible {
-    outline: 2px solid var(--ga-color-border-focus);
-    outline-offset: 2px;
+    outline: var(--ga-size-border-width-md) solid var(--ga-color-border-focus);
+    outline-offset: var(--ga-size-spacing-01);
   }
 
   &:disabled {
@@ -63,13 +65,8 @@ const classes = computed(() => [
   background-color: var(--ga-color-surface-action);
   color: var(--ga-color-text-on-action);
 
-  &:hover,
-  &:focus {
+  &:not(:active, :disabled):is(:hover, :focus) {
     background-color: var(--ga-color-surface-action-hover);
-  }
-
-  &:active {
-    background-color: var(--ga-color-surface-action);
   }
 
   &:disabled {
@@ -79,17 +76,12 @@ const classes = computed(() => [
 }
 
 .secondary {
-  border: 1px solid var(--ga-color-border-action);
+  border: var(--ga-size-border-width-sm) solid var(--ga-color-border-action);
   background-color: var(--ga-color-surface-primary);
   color: var(--ga-color-text-action);
 
-  &:hover,
-  &:focus {
+  &:not(:active, :disabled):is(:hover, :focus) {
     background-color: var(--ga-color-border-action-hover-2);
-  }
-
-  &:active {
-    background-color: var(--ga-color-surface-primary);
   }
 
   &:disabled {
@@ -104,13 +96,8 @@ const classes = computed(() => [
   background-color: transparent;
   color: var(--ga-color-text-action);
 
-  &:hover,
-  &:focus {
+  &:not(:active, :disabled):is(:hover, :focus) {
     background-color: var(--ga-color-border-action-hover-2);
-  }
-
-  &:active {
-    background-color: transparent;
   }
 
   &:disabled {
@@ -120,17 +107,12 @@ const classes = computed(() => [
 }
 
 .transparent {
-  border: 1px solid var(--ga-color-border-action);
+  border: var(--ga-size-border-width-sm) solid var(--ga-color-border-action);
   background-color: transparent;
   color: var(--ga-color-text-action);
 
-  &:hover,
-  &:focus {
+  &:not(:active, :disabled):is(:hover, :focus) {
     background-color: var(--ga-color-border-action-hover-2);
-  }
-
-  &:active {
-    background-color: var(--ga-color-surface-primary);
   }
 
   &:disabled {

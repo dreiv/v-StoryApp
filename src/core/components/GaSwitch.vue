@@ -46,7 +46,7 @@ defineExpose({ inputRef })
   left: 0;
   align-items: center;
 
-  border: 1px solid var(--ga-color-border-action);
+  border: var(--ga-size-border-width-sm) solid var(--ga-color-border-action);
   border-radius: var(--ga-radius-round);
 
   padding: 0 var(--ga-size-4);
@@ -76,8 +76,8 @@ defineExpose({ inputRef })
   cursor: pointer;
 
   &:focus-visible + .marker {
-    outline: 2px solid var(--ga-color-border-focus);
-    outline-offset: 2px;
+    outline: var(--ga-size-border-width-md) solid var(--ga-color-border-focus);
+    outline-offset: var(--ga-size-spacing-01);
   }
 
   &:hover:enabled {

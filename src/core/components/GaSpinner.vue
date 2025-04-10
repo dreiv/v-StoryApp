@@ -76,7 +76,7 @@ const aria = computed(() => ({
 
   &.vertical {
     flex-direction: column;
-    gap: var(--ga-size-8);
+    gap: var(--ga-size-spacing-03);
   }
 }
 

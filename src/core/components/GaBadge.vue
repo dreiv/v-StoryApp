@@ -82,12 +82,12 @@ const classes = computed(() => [
   color: var(--ga-color-text-action);
 
   &:empty {
-    border: 1px solid var(--ga-color-border-disabled);
+    border: var(--ga-size-border-width-sm) solid var(--ga-color-border-disabled);
   }
 }
 
 .information {
-  border: 1px solid var(--ga-color-border-information);
+  border: var(--ga-size-border-width-sm) solid var(--ga-color-border-information);
   background-color: var(--ga-color-utility-blue-light);
   color: var(--ga-color-text-information);
 
@@ -97,7 +97,7 @@ const classes = computed(() => [
 }
 
 .error {
-  border: 1px solid var(--ga-color-border-error);
+  border: var(--ga-size-border-width-sm) solid var(--ga-color-border-error);
   background-color: var(--ga-color-utility-red-light);
   color: var(--ga-color-text-error);
 
@@ -107,7 +107,7 @@ const classes = computed(() => [
 }
 
 .warning {
-  border: 1px solid var(--ga-color-border-warning);
+  border: var(--ga-size-border-width-sm) solid var(--ga-color-border-warning);
   background-color: var(--ga-color-utility-orange-light);
   color: var(--ga-color-text-warning);
 
@@ -117,7 +117,7 @@ const classes = computed(() => [
 }
 
 .success {
-  border: 1px solid var(--ga-color-border-success);
+  border: var(--ga-size-border-width-sm) solid var(--ga-color-border-success);
   background-color: var(--ga-color-utility-green-light);
   color: var(--ga-color-text-success);
 

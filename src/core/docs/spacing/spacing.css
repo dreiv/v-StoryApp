@@ -15,7 +15,7 @@
 
 .spacing-visual {
   margin-bottom: 8px;
-  border: 1px solid var(--ga-color-neutral-60);
+  border: var(--ga-size-border-width-sm) solid var(--ga-color-neutral-60);
   background-color: var(--ga-color-neutral-30);
   width: 50px;
   height: 25px;

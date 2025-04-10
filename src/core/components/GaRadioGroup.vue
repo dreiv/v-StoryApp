@@ -51,7 +51,7 @@ provide(radioGroupKey, { name, model })
   .content {
     display: flex;
     flex-direction: column;
-    gap: var(--ga-size-8);
+    gap: var(--ga-size-spacing-03);
 
     &.horizontal {
       flex-direction: row;

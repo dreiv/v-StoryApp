@@ -37,7 +37,7 @@ defineExpose({ inputRef })
 .input {
   display: inline-flex;
   position: relative;
-  gap: var(--ga-size-8);
+  gap: var(--ga-size-spacing-03);
   user-select: none;
 }
 
@@ -66,8 +66,8 @@ defineExpose({ inputRef })
   cursor: pointer;
 
   &:focus-visible + .marker {
-    outline: 2px solid var(--ga-color-border-focus);
-    outline-offset: 2px;
+    outline: var(--ga-size-border-width-md) solid var(--ga-color-border-focus);
+    outline-offset: var(--ga-size-spacing-01);
   }
 
   &:hover:enabled {
