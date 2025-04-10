@@ -45,25 +45,25 @@ const classes = computed(() => [
   justify-content: center;
   align-items: center;
 
-  vertical-align: baseline;
   border-radius: var(--ga-radius-round);
 
   &:not(:empty) {
-    padding: var(--ga-size-4);
-    min-width: var(--ga-size-24);
-    height: var(--ga-size-24);
+    padding: var(--ga-size-spacing-02);
+    min-width: var(--ga-size-spacing-06);
+    height: var(--ga-size-spacing-06);
 
-    font-weight: var(--font-weight-medium);
-    font-size: var(--text-sm);
-    font-family: var(--default-font-family);
+    font-weight: var(--ga-font-weight-medium);
+    font-size: var(--ga-text-md-font-size);
+    line-height: var(--ga-text-md-line-height);
+    font-family: var(--ga-font-family-primary);
 
     text-align: center;
     white-space: nowrap;
   }
 
   &:empty {
-    width: var(--ga-size-8);
-    height: var(--ga-size-8);
+    width: var(--ga-size-spacing-03);
+    height: var(--ga-size-spacing-03);
   }
 }
 
@@ -135,12 +135,8 @@ const classes = computed(() => [
     color: var(--ga-color-text-disabled);
   }
 
-  &:empty {
+  &:not(.inverted):empty {
     background-color: var(--ga-color-icon-on-disabled);
-
-    &.inverted {
-      background-color: var(--ga-color-utility-grey-light);
-    }
   }
 }
 </style>
