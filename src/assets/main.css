@@ -1,6 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 @import 'floating-vue/dist/style.css';
 @import './tokens.css';
-@import './theme.css';
 
 *,
 *::before,
@@ -15,9 +15,11 @@ body {
   min-height: 100vh;
   color: var(--ga-color-text-body);
 
-  font-size: 14px;
-  line-height: 1.6;
-  font-family: var(--default-font-family);
+  font-weight: var(--ga-font-weight-normal);
+  font-size: var(--ga-text-md-font-size);
+  line-height: var(--ga-text-md-line-height);
+  font-family: var(--ga-font-family-primary);
+
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

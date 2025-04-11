@@ -30,15 +30,15 @@ defineExpose({ inputRef })
 .input {
   display: inline-flex;
   position: relative;
-  gap: var(--ga-size-8);
+  gap: var(--ga-size-spacing-03);
   user-select: none;
 }
 
 .native,
 .marker {
-  margin: var(--ga-size-2) 0 var(--ga-size-2) var(--ga-size-2);
-  width: var(--ga-size-16);
-  height: var(--ga-size-16);
+  margin: var(--ga-size-spacing-02) 0 var(--ga-size-spacing-02) var(--ga-size-spacing-02);
+  width: var(--ga-size-spacing-05);
+  height: var(--ga-size-spacing-05);
 }
 
 .marker {
@@ -64,8 +64,8 @@ defineExpose({ inputRef })
   cursor: pointer;
 
   &:focus-visible + .marker {
-    outline: 2px solid var(--ga-color-border-focus);
-    outline-offset: 2px;
+    outline: var(--ga-size-border-width-md) solid var(--ga-color-border-focus);
+    outline-offset: var(--ga-size-spacing-01);
   }
 
   &:hover:enabled {
@@ -127,7 +127,7 @@ defineExpose({ inputRef })
 }
 
 .label {
-  min-height: var(--ga-size-16);
+  min-height: var(--ga-size-spacing-05);
   font-size: var(--text-md);
   line-height: var(--text-md--line-height);
 
