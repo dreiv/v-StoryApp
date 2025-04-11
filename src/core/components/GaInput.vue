@@ -35,8 +35,8 @@ defineExpose({ inputRef })
   border-radius: var(--ga-radius);
 
   background-color: var(--ga-color-bg-primary);
-  padding: var(--ga-size-8) var(--ga-size-12);
-  height: var(--ga-size-40);
+  padding: var(--ga-size-spacing-03) var(--ga-size-spacing-04);
+  height: var(--ga-size-spacing-08);
 
   &:hover {
     border-color: var(--ga-color-border-action-hover);

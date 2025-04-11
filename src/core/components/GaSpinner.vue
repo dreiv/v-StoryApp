@@ -72,7 +72,7 @@ const aria = computed(() => ({
 .container {
   display: flex;
   align-items: center;
-  gap: var(--ga-size-4);
+  gap: var(--ga-size-spacing-02);
 
   &.vertical {
     flex-direction: column;
@@ -82,12 +82,12 @@ const aria = computed(() => ({
 
 .icon {
   &.small {
-    width: var(--ga-size-16);
-    height: var(--ga-size-16);
+    width: var(--ga-size-spacing-05);
+    height: var(--ga-size-spacing-05);
   }
   &.large {
-    width: var(--ga-size-48);
-    height: var(--ga-size-48);
+    width: var(--ga-size-spacing-09);
+    height: var(--ga-size-spacing-09);
   }
 }
 
@@ -103,10 +103,14 @@ const aria = computed(() => ({
 }
 
 .label {
-  min-height: var(--ga-size-16);
+  min-height: var(--ga-size-spacing-05);
   color: var(--ga-color-text-body);
-  font-size: var(--text-md);
-  line-height: var(--text-md--line-height);
+
+  font-weight: var(--ga-font-weight-normal);
+  font-size: var(--ga-text-sm-font-size);
+  line-height: var(--ga-text-sm-line-height);
+  font-family: var(--ga-font-family-primary);
+  letter-spacing: var(--ga-text-sm-tracking);
 
   &:empty {
     display: none;
@@ -114,16 +118,16 @@ const aria = computed(() => ({
 }
 
 .vertical .label {
-  font-size: var(--text-sm);
-  line-height: var(--text-sm--line-height);
-
   &.small {
-    font-size: var(--text-xs);
-    line-height: var(--text-xs--line-height);
+    font-size: var(--ga-text-xs-font-size);
+    line-height: var(--ga-text-xs-line-height);
+    letter-spacing: var(--ga-text-xs-tracking);
   }
+
   &.large {
-    font-size: var(--text-md);
-    line-height: var(--text-md--line-height);
+    font-size: var(--ga-text-md-font-size);
+    line-height: var(--ga-text-md-line-height);
+    letter-spacing: var(--ga-text-md-tracking);
   }
 }
 </style>

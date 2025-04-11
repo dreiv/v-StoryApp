@@ -29,7 +29,7 @@ defineExpose({ inputRef })
 .input {
   display: inline-flex;
   position: relative;
-  gap: var(--ga-size-12);
+  gap: var(--ga-size-spacing-04);
   user-select: none;
 }
 

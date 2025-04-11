@@ -30,9 +30,9 @@ defineProps<{ label?: string }>()
   align-self: start;
   box-sizing: content-box;
 
-  margin: var(--ga-size-2) 0 var(--ga-size-2) var(--ga-size-2);
-  width: var(--ga-size-16);
-  height: var(--ga-size-16);
+  margin: var(--ga-size-spacing-02) 0 var(--ga-size-spacing-02) var(--ga-size-spacing-02);
+  width: var(--ga-size-spacing-05);
+  height: var(--ga-size-spacing-05);
 
   overflow: hidden;
 }
