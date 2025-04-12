@@ -1,9 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 import { CircleCheck, OctagonAlert, TriangleAlert } from 'lucide-vue-next'
 
-import { type FormInputProps } from '../composables/useFormInput'
-import GaSwitch from './GaSwitch.vue'
+import { type AriaProps } from '../composables/useAria'
 import GaFormDetail from './GaFormDetail.vue'
+import GaFormField from './GaFormField.vue'
+import GaSwitch from './GaSwitch.vue'
 
 const meta = {
   component: GaSwitch,
@@ -22,7 +23,6 @@ const meta = {
       control: 'text',
       description: 'The error message to display when the switch input is in an error state.',
     },
-    default: { control: 'text', description: 'The label text for the switch input.' },
   },
 } satisfies Meta<typeof GaSwitch>
 
@@ -31,7 +31,7 @@ type Story = StoryObj<typeof meta>
 
 interface SwitchVariation {
   name: 'Default' | 'Checked' | 'Error' | 'ErrorChecked'
-  props: FormInputProps & { default?: string; modelValue?: boolean }
+  props: AriaProps & { default?: string; modelValue?: boolean }
 }
 
 const variations: SwitchVariation[] = [
@@ -47,13 +47,17 @@ const variations: SwitchVariation[] = [
 const createStory = (variation: SwitchVariation): Story => ({
   args: variation.props,
   render: (args) => ({
-    components: { GaSwitch },
+    components: { GaSwitch, GaFormField },
     template: `
-      <ga-switch v-bind="args" />
-      <ga-switch v-bind="args" disabled />
-      <ga-switch v-bind="args">
-        {{ args.default || 'With Label' }}
-      </ga-switch>
+      <ga-form-field>
+        <ga-switch v-bind="args" />
+      </ga-form-field>
+      <ga-form-field>
+        <ga-switch v-bind="args" disabled />
+      </ga-form-field>
+      <ga-form-field :label="args.default || 'Switch Label'">
+        <ga-switch v-bind="args" />
+      </ga-form-field>
     `,
     setup: () => ({ args }),
   }),
@@ -71,66 +75,95 @@ export const Examples: Story = {
   args: {},
   parameters: { controls: { disable: true } },
   render: () => ({
-    components: { GaSwitch, GaFormDetail, CircleCheck, OctagonAlert, TriangleAlert },
+    components: { GaSwitch, GaFormDetail, GaFormField, CircleCheck, OctagonAlert, TriangleAlert },
     template: `
       <div :style="{display:'flex',flexDirection:'column',gap:'var(--ga-size-spacing-06)'}">
-        <ga-switch disabled>
-          Set invoice date automatically.<br />
-          <span :style="{fontSize:'11px'}">Hint is an accessible way to provide additional information that might help the user.</span>
-        </ga-switch>
+        <ga-form-field>
+          <ga-switch disabled />
 
-        <ga-switch disabled modelValue='true'>
-          Set invoice date automatically.<br />
-          <span :style="{fontSize:'11px'}">Hint is an accessible way to provide additional information that might help the user.</span>
-        </ga-switch>
+          <template #label>
+            Set invoice date automatically.<br />
+            <span :style="{fontSize:'var(--ga-text-sm-font-size)'}">Hint is an accessible way to provide additional information that might help the user.</span>
+          </template>
+        </ga-form-field>
 
-        <ga-switch>
-          Set invoice date automatically.<br />
-          <span :style="{fontSize:'11px'}">Hint is an accessible way to provide <strong>additional information</strong> that might help the user.</span>
-        </ga-switch>
+        <ga-form-field>
+          <ga-switch disabled :modelValue='true' />
+          <template #label>
+            Set invoice date automatically.<br />
+            <span :style="{fontSize:'var(--ga-text-sm-font-size)'}">Hint is an accessible way to provide additional information that might help the user.</span>
+          </template>
+        </ga-form-field>
 
-        <ga-switch label="Set invoice date automatically" modelValue='true' v-tooltip="'Automatic date'" />
+        <ga-form-field>
+          <ga-switch />
+          <template #label>
+            Set invoice date automatically.<br />
+            <span :style="{fontSize:'var(--ga-text-sm-font-size)'}">Hint is an accessible way to provide <strong>additional information</strong> that might help the user.</span>
+          </template>
+        </ga-form-field>
 
-        <ga-switch modelValue='true'>
-          Daily invoice reminders<br />
-          <ga-form-detail label='Invoice reminders will be sent daily at 9:00 am.'>
-            <template #icon><circle-check color="#448548"/></template>
-          </ga-form-detail>
-        </ga-switch>
+        <ga-form-field label="Set invoice date automatically">
+          <ga-switch :modelValue='true' v-tooltip="'Automatic date'" />
+        </ga-form-field>
 
-        <ga-switch modelValue='true'>
-          Dark mode<br />
-          <ga-form-detail label='Due to your access rights only partial dark mode is enabled for your account.'>
-            <template #icon><triangle-alert color="var(--ga-color-warning)"/></template>
-          </ga-form-detail>
-        </ga-switch>
+        <ga-form-field>
+          <ga-switch :modelValue='true' />
+          <template #label>
+            Daily invoice reminders<br />
+            <ga-form-detail label='Invoice reminders will be sent daily at 9:00 am.'>
+              <template #icon><circle-check color="#448548" /></template>
+            </ga-form-detail>
+          </template>
+        </ga-form-field>
 
-        <ga-switch modelValue='true'>
-          Show admin view<br />
-          <ga-form-detail>
-            <template #icon><triangle-alert color="var(--ga-color-warning)"/></template>
-            <span>We detected maintenance mode for one of your modules and this view might be incomplete. <a href='#'>View module status</a></span>
-          </ga-form-detail>
-        </ga-switch>
+        <ga-form-field>
+          <ga-switch :modelValue='true' />
+          <template #label>
+            Dark mode<br />
+            <ga-form-detail label='Due to your access rights only partial dark mode is enabled for your account.'>
+              <template #icon><triangle-alert color="var(--ga-color-warning)" /></template>
+            </ga-form-detail>
+          </template>
+        </ga-form-field>
+
+        <ga-form-field>
+          <ga-switch :modelValue='true' />
+          <template #label>
+            Show admin view<br />
+            <ga-form-detail>
+              <template #icon><triangle-alert color="var(--ga-color-warning)" /></template>
+              <span>We detected maintenance mode for one of your modules and this view might be incomplete. <a href='#'>View module status</a></span>
+            </ga-form-detail>
+          </template>
+        </ga-form-field>
 
         <div :style="{display:'flex',flexDirection:'column',gap:'var(--ga-size-spacing-03)'}">
           <h3 :style="{textDecoration:'underline wavy'}">Weekly reminders</h3>
-           <ga-switch modelValue='true' label="On">
+          <ga-form-field label="On">
+            <ga-switch :modelValue='true' />
+          </ga-form-field>
         </div>
 
-        <ga-switch modelValue='true' error>
-          Fraud detection<br />
-          <ga-form-detail label='There are no documents available to check as this is a demo account.'>
-            <template #icon><octagon-alert strokeWidth="2.5" color="var(--ga-color-error)"/></template>
-          </ga-form-detail>
-        </ga-switch>
+        <ga-form-field>
+          <ga-switch :modelValue='true' error />
+          <template #label>
+            Fraud detection<br />
+            <ga-form-detail label='There are no documents available to check as this is a demo account.'>
+              <template #icon><octagon-alert strokeWidth="2.5" color="var(--ga-color-error)" /></template>
+            </ga-form-detail>
+          </template>
+        </ga-form-field>
 
-        <ga-switch error>
-          Show admin view<br />
-          <ga-form-detail label='Admin view failed to initialize. Try again later.'>
-            <template #icon><octagon-alert strokeWidth="2.5" color="var(--ga-color-error)"/></template>
-          </ga-form-detail>
-        </ga-switch>
+        <ga-form-field>
+          <ga-switch error />
+          <template #label>
+            Show admin view<br />
+            <ga-form-detail label='Admin view failed to initialize. Try again later.'>
+              <template #icon><octagon-alert strokeWidth="2.5" color="var(--ga-color-error)" /></template>
+            </ga-form-detail>
+          </template>
+        </ga-form-field>
       </div>
     `,
   }),
