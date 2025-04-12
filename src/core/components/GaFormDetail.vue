@@ -18,8 +18,10 @@ defineProps<{ label?: string }>()
   align-items: center;
   gap: var(--ga-size-spacing-03);
 
-  font-size: var(--text-xs);
-  line-height: var(--text-xs--line-height);
+  font-size: var(--ga-text-xs-font-size);
+  line-height: var(--ga-text-xs-line-height);
+  font-family: var(--ga-font-family-primary);
+  letter-spacing: var(--ga-text-xs-tracking);
 }
 
 .iconWrapper {
@@ -30,7 +32,7 @@ defineProps<{ label?: string }>()
   align-self: start;
   box-sizing: content-box;
 
-  margin: var(--ga-size-spacing-02) 0 var(--ga-size-spacing-02) var(--ga-size-spacing-02);
+  margin: var(--ga-size-spacing-01) 0 var(--ga-size-spacing-01) var(--ga-size-spacing-01);
   width: var(--ga-size-spacing-05);
   height: var(--ga-size-spacing-05);
 

@@ -44,7 +44,7 @@ provide(radioGroupKey, { name, model })
     font-family: var(--default-font-family);
 
     &:not(:empty) {
-      margin-bottom: var(--ga-size-8);
+      margin-bottom: var(--ga-size-spacing-03);
     }
   }
 

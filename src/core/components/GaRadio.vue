@@ -43,7 +43,7 @@ defineExpose({ inputRef })
 
 .native,
 .marker {
-  margin: var(--ga-size-spacing-02) 0 var(--ga-size-spacing-02) var(--ga-size-spacing-02);
+  margin: var(--ga-size-spacing-01) 0 var(--ga-size-spacing-01) var(--ga-size-spacing-01);
   width: var(--ga-size-spacing-05);
   height: var(--ga-size-spacing-05);
 }

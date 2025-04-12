@@ -12,7 +12,7 @@ const meta = {
   decorators: [
     (story) => ({
       components: { story },
-      template: `<div :style="{display:'flex',flexWrap:'wrap',alignItems:'center',gap:'8px',padding:'1rem'}"><story /></div>`,
+      template: `<div :style="{display:'flex',flexWrap:'wrap',alignItems:'center',gap:'var(--ga-size-spacing-03)',padding:'1rem'}"><story /></div>`,
     }),
   ],
   tags: ['autodocs'],
@@ -30,7 +30,7 @@ export const Examples: Story = {
   render: () => ({
     components: { GaRadioGroup, GaRadio, GaFormDetail, ChartSpline, OctagonAlert, TriangleAlert },
     template: `
-      <div :style="{display:'flex',flexWrap:'wrap',gap:'24px',maxWidth:'960px'}">
+      <div :style="{display:'flex',flexWrap:'wrap',gap:'var(--ga-size-spacing-06)',maxWidth:'960px'}">
         <ga-radio-group title="Payment frequency">
           <ga-radio value="1" label='Daily' />
           <ga-radio value="2" label='Weekly' />
@@ -70,7 +70,7 @@ export const Examples: Story = {
           <ga-radio value="3" label='Asset allocation' />
         </ga-radio-group>
 
-        <div :style="{display:'flex',flexDirection:'column',gap:'8px'}">
+        <div :style="{display:'flex',flexDirection:'column',gap:'var(--ga-size-spacing-03)'}">
           <ga-radio-group title='Risk tolerance level'>
             <ga-radio value="1" label='Conservative' checked />
             <ga-radio value="2" label='Moderate' />
@@ -92,7 +92,7 @@ export const Examples: Story = {
           <ga-radio value="3" label='Asset allocation' />
         </ga-radio-group>
 
-        <div :style="{display:'flex',flexDirection:'column',gap:'8px'}">
+        <div :style="{display:'flex',flexDirection:'column',gap:'var(--ga-size-spacing-03)'}">
           <ga-radio-group title='Risk tolerance level' direction="horizontal">
             <ga-radio value="1" label='Conservative' checked />
             <ga-radio value="2" label='Moderate' />
@@ -103,7 +103,7 @@ export const Examples: Story = {
           </ga-form-detail>
         </div>
 
-        <div :style="{display:'flex',flexDirection:'column',gap:'8px'}">
+        <div :style="{display:'flex',flexDirection:'column',gap:'var(--ga-size-spacing-03)'}">
           <ga-radio-group>
             <template #title>
               Document type (error)<br/>
@@ -115,11 +115,11 @@ export const Examples: Story = {
             <ga-radio value="3" label='Credit notes' error />
           </ga-radio-group>
           <ga-form-detail label="Please select a document type for this workflow">
-            <template #icon><octagon-alert strokeWidth="2.5" color="#CC453E"/></template>
+            <template #icon><octagon-alert strokeWidth="2.5" color="var(--ga-color-error)"/></template>
           </ga-form-detail>
         </div>
 
-        <div :style="{display:'flex',flexDirection:'column',gap:'8px'}">
+        <div :style="{display:'flex',flexDirection:'column',gap:'var(--ga-size-spacing-03)'}">
           <ga-radio-group direction="horizontal">
             <template #title>
               Document type (error)<br/>
@@ -131,11 +131,11 @@ export const Examples: Story = {
             <ga-radio value="3" label='Credit notes' error />
           </ga-radio-group>
           <ga-form-detail label="Please select a document type for this workflow">
-            <template #icon><octagon-alert strokeWidth="2.5" color="#CC453E"/></template>
+            <template #icon><octagon-alert strokeWidth="2.5" color="var(--ga-color-error)"/></template>
           </ga-form-detail>
         </div>
 
-        <div :style="{display:'flex',flexDirection:'column',gap:'8px'}">
+        <div :style="{display:'flex',flexDirection:'column',gap:'var(--ga-size-spacing-03)'}">
           <ga-radio-group>
             <template #title>
               Document type<br/>
@@ -147,11 +147,11 @@ export const Examples: Story = {
             <ga-radio value="3" label='Credit notes' />
           </ga-radio-group>
           <ga-form-detail label="Please select a document type for this workflow">
-            <template #icon><triangle-alert strokeWidth="2.5" color="#BB5822"/></template>
+            <template #icon><triangle-alert strokeWidth="2.5" color="var(--ga-color-warning)"/></template>
           </ga-form-detail>
         </div>
 
-        <div :style="{display:'flex',flexDirection:'column',gap:'8px'}">
+        <div :style="{display:'flex',flexDirection:'column',gap:'var(--ga-size-spacing-03)'}">
           <ga-radio-group direction="horizontal">
             <template #title>
               Document type<br/>
@@ -163,7 +163,7 @@ export const Examples: Story = {
             <ga-radio value="3" label='Credit notes' />
           </ga-radio-group>
           <ga-form-detail label="Please select a document type for this workflow">
-            <template #icon><triangle-alert strokeWidth="2.5" color="#BB5822"/></template>
+            <template #icon><triangle-alert strokeWidth="2.5" color="var(--ga-color-warning)"/></template>
           </ga-form-detail>
         </div>
       </div>

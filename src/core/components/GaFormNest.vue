@@ -12,6 +12,6 @@
   flex-direction: column;
   gap: var(--ga-size-spacing-03);
 
-  margin-left: calc(var(--ga-size-spacing-05) + var(--ga-size-10));
+  margin-left: var(--ga-size-spacing-06);
 }
 </style>

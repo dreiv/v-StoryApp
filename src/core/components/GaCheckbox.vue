@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { useTemplateRef } from 'vue'
 import { CheckIcon, MinusIcon } from 'lucide-vue-next'
-import { useFormInput, type FormInputProps } from '../composables/useFormInput'
+import { useAria, type AriaProps } from '../composables/useAria'
 
 defineOptions({ inheritAttrs: false })
-const props = defineProps<FormInputProps>()
-const { classes, aria } = useFormInput(props)
+const props = defineProps<AriaProps>()
+
+const { ariaStyles, ariaAttrs } = useAria(props)
 const inputRef = useTemplateRef<HTMLElement>('inputRef')
 const model = defineModel<boolean>()
 
@@ -13,30 +14,24 @@ defineExpose({ inputRef })
 </script>
 
 <template>
-  <label :class="classes" v-bind="aria">
-    <input ref="inputRef" type="checkbox" :class="$style.native" v-model="model" v-bind="$attrs" />
-    <div :class="$style.marker">
-      <CheckIcon :class="$style.checked" :size="12" :stroke-width="4" />
-      <MinusIcon :class="$style.indeterminate" :size="12" :stroke-width="4" />
-    </div>
+  <input
+    ref="inputRef"
+    type="checkbox"
+    :class="[$style.native, ...ariaStyles]"
+    v-model="model"
+    v-bind="{ ...$attrs, ...ariaAttrs }"
+  />
 
-    <span :class="$style.label">
-      <slot>{{ label }}</slot>
-    </span>
-  </label>
+  <div :class="$style.marker">
+    <CheckIcon :class="$style.checked" :size="12" :stroke-width="4" />
+    <MinusIcon :class="$style.indeterminate" :size="12" :stroke-width="4" />
+  </div>
 </template>
 
 <style module>
-.input {
-  display: inline-flex;
-  position: relative;
-  gap: var(--ga-size-spacing-03);
-  user-select: none;
-}
-
 .native,
 .marker {
-  margin: var(--ga-size-spacing-02) 0 var(--ga-size-spacing-02) var(--ga-size-spacing-02);
+  margin: var(--ga-size-spacing-01) 0 var(--ga-size-spacing-01) var(--ga-size-spacing-01);
   width: var(--ga-size-spacing-05);
   height: var(--ga-size-spacing-05);
 }
@@ -46,7 +41,7 @@ defineExpose({ inputRef })
   top: 0;
   left: 0;
 
-  border: 2px solid var(--ga-color-border-action);
+  border: var(--ga-size-border-width-md) solid var(--ga-color-border-action);
   border-radius: var(--ga-radius);
 
   pointer-events: none;
@@ -104,16 +99,14 @@ defineExpose({ inputRef })
       color: var(--ga-color-text-disabled);
     }
   }
-}
 
-.error {
-  > .marker {
-    border-color: var(--ga-color-border-error);
-    background-color: var(--ga-color-surface-error);
-    color: var(--ga-color-icon-error);
-  }
+  &.error {
+    + .marker {
+      border-color: var(--ga-color-border-error);
+      background-color: var(--ga-color-surface-error);
+      color: var(--ga-color-icon-error);
+    }
 
-  > .native {
     &:checked + .marker,
     &:indeterminate + .marker {
       background-color: var(--ga-color-surface-error);
@@ -123,16 +116,6 @@ defineExpose({ inputRef })
       border-color: var(--ga-color-border-error-hover);
       background-color: var(--ga-color-surface-action-hover-2);
     }
-  }
-}
-
-.label {
-  min-height: var(--ga-size-spacing-05);
-  font-size: var(--text-md);
-  line-height: var(--text-md--line-height);
-
-  &:empty {
-    display: none;
   }
 }
 </style>
