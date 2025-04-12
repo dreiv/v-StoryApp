@@ -29,8 +29,8 @@ const meta = {
           :style="{
             display: 'flex',
             justifyContent: 'center',
-            gap: '8px',
-            padding: '1rem',
+            gap: 'var(--ga-size-spacing-04)',
+            padding: 'var(--ga-size-spacing-05)',
             background: 'repeating-linear-gradient(45deg, #eee 0px, #eee 10px, #fff 10px, #fff 20px)'
           }"
         >

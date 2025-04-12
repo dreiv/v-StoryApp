@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { inject, useTemplateRef } from 'vue'
-import { useFormInput, type FormInputProps } from '../composables/useFormInput'
+import { useAria, type AriaProps } from '../composables/useAria'
 import { radioGroupKey } from '../constants'
 
 defineOptions({ inheritAttrs: false })
-const props = defineProps<FormInputProps>()
+const props = defineProps<AriaProps>()
+
+const { ariaStyles, ariaAttrs } = useAria(props)
 const inputRef = useTemplateRef<HTMLElement>('inputRef')
-const { classes, aria } = useFormInput(props)
 
 const group = inject(radioGroupKey)
 if (!group) throw new Error('GaRadio must be used inside a GaRadioGroup')
@@ -15,32 +16,19 @@ defineExpose({ inputRef })
 </script>
 
 <template>
-  <label :class="classes" v-bind="aria">
-    <input
-      ref="inputRef"
-      type="radio"
-      :class="$style.native"
-      :name="group?.name"
-      :checked="group?.model?.value === $attrs.value"
-      @change="group.model.value = `${$attrs.value}`"
-      v-bind="$attrs"
-    />
-    <div :class="$style.marker" />
-
-    <span :class="$style.label">
-      <slot>{{ label }}</slot>
-    </span>
-  </label>
+  <input
+    ref="inputRef"
+    type="radio"
+    :class="[$style.native, ...ariaStyles]"
+    :name="group?.name"
+    :checked="group?.model?.value === $attrs.value"
+    @change="group.model.value = `${$attrs.value}`"
+    v-bind="{ ...$attrs, ...ariaAttrs }"
+  />
+  <div :class="$style.marker" />
 </template>
 
 <style module>
-.input {
-  display: inline-flex;
-  position: relative;
-  gap: var(--ga-size-spacing-03);
-  user-select: none;
-}
-
 .native,
 .marker {
   margin: var(--ga-size-spacing-01) 0 var(--ga-size-spacing-01) var(--ga-size-spacing-01);
@@ -53,7 +41,7 @@ defineExpose({ inputRef })
   top: 0;
   left: 0;
 
-  border: 2px solid var(--ga-color-border-action);
+  border: var(--ga-size-border-width-md) solid var(--ga-color-border-action);
   border-radius: var(--ga-radius-round);
 
   pointer-events: none;
@@ -92,8 +80,8 @@ defineExpose({ inputRef })
       border-radius: var(--ga-radius-round);
       background-color: var(--ga-color-icon-on-primary);
 
-      width: var(--ga-size-4);
-      height: var(--ga-size-4);
+      width: var(--ga-size-spacing-02);
+      height: var(--ga-size-spacing-02);
       content: '';
     }
   }
@@ -120,33 +108,21 @@ defineExpose({ inputRef })
       color: var(--ga-color-text-disabled);
     }
   }
-}
 
-.error {
-  > .marker {
-    border-color: var(--ga-color-border-error);
-    background-color: var(--ga-color-surface-error);
-    color: var(--ga-color-icon-error);
-  }
+  &.error {
+    + .marker {
+      border-color: var(--ga-color-border-error);
+      background-color: var(--ga-color-surface-error);
+      color: var(--ga-color-icon-error);
+    }
 
-  > .native {
-    &:checked:enabled + .marker {
+    &:checked + .marker {
       background-color: var(--ga-color-icon-error);
     }
 
     &:hover:enabled + .marker {
       border-color: var(--ga-color-red-70);
     }
-  }
-}
-
-.label {
-  min-height: var(--ga-size-spacing-05);
-  font-size: var(--text-md);
-  line-height: var(--text-md--line-height);
-
-  &:empty {
-    display: none;
   }
 }
 </style>
