@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/addon-docs'
+import { Meta, Unstyled } from '@storybook/addon-docs'
 
 <Meta title="Atoms/Typography" />
 
@@ -8,87 +8,168 @@ Our typography is centered around the **Inter** font, chosen for its modern and 
 
 ## Headings
 
-<h1>Heading 1 (H1) - Inter Bold</h1>
-<h2>Heading 2 (H2) - Inter SemiBold</h2>
-<h3>Heading 3 (H3) - Inter Medium</h3>
-<h4>Heading 4 (H4) - Inter Regular</h4>
-<h5>Heading 5 (H5) - Inter Regular</h5>
-<h6>Heading 6 (H6) - Inter Regular</h6>
+<Unstyled>
+  <h1>H1 - The wizard quickly jinxed the gnomes before they vaporized</h1>
+  <h2>H2 - The wizard quickly jinxed the gnomes before they vaporized</h2>
+  <h3>H3 - The wizard quickly jinxed the gnomes before they vaporized</h3>
+  <h4>H4 - The wizard quickly jinxed the gnomes before they vaporized</h4>
+  <h5>H5 - The wizard quickly jinxed the gnomes before they vaporized</h5>
+  <h6>H6 - The wizard quickly jinxed the gnomes before they vaporized</h6>
+</Unstyled>
 
-## Paragraphs
+## Body
 
-<p>
-  This is a paragraph using Inter Regular. The quick brown fox jumps over the lazy dog. Sphinx of
-  black quartz, judge my vow.
-</p>
-<p style={{ fontWeight: 600 }}>
-  This is a paragraph using Inter SemiBold. The quick brown fox jumps over the lazy dog. Sphinx of
-  black quartz, judge my vow.
-</p>
-<p style={{ fontWeight: 300 }}>
-  This is a paragraph using Inter Light. The quick brown fox jumps over the lazy dog. Sphinx of
-  black quartz, judge my vow.
-</p>
-<p style={{ fontWeight: 800 }}>
-  This is a paragraph using Inter ExtraBold. The quick brown fox jumps over the lazy dog. Sphinx of
-  black quartz, judge my vow.
-</p>
-<p style={{ fontWeight: 100 }}>
-  This is a paragraph using Inter Thin. The quick brown fox jumps over the lazy dog. Sphinx of black
-  quartz, judge my vow.
-</p>
-<p style={{ fontWeight: 200 }}>
-  This is a paragraph using Inter ExtraLight. The quick brown fox jumps over the lazy dog. Sphinx of
-  black quartz, judge my vow.
-</p>
-<p style={{ fontWeight: 500 }}>
-  This is a paragraph using Inter Medium. The quick brown fox jumps over the lazy dog. Sphinx of
-  black quartz, judge my vow.
-</p>
+<Unstyled>
+  <p>This is a standard paragraph. Used for general text content.</p>
+  <br />
+  <p>
+    Another paragraph with some <strong>strong text</strong> and <em>emphasized text</em>. Demonstrates inline styling.
+  </p>
+  <br />
+  <a href="#">This is a link.</a>
+  <br /><br />
 
-## Text Styles
+<ul>
+  <li>List item one: Simple bullet point.</li>
+  <li>List item two: Another bullet point.</li>
+  <li>List item three: Final item in this unordered list.</li>
+</ul>
+<br />
 
-<p>
-  <strong>Bold Text</strong>
-</p>
-<p>
-  <em>Italic Text</em>
-</p>
-<p>
-  <small>Small Text</small>
-</p>
-<p>
-  <mark>Marked Text</mark>
-</p>
-<p>
-  <del>Deleted Text</del>
-</p>
-<p>
-  <ins>Inserted Text</ins>
-</p>
-<p>
-  <u>Underlined Text</u>
-</p>
+<ol>
+  <li>Ordered item one: First step in a numbered list.</li>
+  <li>Ordered item two: Second step.</li>
+  <li>Ordered item three: Last step in this ordered list.</li>
+</ol>
+<br />
 
-## Font Weights
+<blockquote cite="https://example.com">
+  This is a blockquote. "To be or not to be, that is the question." Used for longer quotations.
+</blockquote>
+<br />
 
-<p style={{ fontWeight: 100 }}>Inter Thin (100)</p>
-<p style={{ fontWeight: 200 }}>Inter ExtraLight (200)</p>
-<p style={{ fontWeight: 300 }}>Inter Light (300)</p>
-<p style={{ fontWeight: 400 }}>Inter Regular (400)</p>
-<p style={{ fontWeight: 500 }}>Inter Medium (500)</p>
-<p style={{ fontWeight: 600 }}>Inter SemiBold (600)</p>
-<p style={{ fontWeight: 700 }}>Inter Bold (700)</p>
-<p style={{ fontWeight: 800 }}>Inter ExtraBold (800)</p>
+<pre>
+  <code>function exampleFunction() {console.log('Hello, world!')}</code>
+</pre>
 
-## Font Sizes
+<br />
 
-<p style={{ fontSize: '12px' }}>This text is in 12 pixels</p>
-<p style={{ fontSize: '14px' }}>This text is in 14 pixels</p>
-<p style={{ fontSize: '16px' }}>This text is in 16 pixels</p>
-<p style={{ fontSize: '18px' }}>This text is in 18 pixels</p>
-<p style={{ fontSize: '20px' }}>This text is in 20 pixels</p>
-<p style={{ fontSize: '24px' }}>This text is in 24 pixels</p>
-<p style={{ fontSize: '32px' }}>This text is in 32 pixels</p>
-<p style={{ fontSize: '48px' }}>This text is in 48 pixels</p>
-<p style={{ fontSize: '64px' }}>This text is in 64 pixels</p>
+<dl>
+  <dt>Term 1</dt>
+  <dd>Description of term 1.</dd>
+  <dt>Term 2</dt>
+  <dd>Description of term 2.</dd>
+</dl>
+<br />
+
+<abbr title="Hypertext Markup Language">HTML</abbr>
+<br />
+<mark>Highlighted text</mark>
+<br />
+<q>Quoted text</q>
+<br />
+<s>Strikethrough text</s>
+<br />
+<sub>Subscript text</sub>
+<br />
+<sup>Superscript text</sup>
+<br />
+<label>Label text: Used for form labels.</label>
+<br />
+<br />
+
+<table>
+  <caption>Table of Product Prices</caption>
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Widget A</td>
+      <td>$10.00</td>
+    </tr>
+    <tr>
+      <td>Widget B</td>
+      <td>$15.00</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>Total</td>
+      <td>$25.00</td>
+    </tr>
+  </tfoot>
+</table>
+<br />
+
+  <figure>
+    <figcaption>Figure caption: Describes an image or illustration.</figcaption>
+    <img
+      src="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+      alt="Placeholder"
+      width="100"
+      height="100"
+    />
+  </figure>
+  <br />
+</Unstyled>
+
+## Semantic HTML
+
+<Unstyled>
+  <article>
+    <header>
+      <h1>Article Title</h1>
+      <p>Published on: January 1, 2025</p>
+    </header>
+    <section>
+      <h2>Section 1</h2>
+      <p>Content of section 1.</p>
+    </section>
+    <section>
+      <h2>Section 2</h2>
+      <p>Content of section 2.</p>
+    </section>
+    <aside>
+      <p>Related information or sidebar content.</p>
+    </aside>
+    <footer>
+      <p>Author: John Doe</p>
+    </footer>
+  </article>
+  <br />
+
+<nav>
+  <ul>
+    <li>
+      <a href="#">Home</a>
+    </li>
+    <li>
+      <a href="#">About</a>
+    </li>
+    <li>
+      <a href="#">Contact</a>
+    </li>
+  </ul>
+</nav>
+<br />
+
+<main>
+  <p>Main content of the page.</p>
+</main>
+<br />
+
+<header>
+  <h1>Site Header</h1>
+  <p>Navigation and site information.</p>
+</header>
+<br />
+
+  <footer>
+    <p>Copyright 2025.</p>
+  </footer>
+  <br />
+</Unstyled>

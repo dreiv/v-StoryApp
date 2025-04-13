@@ -19,8 +19,147 @@ body {
   font-size: var(--ga-text-md-font-size);
   line-height: var(--ga-text-md-line-height);
   font-family: var(--ga-font-family-primary);
+  letter-spacing: var(--ga-text-md-tracking);
 
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography - Headings */
+h1 {
+  font-weight: var(--ga-font-weight-normal);
+  font-size: var(--ga-text-3xl-font-size);
+  line-height: var(--ga-text-3xl-line-height);
+  letter-spacing: var(--ga-text-3xl-tracking);
+}
+
+h2 {
+  font-weight: var(--ga-font-weight-normal);
+  font-size: var(--ga-text-2xl-font-size);
+  line-height: var(--ga-text-2xl-line-height);
+  letter-spacing: var(--ga-text-2xl-tracking);
+}
+
+h3 {
+  font-weight: var(--ga-font-weight-semibold);
+  font-size: var(--ga-text-xl-font-size);
+  line-height: var(--ga-text-xl-line-height);
+  letter-spacing: var(--ga-text-xl-tracking);
+}
+
+h4,
+h5,
+h6 {
+  font-size: var(--ga-text-lg-font-size);
+  line-height: var(--ga-text-lg-line-height);
+  letter-spacing: var(--ga-text-lg-tracking);
+}
+
+h4 {
+  font-weight: var(--ga-font-weight-bold);
+}
+
+h5 {
+  font-weight: var(--ga-font-weight-semibold);
+}
+
+h6 {
+  font-weight: var(--ga-font-weight-medium);
+}
+
+/* Typography - Content */
+p,
+dd,
+dt,
+li,
+ol,
+ul,
+a,
+abbr,
+em,
+i,
+mark,
+q,
+s,
+sub,
+sup,
+tbody,
+th,
+thead,
+tfoot,
+tr,
+label,
+pre,
+code {
+  font-size: var(--ga-text-md-font-size);
+  line-height: var(--ga-text-md-line-height);
+  letter-spacing: var(--ga-text-md-tracking);
+}
+
+/* Override default font-weight */
+dt,
+th {
+  font-weight: var(--ga-font-weight-semibold);
+}
+
+thead,
+tfoot,
+tr {
+  font-weight: var(--ga-font-weight-medium);
+}
+
+b,
+td,
+strong {
+  font-weight: var(--ga-font-weight-bold);
+}
+
+a {
+  text-decoration: underline;
+}
+
+blockquote,
+em,
+i,
+q {
+  font-style: italic;
+}
+
+caption {
+  font-weight: var(--ga-font-weight-medium);
+  font-size: var(--ga-text-xs-font-size);
+  line-height: var(--ga-text-xs-line-height);
+  letter-spacing: var(--ga-text-xs-tracking);
+}
+
+figcaption,
+strong,
+td {
+  font-size: var(--ga-text-sm-font-size);
+  line-height: var(--ga-text-sm-line-height);
+  letter-spacing: var(--ga-text-sm-tracking);
+}
+
+pre,
+code {
+  font-family: var(--ga-font-family-primary);
+}
+
+p,
+blockquote {
+  font-size: var(--ga-text-lg-font-size);
+  line-height: var(--ga-text-lg-line-height);
+  letter-spacing: var(--ga-text-lg-tracking);
+}
+
+/* Typography - Semantic Elements */
+article,
+section,
+aside,
+nav,
+main,
+header,
+footer {
+  font-family: var(--ga-font-family-primary);
 }
