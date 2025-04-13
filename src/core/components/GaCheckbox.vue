@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { useTemplateRef } from 'vue'
 import { CheckIcon, MinusIcon } from 'lucide-vue-next'
-import { useAria, type AriaProps } from '../composables/useAria'
+import { useFormInput, type FormInputProps } from '../composables/useFormInput'
 
 defineOptions({ inheritAttrs: false })
-const props = defineProps<AriaProps>()
+const props = defineProps<FormInputProps>()
 
-const { ariaStyles, ariaAttrs } = useAria(props)
+const { classes, aria } = useFormInput(props)
 const inputRef = useTemplateRef<HTMLElement>('inputRef')
 const model = defineModel<boolean>()
 
@@ -14,25 +14,26 @@ defineExpose({ inputRef })
 </script>
 
 <template>
-  <div :class="$style.container">
-    <input
-      ref="inputRef"
-      type="checkbox"
-      :class="[$style.native, ...ariaStyles]"
-      v-model="model"
-      v-bind="{ ...$attrs, ...ariaAttrs }"
-    />
-
+  <label :class="classes" v-bind="aria">
+    <input ref="inputRef" type="checkbox" :class="$style.native" v-model="model" v-bind="$attrs" />
     <div :class="$style.marker">
       <CheckIcon :class="$style.checked" :size="12" :stroke-width="4" />
       <MinusIcon :class="$style.indeterminate" :size="12" :stroke-width="4" />
     </div>
-  </div>
+
+    <span :class="$style.label">
+      <slot>{{ label }}</slot>
+    </span>
+  </label>
 </template>
 
 <style module>
-.container {
+.input {
+  display: inline-flex;
   position: relative;
+  gap: var(--ga-size-spacing-03);
+
+  user-select: none;
 }
 
 .native,
@@ -105,23 +106,34 @@ defineExpose({ inputRef })
       color: var(--ga-color-text-disabled);
     }
   }
+}
 
-  &.error {
-    + .marker {
-      border-color: var(--ga-color-border-error);
-      background-color: var(--ga-color-surface-error);
-      color: var(--ga-color-icon-error);
-    }
-
+.error {
+  > .marker {
+    border-color: var(--ga-color-border-error);
+    background-color: var(--ga-color-surface-error);
+    color: var(--ga-color-icon-error);
+  }
+  > .native {
     &:checked + .marker,
     &:indeterminate + .marker {
       background-color: var(--ga-color-surface-error);
     }
-
     &:hover:enabled + .marker {
       border-color: var(--ga-color-border-error-hover);
       background-color: var(--ga-color-surface-action-hover-2);
     }
+  }
+}
+.label {
+  font-weight: var(--ga-font-weight-normal);
+  font-size: var(--ga-text-md-font-size);
+  line-height: var(--ga-text-md-line-height);
+  font-family: var(--ga-font-family-primary);
+  letter-spacing: var(--ga-text-md-tracking);
+
+  &:empty {
+    display: none;
   }
 }
 </style>
