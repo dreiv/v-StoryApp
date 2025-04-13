@@ -11,7 +11,18 @@ const meta = {
   decorators: [
     (story) => ({
       components: { story },
-      template: `<div :style="{display:'flex',flexWrap:'wrap',alignItems:'center',gap:'8px',padding:'1rem'}"><story /></div>`,
+      template: `
+        <div
+          :style="{
+            display:'flex',
+            flexWrap:'wrap',
+            alignItems:'center',
+            gap:'var(--ga-size-spacing-03)',
+            padding:'var(--ga-size-spacing-05)'
+          }"
+        >
+          <story />
+        </div>`,
     }),
   ],
   tags: ['autodocs'],

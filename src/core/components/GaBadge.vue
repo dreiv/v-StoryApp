@@ -45,25 +45,25 @@ const classes = computed(() => [
   justify-content: center;
   align-items: center;
 
-  vertical-align: baseline;
   border-radius: var(--ga-radius-round);
 
   &:not(:empty) {
-    padding: var(--ga-size-4);
-    min-width: var(--ga-size-24);
-    height: var(--ga-size-24);
+    padding: var(--ga-size-spacing-02);
+    min-width: var(--ga-size-spacing-06);
+    height: var(--ga-size-spacing-06);
 
-    font-weight: var(--font-weight-medium);
-    font-size: var(--text-sm);
-    font-family: var(--default-font-family);
+    font-weight: var(--ga-font-weight-medium);
+    font-size: var(--ga-text-md-font-size);
+    line-height: var(--ga-text-md-line-height);
+    font-family: var(--ga-font-family-primary);
 
     text-align: center;
     white-space: nowrap;
   }
 
   &:empty {
-    width: var(--ga-size-8);
-    height: var(--ga-size-8);
+    width: var(--ga-size-spacing-03);
+    height: var(--ga-size-spacing-03);
   }
 }
 
@@ -82,12 +82,12 @@ const classes = computed(() => [
   color: var(--ga-color-text-action);
 
   &:empty {
-    border: 1px solid var(--ga-color-border-disabled);
+    border: var(--ga-size-border-width-sm) solid var(--ga-color-border-disabled);
   }
 }
 
 .information {
-  border: 1px solid var(--ga-color-border-information);
+  border: var(--ga-size-border-width-sm) solid var(--ga-color-border-information);
   background-color: var(--ga-color-utility-blue-light);
   color: var(--ga-color-text-information);
 
@@ -97,7 +97,7 @@ const classes = computed(() => [
 }
 
 .error {
-  border: 1px solid var(--ga-color-border-error);
+  border: var(--ga-size-border-width-sm) solid var(--ga-color-border-error);
   background-color: var(--ga-color-utility-red-light);
   color: var(--ga-color-text-error);
 
@@ -107,7 +107,7 @@ const classes = computed(() => [
 }
 
 .warning {
-  border: 1px solid var(--ga-color-border-warning);
+  border: var(--ga-size-border-width-sm) solid var(--ga-color-border-warning);
   background-color: var(--ga-color-utility-orange-light);
   color: var(--ga-color-text-warning);
 
@@ -117,7 +117,7 @@ const classes = computed(() => [
 }
 
 .success {
-  border: 1px solid var(--ga-color-border-success);
+  border: var(--ga-size-border-width-sm) solid var(--ga-color-border-success);
   background-color: var(--ga-color-utility-green-light);
   color: var(--ga-color-text-success);
 
@@ -135,12 +135,8 @@ const classes = computed(() => [
     color: var(--ga-color-text-disabled);
   }
 
-  &:empty {
+  &:not(.inverted):empty {
     background-color: var(--ga-color-icon-on-disabled);
-
-    &.inverted {
-      background-color: var(--ga-color-utility-grey-light);
-    }
   }
 }
 </style>

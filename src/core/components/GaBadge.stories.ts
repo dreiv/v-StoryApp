@@ -10,7 +10,18 @@ const meta = {
   decorators: [
     (story) => ({
       components: { story },
-      template: `<div :style="{display:'flex',flexWrap:'wrap',alignItems:'center',gap:'8px',padding:'1rem'}"><story /></div>`,
+      template: `
+        <div
+          :style="{
+            display:'flex',
+            flexWrap:'wrap',
+            alignItems:'center',
+            gap:'var(--ga-size-spacing-03)',
+            padding:'var(--ga-size-spacing-05)'
+          }"
+        >
+          <story />
+        </div>`,
     }),
   ],
   tags: ['autodocs'],
@@ -114,7 +125,7 @@ export const Examples: Story = {
   render: () => ({
     components: { GaBadge, BellIcon, BellDot, MailIcon },
     template: `
-    <div :style="{display:'flex',flexDirection:'column',gap:'24px'}">
+    <div :style="{display:'flex',flexDirection:'column',gap:'var(--ga-size-spacing-06)'}">
       <div :style="{display:'flex',gap:'16px'}">
         <ga-badge>25</ga-badge>
         <ga-badge inverted>99</ga-badge>
@@ -152,31 +163,31 @@ export const Examples: Story = {
       </div>
 
       <div :style="{display:'flex',gap:'16px'}">
-        <div :style="{display:'flex',alignItems:'center',gap:'8px'}">
+        <div :style="{display:'flex',alignItems:'center',gap:'var(--ga-size-spacing-03)'}">
           <bell-icon /><ga-badge>99+</ga-badge>
         </div>
-        <div :style="{display:'flex',alignItems:'center',gap:'8px'}">
+        <div :style="{display:'flex',alignItems:'center',gap:'var(--ga-size-spacing-03)'}">
           <bell-icon /><ga-badge inverted>99+</ga-badge>
         </div>
-        <div :style="{display:'flex',alignItems:'center',gap:'8px'}">
+        <div :style="{display:'flex',alignItems:'center',gap:'var(--ga-size-spacing-03)'}">
           <mail-icon /><ga-badge>123456</ga-badge>
         </div>
-        <div :style="{display:'flex',alignItems:'center',gap:'8px'}">
+        <div :style="{display:'flex',alignItems:'center',gap:'var(--ga-size-spacing-03)'}">
           <mail-icon /><ga-badge inverted>123456</ga-badge>
         </div>
       </div>
 
       <div :style="{display:'flex',flexWrap:'wrap',gap:'16px'}">
-        <div :style="{display:'flex',alignItems:'center',gap:'8px'}">
+        <div :style="{display:'flex',alignItems:'center',gap:'var(--ga-size-spacing-03)'}">
           <span>12 new incidents detected</span><ga-badge error>12 ↓</ga-badge>
         </div>
-        <div :style="{display:'flex',alignItems:'center',gap:'8px'}">
+        <div :style="{display:'flex',alignItems:'center',gap:'var(--ga-size-spacing-03)'}">
           <span>New sales</span><ga-badge success>4.2K ↑</ga-badge>
         </div>
-        <div :style="{display:'flex',alignItems:'center',gap:'8px'}">
+        <div :style="{display:'flex',alignItems:'center',gap:'var(--ga-size-spacing-03)'}">
           <span>Missing payments</span><ga-badge warning>9</ga-badge>
         </div>
-        <div :style="{display:'flex',alignItems:'center',gap:'8px'}">
+        <div :style="{display:'flex',alignItems:'center',gap:'var(--ga-size-spacing-03)'}">
           <span>Revenue increased by <a href='#'>789.00 NOK</a></span><ga-badge information>5.4%</ga-badge>
         </div>
       </div>
@@ -186,7 +197,7 @@ export const Examples: Story = {
         <ga-badge muted>99</ga-badge>
       </div>
 
-      <div :style="{display:'flex',flexDirection:'column',gap:'8px',width:'240px'}">
+      <div :style="{display:'flex',flexDirection:'column',gap:'var(--ga-size-spacing-03)',width:'240px'}">
         <div :style="{display:'flex',alignItems:'center',justifyContent:'space-between'}">
           <span>Personal Inbox</span><ga-badge inverted>32</ga-badge>
         </div>

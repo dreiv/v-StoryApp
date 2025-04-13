@@ -8,7 +8,7 @@ const meta = {
   decorators: [
     (story) => ({
       components: { story },
-      template: `<div :style="{display:'flex',flexWrap:'wrap',alignItems:'center',gap:'8px',padding:'1rem'}"><story /></div>`,
+      template: `<div :style="{display:'flex',flexWrap:'wrap',alignItems:'center',gap:'var(--ga-size-spacing-03)',padding:'var(--ga-size-spacing-05)'}"><story /></div>`,
     }),
   ],
   tags: ['autodocs'],
@@ -73,18 +73,18 @@ export const Examples: Story = {
   render: () => ({
     components: { GaSpinner, CircleCheck, OctagonAlert },
     template: `
-      <div :style="{display:'flex',flexDirection:'column',gap:'24px'}">
-        <div :style="{display:'flex',flexDirection:'column',gap:'8px'}">
+      <div :style="{display:'flex',flexDirection:'column',gap:'var(--ga-size-spacing-06)'}">
+        <div :style="{display:'flex',flexDirection:'column',gap:'var(--ga-size-spacing-03)'}">
           <ga-spinner size='sm' label='Fetching dashboard data' />
           <ga-spinner label='File loaded successfully.'>
             <template #icon><circle-check size="16" color="var(--ga-color-icon-success)" /></template>
           </ga-spinner>
           <ga-spinner label='Error while loading file. Please try again.' errorMessage='Error while loading file. Please try again.' error>
-            <template #icon><octagon-alert size="16" color="#CC453E"/></template>
+            <template #icon><octagon-alert size="16" color="var(--ga-color-error)"/></template>
           </ga-spinner>
         </div>
 
-        <div :style="{display:'flex',gap:'8px'}">
+        <div :style="{display:'flex',gap:'var(--ga-size-spacing-03)'}">
           <ga-spinner size="lg" label="Loading..." direction="vertical" />
           <ga-spinner label="Loading..." direction="vertical" />
           <ga-spinner size="sm" label="Loading..." direction="vertical" />

@@ -44,14 +44,14 @@ provide(radioGroupKey, { name, model })
     font-family: var(--default-font-family);
 
     &:not(:empty) {
-      margin-bottom: var(--ga-size-8);
+      margin-bottom: var(--ga-size-spacing-03);
     }
   }
 
   .content {
     display: flex;
     flex-direction: column;
-    gap: var(--ga-size-8);
+    gap: var(--ga-size-spacing-03);
 
     &.horizontal {
       flex-direction: row;

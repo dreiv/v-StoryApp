@@ -23,24 +23,33 @@ defineProps<{ content?: string }>()
 
 <style module>
 .header {
-  margin-bottom: var(--ga-size-4);
-  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--ga-size-spacing-02);
+  font-weight: var(--ga-font-weight-semibold);
+  font-size: var(--ga-text-md-font-size);
+  line-height: var(--ga-text-md-line-height);
+  font-family: var(--ga-font-family-primary);
+  letter-spacing: var(--ga-text-md-tracking);
 }
 
 .footer {
   display: flex;
-  gap: var(--ga-size-8);
-  margin-top: var(--ga-size-16);
+  gap: var(--ga-size-spacing-03);
+  margin-top: var(--ga-size-spacing-05);
 }
 </style>
 
 <style>
 .v-popper--theme-tooltip {
   display: inline-flex;
+  font-weight: var(--ga-font-weight-normal);
+  font-size: var(--ga-text-md-font-size);
+  line-height: var(--ga-text-md-line-height);
+  font-family: var(--ga-font-family-primary);
+  letter-spacing: var(--ga-text-md-tracking);
 
   .v-popper__inner {
     background-color: var(--ga-color-surface-action-hover);
-    padding: var(--ga-size-8);
+    padding: var(--ga-size-spacing-03);
     color: var(--ga-color-text-on-action);
   }
 

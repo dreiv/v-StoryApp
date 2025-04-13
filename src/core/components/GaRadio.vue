@@ -5,8 +5,9 @@ import { radioGroupKey } from '../constants'
 
 defineOptions({ inheritAttrs: false })
 const props = defineProps<FormInputProps>()
-const inputRef = useTemplateRef<HTMLElement>('inputRef')
+
 const { classes, aria } = useFormInput(props)
+const inputRef = useTemplateRef<HTMLElement>('inputRef')
 
 const group = inject(radioGroupKey)
 if (!group) throw new Error('GaRadio must be used inside a GaRadioGroup')
@@ -37,15 +38,15 @@ defineExpose({ inputRef })
 .input {
   display: inline-flex;
   position: relative;
-  gap: var(--ga-size-8);
+  gap: var(--ga-size-spacing-03);
   user-select: none;
 }
 
 .native,
 .marker {
-  margin: var(--ga-size-2) 0 var(--ga-size-2) var(--ga-size-2);
-  width: var(--ga-size-16);
-  height: var(--ga-size-16);
+  margin: var(--ga-size-spacing-01) 0 var(--ga-size-spacing-01) var(--ga-size-spacing-01);
+  width: var(--ga-size-spacing-05);
+  height: var(--ga-size-spacing-05);
 }
 
 .marker {
@@ -53,7 +54,7 @@ defineExpose({ inputRef })
   top: 0;
   left: 0;
 
-  border: 2px solid var(--ga-color-border-action);
+  border: var(--ga-size-border-width-md) solid var(--ga-color-border-action);
   border-radius: var(--ga-radius-round);
 
   pointer-events: none;
@@ -66,8 +67,8 @@ defineExpose({ inputRef })
   cursor: pointer;
 
   &:focus-visible + .marker {
-    outline: 2px solid var(--ga-color-border-focus);
-    outline-offset: 2px;
+    outline: var(--ga-size-border-width-md) solid var(--ga-color-border-focus);
+    outline-offset: var(--ga-size-spacing-01);
   }
 
   &:hover:enabled {
@@ -92,8 +93,8 @@ defineExpose({ inputRef })
       border-radius: var(--ga-radius-round);
       background-color: var(--ga-color-icon-on-primary);
 
-      width: var(--ga-size-4);
-      height: var(--ga-size-4);
+      width: var(--ga-size-spacing-02);
+      height: var(--ga-size-spacing-02);
       content: '';
     }
   }
@@ -133,7 +134,6 @@ defineExpose({ inputRef })
     &:checked:enabled + .marker {
       background-color: var(--ga-color-icon-error);
     }
-
     &:hover:enabled + .marker {
       border-color: var(--ga-color-red-70);
     }
@@ -141,9 +141,11 @@ defineExpose({ inputRef })
 }
 
 .label {
-  min-height: var(--ga-size-16);
-  font-size: var(--text-md);
-  line-height: var(--text-md--line-height);
+  font-weight: var(--ga-font-weight-normal);
+  font-size: var(--ga-text-md-font-size);
+  line-height: var(--ga-text-md-line-height);
+  font-family: var(--ga-font-family-primary);
+  letter-spacing: var(--ga-text-md-tracking);
 
   &:empty {
     display: none;

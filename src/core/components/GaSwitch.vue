@@ -5,6 +5,7 @@ import { useFormInput, type FormInputProps } from '../composables/useFormInput'
 
 defineOptions({ inheritAttrs: false })
 const props = defineProps<FormInputProps>()
+
 const { classes, aria } = useFormInput(props)
 const inputRef = useTemplateRef<HTMLElement>('inputRef')
 const model = defineModel<boolean>()
@@ -29,14 +30,14 @@ defineExpose({ inputRef })
 .input {
   display: inline-flex;
   position: relative;
-  gap: var(--ga-size-12);
+  gap: var(--ga-size-spacing-04);
   user-select: none;
 }
 
 .native,
 .marker {
-  width: var(--ga-size-48);
-  height: var(--ga-size-24);
+  width: var(--ga-size-spacing-09);
+  height: var(--ga-size-spacing-06);
 }
 
 .marker {
@@ -46,10 +47,10 @@ defineExpose({ inputRef })
   left: 0;
   align-items: center;
 
-  border: 1px solid var(--ga-color-border-action);
+  border: var(--ga-size-border-width-sm) solid var(--ga-color-border-action);
   border-radius: var(--ga-radius-round);
 
-  padding: 0 var(--ga-size-4);
+  padding: 0 var(--ga-size-spacing-02);
   pointer-events: none;
   color: var(--ga-color-icon-on-primary);
 
@@ -59,7 +60,7 @@ defineExpose({ inputRef })
 
   &::after {
     position: absolute;
-    top: calc(50% - 9px);
+    top: calc(50% - 9px); /* TODO: fix */
 
     border-radius: var(--ga-radius-round);
     background-color: var(--ga-color-border-action);
@@ -76,8 +77,8 @@ defineExpose({ inputRef })
   cursor: pointer;
 
   &:focus-visible + .marker {
-    outline: 2px solid var(--ga-color-border-focus);
-    outline-offset: 2px;
+    outline: var(--ga-size-border-width-md) solid var(--ga-color-border-focus);
+    outline-offset: var(--ga-size-spacing-01);
   }
 
   &:hover:enabled {
@@ -103,7 +104,7 @@ defineExpose({ inputRef })
     }
 
     &::after {
-      transform: translateX(var(--ga-size-20));
+      transform: translateX(20px); /* TODO: fix */
       background-color: var(--ga-color-surface-primary);
     }
   }
@@ -124,7 +125,6 @@ defineExpose({ inputRef })
     ~ .label {
       color: var(--ga-color-text-disabled);
     }
-
     &:checked ~ .label {
       color: var(--ga-color-text-disable-selected);
     }
@@ -141,7 +141,6 @@ defineExpose({ inputRef })
       background-color: var(--ga-color-icon-error);
     }
   }
-
   > .native:enabled {
     &:checked + .marker {
       background-color: var(--ga-color-surface-error);
@@ -163,9 +162,11 @@ defineExpose({ inputRef })
 }
 
 .label {
-  min-height: var(--ga-size-24);
-  font-size: var(--text-md);
-  line-height: var(--text-lg--line-height);
+  font-weight: var(--ga-font-weight-normal);
+  font-size: var(--ga-text-md-font-size);
+  line-height: var(--ga-text-md-line-height);
+  font-family: var(--ga-font-family-primary);
+  letter-spacing: var(--ga-text-md-tracking);
 
   &:empty {
     display: none;

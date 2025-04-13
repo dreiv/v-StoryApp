@@ -13,7 +13,18 @@ const meta = {
   decorators: [
     (story) => ({
       components: { story },
-      template: `<div :style="{display:'flex',flexWrap:'wrap',alignItems:'center',gap:'8px',padding:'1rem'}"><story /></div>`,
+      template: `
+        <div
+          :style="{
+            display:'flex',
+            flexWrap:'wrap',
+            alignItems:'center',
+            gap:'var(--ga-size-spacing-03)',
+            padding:'var(--ga-size-spacing-05)'
+          }"
+        >
+          <story />
+        </div>`,
     }),
   ],
   tags: ['autodocs'],
@@ -80,27 +91,29 @@ export const Examples: Story = {
   render: () => ({
     components: { GaCheckbox, GaFormDetail, GaFormNest, GlobeLock, OctagonAlert, TriangleAlert },
     template: `
-    <div :style="{display:'flex',flexDirection:'column',gap:'24px'}">
+    <div :style="{display:'flex',flexDirection:'column',gap:'var(--ga-size-spacing-06)'}">
       <ga-checkbox>I agree to the <a href="#">terms</a> and <a href="#">conditions</a>.</ga-checkbox>
+
       <ga-checkbox>This checkbox label<br/>wraps on two lines</ga-checkbox>
 
-      <div :style="{display:'flex',flexDirection:'column',gap:'8px'}">
+      <div :style="{display:'flex',flexDirection:'column',gap:'var(--ga-size-spacing-02)'}">
         <ga-checkbox error>I agree to the <a href="#">terms</a> and <a href="#">conditions</a>. (error)</ga-checkbox>
+
         <ga-form-detail>
-          <template #icon><octagon-alert strokeWidth="2.5" color="#CC453E"/></template>
+          <template #icon><octagon-alert strokeWidth="2.5" color="var(--ga-color-error)"/></template>
           Error message goes here and is present in two lines in this case<br>but it can be short an concise and show in one line.
         </ga-form-detail>
       </div>
 
-      <div :style="{display:'flex',flexDirection:'column',gap:'8px'}">
+      <div :style="{display:'flex',flexDirection:'column',gap:'var(--ga-size-spacing-02)'}">
         <ga-checkbox label='The checkbox component offers a clear depiction of a binary choice, enabling users to select from several options or toggle a single option on or off.' />
-        <ga-form-detail>This callout ensures that the checkmark is explained in even more detail.</ga-form-detail>
+        <ga-form-detail>This callout ensures that the check mark is explained in even more detail.</ga-form-detail>
       </div>
 
-      <div :style="{display:'flex',flexDirection:'column',gap:'8px'}">
+      <div :style="{display:'flex',flexDirection:'column',gap:'var(--ga-size-spacing-03)'}">
         <div>
           <h3>Module selection</h3>
-          <p>Select the modules you want to include in your project.</p>
+          <p :style="{fontSize:'var(--ga-text-xs-font-size)'}">Select the modules you want to include in your project.</p>
         </div>
 
         <ga-checkbox modelValue='true' label='Approval' />
@@ -116,9 +129,10 @@ export const Examples: Story = {
         <ga-checkbox label='Taxation' />
       </div>
 
-      <div :style="{display:'flex',flexDirection:'column',gap:'8px'}">
+      <div :style="{display:'flex',flexDirection:'column',gap:'var(--ga-size-spacing-03)'}">
         <ga-form-nest>
           <ga-checkbox indeterminate label='Check in all team members' />
+
           <template #nested>
             <ga-checkbox label='Managers' />
             <ga-checkbox modelValue='true' label='Developers' />
@@ -128,16 +142,19 @@ export const Examples: Story = {
         </ga-form-nest>
       </div>
 
-      <div :style="{display:'flex',flexDirection:'column',gap:'8px'}">
+      <div :style="{display:'flex',flexDirection:'column',gap:'var(--ga-size-spacing-02)'}">
         <ga-checkbox modelValue='true' disabled label='Receive security updates via email' />
         <ga-form-detail label='Only sent when major security flaws detected on your account.' />
       </div>
 
-      <div :style="{display:'flex',flexDirection:'column',gap:'8px'}">
+
+
+      <div :style="{display:'flex',flexDirection:'column',gap:'var(--ga-size-spacing-03)'}">
         <h3>Email me</h3>
 
         <ga-form-nest>
           <ga-checkbox indeterminate label='Daily updates' />
+
           <template #nested>
             <ga-checkbox label='Messages from my inbox' />
             <ga-checkbox label='New invoices' />
@@ -154,41 +171,41 @@ export const Examples: Story = {
         </ga-form-nest>
 
         <ga-form-detail label='All messages are SSL secured.'>
-          <template #icon><globe-lock/></template>
+          <template #icon><globe-lock /></template>
         </ga-form-detail>
       </div>
 
-      <div :style="{display:'flex',flexDirection:'column',gap:'8px'}">
+      <div :style="{display:'flex',flexDirection:'column',gap:'var(--ga-size-spacing-02)'}">
         <div>
           <h3>Document types (error)</h3>
           <p>Only future documents will be included in this workflow.</p>
         </div>
 
-         <div :style="{display:'flex',gap:'8px'}">
+        <div :style="{display:'flex',gap:'var(--ga-size-spacing-03)'}">
           <ga-checkbox error label='Invoices' />
           <ga-checkbox error label='Credit notes' />
           <ga-checkbox error label='Expense requests' />
-         </div>
+        </div>
 
-         <ga-form-detail label='You need to select at least one document type.'>
-          <template #icon><octagon-alert strokeWidth="2.5" color="#CC453E"/></template>
+        <ga-form-detail label='You need to select at least one document type.'>
+          <template #icon><octagon-alert strokeWidth="2.5" color="var(--ga-color-error)" /></template>
         </ga-form-detail>
       </div>
 
-      <div :style="{display:'flex',flexDirection:'column',gap:'8px'}">
+      <div :style="{display:'flex',flexDirection:'column',gap:'var(--ga-size-spacing-02)'}">
         <div>
           <h3>Document types</h3>
           <p>Only future documents will be included in this workflow.</p>
         </div>
 
-        <div :style="{display:'flex',gap:'8px'}">
+        <div :style="{display:'flex',gap:'var(--ga-size-spacing-03)'}">
           <ga-checkbox label='Invoices' />
           <ga-checkbox modelValue='true' label='Credit notes' />
           <ga-checkbox label='Expense requests' />
         </div>
 
         <ga-form-detail label='Vodafone ASA did not sent any credit notes so far.'>
-          <template #icon><triangle-alert strokeWidth="2.5" color="#BB5822"/></template>
+          <template #icon><triangle-alert strokeWidth="2.5" color="var(--ga-color-warning)" /></template>
         </ga-form-detail>
       </div>
     </div>
@@ -208,10 +225,10 @@ export const WithDetail: Story = {
   render: (args) => ({
     components: { GaCheckbox, GaFormDetail, OctagonAlert },
     template: `
-      <div :style="{display:'flex',flexDirection:'column',gap:'8px'}">
+      <div :style="{display:'flex',flexDirection:'column',gap:'var(--ga-size-spacing-03)'}">
         <ga-checkbox v-bind="args">I agree to the <a href="#">terms</a> and <a href="#">conditions</a>.</ga-checkbox>
         <ga-form-detail>
-          <template #icon><octagon-alert strokeWidth="2.5" color="#CC453E"/></template>
+          <template #icon><octagon-alert strokeWidth="2.5" color="var(--ga-color-error)"/></template>
           Error message goes here and is present in two lines in this case<br>but it can be short an concise and show in one line.
         </ga-form-detail>
       </div>
@@ -226,9 +243,10 @@ export const WithNestedItems: Story = {
   render: () => ({
     components: { GaCheckbox, GaFormNest },
     template: `
-      <div :style="{display:'flex',flexDirection:'column',gap:'8px'}">
+      <div :style="{display:'flex',flexDirection:'column',gap:'var(--ga-size-spacing-03)'}">
         <ga-form-nest>
           <ga-checkbox indeterminate label='Check in all team members' />
+
           <template #nested>
             <ga-checkbox label='Managers' />
             <ga-checkbox modelValue='true' label='Developers' />

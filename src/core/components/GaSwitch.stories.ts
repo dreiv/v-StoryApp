@@ -2,8 +2,8 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import { CircleCheck, OctagonAlert, TriangleAlert } from 'lucide-vue-next'
 
 import { type FormInputProps } from '../composables/useFormInput'
-import GaSwitch from './GaSwitch.vue'
 import GaFormDetail from './GaFormDetail.vue'
+import GaSwitch from './GaSwitch.vue'
 
 const meta = {
   component: GaSwitch,
@@ -11,7 +11,18 @@ const meta = {
   decorators: [
     (story) => ({
       components: { story },
-      template: `<div :style="{display:'flex',flexWrap:'wrap',alignItems:'center',gap:'8px',padding:'1rem'}"><story /></div>`,
+      template: `
+        <div
+          :style="{
+            display:'flex',
+            flexWrap:'wrap',
+            alignItems:'center',
+            gap:'var(--ga-size-spacing-03)',
+            padding:'var(--ga-size-spacing-05)'
+          }"
+        >
+          <story />
+        </div>`,
     }),
   ],
   tags: ['autodocs'],
@@ -73,20 +84,20 @@ export const Examples: Story = {
   render: () => ({
     components: { GaSwitch, GaFormDetail, CircleCheck, OctagonAlert, TriangleAlert },
     template: `
-      <div :style="{display:'flex',flexDirection:'column',gap:'24px'}">
+      <div :style="{display:'flex',flexDirection:'column',gap:'var(--ga-size-spacing-06)'}">
         <ga-switch disabled>
           Set invoice date automatically.<br />
-          <span :style="{fontSize:'11px'}">Hint is an accessible way to provide additional information that might help the user.</span>
+          <span :style="{fontSize:'var(--ga-text-sm-font-size)'}">Hint is an accessible way to provide additional information that might help the user.</span>
         </ga-switch>
 
         <ga-switch disabled modelValue='true'>
           Set invoice date automatically.<br />
-          <span :style="{fontSize:'11px'}">Hint is an accessible way to provide additional information that might help the user.</span>
+          <span :style="{fontSize:'var(--ga-text-sm-font-size)'}">Hint is an accessible way to provide additional information that might help the user.</span>
         </ga-switch>
 
         <ga-switch>
           Set invoice date automatically.<br />
-          <span :style="{fontSize:'11px'}">Hint is an accessible way to provide <strong>additional information</strong> that might help the user.</span>
+          <span :style="{fontSize:'var(--ga-text-sm-font-size)'}">Hint is an accessible way to provide <strong>additional information</strong> that might help the user.</span>
         </ga-switch>
 
         <ga-switch label="Set invoice date automatically" modelValue='true' v-tooltip="'Automatic date'" />
@@ -94,41 +105,41 @@ export const Examples: Story = {
         <ga-switch modelValue='true'>
           Daily invoice reminders<br />
           <ga-form-detail label='Invoice reminders will be sent daily at 9:00 am.'>
-            <template #icon><circle-check color="#448548"/></template>
+            <template #icon><circle-check color="var(--ga-color-success)"/></template>
           </ga-form-detail>
         </ga-switch>
 
         <ga-switch modelValue='true'>
           Dark mode<br />
           <ga-form-detail label='Due to your access rights only partial dark mode is enabled for your account.'>
-            <template #icon><triangle-alert color="#BB5822"/></template>
+            <template #icon><triangle-alert color="var(--ga-color-warning)"/></template>
           </ga-form-detail>
         </ga-switch>
 
         <ga-switch modelValue='true'>
           Show admin view<br />
           <ga-form-detail>
-            <template #icon><triangle-alert color="#BB5822"/></template>
+            <template #icon><triangle-alert color="var(--ga-color-warning)"/></template>
             <span>We detected maintenance mode for one of your modules and this view might be incomplete. <a href='#'>View module status</a></span>
           </ga-form-detail>
         </ga-switch>
 
-        <div :style="{display:'flex',flexDirection:'column',gap:'8px'}">
+        <div :style="{display:'flex',flexDirection:'column',gap:'var(--ga-size-spacing-03)'}">
           <h3 :style="{textDecoration:'underline wavy'}">Weekly reminders</h3>
-           <ga-switch modelValue='true' label="On">
+          <ga-switch modelValue='true' label="On">
         </div>
 
         <ga-switch modelValue='true' error>
           Fraud detection<br />
           <ga-form-detail label='There are no documents available to check as this is a demo account.'>
-            <template #icon><octagon-alert strokeWidth="2.5" color="#CC453E"/></template>
+            <template #icon><octagon-alert strokeWidth="2.5" color="var(--ga-color-error)"/></template>
           </ga-form-detail>
         </ga-switch>
 
         <ga-switch error>
           Show admin view<br />
           <ga-form-detail label='Admin view failed to initialize. Try again later.'>
-            <template #icon><octagon-alert strokeWidth="2.5" color="#CC453E"/></template>
+            <template #icon><octagon-alert strokeWidth="2.5" color="var(--ga-color-error)"/></template>
           </ga-form-detail>
         </ga-switch>
       </div>
