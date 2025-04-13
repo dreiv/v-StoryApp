@@ -1,11 +1,11 @@
 import type { ConcreteComponent } from 'vue'
 import type { Meta, StoryObj } from '@storybook/vue3'
 
-import GaDropdown from './GaDropdown.vue'
+import GaMenu from './GaMenu.vue'
 
 const meta = {
-  component: GaDropdown as unknown as ConcreteComponent,
-  title: 'Molecules/Dropdown',
+  component: GaMenu as unknown as ConcreteComponent,
+  title: 'Molecules/Menu',
   decorators: [
     (story) => ({
       components: { story },
@@ -13,13 +13,13 @@ const meta = {
     }),
   ],
   tags: ['autodocs'],
-} satisfies Meta<typeof GaDropdown>
+} satisfies Meta<typeof GaMenu>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
 /**
- *  This component provides a dropdown functionality.
+ *  This component provides a menu functionality.
  *
     It is based on the <a href="https://floating-vue.starpad.dev/" target="_blank">floating-vue</a> library,
     which offers advanced positioning and interaction capabilities.
@@ -30,12 +30,12 @@ type Story = StoryObj<typeof meta>
 export const Examples: Story = {
   parameters: { controls: { disable: true } },
   render: () => ({
-    components: { GaDropdown },
+    components: { GaMenu },
     template: `
       <div :style="{display:'flex',alignItems:'center',flexDirection:'column',gap:'16px'}">
-        <ga-dropdown>
-          <button>Dropdown</button>
-        </ga-dropdown>
+        <ga-menu>
+          <button>Menu</button>
+        </ga-menu>
       </div>
     `,
   }),
