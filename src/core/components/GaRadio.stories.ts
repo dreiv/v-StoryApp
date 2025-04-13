@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 
-import { type AriaProps } from '../composables/useAria'
+import { type FormInputProps } from '../composables/useFormInput'
 import GaRadio from './GaRadio.vue'
-import GaFormField from './GaFormField.vue'
 import GaRadioGroup from './GaRadioGroup.vue'
 
 const meta = {
@@ -12,7 +11,18 @@ const meta = {
   decorators: [
     (story) => ({
       components: { story },
-      template: `<div :style="{display:'flex',flexWrap:'wrap',alignItems:'center',gap:'var(--ga-size-spacing-03)',padding:'var(--ga-size-spacing-05)'}"><story /></div>`,
+      template: `
+        <div
+          :style="{
+            display:'flex',
+            flexWrap:'wrap',
+            alignItems:'center',
+            gap:'var(--ga-size-spacing-03)',
+            padding:'var(--ga-size-spacing-05)'
+          }"
+        >
+          <story />
+        </div>`,
     }),
   ],
   tags: ['autodocs'],
@@ -32,7 +42,7 @@ type Story = StoryObj<typeof meta>
 
 interface RadioVariation {
   name: 'Default' | 'Checked' | 'Indeterminate' | 'Error' | 'ErrorChecked' | 'ErrorIndeterminate'
-  props: AriaProps & { default?: string }
+  props: FormInputProps & { default?: string }
 }
 
 const variations: RadioVariation[] = [
@@ -48,20 +58,14 @@ const variations: RadioVariation[] = [
 const createStory = (variation: RadioVariation): Story => ({
   args: variation.props,
   render: (args) => ({
-    components: { GaRadio, GaRadioGroup, GaFormField },
+    components: { GaRadio, GaRadioGroup },
     template: `
       <ga-radio-group direction='horizontal'>
-        <ga-form-field>
-          <ga-radio v-bind="args" />
-        </ga-form-field>
-
-        <ga-form-field>
-          <ga-radio v-bind="args" disabled />
-        </ga-form-field>
-
-        <ga-form-field :label="args.default || 'Radio Label'">
-          <ga-radio v-bind="args" />
-        </ga-form-field>
+        <ga-radio v-bind="args" />
+        <ga-radio v-bind="args" disabled />
+        <ga-radio v-bind="args">
+          {{ args.default || 'With Label' }}
+        </ga-radio>
       </ga-radio-group>
     `,
     setup: () => ({ args }),

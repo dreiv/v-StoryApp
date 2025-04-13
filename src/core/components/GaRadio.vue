@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { inject, useTemplateRef } from 'vue'
-import { useAria, type AriaProps } from '../composables/useAria'
+import { useFormInput, type FormInputProps } from '../composables/useFormInput'
 import { radioGroupKey } from '../constants'
 
 defineOptions({ inheritAttrs: false })
-const props = defineProps<AriaProps>()
+const props = defineProps<FormInputProps>()
 
-const { ariaStyles, ariaAttrs } = useAria(props)
+const { classes, aria } = useFormInput(props)
 const inputRef = useTemplateRef<HTMLElement>('inputRef')
 
 const group = inject(radioGroupKey)
@@ -16,24 +16,30 @@ defineExpose({ inputRef })
 </script>
 
 <template>
-  <div :class="$style.container">
+  <label :class="classes" v-bind="aria">
     <input
       ref="inputRef"
       type="radio"
-      :class="[$style.native, ...ariaStyles]"
+      :class="$style.native"
       :name="group?.name"
       :checked="group?.model?.value === $attrs.value"
       @change="group.model.value = `${$attrs.value}`"
-      v-bind="{ ...$attrs, ...ariaAttrs }"
+      v-bind="$attrs"
     />
-
     <div :class="$style.marker" />
-  </div>
+
+    <span :class="$style.label">
+      <slot>{{ label }}</slot>
+    </span>
+  </label>
 </template>
 
 <style module>
-.container {
+.input {
+  display: inline-flex;
   position: relative;
+  gap: var(--ga-size-spacing-03);
+  user-select: none;
 }
 
 .native,
@@ -115,21 +121,34 @@ defineExpose({ inputRef })
       color: var(--ga-color-text-disabled);
     }
   }
+}
 
-  &.error {
-    + .marker {
-      border-color: var(--ga-color-border-error);
-      background-color: var(--ga-color-surface-error);
-      color: var(--ga-color-icon-error);
-    }
+.error {
+  > .marker {
+    border-color: var(--ga-color-border-error);
+    background-color: var(--ga-color-surface-error);
+    color: var(--ga-color-icon-error);
+  }
 
-    &:checked + .marker {
+  > .native {
+    &:checked:enabled + .marker {
       background-color: var(--ga-color-icon-error);
     }
-
     &:hover:enabled + .marker {
       border-color: var(--ga-color-red-70);
     }
+  }
+}
+
+.label {
+  font-weight: var(--ga-font-weight-normal);
+  font-size: var(--ga-text-md-font-size);
+  line-height: var(--ga-text-md-line-height);
+  font-family: var(--ga-font-family-primary);
+  letter-spacing: var(--ga-text-md-tracking);
+
+  &:empty {
+    display: none;
   }
 }
 </style>

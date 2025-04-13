@@ -3,7 +3,6 @@ import { GlobeLock, OctagonAlert, TriangleAlert } from 'lucide-vue-next'
 
 import { type FormInputProps } from '../composables/useFormInput'
 import GaCheckbox from './GaCheckbox.vue'
-import GaFormField from './GaFormField.vue'
 import GaFormDetail from './GaFormDetail.vue'
 import GaFormNest from './GaFormNest.vue'
 
@@ -99,6 +98,7 @@ export const Examples: Story = {
 
       <div :style="{display:'flex',flexDirection:'column',gap:'var(--ga-size-spacing-02)'}">
         <ga-checkbox error>I agree to the <a href="#">terms</a> and <a href="#">conditions</a>. (error)</ga-checkbox>
+
         <ga-form-detail>
           <template #icon><octagon-alert strokeWidth="2.5" color="var(--ga-color-error)"/></template>
           Error message goes here and is present in two lines in this case<br>but it can be short an concise and show in one line.
@@ -154,6 +154,7 @@ export const Examples: Story = {
 
         <ga-form-nest>
           <ga-checkbox indeterminate label='Daily updates' />
+
           <template #nested>
             <ga-checkbox label='Messages from my inbox' />
             <ga-checkbox label='New invoices' />
@@ -245,6 +246,7 @@ export const WithNestedItems: Story = {
       <div :style="{display:'flex',flexDirection:'column',gap:'var(--ga-size-spacing-03)'}">
         <ga-form-nest>
           <ga-checkbox indeterminate label='Check in all team members' />
+
           <template #nested>
             <ga-checkbox label='Managers' />
             <ga-checkbox modelValue='true' label='Developers' />

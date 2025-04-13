@@ -114,6 +114,7 @@ defineExpose({ inputRef })
     background-color: var(--ga-color-surface-error);
     color: var(--ga-color-icon-error);
   }
+
   > .native {
     &:checked + .marker,
     &:indeterminate + .marker {
