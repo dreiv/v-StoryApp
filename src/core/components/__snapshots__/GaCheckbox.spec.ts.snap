@@ -1,17 +1,19 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Checkbox > should render correctly 1`] = `
-"<input type="checkbox" class="native">
-<div class="marker">
-  <anonymous-stub class="checked" size="12" stroke-width="4"></anonymous-stub>
-  <anonymous-stub class="indeterminate" size="12" stroke-width="4"></anonymous-stub>
+"<div class="container"><input type="checkbox" class="native">
+  <div class="marker">
+    <anonymous-stub class="checked" size="12" stroke-width="4"></anonymous-stub>
+    <anonymous-stub class="indeterminate" size="12" stroke-width="4"></anonymous-stub>
+  </div>
 </div>"
 `;
 
 exports[`Checkbox > should render with an error prop 1`] = `
-"<input type="checkbox" class="native mock-error" aria-invalid="true" aria-errormessage="Test Error">
-<div class="marker">
-  <anonymous-stub class="checked" size="12" stroke-width="4"></anonymous-stub>
-  <anonymous-stub class="indeterminate" size="12" stroke-width="4"></anonymous-stub>
+"<div class="container"><input type="checkbox" class="native mock-error" aria-invalid="true" aria-errormessage="Test Error">
+  <div class="marker">
+    <anonymous-stub class="checked" size="12" stroke-width="4"></anonymous-stub>
+    <anonymous-stub class="indeterminate" size="12" stroke-width="4"></anonymous-stub>
+  </div>
 </div>"
 `;

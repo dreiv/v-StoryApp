@@ -16,19 +16,26 @@ defineExpose({ inputRef })
 </script>
 
 <template>
-  <input
-    ref="inputRef"
-    type="radio"
-    :class="[$style.native, ...ariaStyles]"
-    :name="group?.name"
-    :checked="group?.model?.value === $attrs.value"
-    @change="group.model.value = `${$attrs.value}`"
-    v-bind="{ ...$attrs, ...ariaAttrs }"
-  />
-  <div :class="$style.marker" />
+  <div :class="$style.container">
+    <input
+      ref="inputRef"
+      type="radio"
+      :class="[$style.native, ...ariaStyles]"
+      :name="group?.name"
+      :checked="group?.model?.value === $attrs.value"
+      @change="group.model.value = `${$attrs.value}`"
+      v-bind="{ ...$attrs, ...ariaAttrs }"
+    />
+
+    <div :class="$style.marker" />
+  </div>
 </template>
 
 <style module>
+.container {
+  position: relative;
+}
+
 .native,
 .marker {
   margin: var(--ga-size-spacing-01) 0 var(--ga-size-spacing-01) var(--ga-size-spacing-01);

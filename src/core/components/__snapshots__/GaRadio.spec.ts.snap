@@ -1,11 +1,13 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Radio > should render correctly 1`] = `
-"<input type="radio" class="native" name="mockName">
-<div class="marker"></div>"
+"<div class="container"><input type="radio" class="native" name="mockName">
+  <div class="marker"></div>
+</div>"
 `;
 
 exports[`Radio > should render with an error prop 1`] = `
-"<input type="radio" class="native mock-error" name="mockName" aria-invalid="true" aria-errormessage="Test Error">
-<div class="marker"></div>"
+"<div class="container"><input type="radio" class="native mock-error" name="mockName" aria-invalid="true" aria-errormessage="Test Error">
+  <div class="marker"></div>
+</div>"
 `;

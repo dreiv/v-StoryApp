@@ -14,20 +14,26 @@ defineExpose({ inputRef })
 </script>
 
 <template>
-  <input
-    ref="inputRef"
-    type="checkbox"
-    :class="[$style.native, ...ariaStyles]"
-    v-model="model"
-    v-bind="{ ...$attrs, ...ariaAttrs }"
-  />
+  <div :class="$style.container">
+    <input
+      ref="inputRef"
+      type="checkbox"
+      :class="[$style.native, ...ariaStyles]"
+      v-model="model"
+      v-bind="{ ...$attrs, ...ariaAttrs }"
+    />
 
-  <div :class="$style.marker">
-    <CheckIcon :class="$style.checked" :size="16" />
+    <div :class="$style.marker">
+      <CheckIcon :class="$style.checked" :size="16" />
+    </div>
   </div>
 </template>
 
 <style module>
+.container {
+  position: relative;
+}
+
 .native,
 .marker {
   width: var(--ga-size-spacing-09);
