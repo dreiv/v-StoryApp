@@ -100,7 +100,7 @@ export const Examples: Story = {
           <span :style="{fontSize:'var(--ga-text-sm-font-size)'}">Hint is an accessible way to provide <strong>additional information</strong> that might help the user.</span>
         </ga-switch>
 
-        <ga-switch label="Set invoice date automatically" modelValue='true' v-tooltip="'Automatic date'" />
+        <ga-switch label="Set invoice date automatically" modelValue='true' v-tooltip.top-start="'Automatic date'" />
 
         <ga-switch modelValue='true'>
           Daily invoice reminders<br />
