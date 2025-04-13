@@ -1,7 +1,7 @@
 import { shallowMount, type VueWrapper } from '@vue/test-utils'
 import GaSwitch from './GaSwitch.vue'
 
-vi.mock('../composables/useAria')
+vi.mock('../composables/useFormInput')
 vi.mock('../constants')
 
 describe('Switch', () => {
@@ -19,11 +19,11 @@ describe('Switch', () => {
 
   it('should render with an error prop', async () => {
     await wrapper.setProps({ error: true, errorMessage: 'Test Error' })
-    const input = wrapper.find('input')
+    const label = wrapper.find('label')
 
     expect(wrapper.html()).toMatchSnapshot()
-    expect(input.classes('mock-error')).toBe(true)
-    expect(input.attributes('aria-invalid')).toBe('true')
-    expect(input.attributes('aria-errormessage')).toBe('Test Error')
+    expect(label.classes('mock-error')).toBe(true)
+    expect(label.attributes('aria-invalid')).toBe('true')
+    expect(label.attributes('aria-errormessage')).toBe('Test Error')
   })
 })

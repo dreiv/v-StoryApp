@@ -126,6 +126,7 @@ defineExpose({ inputRef })
     }
   }
 }
+
 .label {
   font-weight: var(--ga-font-weight-normal);
   font-size: var(--ga-text-md-font-size);
