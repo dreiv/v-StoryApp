@@ -1,6 +1,8 @@
 import type { ConcreteComponent } from 'vue'
 import type { Meta, StoryObj } from '@storybook/vue3'
+import { ChevronDown } from 'lucide-vue-next'
 
+import GaButton from './GaButton.vue'
 import GaMenu from './GaMenu.vue'
 
 const meta = {
@@ -30,11 +32,11 @@ type Story = StoryObj<typeof meta>
 export const Examples: Story = {
   parameters: { controls: { disable: true } },
   render: () => ({
-    components: { GaMenu },
+    components: { GaMenu, GaButton, ChevronDown },
     template: `
       <div :style="{display:'flex',alignItems:'center',flexDirection:'column',gap:'16px'}">
         <ga-menu>
-          <button>Menu</button>
+          <ga-button>Menu <chevron-down /></ga-button>
         </ga-menu>
       </div>
     `,
