@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { PopperWrapper } from 'floating-vue'
+import { Tooltip } from 'floating-vue'
 
 defineProps<{ content?: string }>()
 </script>
 
 <template>
-  <PopperWrapper theme="tooltip">
+  <tooltip>
     <slot />
 
     <template #popper>
@@ -18,7 +18,7 @@ defineProps<{ content?: string }>()
         <slot name="footer" />
       </footer>
     </template>
-  </PopperWrapper>
+  </tooltip>
 </template>
 
 <style module>

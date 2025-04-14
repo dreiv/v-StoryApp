@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { PopperWrapper } from 'floating-vue'
+import { Menu } from 'floating-vue'
 
 defineProps<{ content?: string }>()
 </script>
 
 <template>
-  <PopperWrapper theme="menu">
-    <slot />
+  <Menu>
+    <button>Click me</button>
 
     <template #popper> test </template>
-  </PopperWrapper>
+  </Menu>
 </template>
