@@ -12,11 +12,11 @@ export interface ButtonProps extends /* @vue-ignore */ ButtonHTMLAttributes {
 const { primary, transparent, ghost, icon } = defineProps<ButtonProps>()
 const style = useCssModule()
 
-const isSecondary = computed(() => !primary && !ghost && !transparent)
+const isSecondaryStyle = computed(() => !primary && !ghost && !transparent)
 const classes = computed(() => [
   style.button,
   { [style.primary]: primary },
-  { [style.secondary]: isSecondary.value },
+  { [style.secondary]: isSecondaryStyle.value },
   { [style.ghost]: ghost },
   { [style.transparent]: transparent },
   { [style.icon]: icon },

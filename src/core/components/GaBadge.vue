@@ -16,13 +16,13 @@ const { inverted, information, error, warning, success, muted, disabled } =
   defineProps<BadgeProps>()
 const style = useCssModule()
 
-const isDefault = computed(
+const isDefaultStyle = computed(
   () => !inverted && !information && !error && !warning && !success && !muted && !disabled,
 )
 
 const classes = computed(() => [
   style.badge,
-  { [style.default]: isDefault.value },
+  { [style.default]: isDefaultStyle.value },
   { [style.inverted]: inverted },
   { [style.information]: information },
   { [style.error]: error },
