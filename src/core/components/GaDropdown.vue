@@ -35,6 +35,13 @@ defineExpose({ buttonRef })
   .v-popper__inner {
     border: var(--ga-size-border-width-sm) solid var(--ga-color-border-primary);
     border-radius: var(--ga-radius);
+
+    > div {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      overflow-y: auto;
+    }
   }
 
   .v-popper__arrow-container {
