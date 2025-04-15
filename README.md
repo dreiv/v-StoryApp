@@ -27,27 +27,27 @@ The project relies on a set of dependencies for development and runtime. Here's 
 
 ### Application Dependencies
 
-| Dependency      | Description                                                    | Version  | WWW                                                                    |
-| --------------- | -------------------------------------------------------------- | -------- | ---------------------------------------------------------------------- |
-| Vue             | The core framework for building the user interface.            | ^3.5.13  | [https://vuejs.org/](https://vuejs.org/)                               |
-| Vue Router      | Official router for Vue.js, enabling navigation between views. | ^4.5.0   | [https://router.vuejs.org/](https://router.vuejs.org/)                 |
-| Pinia           | State management library for Vue, facilitating state sharing.  | ^3.0.2   | [https://pinia.vuejs.org/](https://pinia.vuejs.org/)                   |
-| Lucide Vue Next | A collection of beautiful SVG icons as Vue components.         | ^0.488.0 | [https://lucide.dev/](https://lucide.dev/)                             |
-| Floating Vue    | A floating UI component library for tooltips and dropdowns.    | ^5.2.2   | [https://floating-vue.starpad.dev/](https://floating-vue.starpad.dev/) |
+| Dependency      | Description                                                    | WWW                                                                    |
+| --------------- | -------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| Vue             | The core framework for building the user interface.            | [https://vuejs.org/](https://vuejs.org/)                               |
+| Vue Router      | Official router for Vue.js, enabling navigation between views. | [https://router.vuejs.org/](https://router.vuejs.org/)                 |
+| Pinia           | State management library for Vue, facilitating state sharing.  | [https://pinia.vuejs.org/](https://pinia.vuejs.org/)                   |
+| Lucide Vue Next | A collection of beautiful SVG icons as Vue components.         | [https://lucide.dev/](https://lucide.dev/)                             |
+| Floating Vue    | A floating UI component library for tooltips and dropdowns.    | [https://floating-vue.starpad.dev/](https://floating-vue.starpad.dev/) |
 
 ### Development Dependencies
 
-| Dependency | Description                                                                            | Version | WWW                                                                    |
-| ---------- | -------------------------------------------------------------------------------------- | ------- | ---------------------------------------------------------------------- |
-| TypeScript | Adds static typing to JavaScript, improving code quality.                              | ~5.8.3  | [https://www.typescriptlang.org/](https://www.typescriptlang.org/)     |
-| Vite       | Next-generation frontend tooling, providing a fast dev server and build tool.          | ^6.2.6  | [https://vitejs.dev/](https://vitejs.dev/)                             |
-| Storybook  | UI component development environment for building and testing components in isolation. | ^8.6.12 | [https://storybook.js.org/](https://storybook.js.org/)                 |
-| Vitest     | Fast unit-testing framework powered by Vite.                                           | ^3.1.1  | [https://vitest.dev/](https://vitest.dev/)                             |
-| Playwright | End-to-end testing framework for reliable cross-browser tests.                         | ^1.51.1 | [https://playwright.dev/](https://playwright.dev/)                     |
-| ESLint     | Linter for identifying and fixing code issues.                                         | ^9.24.0 | [https://eslint.org/](https://eslint.org/)                             |
-| OxLint     | Blazingly fast JavaScript linter.                                                      | ^0.16.6 | [https://oxc-project.github.io/](https://oxc-project.github.io/)       |
-| Prettier   | Code formatter for enforcing consistent code style.                                    | ^3.5.3  | [https://prettier.io/](https://prettier.io/)                           |
-| Husky      | Git hooks for automating checks before commits.                                        | ^9.1.7  | [https://github.com/typicode/husky](https://github.com/typicode/husky) |
+| Dependency | Description                                                                            | WWW                                                                    |
+| ---------- | -------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| TypeScript | Adds static typing to JavaScript, improving code quality.                              | [https://www.typescriptlang.org/](https://www.typescriptlang.org/)     |
+| Vite       | Next-generation frontend tooling, providing a fast dev server and build tool.          | [https://vitejs.dev/](https://vitejs.dev/)                             |
+| Storybook  | UI component development environment for building and testing components in isolation. | [https://storybook.js.org/](https://storybook.js.org/)                 |
+| Vitest     | Fast unit-testing framework powered by Vite.                                           | [https://vitest.dev/](https://vitest.dev/)                             |
+| Playwright | End-to-end testing framework for reliable cross-browser tests.                         | [https://playwright.dev/](https://playwright.dev/)                     |
+| ESLint     | Linter for identifying and fixing code issues.                                         | [https://eslint.org/](https://eslint.org/)                             |
+| OxLint     | Blazingly fast JavaScript linter.                                                      | [https://oxc-project.github.io/](https://oxc-project.github.io/)       |
+| Prettier   | Code formatter for enforcing consistent code style.                                    | [https://prettier.io/](https://prettier.io/)                           |
+| Husky      | Git hooks for automating checks before commits.                                        | [https://github.com/typicode/husky](https://github.com/typicode/husky) |
 
 ## State Management
 
