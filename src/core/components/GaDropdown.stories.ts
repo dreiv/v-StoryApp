@@ -44,7 +44,7 @@ export const Examples: Story = {
     components: { GaDropdown, GaButton, ChevronDown },
     template: `
       <div :style="{display:'flex',alignItems:'center',flexDirection:'column',gap:'16px'}">
-        <ga-dropdown label='Click me!' >
+        <ga-dropdown title='Click me!' >
           content
         </ga-dropdown>
       </div>

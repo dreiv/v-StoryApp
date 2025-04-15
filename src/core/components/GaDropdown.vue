@@ -6,7 +6,7 @@ import { ChevronDown, ChevronUp } from 'lucide-vue-next'
 import GaButton from './GaButton.vue'
 
 export interface DropdownProps {
-  label?: string
+  title?: string
 }
 
 const buttonRef = useTemplateRef<HTMLElement>('buttonRef')
@@ -18,9 +18,9 @@ defineExpose({ buttonRef })
 </script>
 
 <template>
-  <dropdown v-model:shown="shown">
+  <dropdown v-model:shown="shown" :arrow="false">
     <ga-button ref="buttonRef" v-bind="$attrs">
-      {{ label }}
+      {{ title }}
       <component :is="shown ? ChevronUp : ChevronDown" />
     </ga-button>
 
@@ -29,3 +29,16 @@ defineExpose({ buttonRef })
     </template>
   </dropdown>
 </template>
+
+<style>
+.v-popper--theme-dropdown {
+  .v-popper__inner {
+    border: var(--ga-size-border-width-sm) solid var(--ga-color-border-primary);
+    border-radius: var(--ga-radius);
+  }
+
+  .v-popper__arrow-container {
+    display: none;
+  }
+}
+</style>
