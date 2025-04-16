@@ -43,15 +43,16 @@ export const Examples: Story = {
   parameters: { controls: { disable: true } },
   render: () => ({
     components: { GaButton, GaDropdown, GaDropdownItem, ChevronDown },
+    data: () => ({ selected: 6 }),
     template: `
       <div :style="{display:'flex',alignItems:'center',flexDirection:'column',gap:'16px'}">
-        <ga-dropdown title='Click me to see options!' >
-          <ga-dropdown-item label='Option 1: Basic Item' />
-          <ga-dropdown-item label='Option 2: Selected Item' selected />
-          <ga-dropdown-item label='Option 3: Another Selected Item' />
-          <ga-dropdown-item label='Option 4: Yet Another Selected Item' />
-          <ga-dropdown-item label='Option 5: Disabled Item' disabled />
-          <ga-dropdown-item label='Option 6: A Very Long Disabled and Selected Item for Testing' disabled selected />
+        <ga-dropdown title='Click me to see options!' v-model='selected'>
+          <ga-dropdown-item :value='1' label='Option 1: Basic Item' />
+          <ga-dropdown-item :value='2' label='Option 2: Selected Item' />
+          <ga-dropdown-item :value='3' label='Option 3: Another Selected Item' />
+          <ga-dropdown-item :value='4' label='Option 4: Yet Another Selected Item' />
+          <ga-dropdown-item :value='5' label='Option 5: Disabled Item' disabled />
+          <ga-dropdown-item :value='6' label='Option 6: A Very Long Disabled and Selected Item for Testing' disabled />
         </ga-dropdown>
       </div>
     `,

@@ -1,25 +1,35 @@
 <script setup lang="ts">
-import { computed, useCssModule } from 'vue'
+import { computed, inject, useCssModule } from 'vue'
+import { dropdownKey } from '../constants'
 
 export interface DropdownItemProps {
   label?: string
-  selected?: boolean
+  value?: string | number
   disabled?: boolean
   active?: boolean
 }
 
-const { active, disabled, selected } = defineProps<DropdownItemProps>()
+const { value, active, disabled } = defineProps<DropdownItemProps>()
 const style = useCssModule()
+
+const group = inject(dropdownKey)
+if (!group) throw new Error('GaDropdownItem must be used inside a GaDropdown')
 
 const classes = computed(() => [
   style.item,
   { [style.active]: active },
-  { [style.selected]: selected },
+  { [style.selected]: group!.model?.value === value },
 ])
+
+function handleClick() {
+  if (value !== undefined && group!.model) {
+    group!.model.value = value
+  }
+}
 </script>
 
 <template>
-  <button :class="classes" :disabled="disabled">
+  <button :class="classes" :disabled="disabled" @click="handleClick">
     <slot>{{ label }}</slot>
   </button>
 </template>
@@ -35,6 +45,7 @@ const classes = computed(() => [
 
   border: 0;
   border-radius: 2px;
+  background-color: var(--ga-color-surface-primary);
   padding: var(--ga-size-spacing-03) var(--ga-size-spacing-04);
   height: 2.25rem; /* TODO: fix */
 
