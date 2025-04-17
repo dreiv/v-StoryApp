@@ -1,5 +1,4 @@
 import { shallowMount, type VueWrapper } from '@vue/test-utils'
-import { ref } from 'vue'
 import GaSwitch from './GaSwitch.vue'
 
 vi.mock('../composables/useFormInput')
