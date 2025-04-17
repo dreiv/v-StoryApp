@@ -1,34 +1,35 @@
-import { defineComponent, inject } from 'vue'
-import { mount, VueWrapper } from '@vue/test-utils'
+import { shallowMount, type VueWrapper } from '@vue/test-utils'
 import GaRadioGroup from './GaRadioGroup.vue'
 
 vi.mock('../constants')
 
-const MockRadioConsumer = defineComponent({
-  template: '<div>{{ injectedName }} - {{ injectedModel }}</div>',
-  setup() {
-    const group = inject<{ name: string; model: { value: string } }>('radioGroup')
-
-    return {
-      injectedName: group?.name,
-      injectedModel: group?.model.value,
-    }
-  },
-})
-
-describe('GaRadioGroup', () => {
+describe('RadioGroup', () => {
   let wrapper: VueWrapper
-  beforeAll(() => {
-    wrapper = mount(GaRadioGroup, { slots: { default: MockRadioConsumer } })
+
+  beforeEach(() => {
+    wrapper = shallowMount(GaRadioGroup)
   })
 
-  it('should render correctly', async () => {
+  it('should render correctly with default props', () => {
     expect(wrapper.html()).toMatchSnapshot()
   })
 
-  it('should render with horizontal direction', async () => {
-    await wrapper.setProps({ direction: 'horizontal' })
+  it('should render with title when provided', async () => {
+    await wrapper.setProps({ title: 'Test Title' })
+    expect(wrapper.text()).toContain('Test Title')
+    expect(wrapper.html()).toMatchSnapshot()
+  })
 
-    expect(wrapper.find('.horizontal')).toBeTruthy()
+  it('should render with title slot when provided', () => {
+    wrapper = shallowMount(GaRadioGroup, {
+      slots: { title: '<div class="custom-title">Custom Title</div>' },
+    })
+    expect(wrapper.find('.custom-title').exists()).toBe(true)
+    expect(wrapper.html()).toMatchSnapshot()
+  })
+
+  it('should render with horizontal direction when specified', async () => {
+    await wrapper.setProps({ direction: 'horizontal' })
+    expect(wrapper.find('.horizontal').exists()).toBe(true)
   })
 })

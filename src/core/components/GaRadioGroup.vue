@@ -35,27 +35,27 @@ provide(radioGroupKey, { name, model })
   margin: 0;
   border: none;
   padding: 0;
+}
 
-  .title {
-    padding-left: 0;
+.title {
+  padding-left: 0;
 
-    font-weight: var(--font-weight-medium);
-    line-height: var(--text-md--line-height);
-    font-family: var(--default-font-family);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--text-md--line-height);
+  font-family: var(--default-font-family);
 
-    &:not(:empty) {
-      margin-bottom: var(--ga-size-spacing-03);
-    }
+  &:not(:empty) {
+    margin-bottom: var(--ga-size-spacing-03);
   }
+}
 
-  .content {
-    display: flex;
-    flex-direction: column;
-    gap: var(--ga-size-spacing-03);
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ga-size-spacing-03);
 
-    &.horizontal {
-      flex-direction: row;
-    }
+  &.horizontal {
+    flex-direction: row;
   }
 }
 </style>

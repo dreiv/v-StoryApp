@@ -15,11 +15,11 @@ const meta = {
       template: `
         <div
           :style="{
-            display:'flex',
-            flexWrap:'wrap',
-            alignItems:'center',
-            gap:'var(--ga-size-spacing-03)',
-            padding:'var(--ga-size-spacing-05)'
+            display: 'flex',
+            flexWrap: 'wrap',
+            alignItems: 'center',
+            gap: 'var(--ga-size-spacing-03)',
+            padding: 'var(--ga-size-spacing-05)'
           }"
         >
           <story />
@@ -27,7 +27,16 @@ const meta = {
     }),
   ],
   tags: ['autodocs'],
-} as Meta<typeof GaRadioGroup>
+  argTypes: {
+    modelValue: { control: 'text', description: 'The selected radio value.' },
+    title: { control: 'text', description: 'The title of the radio group.' },
+    direction: {
+      control: 'select',
+      options: ['vertical', 'horizontal'],
+      description: 'The layout direction of the radio buttons.',
+    },
+  },
+} satisfies Meta<typeof GaRadioGroup>
 
 export default meta
 type Story = StoryObj<typeof meta>
