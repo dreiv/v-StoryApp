@@ -1,13 +1,25 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Radio > should render correctly 1`] = `
+exports[`Radio > should render correctly with default props 1`] = `
 "<label class="mock-input"><input type="radio" class="native" name="mockName">
-  <div class="marker"></div><span class="label">mock content</span>
+  <div class="marker"></div><span class="label"></span>
+</label>"
+`;
+
+exports[`Radio > should render correctly with default slot 1`] = `
+"<label class="mock-input"><input type="radio" class="native" name="mockName">
+  <div class="marker"></div><span class="label">Custom Label Content</span>
+</label>"
+`;
+
+exports[`Radio > should render correctly with label prop 1`] = `
+"<label class="mock-input"><input type="radio" class="native" name="mockName">
+  <div class="marker"></div><span class="label">Radio option</span>
 </label>"
 `;
 
 exports[`Radio > should render with an error prop 1`] = `
 "<label class="mock-input mock-error" aria-invalid="true" aria-errormessage="Test Error"><input type="radio" class="native" name="mockName">
-  <div class="marker"></div><span class="label">mock content</span>
+  <div class="marker"></div><span class="label"></span>
 </label>"
 `;
