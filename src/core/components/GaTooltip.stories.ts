@@ -5,6 +5,7 @@ import { CircleHelp, PlusIcon } from 'lucide-vue-next'
 
 import GaButton from './GaButton.vue'
 import GaTooltip from './GaTooltip.vue'
+import GaInput from './GaInput.vue'
 
 const meta = {
   component: GaTooltip as unknown as ConcreteComponent,
@@ -52,12 +53,12 @@ type Story = StoryObj<typeof meta>
 export const Examples: Story = {
   parameters: { controls: { disable: true } },
   render: () => ({
-    components: { GaTooltip, GaButton, CircleHelp, PlusIcon },
+    components: { GaTooltip, GaButton, GaInput, CircleHelp, PlusIcon },
     directives: { tooltip },
     template: `
       <div :style="{display:'flex',alignItems:'center',flexDirection:'column',gap:'16px'}">
         <ga-tooltip>
-          <input type="text" placeholder="Hover me!" />
+          <ga-input placeholder="Hover me!" />
 
           <template #header>International Bank Account Number (IBAN)</template>
           <template #content>

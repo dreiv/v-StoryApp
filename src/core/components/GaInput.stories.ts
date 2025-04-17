@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
+import { Search } from 'lucide-vue-next'
 
 import GaInput, { type GaInputProps } from './GaInput.vue'
 
@@ -12,6 +13,24 @@ const meta = {
     }),
   ],
   tags: ['autodocs'],
+  argTypes: {
+    invalid: {
+      control: 'boolean',
+      description: 'Indicates an error state for the input field.',
+    },
+    success: {
+      control: 'boolean',
+      description: 'Indicates a success state for the input field.',
+    },
+    prefix: {
+      control: 'text',
+      description: 'Content to display before the input field, typically an icon.',
+    },
+    suffix: {
+      control: 'text',
+      description: 'Content to display after the input field, typically an icon or action button.',
+    },
+  },
 } satisfies Meta<typeof GaInput>
 
 export default meta
@@ -52,10 +71,35 @@ variations.forEach((variation) => {
 export const Examples: Story = {
   parameters: { controls: { disable: true } },
   render: () => ({
-    components: { GaInput },
+    components: { GaInput, Search },
     template: `
-      <div :style="{display:'flex',alignItems:'center',flexDirection:'column',gap:'16px'}">
-        <ga-input />
+      <div :style="{display:'flex',flexDirection:'column',gap:'16px',width:'300px'}">
+        <ga-input placeholder="Basic input" />
+
+        <ga-input placeholder="With prefix icon">
+          <template #prefix>
+            <Search size="16" />
+          </template>
+        </ga-input>
+
+        <ga-input placeholder="With suffix icon">
+          <template #suffix>
+            <Search size="16" />
+          </template>
+        </ga-input>
+
+        <ga-input placeholder="With both icons">
+          <template #prefix>
+            <Search size="16" />
+          </template>
+          <template #suffix>
+            <span style="cursor:pointer">✕</span>
+          </template>
+        </ga-input>
+
+        <ga-input placeholder="Invalid state" invalid />
+        <ga-input placeholder="Success state" success />
+        <ga-input placeholder="Disabled state" disabled />
       </div>
     `,
   }),
