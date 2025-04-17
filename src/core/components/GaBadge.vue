@@ -14,23 +14,32 @@ export interface BadgeProps {
 
 const { inverted, information, error, warning, success, muted, disabled } =
   defineProps<BadgeProps>()
+
 const style = useCssModule()
+const classes = computed(() => {
+  const classList = [style.badge]
 
-const isDefaultStyle = computed(
-  () => !inverted && !information && !error && !warning && !success && !muted && !disabled,
-)
+  if (disabled) {
+    classList.push(style.disabled)
+    if (inverted) classList.push(style.inverted)
+  } else if (information) {
+    classList.push(style.information)
+  } else if (error) {
+    classList.push(style.error)
+  } else if (warning) {
+    classList.push(style.warning)
+  } else if (success) {
+    classList.push(style.success)
+  } else if (muted) {
+    classList.push(style.muted)
+  } else if (inverted) {
+    classList.push(style.inverted)
+  } else {
+    classList.push(style.default)
+  }
 
-const classes = computed(() => [
-  style.badge,
-  { [style.default]: isDefaultStyle.value },
-  { [style.inverted]: inverted },
-  { [style.information]: information },
-  { [style.error]: error },
-  { [style.warning]: warning },
-  { [style.success]: success },
-  { [style.muted]: muted },
-  { [style.disabled]: disabled },
-])
+  return classList
+})
 </script>
 
 <template>

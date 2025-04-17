@@ -1,3 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Badge > should render correctly 1`] = `"<span class="badge default">mock content</span>"`;
+exports[`Badge > should render correctly with default props 1`] = `"<span class="badge default"></span>"`;
+
+exports[`Badge > should render correctly with default slot 1`] = `"<span class="badge default">Mock Label</span>"`;
+
+exports[`Badge > should render correctly with label prop 1`] = `"<span class="badge default">99+</span>"`;
