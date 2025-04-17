@@ -1,3 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Button > should render correctly 1`] = `"<button class="button secondary">mock content</button>"`;
+exports[`Button > should render correctly with default props 1`] = `"<button class="button secondary"></button>"`;
+
+exports[`Button > should render correctly with default slot 1`] = `"<button class="button secondary">Mock Content</button>"`;
+
+exports[`Button > should render correctly with label prop 1`] = `"<button class="button secondary">Submit</button>"`;
