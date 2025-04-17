@@ -148,11 +148,7 @@ variations.forEach((variation) => {
  */
 export const Examples: Story = {
   args: {},
-  parameters: {
-    controls: { disable: true },
-    // This ensures the story only appears in docs but not in the sidebar
-    docsOnly: true,
-  },
+  parameters: { controls: { disable: true } },
   render: () => ({
     components: {
       GaBadge,

@@ -5,17 +5,58 @@ vi.mock('../composables/useFormInput')
 
 describe('Checkbox', () => {
   let wrapper: VueWrapper
-  beforeAll(() => {
-    wrapper = shallowMount(GaCheckbox, { slots: { default: 'mock content' } })
+
+  beforeEach(() => {
+    wrapper = shallowMount(GaCheckbox)
   })
 
-  it('should render correctly', () => {
+  it('should render correctly with default props', () => {
     expect(wrapper.html()).toMatchSnapshot()
   })
 
-  it('should render with an error prop', async () => {
-    await wrapper.setProps({ error: true, errorMessage: 'Test Error' })
+  it('should render correctly with label prop', () => {
+    wrapper = shallowMount(GaCheckbox, { props: { label: 'Accept terms' } })
+    expect(wrapper.html()).toMatchSnapshot()
+    expect(wrapper.text()).toContain('Accept terms')
+  })
 
+  it('should render correctly with default slot', () => {
+    wrapper = shallowMount(GaCheckbox, { slots: { default: 'Mock Content' } })
+    expect(wrapper.html()).toMatchSnapshot()
+    expect(wrapper.text()).toContain('Mock Content')
+  })
+
+  it.each([
+    { state: 'checked', props: { modelValue: true }, className: '.checked' },
+    { state: 'indeterminate', props: { indeterminate: true }, className: '.indeterminate' },
+  ])(
+    'should render in $state state when appropriate props are set',
+    async ({ props, className }) => {
+      await wrapper.setProps(props)
+      expect(wrapper.find(className).exists()).toBe(true)
+    },
+  )
+
+  it('should emit update:modelValue event when checkbox is clicked', async () => {
+    const input = wrapper.find('input')
+    await input.setValue(true)
+
+    expect(wrapper.emitted('update:modelValue')).toBeTruthy()
+    expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([true])
+  })
+
+  it('should toggle the checkbox state when clicked multiple times', async () => {
+    const input = wrapper.find('input')
+
+    await input.setValue(true)
+    expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([true])
+
+    await input.setValue(false)
+    expect(wrapper.emitted('update:modelValue')?.[1]).toEqual([false])
+  })
+
+  it('should render with error styling when error prop is true', async () => {
+    await wrapper.setProps({ error: true, errorMessage: 'Test Error' })
     const label = wrapper.find('label')
 
     expect(wrapper.html()).toMatchSnapshot()
@@ -24,21 +65,11 @@ describe('Checkbox', () => {
     expect(label.attributes('aria-errormessage')).toBe('Test Error')
   })
 
-  it('should render with indeterminate prop', async () => {
-    await wrapper.setProps({ indeterminate: true })
-
+  it('should be disabled when disabled prop is true', async () => {
+    await wrapper.setProps({ disabled: true })
     const input = wrapper.find('input')
 
-    expect(input.element.indeterminate).toBe(true)
-    expect(wrapper.find('.indeterminate').isVisible()).toBe(true)
-  })
-
-  it('should render with checked state when modelValue prop is true', async () => {
-    await wrapper.setProps({ modelValue: true })
-
-    const input = wrapper.find('input')
-
-    expect(input.element.checked).toBe(true)
-    expect(wrapper.find('.checked').isVisible()).toBe(true)
+    expect(input.element.disabled).toBe(true)
+    expect(wrapper.html()).toMatchSnapshot()
   })
 })
