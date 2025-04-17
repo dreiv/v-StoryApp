@@ -10,6 +10,7 @@ export interface GaInputProps extends /* @vue-ignore */ InputHTMLAttributes {
 const { invalid, success } = defineProps<GaInputProps>()
 const inputRef = useTemplateRef<HTMLElement>('inputRef')
 const style = useCssModule()
+const model = defineModel<string>()
 
 const classes = computed(() => [
   style.input,
@@ -22,7 +23,7 @@ defineExpose({ inputRef })
 <template>
   <div :class="classes">
     <slot name="prefix" />
-    <input ref="inputRef" type="text" v-bind="$attrs" />
+    <input ref="inputRef" type="text" v-model="model" v-bind="$attrs" />
     <slot name="suffix" />
   </div>
 </template>
@@ -30,7 +31,9 @@ defineExpose({ inputRef })
 <style module>
 .input {
   display: flex;
+  align-items: center;
   gap: var(--ga-size-spacing-03);
+
   border: var(--ga-size-border-width-sm) solid var(--ga-color-border-primary);
   border-radius: var(--ga-radius);
 

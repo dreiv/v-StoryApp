@@ -5,12 +5,16 @@
 }
 
 .color-swatch-item {
-  width: 180px;
+  width: 230px;
 }
 
 .color-swatch {
   margin-bottom: 5px;
   aspect-ratio: 3/2;
+}
+
+.color-swatch-item p {
+  margin: 2px 0;
 }
 
 /* Primary Colors */
@@ -60,6 +64,149 @@
   background-color: var(--ga-color-neutral-60);
 }
 
-.color-swatch-item p {
-  margin: 2px 0;
+/* Support Colors */
+.ga-color-red-60 {
+  background-color: var(--ga-color-red-60);
+}
+
+.ga-color-green-60 {
+  background-color: var(--ga-color-green-60);
+}
+
+.ga-color-orange-60 {
+  background-color: var(--ga-color-orange-60);
+}
+
+.ga-color-blue-60 {
+  background-color: var(--ga-color-blue-60);
+}
+
+/* Adaptive Accents */
+.ga-color-utility-blue-light {
+  background-color: var(--ga-color-utility-blue-light);
+}
+
+.ga-color-utility-blue {
+  background-color: var(--ga-color-utility-blue);
+}
+
+.ga-color-utility-green-light {
+  background-color: var(--ga-color-utility-green-light);
+}
+
+.ga-color-utility-green {
+  background-color: var(--ga-color-utility-green);
+}
+
+.ga-color-utility-orange-light {
+  background-color: var(--ga-color-utility-orange-light);
+}
+
+.ga-color-utility-orange {
+  background-color: var(--ga-color-utility-orange);
+}
+
+.ga-color-utility-red-light {
+  background-color: var(--ga-color-utility-red-light);
+}
+
+.ga-color-utility-red {
+  background-color: var(--ga-color-utility-red);
+}
+
+.ga-color-utility-grey-light {
+  background-color: var(--ga-color-utility-grey-light);
+}
+
+.ga-color-utility-grey {
+  background-color: var(--ga-color-utility-grey);
+}
+
+.ga-color-utility-lime-light {
+  background-color: var(--ga-color-utility-lime-light);
+}
+
+.ga-color-utility-lime {
+  background-color: var(--ga-color-utility-lime);
+}
+
+.ga-color-utility-teal-light {
+  background-color: var(--ga-color-utility-teal-light);
+}
+
+.ga-color-utility-teal {
+  background-color: var(--ga-color-utility-teal);
+}
+
+.ga-color-utility-indigo-light {
+  background-color: var(--ga-color-utility-indigo-light);
+}
+
+.ga-color-utility-indigo {
+  background-color: var(--ga-color-utility-indigo);
+}
+
+.ga-color-utility-purple-light {
+  background-color: var(--ga-color-utility-purple-light);
+}
+
+.ga-color-utility-purple {
+  background-color: var(--ga-color-utility-purple);
+}
+
+.ga-color-utility-pink-light {
+  background-color: var(--ga-color-utility-pink-light);
+}
+
+.ga-color-utility-pink {
+  background-color: var(--ga-color-utility-pink);
+}
+
+.ga-color-utility-rose-light {
+  background-color: var(--ga-color-utility-rose-light);
+}
+
+.ga-color-utility-rose {
+  background-color: var(--ga-color-utility-rose);
+}
+
+/* Progressions */
+.ga-color-sequential-graph-10 {
+  background-color: var(--ga-color-sequential-graph-10);
+}
+
+.ga-color-sequential-graph-20 {
+  background-color: var(--ga-color-sequential-graph-20);
+}
+
+.ga-color-sequential-graph-30 {
+  background-color: var(--ga-color-sequential-graph-30);
+}
+
+.ga-color-sequential-graph-40 {
+  background-color: var(--ga-color-sequential-graph-40);
+}
+
+.ga-color-sequential-graph-50 {
+  background-color: var(--ga-color-sequential-graph-50);
+}
+
+.ga-color-sequential-graph-60 {
+  background-color: var(--ga-color-sequential-graph-60);
+}
+
+.ga-color-sequential-graph-70 {
+  background-color: var(--ga-color-sequential-graph-70);
+}
+
+.ga-color-sequential-graph-80 {
+  background-color: var(--ga-color-sequential-graph-80);
+}
+
+.ga-color-sequential-graph-90 {
+  background-color: var(--ga-color-sequential-graph-90);
+}
+
+.ga-color-sequential-graph-100 {
+  background-color: var(--ga-color-sequential-graph-100);
 }

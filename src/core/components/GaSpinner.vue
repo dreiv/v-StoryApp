@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, useCssModule, onBeforeMount } from 'vue'
+import { computed, useCssModule, ref, onMounted, onUnmounted } from 'vue'
 import { Hourglass } from 'lucide-vue-next'
 import type { FormInputProps } from '../composables/useFormInput'
 
@@ -8,9 +8,25 @@ export interface SpinnerProps extends FormInputProps {
   direction?: 'horizontal' | 'vertical'
 }
 
-let reducedMotion = false
-onBeforeMount(() => {
-  reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+const reducedMotion = ref(false)
+let mediaQuery: MediaQueryList
+let handleChange: (e: MediaQueryListEvent) => void
+
+onMounted(() => {
+  mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+  reducedMotion.value = mediaQuery.matches
+
+  handleChange = (e: MediaQueryListEvent) => {
+    reducedMotion.value = e.matches
+  }
+
+  mediaQuery.addEventListener('change', handleChange)
+})
+
+onUnmounted(() => {
+  if (mediaQuery && handleChange) {
+    mediaQuery.removeEventListener('change', handleChange)
+  }
 })
 
 const {
@@ -22,23 +38,43 @@ const {
 } = defineProps<SpinnerProps>()
 const style = useCssModule()
 
-const sizeCss = computed(() => [{ [style.small]: size === 'sm', [style.large]: size === 'lg' }])
-const containerCss = computed(() => [
-  style.container,
-  { [style.vertical]: direction === 'vertical' },
-])
+const iconClasses = computed(() => {
+  const classList = [style.icon]
+
+  if (size === 'sm') classList.push(style.small)
+  if (size === 'lg') classList.push(style.large)
+
+  return classList
+})
+
+const labelClasses = computed(() => {
+  const classList = [style.label]
+
+  if (size === 'sm') classList.push(style.small)
+  if (size === 'lg') classList.push(style.large)
+
+  return classList
+})
+
+const containerClasses = computed(() => {
+  const classList = [style.container]
+
+  if (direction === 'vertical') classList.push(style.vertical)
+
+  return classList
+})
 
 const aria = computed(() => ({
   'aria-label': label,
   'aria-invalid': error ? true : undefined,
-  'aria-errormessage': errorMessage ?? undefined,
+  'aria-errormessage': errorMessage || undefined,
 }))
 </script>
 
 <template>
-  <div :class="containerCss" v-bind="aria">
+  <div :class="containerClasses" v-bind="aria">
     <slot name="icon">
-      <hourglass v-if="reducedMotion" :class="[$style.icon, ...sizeCss]" />
+      <hourglass v-if="reducedMotion" :class="iconClasses" />
 
       <svg
         v-else
@@ -47,7 +83,7 @@ const aria = computed(() => ({
         height="32"
         viewBox="0 0 32 32"
         stroke-width="6.4"
-        :class="[$style.icon, ...sizeCss]"
+        :class="iconClasses"
       >
         <defs><circle id="circle" cx="16" cy="16" r="12.8" fill="none" /></defs>
 
@@ -62,7 +98,7 @@ const aria = computed(() => ({
       </svg>
     </slot>
 
-    <span :class="[$style.label, ...sizeCss]">
+    <span :class="labelClasses">
       <slot>{{ label }}</slot>
     </span>
   </div>

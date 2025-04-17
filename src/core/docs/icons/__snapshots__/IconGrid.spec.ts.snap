@@ -1,0 +1,15 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`IconGrid > should render correctly with default props 1`] = `
+"<label data-v-54c42e43="" class="filter">
+  <ga-input-stub data-v-54c42e43="" modelvalue="" invalid="false" success="false" type="search" aria-label="Filter icons" placeholder="Search icons..."></ga-input-stub><span data-v-54c42e43="" class="total"> (4) </span>
+</label>
+<hr data-v-54c42e43="">
+<div data-v-54c42e43="" class="container">
+  <ga-button-stub data-v-54c42e43="" primary="false" ghost="false" transparent="false" icon="true" class="item v-popper--has-tooltip"></ga-button-stub>
+  <ga-button-stub data-v-54c42e43="" primary="false" ghost="false" transparent="false" icon="true" class="item v-popper--has-tooltip"></ga-button-stub>
+  <ga-button-stub data-v-54c42e43="" primary="false" ghost="false" transparent="false" icon="true" class="item v-popper--has-tooltip"></ga-button-stub>
+  <ga-button-stub data-v-54c42e43="" primary="false" ghost="false" transparent="false" icon="true" class="item v-popper--has-tooltip"></ga-button-stub>
+</div>
+<!--v-if-->"
+`;

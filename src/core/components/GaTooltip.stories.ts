@@ -5,6 +5,7 @@ import { CircleHelp, PlusIcon } from 'lucide-vue-next'
 
 import GaButton from './GaButton.vue'
 import GaTooltip from './GaTooltip.vue'
+import GaInput from './GaInput.vue'
 
 const meta = {
   component: GaTooltip as unknown as ConcreteComponent,
@@ -16,6 +17,25 @@ const meta = {
     }),
   ],
   tags: ['autodocs'],
+  argTypes: {
+    content: {
+      control: 'text',
+      description: 'The content text for the tooltip. Will be used if no content slot is provided.',
+    },
+    default: {
+      control: 'text',
+      description: 'The element that triggers the tooltip on hover.',
+    },
+    header: {
+      control: 'text',
+      description: 'Optional header content displayed at the top of the tooltip.',
+    },
+    footer: {
+      control: 'text',
+      description:
+        'Optional footer content displayed at the bottom of the tooltip, typically used for actions.',
+    },
+  },
 } satisfies Meta<typeof GaTooltip>
 
 export default meta
@@ -33,12 +53,12 @@ type Story = StoryObj<typeof meta>
 export const Examples: Story = {
   parameters: { controls: { disable: true } },
   render: () => ({
-    components: { GaTooltip, GaButton, CircleHelp, PlusIcon },
+    components: { GaTooltip, GaButton, GaInput, CircleHelp, PlusIcon },
     directives: { tooltip },
     template: `
       <div :style="{display:'flex',alignItems:'center',flexDirection:'column',gap:'16px'}">
         <ga-tooltip>
-          <input type="text" placeholder="Hover me!" />
+          <ga-input placeholder="Hover me!" />
 
           <template #header>International Bank Account Number (IBAN)</template>
           <template #content>

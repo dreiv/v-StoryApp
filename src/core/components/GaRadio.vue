@@ -21,9 +21,9 @@ defineExpose({ inputRef })
       ref="inputRef"
       type="radio"
       :class="$style.native"
-      :name="group?.name"
-      :checked="group?.model?.value === $attrs.value"
-      @change="group.model.value = `${$attrs.value}`"
+      :name="group.name"
+      :checked="group.model.value === $attrs.value"
+      @change="group.model.value = $attrs.value as string"
       v-bind="$attrs"
     />
     <div :class="$style.marker" />

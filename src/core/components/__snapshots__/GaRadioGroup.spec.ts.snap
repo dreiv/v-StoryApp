@@ -1,10 +1,24 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`GaRadioGroup > should render correctly 1`] = `
+exports[`RadioGroup > should render correctly with default props 1`] = `
 "<fieldset class="group">
   <legend class="title"></legend>
-  <div class="content">
-    <div>group-1 - </div>
-  </div>
+  <div class="content"></div>
+</fieldset>"
+`;
+
+exports[`RadioGroup > should render with title slot when provided 1`] = `
+"<fieldset class="group">
+  <legend class="title">
+    <div class="custom-title">Custom Title</div>
+  </legend>
+  <div class="content"></div>
+</fieldset>"
+`;
+
+exports[`RadioGroup > should render with title when provided 1`] = `
+"<fieldset class="group">
+  <legend class="title">Test Title</legend>
+  <div class="content"></div>
 </fieldset>"
 `;

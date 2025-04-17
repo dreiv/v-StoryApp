@@ -10,17 +10,27 @@ export interface ButtonProps extends /* @vue-ignore */ ButtonHTMLAttributes {
 }
 
 const { primary, transparent, ghost, icon } = defineProps<ButtonProps>()
-const style = useCssModule()
 
-const isSecondary = computed(() => !primary && !ghost && !transparent)
-const classes = computed(() => [
-  style.button,
-  { [style.primary]: primary },
-  { [style.secondary]: isSecondary.value },
-  { [style.ghost]: ghost },
-  { [style.transparent]: transparent },
-  { [style.icon]: icon },
-])
+const style = useCssModule()
+const classes = computed(() => {
+  const classList = [style.button]
+
+  if (primary) {
+    classList.push(style.primary)
+  } else if (ghost) {
+    classList.push(style.ghost)
+  } else if (transparent) {
+    classList.push(style.transparent)
+  } else {
+    classList.push(style.secondary)
+  }
+
+  if (icon) {
+    classList.push(style.icon)
+  }
+
+  return classList
+})
 </script>
 
 <template>

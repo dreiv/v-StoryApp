@@ -1,7 +1,10 @@
 import type { ConcreteComponent } from 'vue'
 import type { Meta, StoryObj } from '@storybook/vue3'
+import { ChevronDown } from 'lucide-vue-next'
 
+import GaButton from './GaButton.vue'
 import GaDropdown from './GaDropdown.vue'
+import GaDropdownItem from './GaDropdownItem.vue'
 
 const meta = {
   component: GaDropdown as unknown as ConcreteComponent,
@@ -9,7 +12,16 @@ const meta = {
   decorators: [
     (story) => ({
       components: { story },
-      template: `<div :style="{display: 'flex',justifyContent: 'center',gap: '8px'}"><story /></div>`,
+      template: `
+      <div
+        :style="{
+          display:'flex',
+          justifyContent:'center',
+          gap:'var(--ga-size-spacing-03)',
+        }"
+      >
+        <story />
+      </div>`,
     }),
   ],
   tags: ['autodocs'],
@@ -30,11 +42,17 @@ type Story = StoryObj<typeof meta>
 export const Examples: Story = {
   parameters: { controls: { disable: true } },
   render: () => ({
-    components: { GaDropdown },
+    components: { GaButton, GaDropdown, GaDropdownItem, ChevronDown },
+    data: () => ({ selected: 6 }),
     template: `
       <div :style="{display:'flex',alignItems:'center',flexDirection:'column',gap:'16px'}">
-        <ga-dropdown>
-          <button>Dropdown</button>
+        <ga-dropdown title='Click me to see options!' v-model='selected'>
+          <ga-dropdown-item :value='1' label='Option 1: Basic Item' />
+          <ga-dropdown-item :value='2' label='Option 2: Selected Item' />
+          <ga-dropdown-item :value='3' label='Option 3: Another Selected Item' />
+          <ga-dropdown-item :value='4' label='Option 4: Yet Another Selected Item' />
+          <ga-dropdown-item :value='5' label='Option 5: Disabled Item' disabled />
+          <ga-dropdown-item :value='6' label='Option 6: A Very Long Disabled and Selected Item for Testing' disabled />
         </ga-dropdown>
       </div>
     `,
