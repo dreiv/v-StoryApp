@@ -1,21 +1,51 @@
 import { shallowMount, type VueWrapper } from '@vue/test-utils'
+
 import GaSpinner from './GaSpinner.vue'
 
+vi.mock('lucide-vue-next', () => ({ Hourglass: () => '<div class="mock-hourglass" />' }))
 vi.mock('../composables/useFormInput')
-vi.stubGlobal('window', { matchMedia: vi.fn(() => ({ matches: false })) })
 
 describe('Spinner', () => {
   let wrapper: VueWrapper
-  beforeAll(() => {
-    wrapper = shallowMount(GaSpinner, { slots: { default: 'mock content' } })
+
+  beforeEach(() => {
+    vi.stubGlobal('window', {
+      matchMedia: vi.fn(() => ({
+        matches: false,
+        addEventListener: vi.fn(),
+      })),
+    })
+    wrapper = shallowMount(GaSpinner)
   })
 
-  afterAll(() => {
+  afterEach(() => {
     vi.unstubAllGlobals()
   })
 
-  it('should render correctly', () => {
+  it('should render correctly with default props', () => {
     expect(wrapper.html()).toMatchSnapshot()
+  })
+
+  it('should render correctly with label prop', () => {
+    wrapper = shallowMount(GaSpinner, { props: { label: 'Loading data' } })
+    expect(wrapper.html()).toMatchSnapshot()
+    expect(wrapper.text()).toContain('Loading data')
+  })
+
+  it('should render correctly with default slot content', () => {
+    wrapper = shallowMount(GaSpinner, { slots: { default: 'Custom loading message' } })
+    expect(wrapper.html()).toMatchSnapshot()
+    expect(wrapper.text()).toContain('Custom loading message')
+  })
+
+  it('should render correctly with icon slot content', () => {
+    wrapper = shallowMount(GaSpinner, {
+      slots: {
+        icon: '<div class="custom-icon">⚙️</div>',
+      },
+    })
+    expect(wrapper.html()).toMatchSnapshot()
+    expect(wrapper.find('.custom-icon').exists()).toBe(true)
   })
 
   it('should apply the correct container classes based on direction', async () => {

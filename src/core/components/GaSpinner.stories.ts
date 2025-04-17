@@ -8,7 +8,18 @@ const meta = {
   decorators: [
     (story) => ({
       components: { story },
-      template: `<div :style="{display:'flex',flexWrap:'wrap',alignItems:'center',gap:'var(--ga-size-spacing-03)',padding:'var(--ga-size-spacing-05)'}"><story /></div>`,
+      template: `
+        <div
+          :style="{
+            display: 'flex',
+            flexWrap: 'wrap',
+            alignItems: 'center',
+            gap: 'var(--ga-size-spacing-03)',
+            padding: 'var(--ga-size-spacing-05)'
+          }"
+        >
+          <story />
+        </div>`,
     }),
   ],
   tags: ['autodocs'],
@@ -73,8 +84,16 @@ export const Examples: Story = {
   render: () => ({
     components: { GaSpinner, CircleCheck, OctagonAlert },
     template: `
-      <div :style="{display:'flex',flexDirection:'column',gap:'var(--ga-size-spacing-06)'}">
-        <div :style="{display:'flex',flexDirection:'column',gap:'var(--ga-size-spacing-03)'}">
+      <div :style="{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 'var(--ga-size-spacing-06)'
+      }">
+        <div :style="{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 'var(--ga-size-spacing-03)'
+        }">
           <ga-spinner size='sm' label='Fetching dashboard data' />
           <ga-spinner label='File loaded successfully.'>
             <template #icon><circle-check size="16" color="var(--ga-color-icon-success)" /></template>
@@ -84,17 +103,30 @@ export const Examples: Story = {
           </ga-spinner>
         </div>
 
-        <div :style="{display:'flex',gap:'var(--ga-size-spacing-03)'}">
+        <div :style="{
+          display: 'flex',
+          gap: 'var(--ga-size-spacing-03)'
+        }">
           <ga-spinner size="lg" label="Loading..." direction="vertical" />
           <ga-spinner label="Loading..." direction="vertical" />
           <ga-spinner size="sm" label="Loading..." direction="vertical" />
         </div>
 
-        <div :style="{display:'flex',justifyContent:'center',padding:'32px',background:'var(--ga-color-surface-page)'}">
+        <div :style="{
+          display: 'flex',
+          justifyContent: 'center',
+          padding: '32px',
+          background: 'var(--ga-color-surface-page)'
+        }">
           <ga-spinner size="lg" direction="vertical" />
         </div>
 
-        <div :style="{display:'flex',justifyContent:'center',padding:'32px',background:'#6F768791'}">
+        <div :style="{
+          display: 'flex',
+          justifyContent: 'center',
+          padding: '32px',
+          background: '#6F768791'
+        }">
           <ga-spinner size="lg" direction="vertical" />
         </div>
       </div>
