@@ -16,6 +16,25 @@ const meta = {
     }),
   ],
   tags: ['autodocs'],
+  argTypes: {
+    content: {
+      control: 'text',
+      description: 'The content text for the tooltip. Will be used if no content slot is provided.',
+    },
+    default: {
+      control: 'text',
+      description: 'The element that triggers the tooltip on hover.',
+    },
+    header: {
+      control: 'text',
+      description: 'Optional header content displayed at the top of the tooltip.',
+    },
+    footer: {
+      control: 'text',
+      description:
+        'Optional footer content displayed at the bottom of the tooltip, typically used for actions.',
+    },
+  },
 } satisfies Meta<typeof GaTooltip>
 
 export default meta

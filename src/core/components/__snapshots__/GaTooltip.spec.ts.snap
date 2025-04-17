@@ -1,3 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Tooltip > should render correctly 1`] = `"<tooltip>mock content</tooltip>"`;
+exports[`Tooltip > should render correctly with default slot 1`] = `"<tooltip>trigger content</tooltip>"`;
+
+exports[`Tooltip > should render with content prop 1`] = `"<tooltip>trigger content</tooltip>"`;
+
+exports[`Tooltip > should render with header, content, and footer slots 1`] = `"<tooltip>trigger content</tooltip>"`;
