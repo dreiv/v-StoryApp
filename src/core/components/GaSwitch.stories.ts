@@ -14,11 +14,11 @@ const meta = {
       template: `
         <div
           :style="{
-            display:'flex',
-            flexWrap:'wrap',
-            alignItems:'center',
-            gap:'var(--ga-size-spacing-03)',
-            padding:'var(--ga-size-spacing-05)'
+            display: 'flex',
+            flexWrap: 'wrap',
+            alignItems: 'center',
+            gap: 'var(--ga-size-spacing-03)',
+            padding: 'var(--ga-size-spacing-05)'
           }"
         >
           <story />
@@ -28,12 +28,16 @@ const meta = {
   tags: ['autodocs'],
   argTypes: {
     modelValue: { control: 'boolean', description: 'The checked state of the switch input.' },
+    label: { control: 'text', description: 'The label text for the switch input.' },
     error: { control: 'boolean', description: 'Indicates an error state for the switch input.' },
     errorMessage: {
       control: 'text',
       description: 'The error message to display when the switch input is in an error state.',
     },
-    default: { control: 'text', description: 'The label text for the switch input.' },
+    default: {
+      control: 'text',
+      description: 'The label text for the switch input. Overrides label prop.',
+    },
   },
 } satisfies Meta<typeof GaSwitch>
 
@@ -84,7 +88,11 @@ export const Examples: Story = {
   render: () => ({
     components: { GaSwitch, GaFormDetail, CircleCheck, OctagonAlert, TriangleAlert },
     template: `
-      <div :style="{display:'flex',flexDirection:'column',gap:'var(--ga-size-spacing-06)'}">
+      <div :style="{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 'var(--ga-size-spacing-06)'
+      }">
         <ga-switch disabled>
           Set invoice date automatically.<br />
           <span :style="{fontSize:'var(--ga-text-sm-font-size)'}">Hint is an accessible way to provide additional information that might help the user.</span>
@@ -124,7 +132,11 @@ export const Examples: Story = {
           </ga-form-detail>
         </ga-switch>
 
-        <div :style="{display:'flex',flexDirection:'column',gap:'var(--ga-size-spacing-03)'}">
+        <div :style="{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 'var(--ga-size-spacing-03)'
+        }">
           <h3 :style="{textDecoration:'underline wavy'}">Weekly reminders</h3>
           <ga-switch modelValue='true' label="On">
         </div>

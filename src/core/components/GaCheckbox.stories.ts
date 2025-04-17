@@ -30,12 +30,16 @@ const meta = {
   tags: ['autodocs'],
   argTypes: {
     modelValue: { control: 'boolean', description: 'The checked state of the checkbox.' },
+    label: { control: 'text', description: 'The label text for the checkbox.' },
     error: { control: 'boolean', description: 'Indicates an error state for the checkbox.' },
     errorMessage: {
       control: 'text',
       description: 'The error message to display when the checkbox is in an error state.',
     },
-    default: { control: 'text', description: 'The label text for the checkbox.' },
+    default: {
+      control: 'text',
+      description: 'The label text for the checkbox. Overrides label prop.',
+    },
   },
 } satisfies Meta<typeof GaCheckbox>
 

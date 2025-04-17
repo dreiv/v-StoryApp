@@ -1,10 +1,34 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Switch > should render correctly 1`] = `
+exports[`Switch > should be disabled when disabled prop is true 1`] = `
+"<label class="mock-input"><input type="checkbox" class="native" disabled="">
+  <div class="marker">
+    <anonymous-stub class="checked" size="16"></anonymous-stub>
+  </div><span class="label"></span>
+</label>"
+`;
+
+exports[`Switch > should render correctly with default props 1`] = `
 "<label class="mock-input"><input type="checkbox" class="native">
   <div class="marker">
     <anonymous-stub class="checked" size="16"></anonymous-stub>
-  </div><span class="label">mock content</span>
+  </div><span class="label"></span>
+</label>"
+`;
+
+exports[`Switch > should render correctly with default slot 1`] = `
+"<label class="mock-input"><input type="checkbox" class="native">
+  <div class="marker">
+    <anonymous-stub class="checked" size="16"></anonymous-stub>
+  </div><span class="label">Custom Label Content</span>
+</label>"
+`;
+
+exports[`Switch > should render correctly with label prop 1`] = `
+"<label class="mock-input"><input type="checkbox" class="native">
+  <div class="marker">
+    <anonymous-stub class="checked" size="16"></anonymous-stub>
+  </div><span class="label">Toggle feature</span>
 </label>"
 `;
 
@@ -12,6 +36,6 @@ exports[`Switch > should render with an error prop 1`] = `
 "<label class="mock-input mock-error" aria-invalid="true" aria-errormessage="Test Error"><input type="checkbox" class="native">
   <div class="marker">
     <anonymous-stub class="checked" size="16"></anonymous-stub>
-  </div><span class="label">mock content</span>
+  </div><span class="label"></span>
 </label>"
 `;

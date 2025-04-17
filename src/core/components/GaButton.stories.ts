@@ -41,7 +41,7 @@ const meta = {
   ],
   tags: ['autodocs'],
   argTypes: {
-    default: { control: 'text', description: 'The text or content displayed within the button.' },
+    label: { control: 'text', description: 'The text displayed within the button.' },
     primary: {
       control: 'boolean',
       description: 'Applies the primary button style, typically used for main actions.',
@@ -58,6 +58,10 @@ const meta = {
       control: 'boolean',
       description:
         'Indicates the button is an icon button, designed to display only an icon or short text.',
+    },
+    default: {
+      control: 'text',
+      description: 'The text or content displayed within the button. Overrides label prop.',
     },
   },
 } satisfies Meta<typeof GaButton>

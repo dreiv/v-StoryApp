@@ -30,12 +30,16 @@ const meta = {
   tags: ['autodocs'],
   argTypes: {
     modelValue: { control: 'boolean', description: 'The checked state of the radio input.' },
+    label: { control: 'text', description: 'The label text for the radio input.' },
     error: { control: 'boolean', description: 'Indicates an error state for the radio input.' },
     errorMessage: {
       control: 'text',
       description: 'The error message to display when the radio input is in an error state.',
     },
-    default: { control: 'text', description: 'The label text for the radio input.' },
+    default: {
+      control: 'text',
+      description: 'The label text for the radio input. Overrides label prop.',
+    },
   },
 } as Meta<typeof GaRadio>
 
