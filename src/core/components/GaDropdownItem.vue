@@ -5,11 +5,12 @@ import { dropdownKey } from '../constants'
 export interface DropdownItemProps {
   label?: string
   value?: string | number
-  disabled?: boolean
   active?: boolean
+  disabled?: boolean
+  keyLine?: boolean
 }
 
-const { value, active, disabled } = defineProps<DropdownItemProps>()
+const { value, active, disabled, keyLine } = defineProps<DropdownItemProps>()
 const style = useCssModule()
 
 const group = inject(dropdownKey)
@@ -19,6 +20,7 @@ const classes = computed(() => [
   style.item,
   { [style.active]: active },
   { [style.selected]: group!.model?.value === value },
+  { [style.keyLine]: keyLine },
 ])
 
 function handleClick() {
@@ -74,6 +76,20 @@ function handleClick() {
     &.selected {
       background-color: var(--ga-color-surface-disable-selected);
     }
+  }
+}
+
+.keyLine {
+  position: relative;
+
+  &::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: var(--ga-size-spacing-04);
+    background-color: var(--ga-color-border-primary);
+    height: var(--ga-size-border-width-sm);
+    content: '';
   }
 }
 </style>
