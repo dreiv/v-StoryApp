@@ -11,14 +11,22 @@ export interface DropdownProps {
 }
 
 const buttonRef = useTemplateRef<HTMLElement>('buttonRef')
-const model = defineModel<string>({ default: '' })
+const model = defineModel<string | number>({ default: '' })
+const emit = defineEmits(['onChange'])
 
 const shown = ref(false)
 const activeIndex = ref(-1)
 
 defineProps<DropdownProps>()
 
-provide(dropdownKey, { activeIndex, model })
+function onChange(value: string | number) {
+  if (value === undefined) return
+
+  model.value = value
+  emit('onChange', value)
+}
+
+provide(dropdownKey, { onChange, activeIndex, model })
 defineExpose({ buttonRef })
 </script>
 

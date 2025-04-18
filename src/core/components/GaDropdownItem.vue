@@ -19,13 +19,13 @@ if (!group) throw new Error('GaDropdownItem must be used inside a GaDropdown')
 const classes = computed(() => [
   style.item,
   { [style.active]: active },
-  { [style.selected]: group!.model?.value === value },
   { [style.keyLine]: keyLine },
+  { [style.selected]: group!.model?.value === value },
 ])
 
 function handleClick() {
   if (value !== undefined && group!.model) {
-    group!.model.value = value
+    group!.onChange(value)
   }
 }
 </script>
