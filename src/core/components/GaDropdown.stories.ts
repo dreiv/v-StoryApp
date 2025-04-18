@@ -53,6 +53,8 @@ export const Examples: Story = {
           <ga-dropdown-item :value='4' label='Option 4: Yet Another Selected Item' />
           <ga-dropdown-item :value='5' label='Option 5: Disabled Item' disabled />
           <ga-dropdown-item :value='6' label='Option 6: A Very Long Disabled and Selected Item for Testing' disabled />
+          <ga-dropdown-item :value='7' label='Option 7: Item with Custom Styling' />
+          <ga-dropdown-item :value='8' label='Option 8: Special Action Item' />
         </ga-dropdown>
       </div>
     `,
