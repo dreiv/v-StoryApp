@@ -79,6 +79,7 @@ function handleClick() {
   }
 
   &:disabled {
+    cursor: not-allowed;
     background-color: var(--ga-color-surface-disabled);
 
     &.selected {

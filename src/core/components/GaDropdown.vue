@@ -3,6 +3,9 @@ import { onBeforeUnmount, onMounted, provide, ref, useTemplateRef } from 'vue'
 import { Dropdown } from 'floating-vue'
 import { ChevronDown, ChevronUp } from 'lucide-vue-next'
 
+import { useSelectableChildren } from '@/core/composables/useSelectableChildren'
+import { useKeyboardNavigation } from '@/core/composables/useKeyboardNavigation'
+
 import GaButton from './GaButton.vue'
 import { dropdownKey } from '../constants'
 
@@ -15,28 +18,11 @@ const model = defineModel<string | number>({ default: '' })
 const emit = defineEmits(['onChange'])
 
 const shown = ref(false)
-const activeIndex = ref(-1)
-const selectableChildren = ref<HTMLElement[]>([])
+
+const { selectableChildren, registerChild, unregisterChild } = useSelectableChildren()
+const { activeIndex, handleKeyDown, resetActiveIndex } = useKeyboardNavigation(selectableChildren)
 
 defineProps<DropdownProps>()
-
-function registerChild(child: HTMLElement) {
-  selectableChildren.value.push(child)
-}
-function unregisterChild(childToRemove: HTMLElement) {
-  const index = selectableChildren.value.indexOf(childToRemove)
-
-  if (index !== -1) {
-    selectableChildren.value.splice(index, 1)
-
-    // Adjust activeIndex if the removed element was before or at the current focus
-    if (activeIndex.value >= selectableChildren.value.length) {
-      activeIndex.value = selectableChildren.value.length - 1
-    } else if (index <= activeIndex.value && activeIndex.value !== -1) {
-      activeIndex.value--
-    }
-  }
-}
 
 function onChange(value: string | number) {
   if (value === undefined) return
@@ -48,36 +34,13 @@ function onChange(value: string | number) {
 provide(dropdownKey, { onChange, registerChild, unregisterChild, activeIndex, model })
 defineExpose({ buttonRef })
 
-// TEMP
-const focusNext = () => {
-  if (selectableChildren.value.length > 0) {
-    activeIndex.value = (activeIndex.value + 1) % selectableChildren.value.length
-    selectableChildren.value[activeIndex.value]?.focus()
-  }
-}
-
-const focusPrevious = () => {
-  if (selectableChildren.value.length > 0) {
-    activeIndex.value =
-      (activeIndex.value - 1 + selectableChildren.value.length) % selectableChildren.value.length
-    selectableChildren.value[activeIndex.value]?.focus()
-  }
-}
-
-const handleKeyDown = (event: KeyboardEvent) => {
-  if (event.key === 'ArrowDown') {
-    focusNext()
-  } else if (event.key === 'ArrowUp') {
-    focusPrevious()
-  }
-}
-
 onMounted(() => {
   window.addEventListener('keydown', handleKeyDown)
 })
 
 onBeforeUnmount(() => {
   window.removeEventListener('keydown', handleKeyDown)
+  resetActiveIndex()
 })
 </script>
 
