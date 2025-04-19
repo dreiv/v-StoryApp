@@ -20,7 +20,7 @@ const emit = defineEmits(['onChange'])
 const shown = ref(false)
 
 const { selectableChildren, registerChild, unregisterChild } = useSelectableChildren()
-const { activeIndex, handleKeyDown, resetActiveIndex } = useKeyboardNavigation(selectableChildren)
+const { handleKeyDown, resetActiveIndex } = useKeyboardNavigation(selectableChildren)
 
 defineProps<DropdownProps>()
 
@@ -31,7 +31,7 @@ function onChange(value: string | number) {
   emit('onChange', value)
 }
 
-provide(dropdownKey, { onChange, registerChild, unregisterChild, activeIndex, model })
+provide(dropdownKey, { onChange, registerChild, unregisterChild, model })
 defineExpose({ buttonRef })
 
 onMounted(() => {
