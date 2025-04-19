@@ -1,24 +1,31 @@
 <script setup lang="ts">
-import { computed, inject, useCssModule } from 'vue'
+import { computed, inject, onBeforeUnmount, onMounted, useCssModule, useTemplateRef } from 'vue'
 import { dropdownKey } from '../constants'
 
 export interface DropdownItemProps {
   label?: string
   value?: string | number
-  active?: boolean
   disabled?: boolean
   keyLine?: boolean
 }
 
-const { value, active, disabled, keyLine } = defineProps<DropdownItemProps>()
+const buttonRef = useTemplateRef<HTMLElement>('buttonRef')
+const { value, disabled, keyLine } = defineProps<DropdownItemProps>()
 const style = useCssModule()
 
 const group = inject(dropdownKey)
 if (!group) throw new Error('GaDropdownItem must be used inside a GaDropdown')
 
+onMounted(() => {
+  if (group && !disabled) group.registerChild(buttonRef.value!)
+})
+
+onBeforeUnmount(() => {
+  if (group && !disabled) group.unregisterChild(buttonRef.value!)
+})
+
 const classes = computed(() => [
   style.item,
-  { [style.active]: active },
   { [style.keyLine]: keyLine },
   { [style.selected]: group!.model?.value === value },
 ])
@@ -31,7 +38,7 @@ function handleClick() {
 </script>
 
 <template>
-  <button :class="classes" :disabled="disabled" @click="handleClick">
+  <button ref="buttonRef" :class="classes" :disabled="disabled" @click="handleClick">
     <slot>{{ label }}</slot>
   </button>
 </template>
@@ -39,6 +46,7 @@ function handleClick() {
 <style module>
 .item {
   display: flex;
+  align-items: center;
   gap: var(--ga-size-spacing-03);
 
   outline-color: var(--ga-color-border-focus);
@@ -48,7 +56,7 @@ function handleClick() {
   border: 0;
   border-radius: 2px;
   background-color: var(--ga-color-surface-primary);
-  padding: var(--ga-size-spacing-03) var(--ga-size-spacing-04);
+  padding: 0 var(--ga-size-spacing-04);
   height: 2.25rem; /* TODO: fix */
 
   font-weight: var(--ga-font-weight-normal);

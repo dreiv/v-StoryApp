@@ -7,6 +7,8 @@ export interface RadioGroupContext {
 
 export interface DropdownContext {
   onChange: (value: string | number) => void
+  registerChild: (child: HTMLElement) => void
+  unregisterChild: (childToRemove: HTMLElement) => void
   activeIndex?: Ref<number>
   model?: Ref<string | number>
 }
