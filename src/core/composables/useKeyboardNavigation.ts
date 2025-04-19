@@ -5,6 +5,7 @@ export function useKeyboardNavigation(
   shown: Ref<boolean>,
 ) {
   const activeIndex = ref(-1)
+  let abortController: AbortController | null = null
 
   const actionableChildren = computed(() =>
     selectableChildren.value.filter((child) => !child.disabled),
@@ -39,21 +40,15 @@ export function useKeyboardNavigation(
     activeIndex.value = -1
   }
 
-  let removeListener: (() => void) | null = null
-
   watch(
     shown,
     (newValue) => {
       if (newValue) {
-        window.addEventListener('keydown', handleKeyDown)
-        removeListener = () => {
-          window.removeEventListener('keydown', handleKeyDown)
-        }
+        abortController = new AbortController()
+        window.addEventListener('keydown', handleKeyDown, { signal: abortController.signal })
       } else {
-        if (removeListener) {
-          removeListener()
-          removeListener = null
-        }
+        abortController?.abort()
+        abortController = null
         resetActiveIndex()
       }
     },
@@ -61,9 +56,7 @@ export function useKeyboardNavigation(
   )
 
   onUnmounted(() => {
-    if (removeListener) {
-      removeListener()
-    }
+    abortController?.abort()
   })
 
   return {
