@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, provide, ref, useTemplateRef } from 'vue'
+import { onBeforeUnmount, provide, ref, useTemplateRef } from 'vue'
 import { Dropdown } from 'floating-vue'
 import { ChevronDown, ChevronUp } from 'lucide-vue-next'
 
@@ -20,7 +20,7 @@ const emit = defineEmits(['onChange'])
 const shown = ref(false)
 
 const { selectableChildren, registerChild, unregisterChild } = useSelectableChildren()
-const { handleKeyDown, resetActiveIndex } = useKeyboardNavigation(selectableChildren)
+const { resetActiveIndex } = useKeyboardNavigation(selectableChildren, shown)
 
 defineProps<DropdownProps>()
 
@@ -34,12 +34,7 @@ function onChange(value: string | number) {
 provide(dropdownKey, { onChange, registerChild, unregisterChild, model })
 defineExpose({ buttonRef })
 
-onMounted(() => {
-  window.addEventListener('keydown', handleKeyDown)
-})
-
 onBeforeUnmount(() => {
-  window.removeEventListener('keydown', handleKeyDown)
   resetActiveIndex()
 })
 </script>
