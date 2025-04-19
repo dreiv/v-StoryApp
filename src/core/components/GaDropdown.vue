@@ -37,10 +37,14 @@ defineExpose({ buttonRef })
 onBeforeUnmount(() => {
   resetActiveIndex()
 })
+
+function handleKeyDown({ key }: KeyboardEvent) {
+  if (key === 'ArrowDown' || key === 'ArrowUp') shown.value = true
+}
 </script>
 
 <template>
-  <dropdown v-model:shown="shown">
+  <dropdown v-model:shown="shown" @keydown.prevent="handleKeyDown">
     <ga-button ref="buttonRef" aria-haspopup="listbox" :aria-expanded="shown" v-bind="$attrs">
       {{ title }}
       <component :is="shown ? ChevronUp : ChevronDown" />
