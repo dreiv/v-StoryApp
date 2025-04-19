@@ -21,7 +21,7 @@ const selectableChildren = ref<HTMLElement[]>([])
 defineProps<DropdownProps>()
 
 function registerChild(child: HTMLElement) {
-  return selectableChildren.value.push(child)
+  selectableChildren.value.push(child)
 }
 function unregisterChild(childToRemove: HTMLElement) {
   const index = selectableChildren.value.indexOf(childToRemove)
