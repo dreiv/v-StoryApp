@@ -7,8 +7,8 @@ export interface RadioGroupContext {
 
 export interface DropdownContext {
   onChange: (value: string | number) => void
-  registerChild: (child: HTMLElement) => void
-  unregisterChild: (childToRemove: HTMLElement) => void
+  registerChild: (child: HTMLButtonElement) => void
+  unregisterChild: (childToRemove: HTMLButtonElement) => void
   model?: Ref<string | number>
 }
 export const radioGroupKey: InjectionKey<RadioGroupContext> = Symbol('radioGroup')

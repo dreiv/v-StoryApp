@@ -9,7 +9,7 @@ export interface DropdownItemProps {
   keyLine?: boolean
 }
 
-const buttonRef = useTemplateRef<HTMLElement>('buttonRef')
+const buttonRef = useTemplateRef<HTMLButtonElement>('buttonRef')
 const { value, disabled, keyLine } = defineProps<DropdownItemProps>()
 const style = useCssModule()
 
@@ -17,11 +17,11 @@ const group = inject(dropdownKey)
 if (!group) throw new Error('GaDropdownItem must be used inside a GaDropdown')
 
 onMounted(() => {
-  if (group && !disabled) group.registerChild(buttonRef.value!)
+  if (group) group.registerChild(buttonRef.value!)
 })
 
 onBeforeUnmount(() => {
-  if (group && !disabled) group.unregisterChild(buttonRef.value!)
+  if (group) group.unregisterChild(buttonRef.value!)
 })
 
 const classes = computed(() => [

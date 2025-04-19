@@ -13,7 +13,7 @@ export interface DropdownProps {
   title?: string
 }
 
-const buttonRef = useTemplateRef<HTMLElement>('buttonRef')
+const buttonRef = useTemplateRef<HTMLButtonElement>('buttonRef')
 const model = defineModel<string | number>({ default: '' })
 const emit = defineEmits(['onChange'])
 
@@ -55,7 +55,6 @@ onBeforeUnmount(() => {
       <slot />
     </template>
   </dropdown>
-  {{ selectableChildren }}
 </template>
 
 <style>

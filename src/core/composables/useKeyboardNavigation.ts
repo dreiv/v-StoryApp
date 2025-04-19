@@ -1,10 +1,10 @@
 import { ref, type Ref, readonly, computed } from 'vue'
 
-export function useKeyboardNavigation(selectableChildren: Ref<readonly HTMLElement[]>) {
+export function useKeyboardNavigation(selectableChildren: Ref<readonly HTMLButtonElement[]>) {
   const activeIndex = ref(-1)
 
   const actionableChildren = computed(() =>
-    selectableChildren.value.filter((child) => !child.getAttribute('disabled')),
+    selectableChildren.value.filter((child) => !child.disabled),
   )
 
   const focusNext = () => {
@@ -35,7 +35,6 @@ export function useKeyboardNavigation(selectableChildren: Ref<readonly HTMLEleme
   }
 
   return {
-    activeIndex: readonly(activeIndex) as Ref<number>,
     focusNext,
     focusPrevious,
     handleKeyDown,
