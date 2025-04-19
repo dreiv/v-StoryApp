@@ -1,35 +1,44 @@
 <script setup lang="ts">
-import { computed, inject, useCssModule } from 'vue'
+import { computed, inject, onBeforeUnmount, onMounted, useCssModule, useTemplateRef } from 'vue'
 import { dropdownKey } from '../constants'
 
 export interface DropdownItemProps {
   label?: string
   value?: string | number
   disabled?: boolean
-  active?: boolean
+  keyLine?: boolean
 }
 
-const { value, active, disabled } = defineProps<DropdownItemProps>()
+const buttonRef = useTemplateRef<HTMLButtonElement>('buttonRef')
+const { value, disabled, keyLine } = defineProps<DropdownItemProps>()
 const style = useCssModule()
 
 const group = inject(dropdownKey)
 if (!group) throw new Error('GaDropdownItem must be used inside a GaDropdown')
 
+onMounted(() => {
+  if (group) group.registerChild(buttonRef.value!)
+})
+
+onBeforeUnmount(() => {
+  if (group) group.unregisterChild(buttonRef.value!)
+})
+
 const classes = computed(() => [
   style.item,
-  { [style.active]: active },
+  { [style.keyLine]: keyLine },
   { [style.selected]: group!.model?.value === value },
 ])
 
 function handleClick() {
   if (value !== undefined && group!.model) {
-    group!.model.value = value
+    group!.onChange(value)
   }
 }
 </script>
 
 <template>
-  <button :class="classes" :disabled="disabled" @click="handleClick">
+  <button ref="buttonRef" :class="classes" :disabled="disabled" @click="handleClick">
     <slot>{{ label }}</slot>
   </button>
 </template>
@@ -37,6 +46,7 @@ function handleClick() {
 <style module>
 .item {
   display: flex;
+  align-items: center;
   gap: var(--ga-size-spacing-03);
 
   outline-color: var(--ga-color-border-focus);
@@ -46,7 +56,7 @@ function handleClick() {
   border: 0;
   border-radius: 2px;
   background-color: var(--ga-color-surface-primary);
-  padding: var(--ga-size-spacing-03) var(--ga-size-spacing-04);
+  padding: 0 var(--ga-size-spacing-04);
   height: 2.25rem; /* TODO: fix */
 
   font-weight: var(--ga-font-weight-normal);
@@ -69,11 +79,26 @@ function handleClick() {
   }
 
   &:disabled {
+    cursor: not-allowed;
     background-color: var(--ga-color-surface-disabled);
 
     &.selected {
       background-color: var(--ga-color-surface-disable-selected);
     }
+  }
+}
+
+.keyLine {
+  position: relative;
+
+  &::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: var(--ga-size-spacing-04);
+    background-color: var(--ga-color-border-primary);
+    height: var(--ga-size-border-width-sm);
+    content: '';
   }
 }
 </style>
