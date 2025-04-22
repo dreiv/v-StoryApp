@@ -29,6 +29,7 @@ function onChange(value: string | number) {
 
   model.value = value
   emit('onChange', value)
+  shown.value = false
 }
 
 provide(dropdownKey, { onChange, registerChild, unregisterChild, model })
@@ -38,13 +39,16 @@ onBeforeUnmount(() => {
   resetActiveIndex()
 })
 
-function handleKeyDown({ key }: KeyboardEvent) {
-  if (key === 'ArrowDown' || key === 'ArrowUp') shown.value = true
+function handleKeyDown(event: KeyboardEvent) {
+  if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+    event.preventDefault()
+    shown.value = true
+  }
 }
 </script>
 
 <template>
-  <dropdown v-model:shown="shown" @keydown.prevent="handleKeyDown">
+  <dropdown v-model:shown="shown" @keydown="handleKeyDown">
     <ga-button ref="buttonRef" aria-haspopup="listbox" :aria-expanded="shown" v-bind="$attrs">
       {{ title }}
       <component :is="shown ? ChevronUp : ChevronDown" />
