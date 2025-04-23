@@ -15,7 +15,7 @@ export interface DropdownProps {
 
 const buttonRef = useTemplateRef<HTMLButtonElement>('buttonRef')
 const model = defineModel<string | number>({ default: '' })
-const emit = defineEmits(['onChange'])
+const emit = defineEmits(['change'])
 
 const shown = ref(false)
 
@@ -28,7 +28,7 @@ function onChange(value: string | number) {
   if (value === undefined) return
 
   model.value = value
-  emit('onChange', value)
+  emit('change', value)
   shown.value = false
 }
 

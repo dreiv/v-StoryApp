@@ -13,26 +13,26 @@ const buttonRef = useTemplateRef<HTMLButtonElement>('buttonRef')
 const { value, disabled, keyLine } = defineProps<DropdownItemProps>()
 const style = useCssModule()
 
-const group = inject(dropdownKey)
-if (!group) throw new Error('GaDropdownItem must be used inside a GaDropdown')
+const parent = inject(dropdownKey)
+if (!parent) throw new Error('GaDropdownItem must be used inside a GaDropdown')
 
 onMounted(() => {
-  if (group) group.registerChild(buttonRef.value!)
+  if (parent) parent.registerChild(buttonRef.value!)
 })
 
 onBeforeUnmount(() => {
-  if (group) group.unregisterChild(buttonRef.value!)
+  if (parent) parent.unregisterChild(buttonRef.value!)
 })
 
 const classes = computed(() => [
   style.item,
   { [style.keyLine]: keyLine },
-  { [style.selected]: group!.model?.value === value },
+  { [style.selected]: parent!.model?.value === value },
 ])
 
 function handleClick() {
-  if (value !== undefined && group!.model) {
-    group!.onChange(value)
+  if (value !== undefined && parent!.model) {
+    parent!.onChange(value)
   }
 }
 </script>
