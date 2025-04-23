@@ -17,7 +17,10 @@ const parent = inject(dropdownKey)
 if (!parent) throw new Error('GaDropdownItem must be used inside a GaDropdown')
 
 onMounted(() => {
-  if (parent) parent.registerChild(buttonRef.value!)
+  if (parent) {
+    buttonRef.value!.dataset.value = String(value)
+    parent.registerChild(buttonRef.value!)
+  }
 })
 
 onBeforeUnmount(() => {

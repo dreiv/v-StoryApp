@@ -20,7 +20,7 @@ const emit = defineEmits(['change'])
 const shown = ref(false)
 
 const { selectableChildren, registerChild, unregisterChild } = useSelectableChildren()
-const { resetActiveIndex } = useKeyboardNavigation(selectableChildren, shown)
+const { resetActiveIndex } = useKeyboardNavigation(selectableChildren, shown, model)
 
 defineProps<DropdownProps>()
 
