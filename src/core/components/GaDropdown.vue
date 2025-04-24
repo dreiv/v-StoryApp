@@ -20,7 +20,7 @@ const emit = defineEmits(['change'])
 const shown = ref(false)
 
 const { selectableChildren, registerChild, unregisterChild } = useSelectableChildren()
-const { resetActiveIndex } = useKeyboardNavigation(selectableChildren, shown, model)
+const { resetActiveIndex } = useKeyboardNavigation(selectableChildren, shown)
 
 defineProps<DropdownProps>()
 
@@ -49,7 +49,7 @@ defineExpose({ buttonRef })
 </script>
 
 <template>
-  <dropdown v-model:shown="shown" @keydown="handleKeyDown">
+  <dropdown v-model:shown="shown" @keydown="handleKeyDown" no-auto-focus>
     <ga-button ref="buttonRef" aria-haspopup="listbox" :aria-expanded="shown" v-bind="$attrs">
       {{ title }}
       <component :is="shown ? ChevronUp : ChevronDown" />

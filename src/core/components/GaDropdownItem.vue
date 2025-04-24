@@ -9,7 +9,7 @@ export interface DropdownItemProps {
   keyLine?: boolean
 }
 
-const buttonRef = useTemplateRef<HTMLButtonElement>('buttonRef')
+const itemRef = useTemplateRef<HTMLElement>('itemRef')
 const { value, disabled, keyLine } = defineProps<DropdownItemProps>()
 const style = useCssModule()
 
@@ -17,14 +17,11 @@ const parent = inject(dropdownKey)
 if (!parent) throw new Error('GaDropdownItem must be used inside a GaDropdown')
 
 onMounted(() => {
-  if (parent) {
-    buttonRef.value!.dataset.value = String(value)
-    parent.registerChild(buttonRef.value!)
-  }
+  if (parent) parent.registerChild(itemRef.value!)
 })
 
 onBeforeUnmount(() => {
-  if (parent) parent.unregisterChild(buttonRef.value!)
+  if (parent) parent.unregisterChild(itemRef.value!)
 })
 
 const classes = computed(() => [
@@ -41,9 +38,9 @@ function handleClick() {
 </script>
 
 <template>
-  <button ref="buttonRef" :class="classes" :disabled="disabled" @click="handleClick">
+  <div ref="itemRef" :class="classes" :disabled="disabled" @click="handleClick" :data-value="value">
     <slot>{{ label }}</slot>
-  </button>
+  </div>
 </template>
 
 <style module>
