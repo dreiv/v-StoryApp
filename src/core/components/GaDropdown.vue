@@ -1,13 +1,11 @@
 <script setup lang="ts">
-import { onBeforeUnmount, provide, ref, useTemplateRef } from 'vue'
+import { provide, ref, useTemplateRef } from 'vue'
 import { Dropdown } from 'floating-vue'
 import { ChevronDown, ChevronUp } from 'lucide-vue-next'
 
-import { useSelectableChildren } from '@/core/composables/useSelectableChildren'
-import { useKeyboardNavigation } from '@/core/composables/useKeyboardNavigation'
-
 import GaButton from './GaButton.vue'
 import { dropdownKey } from '../constants'
+import type { DropdownItemProps } from './GaDropdownItem.vue'
 
 export interface DropdownProps {
   title?: string
@@ -19,9 +17,6 @@ const emit = defineEmits(['change'])
 
 const shown = ref(false)
 
-const { selectableChildren, registerChild, unregisterChild } = useSelectableChildren()
-const { resetActiveIndex } = useKeyboardNavigation(selectableChildren, shown)
-
 defineProps<DropdownProps>()
 
 function onChange(value: string | number) {
@@ -32,16 +27,58 @@ function onChange(value: string | number) {
   shown.value = false
 }
 
-provide(dropdownKey, { onChange, registerChild, unregisterChild, model })
+const children = ref<DropdownItemProps[]>([])
 
-onBeforeUnmount(() => {
-  resetActiveIndex()
-})
+const activeChild = ref()
+function registerChild(child: Partial<DropdownItemProps>) {
+  // Register child component
+  console.log('Registering child:', child)
+
+  children.value.push(child as DropdownItemProps)
+
+  if (child.value === model.value) {
+    activeChild.value = child.value
+  }
+}
+function unregisterChild(childToRemove: Partial<DropdownItemProps>) {
+  // Unregister child component
+  console.log('Unregistering child:', childToRemove)
+  children.value = children.value.filter((child) => child.value !== childToRemove.value)
+
+  if (activeChild.value) activeChild.value = null
+}
+
+provide(dropdownKey, { onChange, registerChild, unregisterChild, activeChild })
+
+function focusNext() {
+  if (children.value.length === 0) return
+
+  const currentIndex = children.value.findIndex((child) => child.value === activeChild.value)
+  const nextIndex = currentIndex >= children.value.length - 1 ? 0 : currentIndex + 1
+  activeChild.value = children.value[nextIndex].value
+}
+
+function focusPrevious() {
+  if (children.value.length === 0) return
+
+  const currentIndex = children.value.findIndex((child) => child.value === activeChild.value)
+  const prevIndex = currentIndex <= 0 ? children.value.length - 1 : currentIndex - 1
+  activeChild.value = children.value[prevIndex].value
+}
 
 function handleKeyDown(event: KeyboardEvent) {
-  if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
-    event.preventDefault()
-    shown.value = true
+  if (!shown.value) {
+    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+      event.preventDefault()
+      shown.value = true
+    }
+    return
+  } else {
+    if (event.key === 'ArrowDown') {
+      focusNext()
+    } else if (event.key === 'ArrowUp') {
+      focusPrevious()
+    }
   }
 }
 
@@ -59,6 +96,8 @@ defineExpose({ buttonRef })
       <slot />
     </template>
   </dropdown>
+
+  {{ children }}
 </template>
 
 <style>

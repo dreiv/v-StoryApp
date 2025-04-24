@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, inject, onBeforeUnmount, onMounted, useCssModule, useTemplateRef } from 'vue'
+import { computed, inject, onBeforeUnmount, onMounted, useCssModule } from 'vue'
 import { dropdownKey } from '../constants'
 
 export interface DropdownItemProps {
@@ -9,7 +9,6 @@ export interface DropdownItemProps {
   keyLine?: boolean
 }
 
-const itemRef = useTemplateRef<HTMLElement>('itemRef')
 const { value, disabled, keyLine } = defineProps<DropdownItemProps>()
 const style = useCssModule()
 
@@ -17,28 +16,26 @@ const parent = inject(dropdownKey)
 if (!parent) throw new Error('GaDropdownItem must be used inside a GaDropdown')
 
 onMounted(() => {
-  if (parent) parent.registerChild(itemRef.value!)
+  if (parent) parent.registerChild({ value, disabled })
 })
 
 onBeforeUnmount(() => {
-  if (parent) parent.unregisterChild(itemRef.value!)
+  if (parent) parent.unregisterChild({ value })
 })
 
 const classes = computed(() => [
   style.item,
   { [style.keyLine]: keyLine },
-  { [style.selected]: parent!.model?.value === value },
+  { [style.active]: value === parent.activeChild?.value },
 ])
 
 function handleClick() {
-  if (value !== undefined && parent!.model) {
-    parent!.onChange(value)
-  }
+  if (value !== undefined) parent!.onChange(value)
 }
 </script>
 
 <template>
-  <div ref="itemRef" :class="classes" :disabled="disabled" @click="handleClick" :data-value="value">
+  <div :class="classes" :disabled="disabled" @click="handleClick">
     <slot>{{ label }}</slot>
   </div>
 </template>
@@ -68,6 +65,10 @@ function handleClick() {
 
   &:enabled {
     cursor: pointer;
+  }
+
+  &.active {
+    border: 2px solid lime;
   }
 
   &:hover {

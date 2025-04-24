@@ -1,4 +1,5 @@
 import type { InjectionKey, Ref } from 'vue'
+import type { DropdownItemProps } from './components/GaDropdownItem.vue'
 
 export interface RadioGroupContext {
   name: string
@@ -7,9 +8,9 @@ export interface RadioGroupContext {
 
 export interface DropdownContext {
   onChange: (value: string | number) => void
-  registerChild: (child: HTMLElement) => void
-  unregisterChild: (childToRemove: HTMLElement) => void
-  model?: Ref<string | number>
+  registerChild: (child: Partial<DropdownItemProps>) => void
+  unregisterChild: (childToRemove: Partial<DropdownItemProps>) => void
+  activeChild?: Ref<string | number>
 }
 export const radioGroupKey: InjectionKey<RadioGroupContext> = Symbol('radioGroup')
 export const dropdownKey: InjectionKey<DropdownContext> = Symbol('dropdown')

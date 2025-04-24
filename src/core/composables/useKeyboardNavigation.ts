@@ -34,10 +34,6 @@ export function useKeyboardNavigation(
     }
   }
 
-  const resetActiveIndex = () => {
-    activeIndex.value = -1
-  }
-
   watch(
     shown,
     (newValue) => {
@@ -59,7 +55,6 @@ export function useKeyboardNavigation(
       } else {
         abortController?.abort()
         abortController = null
-        resetActiveIndex()
       }
     },
     { immediate: true, flush: 'post' },
@@ -69,8 +64,5 @@ export function useKeyboardNavigation(
     abortController?.abort()
   })
 
-  return {
-    handleKeyDown,
-    resetActiveIndex,
-  }
+  return { handleKeyDown }
 }
