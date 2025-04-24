@@ -33,7 +33,6 @@ function onChange(value: string | number) {
 }
 
 provide(dropdownKey, { onChange, registerChild, unregisterChild, model })
-defineExpose({ buttonRef })
 
 onBeforeUnmount(() => {
   resetActiveIndex()
@@ -45,6 +44,8 @@ function handleKeyDown(event: KeyboardEvent) {
     shown.value = true
   }
 }
+
+defineExpose({ buttonRef })
 </script>
 
 <template>
