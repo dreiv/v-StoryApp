@@ -26,6 +26,7 @@ onBeforeUnmount(() => {
 const classes = computed(() => [
   style.item,
   { [style.keyLine]: keyLine },
+  { [style.disabled]: disabled },
   { [style.active]: value === parent.activeChild?.value },
 ])
 
@@ -79,7 +80,7 @@ function handleClick() {
     background-color: var(--ga-color-surface-success);
   }
 
-  &:disabled {
+  &.disabled {
     cursor: not-allowed;
     background-color: var(--ga-color-surface-disabled);
 
