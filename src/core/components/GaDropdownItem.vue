@@ -47,10 +47,6 @@ function handleClick() {
   align-items: center;
   gap: var(--ga-size-spacing-03);
 
-  outline-color: var(--ga-color-border-focus);
-  outline-width: var(--ga-size-border-width-md);
-  outline-offset: -1px; /* TODO: fix */
-
   border: 0;
   border-radius: 2px;
   background-color: var(--ga-color-surface-primary);
@@ -69,7 +65,8 @@ function handleClick() {
   }
 
   &.active {
-    border: 2px solid lime;
+    outline: var(--ga-size-border-width-md) solid var(--ga-color-border-focus);
+    outline-offset: -2px; /* TODO: fix */
   }
 
   &:hover {
