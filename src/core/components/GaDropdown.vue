@@ -48,7 +48,7 @@ function unregisterChild(childToRemove: Partial<DropdownItemProps>) {
   if (activeChild.value) activeChild.value = null
 }
 
-provide(dropdownKey, { onChange, registerChild, unregisterChild, activeChild })
+provide(dropdownKey, { onChange, registerChild, unregisterChild, activeChild, model })
 
 function focusNext() {
   if (children.value.length === 0) return

@@ -27,7 +27,8 @@ const classes = computed(() => [
   style.item,
   { [style.keyLine]: keyLine },
   { [style.disabled]: disabled },
-  { [style.active]: value === parent.activeChild?.value },
+  { [style.active]: value === parent?.activeChild?.value },
+  { [style.selected]: value === parent?.model?.value },
 ])
 
 function handleClick() {
