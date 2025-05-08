@@ -4,7 +4,7 @@ import { icons } from 'lucide-vue-next'
 import { vTooltip } from 'floating-vue'
 
 import GaButton from '@/core/components/ga-button/GaButton.vue'
-import GaInput from '@/core/components/GaInput.vue'
+import GaInput from '@/core/components/ga-input/GaInput.vue'
 
 type IconKeys = keyof typeof icons
 
