@@ -1,17 +1,5 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Radio > should render correctly in 'disabled' state 1`] = `
-"<label class="mock-input"><input type="radio" class="native" name="mockName" disabled="">
-  <div class="marker"></div><span class="label"></span>
-</label>"
-`;
-
-exports[`Radio > should render correctly in 'error' state 1`] = `
-"<label class="mock-input mock-error" aria-invalid="true" aria-errormessage="Test Error"><input type="radio" class="native" name="mockName">
-  <div class="marker"></div><span class="label"></span>
-</label>"
-`;
-
 exports[`Radio > should render correctly with default props 1`] = `
 "<label class="mock-input"><input type="radio" class="native" name="mockName">
   <div class="marker"></div><span class="label"></span>

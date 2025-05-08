@@ -1,5 +1,5 @@
 import type { InjectionKey, Ref } from 'vue'
-import type { DropdownItemProps } from './components/GaDropdownItem.vue'
+import type { DropdownItemProps } from './components/ga-dropdown/GaDropdownItem.vue'
 
 export interface RadioGroupContext {
   name: string

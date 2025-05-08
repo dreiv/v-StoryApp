@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, inject, onBeforeUnmount, onMounted, useCssModule } from 'vue'
-import { dropdownKey } from '../constants'
+import { dropdownKey } from '@/core/constants'
 
 export interface DropdownItemProps {
   label?: string
