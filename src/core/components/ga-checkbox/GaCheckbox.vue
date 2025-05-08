@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useTemplateRef } from 'vue'
 import { CheckIcon, MinusIcon } from 'lucide-vue-next'
-import { useFormInput, type FormInputProps } from '../composables/useFormInput'
+import { useFormInput, type FormInputProps } from '@/core/composables/useFormInput'
 
 defineOptions({ inheritAttrs: false })
 const props = defineProps<FormInputProps>()

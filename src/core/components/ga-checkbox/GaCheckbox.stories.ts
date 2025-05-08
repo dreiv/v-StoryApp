@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 import { GlobeLock, OctagonAlert, TriangleAlert } from 'lucide-vue-next'
 
-import { type FormInputProps } from '../composables/useFormInput'
+import { type FormInputProps } from '@/core/composables/useFormInput'
 import GaCheckbox from './GaCheckbox.vue'
-import GaFormDetail from './GaFormDetail.vue'
-import GaFormNest from './GaFormNest.vue'
+import GaFormDetail from '../GaFormDetail.vue'
+import GaFormNest from '../GaFormNest.vue'
 
 const meta = {
   component: GaCheckbox,

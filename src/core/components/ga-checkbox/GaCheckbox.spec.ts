@@ -1,7 +1,7 @@
 import { shallowMount, type VueWrapper } from '@vue/test-utils'
 import GaCheckbox from './GaCheckbox.vue'
 
-vi.mock('../composables/useFormInput')
+vi.mock('@/core/composables/useFormInput')
 
 describe('Checkbox', () => {
   let wrapper: VueWrapper
