@@ -3,7 +3,7 @@ import { shallowMount, type VueWrapper } from '@vue/test-utils'
 import GaSpinner from './GaSpinner.vue'
 
 vi.mock('lucide-vue-next', () => ({ Hourglass: () => '<div class="mock-hourglass" />' }))
-vi.mock('../composables/useFormInput')
+vi.mock('@/core/composables/useFormInput')
 
 describe('Spinner', () => {
   let wrapper: VueWrapper

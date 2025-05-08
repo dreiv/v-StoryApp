@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, useCssModule, ref, onMounted, onUnmounted } from 'vue'
 import { Hourglass } from 'lucide-vue-next'
-import type { FormInputProps } from '../composables/useFormInput'
+import type { FormInputProps } from '@/core/composables/useFormInput'
 
 export interface SpinnerProps extends FormInputProps {
   size?: 'sm' | 'default' | 'lg'
