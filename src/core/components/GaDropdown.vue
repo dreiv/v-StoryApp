@@ -67,11 +67,8 @@ function findNextEnabled(startIndex: number, direction: 1 | -1): string | number
 
 function focusNext() {
   if (children.value.length === 0) return
-  console.log('activeChild:', activeChild.value)
-  console.log(children.value.map(({ value }, index) => `${index}: ${value}`))
 
   const currentIndex = children.value.findIndex((child) => child.value === activeChild.value)
-  console.log('Current index:', currentIndex)
   const nextEnabledValue = findNextEnabled(currentIndex, 1)
   if (nextEnabledValue !== undefined) {
     activeChild.value = nextEnabledValue
