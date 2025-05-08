@@ -2,7 +2,7 @@ import type { ConcreteComponent } from 'vue'
 import type { Meta, StoryObj } from '@storybook/vue3'
 import { ChevronDown } from 'lucide-vue-next'
 
-import GaButton from '../GaButton.vue'
+import GaButton from '../ga-button/GaButton.vue'
 import GaDropdown from './GaDropdown.vue'
 import GaDropdownItem from './GaDropdownItem.vue'
 

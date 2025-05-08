@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import { vTooltip as tooltip } from 'floating-vue'
 import { CircleHelp, PlusIcon } from 'lucide-vue-next'
 
-import GaButton from './GaButton.vue'
+import GaButton from './ga-button/GaButton.vue'
 import GaTooltip from './GaTooltip.vue'
 import GaInput from './GaInput.vue'
 

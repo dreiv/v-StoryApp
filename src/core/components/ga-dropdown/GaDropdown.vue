@@ -3,7 +3,7 @@ import { provide, ref, useTemplateRef } from 'vue'
 import { Dropdown } from 'floating-vue'
 import { ChevronDown, ChevronUp } from 'lucide-vue-next'
 
-import GaButton from '../GaButton.vue'
+import GaButton from '../ga-button/GaButton.vue'
 import { dropdownKey } from '@/core/constants'
 import type { DropdownItemProps } from './GaDropdownItem.vue'
 
