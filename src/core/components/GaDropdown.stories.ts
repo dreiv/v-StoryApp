@@ -43,7 +43,7 @@ export const Examples: Story = {
   parameters: { controls: { disable: true } },
   render: () => ({
     components: { GaButton, GaDropdown, GaDropdownItem, ChevronDown },
-    data: () => ({ selected: 3 }),
+    data: () => ({ selected: 6 }),
     template: `
       <div :style="{display:'flex',alignItems:'center',flexDirection:'column',gap:'16px'}">
         <ga-dropdown title='Click me to see options!' v-model='selected'>

@@ -32,7 +32,7 @@ const classes = computed(() => [
 ])
 
 function handleClick() {
-  if (value !== undefined) parent!.onChange(value)
+  if (!disabled && value) parent!.onChange(value)
 }
 </script>
 
@@ -61,7 +61,7 @@ function handleClick() {
 
   text-align: left;
 
-  &:enabled {
+  &:not(.disabled, .selected) {
     cursor: pointer;
   }
 
