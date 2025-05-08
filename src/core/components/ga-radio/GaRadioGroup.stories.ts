@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 import { ChartSpline, OctagonAlert, TriangleAlert } from 'lucide-vue-next'
 
-import GaFormDetail from './GaFormDetail.vue'
+import GaFormDetail from '../GaFormDetail.vue'
 import GaRadio from './GaRadio.vue'
 import GaRadioGroup from './GaRadioGroup.vue'
 

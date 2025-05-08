@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { inject, useTemplateRef } from 'vue'
-import { useFormInput, type FormInputProps } from '../composables/useFormInput'
-import { radioGroupKey } from '../constants'
+import { useFormInput, type FormInputProps } from '@/core/composables/useFormInput'
+import { radioGroupKey } from '@/core/constants'
 
 defineOptions({ inheritAttrs: false })
 const props = defineProps<FormInputProps>()

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, provide, useCssModule } from 'vue'
-import { uniqueId } from '../utils/uniqueId'
-import { radioGroupKey } from '../constants'
+import { radioGroupKey } from '@/core/constants'
+import { uniqueId } from '@/core/utils/uniqueId'
 
 export interface RadioGroupProps {
   title?: string

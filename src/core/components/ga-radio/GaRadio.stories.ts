@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 import { OctagonAlert, TriangleAlert } from 'lucide-vue-next'
 
-import { type FormInputProps } from '../composables/useFormInput'
+import { type FormInputProps } from '@/core/composables/useFormInput'
+import GaFormDetail from '../GaFormDetail.vue'
 import GaRadio from './GaRadio.vue'
 import GaRadioGroup from './GaRadioGroup.vue'
-import GaFormDetail from './GaFormDetail.vue'
 
 const meta = {
   component: GaRadio,

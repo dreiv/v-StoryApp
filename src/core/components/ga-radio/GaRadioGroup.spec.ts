@@ -1,7 +1,7 @@
 import { shallowMount, type VueWrapper } from '@vue/test-utils'
 import GaRadioGroup from './GaRadioGroup.vue'
 
-vi.mock('../constants')
+vi.mock('@/core/constants')
 
 describe('RadioGroup', () => {
   let wrapper: VueWrapper
