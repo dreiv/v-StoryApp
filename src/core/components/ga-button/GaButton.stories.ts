@@ -13,7 +13,7 @@ import {
 } from 'lucide-vue-next'
 
 import GaBadge from '../ga-badge/GaBadge.vue'
-import GaTooltip from '../GaTooltip.vue'
+import GaTooltip from '../ga-tooltip/GaTooltip.vue'
 import GaSpinner from '../ga-spinner/GaSpinner.vue'
 import GaButton, { type ButtonProps } from './GaButton.vue'
 
