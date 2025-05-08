@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 import { CircleCheck, OctagonAlert, TriangleAlert } from 'lucide-vue-next'
 
-import { type FormInputProps } from '../composables/useFormInput'
-import GaFormDetail from './GaFormDetail.vue'
+import { type FormInputProps } from '@/core/composables/useFormInput'
+import GaFormDetail from '../GaFormDetail.vue'
 import GaSwitch from './GaSwitch.vue'
 
 const meta = {

@@ -1,8 +1,8 @@
 import { shallowMount, type VueWrapper } from '@vue/test-utils'
 import GaSwitch from './GaSwitch.vue'
 
-vi.mock('../composables/useFormInput')
-vi.mock('../constants')
+vi.mock('@/core/composables/useFormInput')
+vi.mock('@/core/constants')
 
 describe('Switch', () => {
   let wrapper: VueWrapper
