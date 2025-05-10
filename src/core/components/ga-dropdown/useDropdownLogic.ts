@@ -27,23 +27,11 @@ export function useDropdownLogic(
   }
 
   function findFirstEnabledIndex(): number {
-    if (children.value.length) {
-      for (let i = 0; i < children.value.length; i++) {
-        if (!children.value[i]?.disabled) return i
-      }
-    }
-
-    return -1 // Fallback if all are disabled or list is empty
+    return findNextEnabledIndex(-1, 1)
   }
 
   function findLastEnabledIndex(): number {
-    if (children.value.length) {
-      for (let i = children.value.length - 1; i >= 0; i--) {
-        if (!children.value[i]?.disabled) return i
-      }
-    }
-
-    return children.value.length - 1 // Fallback if all are disabled
+    return findNextEnabledIndex(children.value.length, -1)
   }
 
   function findNextEnabledIndex(currentKnownIndex: number, direction: 1 | -1): number {
@@ -51,14 +39,13 @@ export function useDropdownLogic(
     if (!itemCount) return -1
 
     for (let i = 1; i <= itemCount; i++) {
-      const nextPotentialIndex = (currentKnownIndex + direction * i + itemCount) % itemCount
+      const nextPotentialIndex = (currentKnownIndex + direction * i + itemCount) % itemCount // Wrap around
       if (!children.value[nextPotentialIndex]?.disabled) {
         return nextPotentialIndex
       }
     }
 
-    // If all are disabled or only one item which might be disabled
-    return children.value[currentKnownIndex]?.disabled ? findFirstEnabledIndex() : currentKnownIndex
+    return -1 // If loop completes, no enabled item was found
   }
 
   function focusNext() {
