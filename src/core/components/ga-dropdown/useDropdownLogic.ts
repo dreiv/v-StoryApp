@@ -1,4 +1,4 @@
-import { ref, watch, type Ref } from 'vue'
+import { computed, ref, shallowRef, type Ref } from 'vue'
 import type { DropdownItemProps } from './GaDropdownItem.vue'
 
 export function useDropdownLogic(
@@ -6,73 +6,36 @@ export function useDropdownLogic(
   model: Ref<string | number>,
   emitUserChange: (value: string | number) => void,
 ) {
-  const children = ref<DropdownItemProps[]>([])
-  const activeChild = ref<string | number | undefined>()
+  const children = shallowRef<DropdownItemProps[]>([])
+  const focusedIndex = ref(0)
+  const focusedValue = computed(() => children.value[focusedIndex.value]?.value)
 
   function selectItem(value: string | number) {
     model.value = value
     emitUserChange(value)
     shown.value = false
-    activeChild.value = value
   }
 
   function registerChild(child: Partial<DropdownItemProps>) {
-    children.value.push(child as DropdownItemProps)
+    if (child.value === model?.value) focusedIndex.value = children.value.length
 
-    if (child.value === model?.value) {
-      activeChild.value = child.value as string | number
-    }
+    children.value = [...children.value, child]
   }
 
   function unregisterChild(childToRemove: Partial<DropdownItemProps>) {
     children.value = children.value.filter((c) => c.value !== childToRemove.value)
+  }
 
-    if (activeChild.value === childToRemove.value) {
-      activeChild.value = undefined
+  function findNextEnabledItemValue(direction: 1 | -1) {
+    const itemCount = children.value.length
+
+    for (let i = 0; i < itemCount; i++) {
+      const index = (focusedIndex.value + direction + itemCount) % itemCount // Wrap around
+
+      focusedIndex.value = index
+      if (children.value[index]?.disabled) continue
+      break
     }
-  }
-
-  function getEnabledItems() {
-    return children.value.filter((c) => !c.disabled)
-  }
-
-  function getFirstEnabledItemValue(): string | number | undefined {
-    return getEnabledItems()[0]?.value
-  }
-
-  function getLastEnabledItemValue(): string | number | undefined {
-    const enabled = getEnabledItems()
-    return enabled.length > 0 ? enabled[enabled.length - 1].value : undefined
-  }
-
-  // Finds the next or previous enabled item value.
-  function findNextEnabledItemValue(
-    currentValue: string | number | undefined,
-    direction: 1 | -1,
-  ): string | number | undefined {
-    const enabledItems = getEnabledItems()
-    const itemCount = enabledItems.length
-    if (itemCount === 0) return undefined
-
-    let currentIndex = -1
-    if (currentValue !== undefined) {
-      currentIndex = enabledItems.findIndex((item) => item.value === currentValue)
-    }
-
-    if (currentIndex === -1) {
-      return direction === 1 ? enabledItems[0]?.value : enabledItems[itemCount - 1]?.value
-    }
-
-    const nextIndex = (currentIndex + direction + itemCount) % itemCount
-    return enabledItems[nextIndex]?.value
-  }
-
-  function focusNext() {
-    activeChild.value = findNextEnabledItemValue(activeChild.value, 1)
-  }
-
-  function focusPrevious() {
-    activeChild.value = findNextEnabledItemValue(activeChild.value, -1)
   }
 
   function handleKeyDown(event: KeyboardEvent) {
@@ -90,28 +53,25 @@ export function useDropdownLogic(
     switch (key) {
       case 'ArrowDown':
         event.preventDefault()
-        focusNext()
+        findNextEnabledItemValue(1)
         break
       case 'ArrowUp':
         event.preventDefault()
-        focusPrevious()
+        findNextEnabledItemValue(-1)
         break
       case 'Home':
         event.preventDefault()
-        activeChild.value = getFirstEnabledItemValue()
+        focusedIndex.value = 0
         break
       case 'End':
         event.preventDefault()
-        activeChild.value = getLastEnabledItemValue()
+        focusedIndex.value = children.value.length - 1
         break
       case 'Enter':
       case ' ': // Space key also selects
         event.preventDefault()
-        if (activeChild.value !== undefined) {
-          const selectedItem = getEnabledItems().find((c) => c.value === activeChild.value)
-          if (selectedItem) {
-            selectItem(selectedItem.value!)
-          }
+        if (focusedValue.value && !children.value[focusedIndex.value]?.disabled) {
+          selectItem(focusedValue.value)
         }
         break
       case 'Escape':
@@ -124,17 +84,9 @@ export function useDropdownLogic(
     }
   }
 
-  watch(
-    children,
-    (newChildren) => {
-      console.log('Children updated:', newChildren)
-    },
-    { flush: 'post' },
-  )
-
   return {
     children,
-    activeChild,
+    focusedValue,
     registerChild,
     unregisterChild,
     handleKeyDown,

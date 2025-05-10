@@ -27,7 +27,7 @@ const classes = computed(() => [
   style.item,
   { [style.keyLine]: keyLine },
   { [style.disabled]: disabled },
-  { [style.active]: value === parent?.activeChild?.value },
+  { [style.focused]: value === parent?.focusedValue?.value },
   { [style.selected]: value === parent?.model?.value },
 ])
 
@@ -65,7 +65,7 @@ function handleClick() {
     cursor: pointer;
   }
 
-  &.active {
+  &.focused {
     outline: var(--ga-size-border-width-md) solid var(--ga-color-border-focus);
     outline-offset: -2px; /* TODO: fix */
   }

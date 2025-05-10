@@ -19,17 +19,14 @@ const shown = ref(false)
 
 defineProps<DropdownProps>()
 
-const { activeChild, registerChild, unregisterChild, handleKeyDown, selectItem } = useDropdownLogic(
-  shown,
-  model,
-  (value) => emit('change', value),
-)
+const { focusedValue, registerChild, unregisterChild, handleKeyDown, selectItem } =
+  useDropdownLogic(shown, model, (value) => emit('change', value))
 
 provide(dropdownKey, {
   onChange: selectItem,
   registerChild,
   unregisterChild,
-  activeChild,
+  focusedValue,
   model,
 })
 
