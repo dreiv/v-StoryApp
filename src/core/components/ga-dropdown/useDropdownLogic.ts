@@ -1,4 +1,4 @@
-import { ref, type Ref } from 'vue'
+import { ref, watch, type Ref } from 'vue'
 import type { DropdownItemProps } from './GaDropdownItem.vue'
 
 export function useDropdownLogic(
@@ -80,19 +80,9 @@ export function useDropdownLogic(
     const isDropdownOpen = shown.value
 
     if (!isDropdownOpen) {
-      if (['ArrowDown', 'ArrowUp', 'Enter', ' '].includes(key)) {
+      if (['ArrowDown', 'ArrowUp'].includes(key)) {
         event.preventDefault()
         shown.value = true
-        // const enabledItems = getEnabledItems()
-        // if (enabledItems.length > 0) {
-        //   const modelItem = enabledItems.find((c) => c.value === model.value)
-        //   if (modelItem) {
-        //     activeChild.value = modelItem.value
-        //   } else {
-        //     activeChild.value =
-        //       key === 'ArrowUp' ? getLastEnabledItemValue() : getFirstEnabledItemValue()
-        //   }
-        // }
       }
       return
     }
@@ -133,6 +123,14 @@ export function useDropdownLogic(
         break
     }
   }
+
+  watch(
+    children,
+    (newChildren) => {
+      console.log('Children updated:', newChildren)
+    },
+    { flush: 'post' },
+  )
 
   return {
     children,

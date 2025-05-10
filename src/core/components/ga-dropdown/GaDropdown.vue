@@ -37,7 +37,7 @@ defineExpose({ buttonRef })
 </script>
 
 <template>
-  <dropdown v-model:shown="shown" @keydown="handleKeyDown" no-auto-focus>
+  <dropdown v-model:shown="shown" @keydown="handleKeyDown" @blur="shown = false" no-auto-focus>
     <ga-button ref="buttonRef" aria-haspopup="listbox" :aria-expanded="shown" v-bind="$attrs">
       {{ title }}
       <component :is="shown ? ChevronUp : ChevronDown" />
