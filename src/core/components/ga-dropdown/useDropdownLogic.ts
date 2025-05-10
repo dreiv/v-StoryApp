@@ -1,4 +1,4 @@
-import { computed, ref, shallowRef, type Ref } from 'vue'
+import { computed, ref, shallowRef, watch, type Ref } from 'vue'
 import type { DropdownItemProps } from './GaDropdownItem.vue'
 
 export function useDropdownLogic(
@@ -7,7 +7,7 @@ export function useDropdownLogic(
   emitUserChange: (value: string | number) => void,
 ) {
   const children = shallowRef<DropdownItemProps[]>([])
-  const focusedIndex = ref(0)
+  const focusedIndex = ref(-1)
   const focusedValue = computed(() => children.value[focusedIndex.value]?.value)
 
   function selectItem(value: string | number) {
@@ -26,16 +26,49 @@ export function useDropdownLogic(
     children.value = children.value.filter((c) => c.value !== childToRemove.value)
   }
 
-  function findNextEnabledItemValue(direction: 1 | -1) {
-    const itemCount = children.value.length
-
-    for (let i = 0; i < itemCount; i++) {
-      const index = (focusedIndex.value + direction + itemCount) % itemCount // Wrap around
-
-      focusedIndex.value = index
-      if (children.value[index]?.disabled) continue
-      break
+  function findFirstEnabledIndex(): number {
+    if (children.value.length) {
+      for (let i = 0; i < children.value.length; i++) {
+        if (!children.value[i]?.disabled) return i
+      }
     }
+
+    return -1 // Fallback if all are disabled or list is empty
+  }
+
+  function findLastEnabledIndex(): number {
+    if (children.value.length) {
+      for (let i = children.value.length - 1; i >= 0; i--) {
+        if (!children.value[i]?.disabled) return i
+      }
+    }
+
+    return children.value.length - 1 // Fallback if all are disabled
+  }
+
+  function findNextEnabledIndex(currentKnownIndex: number, direction: 1 | -1): number {
+    const itemCount = children.value.length
+    if (!itemCount) return -1
+
+    for (let i = 1; i <= itemCount; i++) {
+      const nextPotentialIndex = (currentKnownIndex + direction * i + itemCount) % itemCount
+      if (!children.value[nextPotentialIndex]?.disabled) {
+        return nextPotentialIndex
+      }
+    }
+
+    // If all are disabled or only one item which might be disabled
+    return children.value[currentKnownIndex]?.disabled ? findFirstEnabledIndex() : currentKnownIndex
+  }
+
+  function focusNext() {
+    if (!children.value.length) return
+    focusedIndex.value = findNextEnabledIndex(focusedIndex.value, 1)
+  }
+
+  function focusPrevious() {
+    if (!children.value.length) return
+    focusedIndex.value = findNextEnabledIndex(focusedIndex.value, -1)
   }
 
   function handleKeyDown(event: KeyboardEvent) {
@@ -53,19 +86,19 @@ export function useDropdownLogic(
     switch (key) {
       case 'ArrowDown':
         event.preventDefault()
-        findNextEnabledItemValue(1)
+        focusNext()
         break
       case 'ArrowUp':
         event.preventDefault()
-        findNextEnabledItemValue(-1)
+        focusPrevious()
         break
       case 'Home':
         event.preventDefault()
-        focusedIndex.value = 0
+        focusedIndex.value = findFirstEnabledIndex()
         break
       case 'End':
         event.preventDefault()
-        focusedIndex.value = children.value.length - 1
+        focusedIndex.value = findLastEnabledIndex()
         break
       case 'Enter':
       case ' ': // Space key also selects
@@ -83,6 +116,14 @@ export function useDropdownLogic(
         break
     }
   }
+
+  watch(
+    children,
+    (newChildren) => {
+      if (newChildren.length && !model.value) focusedIndex.value = findFirstEnabledIndex()
+    },
+    { flush: 'post' },
+  )
 
   return {
     children,
