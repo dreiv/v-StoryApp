@@ -1,10 +1,12 @@
+import { globalIgnores } from 'eslint/config'
 import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript'
-import oxlint from 'eslint-plugin-oxlint'
-import pluginPlaywright from 'eslint-plugin-playwright'
-import pluginVitest from '@vitest/eslint-plugin'
+
 import pluginVue from 'eslint-plugin-vue'
+import pluginVitest from '@vitest/eslint-plugin'
+import pluginPlaywright from 'eslint-plugin-playwright'
+import pluginOxlint from 'eslint-plugin-oxlint'
+import pluginStorybook from 'eslint-plugin-storybook'
 import skipFormatting from '@vue/eslint-config-prettier/skip-formatting'
-import storybook from 'eslint-plugin-storybook'
 
 // To allow more languages other than `ts` in `.vue` files, uncomment the following lines:
 // import { configureVueProject } from '@vue/eslint-config-typescript'
@@ -17,12 +19,16 @@ export default defineConfigWithVueTs(
     files: ['**/*.{ts,mts,tsx,vue}'],
   },
 
-  {
-    name: 'app/files-to-ignore',
-    ignores: ['**/dist/**', '**/dist-ssr/**', '**/coverage/**'],
-  },
+  globalIgnores([
+    '**/dist/**',
+    '**/coverage/**',
+    '**/playwright-report/**',
+    '**/test-results/**',
+    '**/.storybook/**',
+    '**/storybook-static/**',
+  ]),
 
-  pluginVue.configs['flat/essential'],
+  ...pluginVue.configs['flat/essential'],
   vueTsConfigs.recommended,
 
   {
@@ -32,10 +38,10 @@ export default defineConfigWithVueTs(
 
   {
     ...pluginPlaywright.configs['flat/recommended'],
-    files: ['e2e/**/*.spec.ts'],
+    files: ['e2e/**/*.{spec}.{ts}'],
   },
 
-  ...storybook.configs['flat/recommended'],
-  oxlint.configs['flat/recommended'],
+  ...pluginStorybook.configs['flat/recommended'],
+  ...pluginOxlint.configs['flat/recommended'],
   skipFormatting, // Formatting rules - ALWAYS LAST
 )
