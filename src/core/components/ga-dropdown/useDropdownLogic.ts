@@ -8,8 +8,8 @@ export function useDropdownLogic(
 ) {
   const children = shallowRef<DropdownChildPayload[]>([])
   const focusedIndex = ref(-1)
+  const focusedId = computed(() => children.value[focusedIndex.value]?.id)
   const focusedValue = computed(() => children.value[focusedIndex.value]?.value)
-  const activeDescendantId = computed(() => children.value[focusedIndex.value]?.id)
 
   function registerChild(child: DropdownChildPayload) {
     if (child.value === model?.value) focusedIndex.value = children.value.length
@@ -108,8 +108,8 @@ export function useDropdownLogic(
 
   return {
     children,
+    focusedId,
     focusedValue,
-    activeDescendantId,
     registerChild,
     unregisterChild,
     handleKeyDown,
