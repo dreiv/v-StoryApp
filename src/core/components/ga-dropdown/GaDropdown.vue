@@ -12,18 +12,27 @@ export interface DropdownProps {
 }
 
 const buttonRef = useTemplateRef<HTMLButtonElement>('buttonRef')
-const model = defineModel<string | number>({ default: '' })
+const model = defineModel<string | number>()
 const emit = defineEmits(['change'])
 
 const shown = ref(false)
 
 defineProps<DropdownProps>()
 
-const { focusedValue, registerChild, unregisterChild, handleKeyDown, selectItem } =
-  useDropdownLogic(shown, model, (value) => emit('change', value))
+function onChange(value: string | number) {
+  model.value = value
+  emit('change', value)
+  shown.value = false
+}
+
+const { focusedValue, registerChild, unregisterChild, handleKeyDown } = useDropdownLogic(
+  shown,
+  model,
+  onChange,
+)
 
 provide(dropdownKey, {
-  onChange: selectItem,
+  onChange,
   registerChild,
   unregisterChild,
   focusedValue,
@@ -36,7 +45,7 @@ defineExpose({ buttonRef })
 <template>
   <dropdown v-model:shown="shown" @keydown="handleKeyDown" @blur="shown = false" no-auto-focus>
     <ga-button ref="buttonRef" aria-haspopup="listbox" :aria-expanded="shown" v-bind="$attrs">
-      {{ title }}
+      <slot name="title">{{ title }}</slot>
       <component :is="shown ? ChevronUp : ChevronDown" />
     </ga-button>
 

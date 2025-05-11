@@ -3,18 +3,12 @@ import type { DropdownItemProps } from './GaDropdownItem.vue'
 
 export function useDropdownLogic(
   shown: Ref<boolean>,
-  model: Ref<string | number>,
-  emitUserChange: (value: string | number) => void,
+  model: Ref<string | number | undefined>,
+  onChange: (value: string | number) => void,
 ) {
   const children = shallowRef<DropdownItemProps[]>([])
   const focusedIndex = ref(-1)
   const focusedValue = computed(() => children.value[focusedIndex.value]?.value)
-
-  function selectItem(value: string | number) {
-    model.value = value
-    emitUserChange(value)
-    shown.value = false
-  }
 
   function registerChild(child: Partial<DropdownItemProps>) {
     if (child.value === model?.value) focusedIndex.value = children.value.length
@@ -90,9 +84,8 @@ export function useDropdownLogic(
       case 'Enter':
       case ' ': // Space key also selects
         event.preventDefault()
-        if (focusedValue.value && !children.value[focusedIndex.value]?.disabled) {
-          selectItem(focusedValue.value)
-        }
+        if (focusedValue.value && !children.value[focusedIndex.value]?.disabled)
+          onChange(focusedValue.value)
         break
       case 'Escape':
         event.preventDefault()
@@ -118,6 +111,5 @@ export function useDropdownLogic(
     registerChild,
     unregisterChild,
     handleKeyDown,
-    selectItem,
   }
 }

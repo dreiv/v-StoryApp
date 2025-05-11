@@ -11,7 +11,7 @@ export interface DropdownContext {
   registerChild: (child: Partial<DropdownItemProps>) => void
   unregisterChild: (childToRemove: Partial<DropdownItemProps>) => void
   focusedValue?: Ref<string | number | undefined>
-  model?: Ref<string | number>
+  model?: Ref<string | number | undefined>
 }
 export const radioGroupKey: InjectionKey<RadioGroupContext> = Symbol('radioGroup')
 export const dropdownKey: InjectionKey<DropdownContext> = Symbol('dropdown')
