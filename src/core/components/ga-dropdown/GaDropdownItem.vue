@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, inject, onBeforeUnmount, onMounted, useCssModule } from 'vue'
 import { dropdownKey } from '@/core/constants'
+import { uniqueId } from '@/core/utils/uniqueId'
 
 export interface DropdownItemProps {
   label?: string
@@ -12,11 +13,15 @@ export interface DropdownItemProps {
 const { value, disabled, keyLine } = defineProps<DropdownItemProps>()
 const style = useCssModule()
 
+const itemId = uniqueId('ga-dropdown-item')
+
 const parent = inject(dropdownKey)
 if (!parent) throw new Error('GaDropdownItem must be used inside a GaDropdown')
 
+const isSelected = computed(() => value === parent?.model?.value)
+
 onMounted(() => {
-  if (parent) parent.registerChild({ value, disabled })
+  if (parent) parent.registerChild({ id: itemId, value, disabled })
 })
 
 onBeforeUnmount(() => {
@@ -28,7 +33,7 @@ const classes = computed(() => [
   { [style.keyLine]: keyLine },
   { [style.disabled]: disabled },
   { [style.focused]: value === parent?.focusedValue?.value },
-  { [style.selected]: value === parent?.model?.value },
+  { [style.selected]: isSelected.value },
 ])
 
 function handleClick() {
@@ -37,7 +42,15 @@ function handleClick() {
 </script>
 
 <template>
-  <div :class="classes" :disabled="disabled" @click="handleClick">
+  <div
+    :id="itemId"
+    :class="classes"
+    role="option"
+    :aria-selected="isSelected"
+    :aria-disabled="disabled"
+    :disabled="disabled"
+    @click="handleClick"
+  >
     <slot>{{ label }}</slot>
   </div>
 </template>

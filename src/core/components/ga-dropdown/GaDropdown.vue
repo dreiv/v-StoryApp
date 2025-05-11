@@ -25,11 +25,8 @@ function onChange(value: string | number) {
   shown.value = false
 }
 
-const { focusedValue, registerChild, unregisterChild, handleKeyDown } = useDropdownLogic(
-  shown,
-  model,
-  onChange,
-)
+const { focusedValue, activeDescendantId, registerChild, unregisterChild, handleKeyDown } =
+  useDropdownLogic(shown, model, onChange)
 
 provide(dropdownKey, {
   onChange,
@@ -50,7 +47,9 @@ defineExpose({ buttonRef })
     </ga-button>
 
     <template #popper>
-      <slot />
+      <div role="listbox" :aria-activedescendant="activeDescendantId">
+        <slot />
+      </div>
     </template>
   </dropdown>
 </template>

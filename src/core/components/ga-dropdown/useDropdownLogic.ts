@@ -1,22 +1,22 @@
 import { computed, ref, shallowRef, watch, type Ref } from 'vue'
-import type { DropdownItemProps } from './GaDropdownItem.vue'
+import type { DropdownChildPayload } from '@/core/constants'
 
 export function useDropdownLogic(
   shown: Ref<boolean>,
   model: Ref<string | number | undefined>,
   onChange: (value: string | number) => void,
 ) {
-  const children = shallowRef<DropdownItemProps[]>([])
+  const children = shallowRef<DropdownChildPayload[]>([])
   const focusedIndex = ref(-1)
   const focusedValue = computed(() => children.value[focusedIndex.value]?.value)
+  const activeDescendantId = computed(() => children.value[focusedIndex.value]?.id)
 
-  function registerChild(child: Partial<DropdownItemProps>) {
+  function registerChild(child: DropdownChildPayload) {
     if (child.value === model?.value) focusedIndex.value = children.value.length
-
     children.value = [...children.value, child]
   }
 
-  function unregisterChild(childToRemove: Partial<DropdownItemProps>) {
+  function unregisterChild(childToRemove: Partial<DropdownChildPayload>) {
     children.value = children.value.filter((c) => c.value !== childToRemove.value)
   }
 
@@ -33,7 +33,8 @@ export function useDropdownLogic(
     if (!itemCount) return -1
 
     for (let i = 1; i <= itemCount; i++) {
-      const nextPotentialIndex = (currentKnownIndex + direction * i + itemCount) % itemCount // Wrap around
+      const term = currentKnownIndex + direction * i
+      const nextPotentialIndex = ((term % itemCount) + itemCount) % itemCount // Wrap around safely
       if (!children.value[nextPotentialIndex]?.disabled) {
         return nextPotentialIndex
       }
@@ -108,6 +109,7 @@ export function useDropdownLogic(
   return {
     children,
     focusedValue,
+    activeDescendantId,
     registerChild,
     unregisterChild,
     handleKeyDown,
