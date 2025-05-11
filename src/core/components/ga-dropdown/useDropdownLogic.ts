@@ -1,5 +1,5 @@
 import { computed, ref, shallowRef, watch, type Ref } from 'vue'
-import type { DropdownChildPayload } from '@/core/constants'
+import type { DropdownChildPayload } from './types'
 
 export function useDropdownLogic(
   shown: Ref<boolean>,

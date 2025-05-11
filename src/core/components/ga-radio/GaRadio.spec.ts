@@ -2,7 +2,7 @@ import { shallowMount, type VueWrapper } from '@vue/test-utils'
 import GaRadio from './GaRadio.vue'
 
 vi.mock('@/core/composables/useFormInput')
-vi.mock('@/core/constants')
+vi.mock('./types', () => ({ radioGroupKey: 'radioGroup' }))
 
 const radioGroup = { name: 'mockName', model: { value: '' } }
 describe('Radio', () => {

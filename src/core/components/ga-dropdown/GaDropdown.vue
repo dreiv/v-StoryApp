@@ -4,7 +4,7 @@ import { Dropdown } from 'floating-vue'
 import { provide, ref, useTemplateRef } from 'vue'
 
 import GaButton from '../ga-button/GaButton.vue'
-import { dropdownKey } from '@/core/constants'
+import { dropdownKey } from './types'
 import { useDropdownLogic } from './useDropdownLogic'
 
 export interface DropdownProps {
