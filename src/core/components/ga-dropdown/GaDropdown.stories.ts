@@ -4,6 +4,7 @@ import { ChevronDown } from 'lucide-vue-next'
 
 import GaButton from '../ga-button/GaButton.vue'
 import GaDropdown from './GaDropdown.vue'
+import GaDropdownCaption from './GaDropdownCaption.vue'
 import GaDropdownItem from './GaDropdownItem.vue'
 
 const meta = {
@@ -42,11 +43,12 @@ type Story = StoryObj<typeof meta>
 export const Examples: Story = {
   parameters: { controls: { disable: true } },
   render: () => ({
-    components: { GaButton, GaDropdown, GaDropdownItem, ChevronDown },
+    components: { GaButton, GaDropdown, GaDropdownCaption, GaDropdownItem, ChevronDown },
     data: () => ({ selected: 6 }),
     template: `
       <div :style="{display:'flex',alignItems:'center',flexDirection:'column',gap:'16px'}">
         <ga-dropdown title='Click me to see options!' v-model='selected'>
+          <ga-dropdown-caption title='Options' />
           <ga-dropdown-item :value='1' label='Option 1: Basic Item' />
           <ga-dropdown-item :value='2' label='Option 2: Selected Item' />
           <ga-dropdown-item :value='3' label='Option 3: Another Selected Item' key-line />

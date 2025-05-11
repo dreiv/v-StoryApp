@@ -61,9 +61,6 @@ function handleClick() {
   align-items: center;
   gap: var(--ga-size-spacing-03);
 
-  border: 0;
-  border-radius: 2px;
-  background-color: var(--ga-color-surface-primary);
   padding: 0 var(--ga-size-spacing-04);
   height: 2.25rem; /* TODO: fix */
 
@@ -72,8 +69,6 @@ function handleClick() {
   line-height: var(--ga-text-md-line-height);
   letter-spacing: var(--ga-text-md-tracking);
 
-  text-align: left;
-
   &:not(.disabled, .selected) {
     cursor: pointer;
   }
@@ -81,6 +76,7 @@ function handleClick() {
   &.focused {
     outline: var(--ga-size-border-width-md) solid var(--ga-color-border-focus);
     outline-offset: -2px; /* TODO: fix */
+    border-radius: var(--ga-radius);
   }
 
   &:hover {
