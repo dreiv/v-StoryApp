@@ -11,11 +11,14 @@ export function useDropdownLogic(
   const focusedItem = computed(() => children.value[focusedIndex.value])
 
   function registerChild(child: DropdownItemProps) {
-    if (child.value === model?.value?.value) focusedIndex.value = children.value.length
+    if (child.value === model?.value?.value) focusedIndex.value = children.value.length // Set focus
+
     children.value = [...children.value, child]
   }
 
-  function unregisterChild(childToRemove: DropdownItemProps) {
+  function unregisterChild(childToRemove: Pick<DropdownItemProps, 'value'>) {
+    if (childToRemove.value === focusedItem?.value?.value) focusedIndex.value = -1 // Reset focus
+
     children.value = children.value.filter((c) => c.value !== childToRemove.value)
   }
 
