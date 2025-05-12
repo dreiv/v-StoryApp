@@ -1,22 +1,21 @@
-import { computed, ref, shallowRef, watch, type Ref } from 'vue'
-import type { DropdownChildPayload } from './types'
+import { computed, ref, shallowRef, watch, type ModelRef, type Ref } from 'vue'
+import type { DropdownItemProps } from './GaDropdownItem.vue'
 
 export function useDropdownLogic(
+  onChange: (value: DropdownItemProps) => void,
   shown: Ref<boolean>,
-  model: Ref<string | number | undefined>,
-  onChange: (value: string | number) => void,
+  model: ModelRef<DropdownItemProps | undefined>,
 ) {
-  const children = shallowRef<DropdownChildPayload[]>([])
+  const children = shallowRef<DropdownItemProps[]>([])
   const focusedIndex = ref(-1)
-  const focusedId = computed(() => children.value[focusedIndex.value]?.id)
-  const focusedValue = computed(() => children.value[focusedIndex.value]?.value)
+  const focusedItem = computed(() => children.value[focusedIndex.value])
 
-  function registerChild(child: DropdownChildPayload) {
-    if (child.value === model?.value) focusedIndex.value = children.value.length
+  function registerChild(child: DropdownItemProps) {
+    if (child.value === model?.value?.value) focusedIndex.value = children.value.length
     children.value = [...children.value, child]
   }
 
-  function unregisterChild(childToRemove: Partial<DropdownChildPayload>) {
+  function unregisterChild(childToRemove: DropdownItemProps) {
     children.value = children.value.filter((c) => c.value !== childToRemove.value)
   }
 
@@ -85,8 +84,7 @@ export function useDropdownLogic(
       case 'Enter':
       case ' ': // Space key also selects
         event.preventDefault()
-        if (focusedValue.value && !children.value[focusedIndex.value]?.disabled)
-          onChange(focusedValue.value)
+        if (!focusedItem.value?.disabled) onChange(focusedItem.value)
         break
       case 'Escape':
         event.preventDefault()
@@ -101,17 +99,10 @@ export function useDropdownLogic(
   watch(
     children,
     (newChildren) => {
-      if (newChildren.length && !model.value) focusedIndex.value = findFirstEnabledIndex()
+      if (newChildren.length && !model?.value?.value) focusedIndex.value = findFirstEnabledIndex()
     },
     { flush: 'post' },
   )
 
-  return {
-    children,
-    focusedId,
-    focusedValue,
-    registerChild,
-    unregisterChild,
-    handleKeyDown,
-  }
+  return { focusedItem, registerChild, unregisterChild, handleKeyDown }
 }

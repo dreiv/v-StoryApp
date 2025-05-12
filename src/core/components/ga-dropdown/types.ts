@@ -1,17 +1,13 @@
 import type { InjectionKey, Ref } from 'vue'
+import type { DropdownItemProps } from './GaDropdownItem.vue'
 
-export interface DropdownChildPayload {
-  id: string // ID is essential for aria-activedescendant
-  value?: string | number
-  disabled?: boolean
-}
-
+type valueType = Pick<DropdownItemProps, 'value'>
 export interface DropdownContext {
-  onChange: (value: string | number) => void
-  registerChild: (child: DropdownChildPayload) => void
-  unregisterChild: (childToRemove: { value?: string | number }) => void
-  focusedValue?: Ref<string | number | undefined>
-  model?: Ref<string | number | undefined>
+  focusedItem?: Ref<DropdownItemProps>
+  model: Ref<DropdownItemProps | undefined>
+  onChange: (value: DropdownItemProps) => void
+  registerChild: (child: DropdownItemProps) => void
+  unregisterChild: (childToRemove: valueType) => void
 }
 
 export const dropdownKey: InjectionKey<DropdownContext> = Symbol('dropdown')

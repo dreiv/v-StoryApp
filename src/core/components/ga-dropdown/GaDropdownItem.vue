@@ -4,24 +4,29 @@ import { uniqueId } from '@/core/utils/uniqueId'
 import { dropdownKey } from './types'
 
 export interface DropdownItemProps {
+  id?: string
   label?: string
   value?: string | number
   disabled?: boolean
   keyLine?: boolean
 }
 
-const { value, disabled, keyLine } = defineProps<DropdownItemProps>()
+const {
+  id = uniqueId('ga-dropdown-item'),
+  label,
+  value,
+  disabled,
+  keyLine,
+} = defineProps<DropdownItemProps>()
 const style = useCssModule()
-
-const itemId = uniqueId('ga-dropdown-item')
 
 const parent = inject(dropdownKey)
 if (!parent) throw new Error('GaDropdownItem must be used inside a GaDropdown')
 
-const isSelected = computed(() => value === parent?.model?.value)
+const isSelected = computed(() => value === parent?.model?.value?.value)
 
 onMounted(() => {
-  if (parent) parent.registerChild({ id: itemId, value, disabled })
+  if (parent) parent.registerChild({ id, label, value, disabled })
 })
 
 onBeforeUnmount(() => {
@@ -32,18 +37,18 @@ const classes = computed(() => [
   style.item,
   { [style.keyLine]: keyLine },
   { [style.disabled]: disabled },
-  { [style.focused]: value === parent?.focusedValue?.value },
+  { [style.focused]: value === parent?.focusedItem?.value?.value },
   { [style.selected]: isSelected.value },
 ])
 
 function handleClick() {
-  if (!disabled && value) parent!.onChange(value)
+  if (!disabled && value) parent!.onChange({ value, label })
 }
 </script>
 
 <template>
   <div
-    :id="itemId"
+    :id
     :class="classes"
     role="option"
     :aria-selected="isSelected"

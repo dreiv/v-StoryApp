@@ -6,38 +6,33 @@ import { provide, ref, useTemplateRef } from 'vue'
 import GaButton from '../ga-button/GaButton.vue'
 import { dropdownKey } from './types'
 import { useDropdownLogic } from './useDropdownLogic'
+import type { DropdownItemProps } from './GaDropdownItem.vue'
 
 export interface DropdownProps {
   title?: string
 }
 
 const buttonRef = useTemplateRef<HTMLButtonElement>('buttonRef')
-const model = defineModel<string | number>()
+const model = defineModel<DropdownItemProps>()
 const emit = defineEmits(['change'])
 
 const shown = ref(false)
 
 defineProps<DropdownProps>()
 
-function onChange(value: string | number) {
+function onChange(value: DropdownItemProps) {
   model.value = value
   emit('change', value)
   shown.value = false
 }
 
-const { focusedId, focusedValue, registerChild, unregisterChild, handleKeyDown } = useDropdownLogic(
+const { focusedItem, registerChild, unregisterChild, handleKeyDown } = useDropdownLogic(
+  onChange,
   shown,
   model,
-  onChange,
 )
 
-provide(dropdownKey, {
-  onChange,
-  registerChild,
-  unregisterChild,
-  focusedValue,
-  model,
-})
+provide(dropdownKey, { focusedItem, model, onChange, registerChild, unregisterChild })
 
 defineExpose({ buttonRef })
 </script>
@@ -45,12 +40,12 @@ defineExpose({ buttonRef })
 <template>
   <dropdown v-model:shown="shown" @keydown="handleKeyDown" @blur="shown = false" no-auto-focus>
     <ga-button ref="buttonRef" aria-haspopup="listbox" :aria-expanded="shown" v-bind="$attrs">
-      <slot name="title">{{ title }}</slot>
+      <slot name="title">{{ model?.label ? model?.label : title }}</slot>
       <component :is="shown ? ChevronUp : ChevronDown" />
     </ga-button>
 
     <template #popper>
-      <div role="listbox" :aria-activedescendant="focusedId">
+      <div role="listbox" :aria-activedescendant="focusedItem?.id">
         <slot />
       </div>
     </template>
