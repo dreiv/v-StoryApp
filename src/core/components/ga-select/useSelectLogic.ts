@@ -1,22 +1,22 @@
 import { computed, ref, shallowRef, watch, type ModelRef, type Ref } from 'vue'
-import type { DropdownItemProps } from './GaDropdownItem.vue'
+import type { SelectItemProps } from './GaSelectItem.vue'
 
-export function useDropdownLogic(
-  onChange: (value: DropdownItemProps) => void,
+export function useSelectLogic(
+  onChange: (value: SelectItemProps) => void,
   shown: Ref<boolean>,
-  model: ModelRef<DropdownItemProps | undefined>,
+  model: ModelRef<SelectItemProps | undefined>,
 ) {
-  const children = shallowRef<DropdownItemProps[]>([])
+  const children = shallowRef<SelectItemProps[]>([])
   const focusedIndex = ref(-1)
   const focusedItem = computed(() => children.value[focusedIndex.value])
 
-  function registerChild(child: DropdownItemProps) {
+  function registerChild(child: SelectItemProps) {
     if (child.value === model?.value?.value) focusedIndex.value = children.value.length // Set focus
 
     children.value = [...children.value, child]
   }
 
-  function unregisterChild(childToRemove: Pick<DropdownItemProps, 'value'>) {
+  function unregisterChild(childToRemove: Pick<SelectItemProps, 'value'>) {
     if (childToRemove.value === focusedItem?.value?.value) focusedIndex.value = -1 // Reset focus
 
     children.value = children.value.filter((c) => c.value !== childToRemove.value)
@@ -57,9 +57,9 @@ export function useDropdownLogic(
 
   function handleKeyDown(event: KeyboardEvent) {
     const { key } = event
-    const isDropdownOpen = shown.value
+    const isSelectOpen = shown.value
 
-    if (!isDropdownOpen) {
+    if (!isSelectOpen) {
       if (['ArrowDown', 'ArrowUp'].includes(key)) {
         event.preventDefault()
         shown.value = true

@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed, inject, onBeforeUnmount, onMounted, useCssModule } from 'vue'
 import { uniqueId } from '@/core/utils/uniqueId'
-import { dropdownKey } from './types'
+import { selectKey } from './types'
 
-export interface DropdownItemProps {
+export interface SelectItemProps {
   id?: string
   label?: string
   value?: string | number
@@ -12,16 +12,16 @@ export interface DropdownItemProps {
 }
 
 const {
-  id = uniqueId('ga-dropdown-item'),
+  id = uniqueId('ga-select-item'),
   label,
   value,
   disabled,
   keyLine,
-} = defineProps<DropdownItemProps>()
+} = defineProps<SelectItemProps>()
 const style = useCssModule()
 
-const parent = inject(dropdownKey)
-if (!parent) throw new Error('GaDropdownItem must be used inside a GaDropdown')
+const parent = inject(selectKey)
+if (!parent) throw new Error('GaSelectItem must be used inside a GaSelect')
 
 const isSelected = computed(() => value === parent?.model?.value?.value)
 

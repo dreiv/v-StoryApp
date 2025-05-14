@@ -4,35 +4,35 @@ import { Dropdown } from 'floating-vue'
 import { provide, ref, useTemplateRef } from 'vue'
 
 import GaButton from '../ga-button/GaButton.vue'
-import { dropdownKey } from './types'
-import { useDropdownLogic } from './useDropdownLogic'
-import type { DropdownItemProps } from './GaDropdownItem.vue'
+import { selectKey } from './types'
+import { useSelectLogic } from './useSelectLogic'
+import type { SelectItemProps } from './GaSelectItem.vue'
 
-export interface DropdownProps {
+export interface SelectProps {
   label?: string
 }
 
 const buttonRef = useTemplateRef<HTMLButtonElement>('buttonRef')
-const model = defineModel<DropdownItemProps>()
+const model = defineModel<SelectItemProps>()
 const emit = defineEmits(['change'])
 
 const shown = ref(false)
 
-defineProps<DropdownProps>()
+defineProps<SelectProps>()
 
-function onChange(value: DropdownItemProps) {
+function onChange(value: SelectItemProps) {
   model.value = value
   emit('change', value)
   shown.value = false
 }
 
-const { focusedItem, registerChild, unregisterChild, handleKeyDown } = useDropdownLogic(
+const { focusedItem, registerChild, unregisterChild, handleKeyDown } = useSelectLogic(
   onChange,
   shown,
   model,
 )
 
-provide(dropdownKey, { focusedItem, model, onChange, registerChild, unregisterChild })
+provide(selectKey, { focusedItem, model, onChange, registerChild, unregisterChild })
 
 defineExpose({ buttonRef })
 </script>
@@ -53,7 +53,7 @@ defineExpose({ buttonRef })
 </template>
 
 <style>
-.v-popper--theme-dropdown {
+.v-popper--theme-select {
   .v-popper__inner {
     border: var(--ga-size-border-width-sm) solid var(--ga-color-border-primary);
     border-radius: var(--ga-radius);
