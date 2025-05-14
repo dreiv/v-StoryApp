@@ -25,6 +25,7 @@
     "code-quality-checks": "lint-staged"
   },
   "dependencies": {
+    "@vueuse/core": "^13.2.0",
     "floating-vue": "^5.2.2",
     "lucide-vue-next": "^0.510.0",
     "pinia": "^3.0.2",
