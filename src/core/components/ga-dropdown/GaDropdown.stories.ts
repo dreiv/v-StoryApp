@@ -47,7 +47,7 @@ export const Examples: Story = {
     data: () => ({ selected: { value: 2, label: 'Option 2: Selected Item' } }),
     template: `
       <div :style="{display:'flex',alignItems:'center',flexDirection:'column',gap:'16px'}">
-        <ga-dropdown placeholder='Click me to see options!' v-model='selected'>
+        <ga-dropdown label='Click me to see options!' v-model='selected'>
           <ga-dropdown-caption title='Options' />
           <ga-dropdown-item :value='1' label='Option 1: Basic Item' />
           <ga-dropdown-item :value='2' label='Option 2: Selected Item' />

@@ -9,7 +9,7 @@ import { useDropdownLogic } from './useDropdownLogic'
 import type { DropdownItemProps } from './GaDropdownItem.vue'
 
 export interface DropdownProps {
-  placeholder?: string
+  label?: string
 }
 
 const buttonRef = useTemplateRef<HTMLButtonElement>('buttonRef')
@@ -40,7 +40,7 @@ defineExpose({ buttonRef })
 <template>
   <dropdown v-model:shown="shown" @keydown="handleKeyDown" @blur="shown = false" no-auto-focus>
     <ga-button ref="buttonRef" aria-haspopup="listbox" :aria-expanded="shown" v-bind="$attrs">
-      <slot name="placeholder">{{ model?.label ? model?.label : placeholder }}</slot>
+      <slot name="label">{{ model?.label ? model?.label : label }}</slot>
       <component :is="shown ? ChevronUp : ChevronDown" />
     </ga-button>
 
