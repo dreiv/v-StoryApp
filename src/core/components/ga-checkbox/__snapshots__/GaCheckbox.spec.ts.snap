@@ -1,0 +1,46 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Checkbox > should be disabled when disabled prop is true 1`] = `
+"<label class="mock-input"><input type="checkbox" class="native" disabled="">
+  <div class="marker">
+    <anonymous-stub class="checked" size="12" stroke-width="4"></anonymous-stub>
+    <anonymous-stub class="indeterminate" size="12" stroke-width="4"></anonymous-stub>
+  </div><span class="label"></span>
+</label>"
+`;
+
+exports[`Checkbox > should render correctly with default props 1`] = `
+"<label class="mock-input"><input type="checkbox" class="native">
+  <div class="marker">
+    <anonymous-stub class="checked" size="12" stroke-width="4"></anonymous-stub>
+    <anonymous-stub class="indeterminate" size="12" stroke-width="4"></anonymous-stub>
+  </div><span class="label"></span>
+</label>"
+`;
+
+exports[`Checkbox > should render correctly with default slot 1`] = `
+"<label class="mock-input"><input type="checkbox" class="native">
+  <div class="marker">
+    <anonymous-stub class="checked" size="12" stroke-width="4"></anonymous-stub>
+    <anonymous-stub class="indeterminate" size="12" stroke-width="4"></anonymous-stub>
+  </div><span class="label">Mock Content</span>
+</label>"
+`;
+
+exports[`Checkbox > should render correctly with label prop 1`] = `
+"<label class="mock-input"><input type="checkbox" class="native">
+  <div class="marker">
+    <anonymous-stub class="checked" size="12" stroke-width="4"></anonymous-stub>
+    <anonymous-stub class="indeterminate" size="12" stroke-width="4"></anonymous-stub>
+  </div><span class="label">Accept terms</span>
+</label>"
+`;
+
+exports[`Checkbox > should render with error styling when error prop is true 1`] = `
+"<label class="mock-input mock-error" aria-invalid="true" aria-errormessage="Test Error"><input type="checkbox" class="native">
+  <div class="marker">
+    <anonymous-stub class="checked" size="12" stroke-width="4"></anonymous-stub>
+    <anonymous-stub class="indeterminate" size="12" stroke-width="4"></anonymous-stub>
+  </div><span class="label"></span>
+</label>"
+`;
