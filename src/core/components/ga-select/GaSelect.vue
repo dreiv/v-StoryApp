@@ -53,7 +53,7 @@ defineExpose({ buttonRef })
 </template>
 
 <style>
-.v-popper--theme-select {
+.v-popper--theme-dropdown {
   .v-popper__inner {
     border: var(--ga-size-border-width-sm) solid var(--ga-color-border-primary);
     border-radius: var(--ga-radius);
