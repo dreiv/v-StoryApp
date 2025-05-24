@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import { ChevronDown } from 'lucide-vue-next'
 
 import GaButton from '../ga-button/GaButton.vue'
+import GaInput from '../ga-input/GaInput.vue'
 import GaFormField from './GaFormField.vue'
 
 const meta = {
@@ -32,11 +33,11 @@ type Story = StoryObj<typeof meta>
 export const Examples: Story = {
   parameters: { controls: { disable: true } },
   render: () => ({
-    components: { GaFormField, GaButton, ChevronDown },
+    components: { GaFormField, GaButton, GaInput, ChevronDown },
     template: `
       <div :style="{display:'flex',alignItems:'center',flexDirection:'column',gap:'16px'}">
-        <ga-form-field>
-          <ga-button>Menu <chevron-down /></ga-button>
+        <ga-form-field label="Label">
+          <ga-input placeholder="Placeholder" />
         </ga-form-field>
       </div>
     `,
