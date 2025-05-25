@@ -1,10 +1,21 @@
 <script setup lang="ts">
-const { label } = defineProps<{ label?: string }>()
+import { provide } from 'vue'
+import { uniqueId } from '@/core/utils/uniqueId'
+import { formFieldKey } from './types'
+
+export interface FormFieldProps {
+  id?: string
+  label?: string
+}
+
+const { id = uniqueId('form-field'), label } = defineProps<FormFieldProps>()
+
+provide(formFieldKey, { id })
 </script>
 
 <template>
   <div :class="$style.formField">
-    <label :class="$style.label" v-if="$slots.label || label">
+    <label :class="$style.label" v-if="$slots.label || label" :for="id">
       <slot name="label">{{ label }}</slot>
     </label>
 
