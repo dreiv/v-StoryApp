@@ -1,8 +1,10 @@
 import type { ConcreteComponent } from 'vue'
 import type { Meta, StoryObj } from '@storybook/vue3'
-import { ChevronDown } from 'lucide-vue-next'
+
+import { TriangleAlert } from 'lucide-vue-next'
 
 import GaButton from '../ga-button/GaButton.vue'
+import GaFormInfo from '../GaFormInfo.vue'
 import GaInput from '../ga-input/GaInput.vue'
 import GaFormField from './GaFormField.vue'
 
@@ -21,25 +23,30 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-/**
- *  This component provides a menu functionality.
- *
-    It is based on the <a href="https://floating-vue.starpad.dev/" target="_blank">floating-vue</a> library,
-    which offers advanced positioning and interaction capabilities.
-
-    For detailed configuration options and usage, please refer to the
-    <a href="https://floating-vue.starpad.dev/guide/" target="_blank">floating-vue documentation</a>.
- */
-export const Examples: Story = {
+export const Default: Story = {
   parameters: { controls: { disable: true } },
   render: () => ({
-    components: { GaFormField, GaButton, GaInput, ChevronDown },
+    components: { GaFormField, GaButton, GaInput },
     template: `
-      <div :style="{display:'flex',alignItems:'center',flexDirection:'column',gap:'16px'}">
-        <ga-form-field label="Label">
-          <ga-input placeholder="Placeholder" />
-        </ga-form-field>
-      </div>
+      <ga-form-field label="Label">
+        <ga-input placeholder="Placeholder" />
+      </ga-form-field>
+    `,
+  }),
+}
+
+export const WithInfo: Story = {
+  parameters: { controls: { disable: true } },
+  render: () => ({
+    components: { GaFormField, GaButton, GaInput, GaFormInfo, TriangleAlert },
+    template: `
+      <ga-form-field label="Label">
+        <ga-input placeholder="Placeholder" />
+
+        <template #info>
+          <ga-form-info label="Use special characters if available."><template #icon><triangle-alert /></template></ga-form-info>
+        </template>
+      </ga-form-field>
     `,
   }),
 }

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 import { ChartSpline, OctagonAlert, TriangleAlert } from 'lucide-vue-next'
 
-import GaFormDetail from '../GaFormDetail.vue'
+import GaFormInfo from '../GaFormInfo.vue'
 import GaRadio from './GaRadio.vue'
 import GaRadioGroup from './GaRadioGroup.vue'
 
@@ -48,7 +48,7 @@ export const Examples: Story = {
   args: {},
   parameters: { controls: { disable: true } },
   render: () => ({
-    components: { GaFormDetail, GaRadio, GaRadioGroup, ChartSpline, OctagonAlert, TriangleAlert },
+    components: { GaFormInfo, GaRadio, GaRadioGroup, ChartSpline, OctagonAlert, TriangleAlert },
     template: `
       <div :style="{display:'flex',flexWrap:'wrap',gap:'var(--ga-size-spacing-06)',maxWidth:'960px'}">
         <ga-radio-group title="Payment frequency">
@@ -96,9 +96,9 @@ export const Examples: Story = {
             <ga-radio value="2" label='Moderate' />
             <ga-radio value="3" label='Aggressive' />
           </ga-radio-group>
-          <ga-form-detail label="Risk factors affect algorithmic payments as well">
+          <ga-form-info label="Risk factors affect algorithmic payments as well">
             <template #icon><chart-spline /></template>
-          </ga-form-detail>
+          </ga-form-info>
         </div>
 
         <ga-radio-group direction="horizontal">
@@ -119,9 +119,9 @@ export const Examples: Story = {
             <ga-radio value="3" label='Aggressive' />
           </ga-radio-group>
 
-          <ga-form-detail label="Risk factors affect algorithmic payments as well">
+          <ga-form-info label="Risk factors affect algorithmic payments as well">
             <template #icon><chart-spline /></template>
-          </ga-form-detail>
+          </ga-form-info>
         </div>
 
         <div :style="{display:'flex',flexDirection:'column',gap:'var(--ga-size-spacing-03)'}">
@@ -136,9 +136,9 @@ export const Examples: Story = {
             <ga-radio value="3" label='Credit notes' error />
           </ga-radio-group>
 
-          <ga-form-detail label="Please select a document type for this workflow">
+          <ga-form-info label="Please select a document type for this workflow">
             <template #icon><octagon-alert strokeWidth="2.5" color="var(--ga-color-error)" /></template>
-          </ga-form-detail>
+          </ga-form-info>
         </div>
 
         <div :style="{display:'flex',flexDirection:'column',gap:'var(--ga-size-spacing-03)'}">
@@ -153,9 +153,9 @@ export const Examples: Story = {
             <ga-radio value="3" label='Credit notes' error />
           </ga-radio-group>
 
-          <ga-form-detail label="Please select a document type for this workflow">
+          <ga-form-info label="Please select a document type for this workflow">
             <template #icon><octagon-alert strokeWidth="2.5" color="var(--ga-color-error)" /></template>
-          </ga-form-detail>
+          </ga-form-info>
         </div>
 
         <div :style="{display:'flex',flexDirection:'column',gap:'var(--ga-size-spacing-03)'}">
@@ -170,9 +170,9 @@ export const Examples: Story = {
             <ga-radio value="3" label='Credit notes' />
           </ga-radio-group>
 
-          <ga-form-detail label="Please select a document type for this workflow">
+          <ga-form-info label="Please select a document type for this workflow">
             <template #icon><triangle-alert strokeWidth="2.5" color="var(--ga-color-warning)" /></template>
-          </ga-form-detail>
+          </ga-form-info>
         </div>
 
         <div :style="{display:'flex',flexDirection:'column',gap:'var(--ga-size-spacing-03)'}">
@@ -187,9 +187,9 @@ export const Examples: Story = {
             <ga-radio value="3" label='Credit notes' />
           </ga-radio-group>
 
-          <ga-form-detail label="Please select a document type for this workflow">
+          <ga-form-info label="Please select a document type for this workflow">
             <template #icon><triangle-alert strokeWidth="2.5" color="var(--ga-color-warning)" /></template>
-          </ga-form-detail>
+          </ga-form-info>
         </div>
       </div>
     `,

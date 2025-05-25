@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import { CircleCheck, OctagonAlert, TriangleAlert } from 'lucide-vue-next'
 
 import { type FormInputProps } from '@/core/composables/useFormInput'
-import GaFormDetail from '../GaFormDetail.vue'
+import GaFormInfo from '../GaFormInfo.vue'
 import GaSwitch from './GaSwitch.vue'
 
 const meta = {
@@ -86,7 +86,7 @@ export const Examples: Story = {
   args: {},
   parameters: { controls: { disable: true } },
   render: () => ({
-    components: { GaSwitch, GaFormDetail, CircleCheck, OctagonAlert, TriangleAlert },
+    components: { GaSwitch, GaFormInfo, CircleCheck, OctagonAlert, TriangleAlert },
     template: `
       <div :style="{
         display: 'flex',
@@ -112,24 +112,24 @@ export const Examples: Story = {
 
         <ga-switch modelValue='true'>
           Daily invoice reminders<br />
-          <ga-form-detail label='Invoice reminders will be sent daily at 9:00 am.'>
+          <ga-form-info label='Invoice reminders will be sent daily at 9:00 am.'>
             <template #icon><circle-check color="var(--ga-color-success)"/></template>
-          </ga-form-detail>
+          </ga-form-info>
         </ga-switch>
 
         <ga-switch modelValue='true'>
           Dark mode<br />
-          <ga-form-detail label='Due to your access rights only partial dark mode is enabled for your account.'>
+          <ga-form-info label='Due to your access rights only partial dark mode is enabled for your account.'>
             <template #icon><triangle-alert color="var(--ga-color-warning)"/></template>
-          </ga-form-detail>
+          </ga-form-info>
         </ga-switch>
 
         <ga-switch modelValue='true'>
           Show admin view<br />
-          <ga-form-detail>
+          <ga-form-info>
             <template #icon><triangle-alert color="var(--ga-color-warning)"/></template>
             <span>We detected maintenance mode for one of your modules and this view might be incomplete. <a href='#'>View module status</a></span>
-          </ga-form-detail>
+          </ga-form-info>
         </ga-switch>
 
         <div :style="{
@@ -143,16 +143,16 @@ export const Examples: Story = {
 
         <ga-switch modelValue='true' error>
           Fraud detection<br />
-          <ga-form-detail label='There are no documents available to check as this is a demo account.'>
+          <ga-form-info label='There are no documents available to check as this is a demo account.'>
             <template #icon><octagon-alert strokeWidth="2.5" color="var(--ga-color-error)"/></template>
-          </ga-form-detail>
+          </ga-form-info>
         </ga-switch>
 
         <ga-switch error>
           Show admin view<br />
-          <ga-form-detail label='Admin view failed to initialize. Try again later.'>
+          <ga-form-info label='Admin view failed to initialize. Try again later.'>
             <template #icon><octagon-alert strokeWidth="2.5" color="var(--ga-color-error)"/></template>
-          </ga-form-detail>
+          </ga-form-info>
         </ga-switch>
       </div>
     `,
