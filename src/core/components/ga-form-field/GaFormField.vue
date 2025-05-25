@@ -26,10 +26,12 @@ const { label } = defineProps<{ label?: string }>()
 .label {
   display: inline-flex;
   gap: var(--ga-size-spacing-02);
-  padding: 0 var(--ga-size-spacing-02);
+  padding-inline: var(--ga-size-spacing-02);
 
   width: fit-content;
+  height: 1.25rem; /* TODO: fix */
   font-weight: var(--ga-font-weight-medium);
+  line-height: var(--ga-text-md-line-height);
 }
 
 .info {

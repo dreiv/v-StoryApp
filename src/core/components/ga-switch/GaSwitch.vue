@@ -50,7 +50,7 @@ defineExpose({ inputRef })
   border: var(--ga-size-border-width-sm) solid var(--ga-color-border-action);
   border-radius: var(--ga-radius-round);
 
-  padding: 0 var(--ga-size-spacing-02);
+  padding-inline: var(--ga-size-spacing-02);
   pointer-events: none;
   color: var(--ga-color-icon-on-primary);
 
