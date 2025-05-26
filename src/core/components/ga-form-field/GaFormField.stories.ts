@@ -24,7 +24,6 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-  parameters: { controls: { disable: true } },
   render: () => ({
     components: { GaFormField, GaButton, GaInput },
     template: `
@@ -36,7 +35,6 @@ export const Default: Story = {
 }
 
 export const WithInfo: Story = {
-  parameters: { controls: { disable: true } },
   render: () => ({
     components: { GaFormField, GaButton, GaInput, GaFormInfo, TriangleAlert },
     template: `
@@ -44,8 +42,21 @@ export const WithInfo: Story = {
         <ga-input placeholder="Placeholder" />
 
         <template #info>
-          <ga-form-info label="Use special characters if available."><template #icon><triangle-alert /></template></ga-form-info>
+          <ga-form-info label="Use special characters if available.">
+            <template #icon><triangle-alert /></template>
+          </ga-form-info>
         </template>
+      </ga-form-field>
+    `,
+  }),
+}
+
+export const WithDefinition: Story = {
+  render: () => ({
+    components: { GaFormField, GaButton, GaInput },
+    template: `
+      <ga-form-field label="Label" definition="Explanation of the field">
+        <ga-input placeholder="Placeholder" />
       </ga-form-field>
     `,
   }),

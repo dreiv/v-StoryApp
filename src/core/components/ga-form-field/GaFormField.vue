@@ -6,6 +6,7 @@ import { formFieldKey } from './types'
 export interface FormFieldProps {
   id?: string
   label?: string
+  definition?: string
 }
 
 const { id = uniqueId('form-field'), label } = defineProps<FormFieldProps>()
@@ -15,7 +16,7 @@ provide(formFieldKey, { id })
 
 <template>
   <div :class="$style.formField">
-    <label :class="$style.label" v-if="$slots.label || label" :for="id">
+    <label :class="$style.label" v-if="$slots.label || label" :for="id" v-tooltip="definition">
       <slot name="label">{{ label }}</slot>
     </label>
 
