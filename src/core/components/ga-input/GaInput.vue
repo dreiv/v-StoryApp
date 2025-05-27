@@ -24,16 +24,15 @@ const model = defineModel<string>()
 
 const formField = inject(formFieldKey)
 
-const attributes = computed(() => ({
+const inputAttrs = computed(() => ({
   ...attrs,
   id: id || formField?.id,
   disabled: disabled || formField?.disabled,
-  error: error || formField?.error,
 }))
 
 const classes = computed(() => [
   style.input,
-  { [style.error]: attributes.value.error, [style.success]: success },
+  { [style.error]: error || formField?.error, [style.success]: success },
 ])
 
 defineExpose({ inputRef })
@@ -42,7 +41,7 @@ defineExpose({ inputRef })
 <template>
   <div :class="classes">
     <slot name="prefix" />
-    <input ref="inputRef" type="text" v-model="model" v-bind="attributes" />
+    <input ref="inputRef" type="text" v-model="model" v-bind="inputAttrs" />
     <slot name="suffix" />
   </div>
 </template>
