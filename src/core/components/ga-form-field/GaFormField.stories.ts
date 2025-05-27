@@ -45,6 +45,17 @@ export const Disabled: Story = {
   }),
 }
 
+export const Error: Story = {
+  render: () => ({
+    components: { GaFormField, GaButton, GaInput },
+    template: `
+      <ga-form-field label="Label" error>
+        <ga-input placeholder="Placeholder" />
+      </ga-form-field>
+    `,
+  }),
+}
+
 export const WithInfo: Story = {
   render: () => ({
     components: { GaFormField, GaButton, GaInput, GaFormInfo, TriangleAlert },

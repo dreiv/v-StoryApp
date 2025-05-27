@@ -14,7 +14,7 @@ const meta = {
   ],
   tags: ['autodocs'],
   argTypes: {
-    invalid: {
+    error: {
       control: 'boolean',
       description: 'Indicates an error state for the input field.',
     },
@@ -37,14 +37,14 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 interface InputVariation {
-  name: 'Default' | 'Disabled' | 'invalid' | 'Success'
+  name: 'Default' | 'Disabled' | 'Error' | 'Success'
   props: GaInputProps & { default?: string }
 }
 
 const variations: InputVariation[] = [
   { name: 'Default', props: {} },
   { name: 'Disabled', props: { disabled: true } },
-  { name: 'invalid', props: { invalid: true } },
+  { name: 'Error', props: { error: true } },
   { name: 'Success', props: { success: true } },
 ]
 
@@ -97,7 +97,7 @@ export const Examples: Story = {
           </template>
         </ga-input>
 
-        <ga-input placeholder="Invalid state" invalid />
+        <ga-input placeholder="Error state" error />
         <ga-input placeholder="Success state" success />
         <ga-input placeholder="Disabled state" disabled />
       </div>
@@ -107,5 +107,5 @@ export const Examples: Story = {
 
 export const Default: Story = stories.Default
 export const Disabled: Story = stories.Disabled
-export const Invalid: Story = stories.invalid
+export const Error: Story = stories.Error
 export const Success: Story = stories.Success

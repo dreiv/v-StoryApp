@@ -13,26 +13,28 @@ defineOptions({ inheritAttrs: false })
 
 export interface GaInputProps extends /* @vue-ignore */ InputHTMLAttributes {
   id?: string
-  invalid?: boolean
+  error?: boolean
   success?: boolean
 }
-const { id, invalid, success } = defineProps<GaInputProps>()
+const { id, error, disabled, success } = defineProps<GaInputProps>()
 const inputRef = useTemplateRef<HTMLElement>('inputRef')
 const style = useCssModule()
 const attrs = useAttrs()
 const model = defineModel<string>()
 
 const formField = inject(formFieldKey)
-const classes = computed(() => [
-  style.input,
-  { [style.invalid]: invalid, [style.success]: success },
-])
 
 const attributes = computed(() => ({
   ...attrs,
   id: id || formField?.id,
-  disabled: formField?.disabled,
+  disabled: disabled || formField?.disabled,
+  error: error || formField?.error,
 }))
+
+const classes = computed(() => [
+  style.input,
+  { [style.error]: attributes.value.error, [style.success]: success },
+])
 
 defineExpose({ inputRef })
 </script>
@@ -74,12 +76,12 @@ defineExpose({ inputRef })
     }
   }
 
-  &:has(input:focus):not(.invalid, .success) {
+  &:has(input:focus):not(.error, .success) {
     outline: 1px solid var(--ga-color-border-focus);
     border-color: var(--ga-color-border-focus);
   }
 
-  &.invalid {
+  &.error {
     outline: 1px solid var(--ga-color-border-error);
     border-color: var(--ga-color-border-error);
 

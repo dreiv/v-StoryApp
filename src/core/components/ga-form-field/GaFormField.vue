@@ -3,22 +3,20 @@ import { computed, provide, useCssModule } from 'vue'
 import type { vTooltip } from 'floating-vue'
 
 import { uniqueId } from '@/core/utils/uniqueId'
-import { formFieldKey } from './types'
+import { formFieldKey, type FormFieldContext } from './types'
 
-export interface FormFieldProps {
-  id?: string
+export interface FormFieldProps extends FormFieldContext {
   label?: string
   definition?: typeof vTooltip
-  disabled?: boolean
   state?: string
 }
 
-const { id = uniqueId('form-field'), label, disabled } = defineProps<FormFieldProps>()
+const { id = uniqueId('form-field'), label, disabled, error } = defineProps<FormFieldProps>()
 
 const style = useCssModule()
 const classes = computed(() => [style.formField, { [style.disabled]: disabled }])
 
-provide(formFieldKey, { id, disabled })
+provide(formFieldKey, { id, disabled, error })
 </script>
 
 <template>
