@@ -1,5 +1,12 @@
 <script setup lang="ts">
-import { computed, inject, useCssModule, useTemplateRef, type InputHTMLAttributes } from 'vue'
+import {
+  computed,
+  inject,
+  useAttrs,
+  useCssModule,
+  useTemplateRef,
+  type InputHTMLAttributes,
+} from 'vue'
 import { formFieldKey } from '../ga-form-field/types'
 
 defineOptions({ inheritAttrs: false })
@@ -12,6 +19,7 @@ export interface GaInputProps extends /* @vue-ignore */ InputHTMLAttributes {
 const { id, invalid, success } = defineProps<GaInputProps>()
 const inputRef = useTemplateRef<HTMLElement>('inputRef')
 const style = useCssModule()
+const attrs = useAttrs()
 const model = defineModel<string>()
 
 const formField = inject(formFieldKey)
@@ -20,7 +28,11 @@ const classes = computed(() => [
   { [style.invalid]: invalid, [style.success]: success },
 ])
 
-const idValue = computed(() => id || formField?.id)
+const attributes = computed(() => ({
+  ...attrs,
+  id: id || formField?.id,
+  disabled: formField?.disabled,
+}))
 
 defineExpose({ inputRef })
 </script>
@@ -28,7 +40,7 @@ defineExpose({ inputRef })
 <template>
   <div :class="classes">
     <slot name="prefix" />
-    <input ref="inputRef" type="text" v-model="model" v-bind="$attrs" :id="idValue" />
+    <input ref="inputRef" type="text" v-model="model" v-bind="attributes" />
     <slot name="suffix" />
   </div>
 </template>

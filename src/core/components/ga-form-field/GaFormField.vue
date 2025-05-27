@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { provide } from 'vue'
+import { computed, provide, useCssModule } from 'vue'
 import type { vTooltip } from 'floating-vue'
 
 import { uniqueId } from '@/core/utils/uniqueId'
@@ -8,17 +8,21 @@ import { formFieldKey } from './types'
 export interface FormFieldProps {
   id?: string
   label?: string
-  state?: string
   definition?: typeof vTooltip
+  disabled?: boolean
+  state?: string
 }
 
-const { id = uniqueId('form-field'), label } = defineProps<FormFieldProps>()
+const { id = uniqueId('form-field'), label, disabled } = defineProps<FormFieldProps>()
 
-provide(formFieldKey, { id })
+const style = useCssModule()
+const classes = computed(() => [style.formField, { [style.disabled]: disabled }])
+
+provide(formFieldKey, { id, disabled })
 </script>
 
 <template>
-  <div :class="$style.formField">
+  <div :class="classes">
     <label :class="$style.label" v-if="$slots.label || label" :for="id">
       <span :class="$style.text" v-tooltip="definition" :tabindex="definition && 0">
         <slot name="label">{{ label }}</slot>
@@ -42,6 +46,10 @@ provide(formFieldKey, { id })
   display: flex;
   flex-direction: column;
   gap: var(--ga-size-spacing-03);
+
+  &.disabled > .label {
+    color: var(--ga-color-text-disabled);
+  }
 }
 
 .label {
