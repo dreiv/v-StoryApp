@@ -9,9 +9,10 @@ export interface FormFieldProps extends FormFieldContext {
   label?: string
   definition?: typeof vTooltip
   state?: string
+  info?: string
 }
 
-const { id = uniqueId('form-field'), label, disabled, error } = defineProps<FormFieldProps>()
+const { id = uniqueId('form-field'), disabled, error } = defineProps<FormFieldProps>()
 
 provide(
   formFieldKey,
@@ -44,8 +45,8 @@ const classes = computed(() => [style.formField, { [style.disabled]: disabled }]
 
     <slot />
 
-    <div :class="$style.info" v-if="$slots.info">
-      <slot name="info" />
+    <div :class="$style.info" v-if="$slots.info || info">
+      <slot name="info">{{ info }}</slot>
     </div>
   </div>
 </template>

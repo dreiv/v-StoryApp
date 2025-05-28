@@ -1,7 +1,7 @@
 import { computed, ref, type ConcreteComponent } from 'vue'
 import type { Meta, StoryObj } from '@storybook/vue3'
 
-import { TriangleAlert, OctagonAlert } from 'lucide-vue-next'
+import { TriangleAlert } from 'lucide-vue-next'
 
 import GaButton from '../ga-button/GaButton.vue'
 import GaFormInfo from '../GaFormInfo.vue'
@@ -47,21 +47,17 @@ export const Disabled: Story = {
 
 export const Error: Story = {
   render: () => ({
-    components: { GaFormField, GaButton, GaInput, GaFormInfo, OctagonAlert },
+    components: { GaFormField, GaButton, GaInput, GaFormInfo },
     setup() {
       const input = ref('')
       const error = computed(() => !input.value)
+      const info = computed(() => error.value && 'Input is required.')
 
-      return { input, error }
+      return { input, error, info }
     },
     template: `
-      <ga-form-field label="Label" :error>
+      <ga-form-field label="Label" :info :error>
         <ga-input placeholder="Placeholder" v-model="input"/>
-        <template #info v-if="error">
-          <ga-form-info label="Input is required.">
-            <template #icon><octagon-alert /></template>
-          </ga-form-info>
-        </template>
       </ga-form-field>
     `,
   }),
