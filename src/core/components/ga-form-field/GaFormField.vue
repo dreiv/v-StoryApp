@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, provide, useCssModule } from 'vue'
+import { computed, provide, useCssModule, reactive } from 'vue'
 import type { vTooltip } from 'floating-vue'
 
 import { uniqueId } from '@/core/utils/uniqueId'
@@ -13,10 +13,21 @@ export interface FormFieldProps extends FormFieldContext {
 
 const { id = uniqueId('form-field'), label, disabled, error } = defineProps<FormFieldProps>()
 
+provide(
+  formFieldKey,
+  reactive({
+    id,
+    get disabled() {
+      return disabled
+    },
+    get error() {
+      return error
+    },
+  }),
+)
+
 const style = useCssModule()
 const classes = computed(() => [style.formField, { [style.disabled]: disabled }])
-
-provide(formFieldKey, { id, disabled, error })
 </script>
 
 <template>
