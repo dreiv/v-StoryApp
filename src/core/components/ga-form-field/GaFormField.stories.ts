@@ -1,4 +1,4 @@
-import type { ConcreteComponent } from 'vue'
+import { computed, ref, type ConcreteComponent } from 'vue'
 import type { Meta, StoryObj } from '@storybook/vue3'
 
 import { TriangleAlert } from 'lucide-vue-next'
@@ -48,9 +48,15 @@ export const Disabled: Story = {
 export const Error: Story = {
   render: () => ({
     components: { GaFormField, GaButton, GaInput },
+    setup() {
+      const input = ref('')
+      const error = computed(() => !input.value)
+
+      return { input, error }
+    },
     template: `
-      <ga-form-field label="Label" error>
-        <ga-input placeholder="Placeholder" />
+      <ga-form-field label="Label" :error>
+        <ga-input placeholder="Placeholder" v-model="input"/>
       </ga-form-field>
     `,
   }),
