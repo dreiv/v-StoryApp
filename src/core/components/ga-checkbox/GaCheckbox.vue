@@ -3,8 +3,12 @@ import { useTemplateRef } from 'vue'
 import { CheckIcon, MinusIcon } from 'lucide-vue-next'
 import { useFormInput, type FormInputProps } from '@/core/composables/useFormInput'
 
+export interface CheckboxProps extends FormInputProps {
+  state?: string
+}
+
 defineOptions({ inheritAttrs: false })
-const props = defineProps<FormInputProps>()
+const props = defineProps<CheckboxProps>()
 
 const { classes, aria } = useFormInput(props)
 const inputRef = useTemplateRef<HTMLElement>('inputRef')
@@ -21,9 +25,15 @@ defineExpose({ inputRef })
       <MinusIcon :class="$style.indeterminate" :size="12" :stroke-width="4" />
     </div>
 
-    <span :class="$style.label">
-      <slot>{{ label }}</slot>
-    </span>
+    <div :class="$style.label" v-if="$slots.default || label">
+      <span :class="$style.text">
+        <slot>{{ label }}</slot>
+      </span>
+
+      <span :class="$style.state" v-if="$slots.state || state">
+        <slot name="state">{{ state }}</slot>
+      </span>
+    </div>
   </label>
 </template>
 
@@ -31,14 +41,14 @@ defineExpose({ inputRef })
 .input {
   display: inline-flex;
   position: relative;
-  gap: var(--ga-size-spacing-03);
+  gap: var(--ga-size-spacing-01);
 
   user-select: none;
 }
 
 .native,
 .marker {
-  margin: var(--ga-size-spacing-01) 0 var(--ga-size-spacing-01) var(--ga-size-spacing-01);
+  margin: var(--ga-size-spacing-01);
   width: var(--ga-size-spacing-05);
   height: var(--ga-size-spacing-05);
 }
@@ -128,14 +138,21 @@ defineExpose({ inputRef })
 }
 
 .label {
+  display: inline-flex;
+  gap: var(--ga-size-spacing-02);
+  padding-inline: var(--ga-size-spacing-02);
+
+  width: fit-content;
+}
+
+.text {
   font-weight: var(--ga-font-weight-normal);
   font-size: var(--ga-text-md-font-size);
   line-height: var(--ga-text-md-line-height);
-  font-family: var(--ga-font-family-primary);
-  letter-spacing: var(--ga-text-md-tracking);
+}
 
-  &:empty {
-    display: none;
-  }
+.state {
+  font-size: var(--ga-text-sm-font-size);
+  line-height: var(--ga-text-sm-line-height);
 }
 </style>

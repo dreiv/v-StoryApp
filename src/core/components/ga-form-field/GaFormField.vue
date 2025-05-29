@@ -6,10 +6,10 @@ import { uniqueId } from '@/core/utils/uniqueId'
 import { formFieldKey, type FormFieldContext } from './types'
 
 export interface FormFieldProps extends FormFieldContext {
-  label?: string
-  definition?: typeof vTooltip
-  state?: string
   info?: string
+  label?: string
+  state?: string
+  tooltip?: typeof vTooltip
 }
 
 const { id = uniqueId('form-field'), disabled, error } = defineProps<FormFieldProps>()
@@ -34,7 +34,7 @@ const classes = computed(() => [style.formField, { [style.disabled]: disabled }]
 <template>
   <div :class="classes">
     <label :class="$style.label" v-if="$slots.label || label" :for="id">
-      <span :class="$style.text" v-tooltip="definition" :tabindex="definition && 0">
+      <span :class="$style.text" v-tooltip="tooltip" :tabindex="tooltip && 0">
         <slot name="label">{{ label }}</slot>
       </span>
 

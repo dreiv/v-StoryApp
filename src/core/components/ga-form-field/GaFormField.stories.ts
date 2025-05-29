@@ -84,7 +84,7 @@ export const WithDefinition: Story = {
   render: () => ({
     components: { GaFormField, GaButton, GaInput },
     template: `
-      <ga-form-field label="Label" definition="Explanation of the field" state="(optional)">
+      <ga-form-field label="Label" tooltip="Explanation of the field" state="(optional)">
         <ga-input placeholder="Placeholder" />
       </ga-form-field>
     `,

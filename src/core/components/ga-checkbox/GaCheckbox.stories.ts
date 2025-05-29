@@ -173,7 +173,7 @@ export const Examples: Story = {
         flexDirection: 'column',
         gap: 'var(--ga-size-spacing-02)'
       }">
-        <ga-checkbox error>I agree to the <a href="#">terms</a> and <a href="#">conditions</a>. (error)</ga-checkbox>
+        <ga-checkbox error state="(error)">I agree to the <a href="#">terms</a> and <a href="#">conditions</a>.</ga-checkbox>
 
         <ga-form-info>
           <template #icon><octagon-alert strokeWidth="2.5" color="var(--ga-color-error)"/></template>
