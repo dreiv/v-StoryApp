@@ -6,7 +6,7 @@ import {
   EllipsisIcon,
   FilterX,
   FolderSync,
-  MailIcon,
+  Inbox,
   SquarePlus,
   ThumbsDown,
   ThumbsUp,
@@ -165,7 +165,7 @@ export const Examples: Story = {
       EllipsisIcon,
       FilterX,
       FolderSync,
-      MailIcon,
+      Inbox,
       SquarePlus,
       ThumbsDown,
       ThumbsUp,
@@ -198,9 +198,9 @@ export const Examples: Story = {
           display: 'flex',
           gap: 'var(--ga-size-spacing-03)'
         }">
-          <ga-button primary><mail-icon />Inbox <ga-badge inverted>99</ga-badge></ga-button>
-          <ga-button><mail-icon />Inbox <ga-badge inverted>99</ga-badge></ga-button>
-          <ga-button ghost><mail-icon />Inbox <ga-badge inverted>99</ga-badge></ga-button>
+          <ga-button primary><inbox />Inbox <ga-badge inverted>99</ga-badge></ga-button>
+          <ga-button><inbox />Inbox <ga-badge inverted>99</ga-badge></ga-button>
+          <ga-button ghost><inbox />Inbox <ga-badge inverted>99</ga-badge></ga-button>
         </div>
 
         <div :style="{
