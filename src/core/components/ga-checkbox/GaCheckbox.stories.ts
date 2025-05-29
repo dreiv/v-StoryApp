@@ -166,7 +166,7 @@ export const Examples: Story = {
     }">
       <ga-checkbox>I agree to the <a href="#">terms</a> and <a href="#">conditions</a>.</ga-checkbox>
 
-      <ga-checkbox>This checkbox label<br/>wraps on two lines</ga-checkbox>
+      <ga-checkbox :modelValue="true">This checkbox label<br/>wraps on two lines</ga-checkbox>
 
       <div :style="{
         display: 'flex',
