@@ -24,7 +24,7 @@ describe('GaInput', () => {
   })
 
   it.each([
-    { propName: 'invalid', className: 'invalid' },
+    { propName: 'error', className: 'error' },
     { propName: 'success', className: 'success' },
   ])('should apply $className class when $propName prop is true', ({ propName, className }) => {
     wrapper = shallowMount(GaInput, { props: { [propName]: true } })

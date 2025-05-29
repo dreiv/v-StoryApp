@@ -13,7 +13,7 @@ defineProps<{ title?: string }>()
   display: flex;
   align-items: center;
 
-  padding: 0 var(--ga-size-spacing-04);
+  padding-inline: var(--ga-size-spacing-04);
   height: 2.25rem; /* TODO: fix */
 
   font-weight: var(--ga-font-weight-semibold);

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import { OctagonAlert, TriangleAlert } from 'lucide-vue-next'
 
 import { type FormInputProps } from '@/core/composables/useFormInput'
-import GaFormDetail from '../GaFormDetail.vue'
+import GaFormInfo from '../GaFormInfo.vue'
 import GaRadio from './GaRadio.vue'
 import GaRadioGroup from './GaRadioGroup.vue'
 
@@ -66,7 +66,7 @@ const createStory = (variation: RadioVariation): Story => {
       return {
         args: {},
         render: (args) => ({
-          components: { GaRadio, GaRadioGroup, GaFormDetail, OctagonAlert },
+          components: { GaRadio, GaRadioGroup, GaFormInfo, OctagonAlert },
           template: `
             <div :style="{
               display: 'flex',
@@ -77,10 +77,10 @@ const createStory = (variation: RadioVariation): Story => {
                 <ga-radio value="option1">I agree to the <a href="#">terms</a> and <a href="#">conditions</a>.</ga-radio>
                 <ga-radio value="option2">I disagree with the terms.</ga-radio>
               </ga-radio-group>
-              <ga-form-detail>
+              <ga-form-info>
                 <template #icon><octagon-alert strokeWidth="2.5" color="var(--ga-color-error)"/></template>
                 You must agree to the terms to continue.
-              </ga-form-detail>
+              </ga-form-info>
             </div>
           `,
           setup: () => ({ args }),
@@ -120,7 +120,7 @@ export const Examples: Story = {
   args: {},
   parameters: { controls: { disable: true } },
   render: () => ({
-    components: { GaRadio, GaRadioGroup, GaFormDetail, OctagonAlert, TriangleAlert },
+    components: { GaRadio, GaRadioGroup, GaFormInfo, OctagonAlert, TriangleAlert },
     template: `
     <div :style="{
       display: 'flex',
@@ -164,7 +164,7 @@ export const Examples: Story = {
           <ga-radio value="important">Important only</ga-radio>
           <ga-radio value="none">None</ga-radio>
         </ga-radio-group>
-        <ga-form-detail label="Choose how you want to be notified about changes." />
+        <ga-form-info label="Choose how you want to be notified about changes." />
       </div>
 
       <div :style="{
@@ -178,9 +178,9 @@ export const Examples: Story = {
           <ga-radio value="medium" error>Medium</ga-radio>
           <ga-radio value="high" error>High</ga-radio>
         </ga-radio-group>
-        <ga-form-detail label="You must select a priority level.">
+        <ga-form-info label="You must select a priority level.">
           <template #icon><octagon-alert strokeWidth="2.5" color="var(--ga-color-error)" /></template>
-        </ga-form-detail>
+        </ga-form-info>
       </div>
 
       <div :style="{
@@ -194,9 +194,9 @@ export const Examples: Story = {
           <ga-radio value="standard">Standard delivery (5-7 days)</ga-radio>
           <ga-radio value="economy">Economy delivery (7-14 days)</ga-radio>
         </ga-radio-group>
-        <ga-form-detail label="Express delivery is not available for your location.">
+        <ga-form-info label="Express delivery is not available for your location.">
           <template #icon><triangle-alert strokeWidth="2.5" color="var(--ga-color-warning)" /></template>
-        </ga-form-detail>
+        </ga-form-info>
       </div>
     </div>
     `,

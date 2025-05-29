@@ -46,7 +46,7 @@ const classes = computed(() => {
   gap: var(--ga-size-spacing-03);
 
   border-radius: var(--ga-radius);
-  padding: 0 var(--ga-size-spacing-05);
+  padding-inline: var(--ga-size-spacing-05);
   min-width: var(--ga-size-spacing-08);
   height: var(--ga-size-spacing-08);
 

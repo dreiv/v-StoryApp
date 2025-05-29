@@ -1,20 +1,38 @@
 <script setup lang="ts">
-import { computed, useCssModule, useTemplateRef, type InputHTMLAttributes } from 'vue'
+import {
+  computed,
+  inject,
+  useAttrs,
+  useCssModule,
+  useTemplateRef,
+  type InputHTMLAttributes,
+} from 'vue'
+import { formFieldKey } from '../ga-form-field/types'
 
 defineOptions({ inheritAttrs: false })
 
 export interface GaInputProps extends /* @vue-ignore */ InputHTMLAttributes {
-  invalid?: boolean
+  id?: string
+  error?: boolean
   success?: boolean
 }
-const { invalid, success } = defineProps<GaInputProps>()
+const { id, error, disabled, success } = defineProps<GaInputProps>()
 const inputRef = useTemplateRef<HTMLElement>('inputRef')
 const style = useCssModule()
+const attrs = useAttrs()
 const model = defineModel<string>()
+
+const formField = inject(formFieldKey)
+
+const inputAttrs = computed(() => ({
+  ...attrs,
+  id: id || formField?.id,
+  disabled: disabled || formField?.disabled,
+}))
 
 const classes = computed(() => [
   style.input,
-  { [style.invalid]: invalid, [style.success]: success },
+  { [style.error]: error || formField?.error, [style.success]: success },
 ])
 
 defineExpose({ inputRef })
@@ -23,7 +41,7 @@ defineExpose({ inputRef })
 <template>
   <div :class="classes">
     <slot name="prefix" />
-    <input ref="inputRef" type="text" v-model="model" v-bind="$attrs" />
+    <input ref="inputRef" type="text" v-model="model" v-bind="inputAttrs" />
     <slot name="suffix" />
   </div>
 </template>
@@ -57,12 +75,12 @@ defineExpose({ inputRef })
     }
   }
 
-  &:has(input:focus):not(.invalid, .success) {
+  &:has(input:focus):not(.error, .success) {
     outline: 1px solid var(--ga-color-border-focus);
     border-color: var(--ga-color-border-focus);
   }
 
-  &.invalid {
+  &.error {
     outline: 1px solid var(--ga-color-border-error);
     border-color: var(--ga-color-border-error);
 

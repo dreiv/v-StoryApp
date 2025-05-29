@@ -3,7 +3,7 @@ import { GlobeLock, OctagonAlert, TriangleAlert } from 'lucide-vue-next'
 
 import { type FormInputProps } from '@/core/composables/useFormInput'
 import GaCheckbox from './GaCheckbox.vue'
-import GaFormDetail from '../GaFormDetail.vue'
+import GaFormInfo from '../GaFormInfo.vue'
 import GaFormNest from '../GaFormNest.vue'
 
 const meta = {
@@ -83,7 +83,7 @@ const createStory = (variation: CheckboxVariation): Story => {
       return {
         args: {},
         render: (args) => ({
-          components: { GaCheckbox, GaFormDetail, OctagonAlert },
+          components: { GaCheckbox, GaFormInfo, OctagonAlert },
           template: `
             <div :style="{
               display: 'flex',
@@ -91,10 +91,10 @@ const createStory = (variation: CheckboxVariation): Story => {
               gap: 'var(--ga-size-spacing-03)'
             }">
               <ga-checkbox v-bind="args">I agree to the <a href="#">terms</a> and <a href="#">conditions</a>.</ga-checkbox>
-              <ga-form-detail>
+              <ga-form-info>
                 <template #icon><octagon-alert strokeWidth="2.5" color="var(--ga-color-error)"/></template>
                 Error message goes here and is present in two lines in this case<br>but it can be short an concise and show in one line.
-              </ga-form-detail>
+              </ga-form-info>
             </div>
           `,
           setup: () => ({ args }),
@@ -157,7 +157,7 @@ export const Examples: Story = {
   args: {},
   parameters: { controls: { disable: true } },
   render: () => ({
-    components: { GaCheckbox, GaFormDetail, GaFormNest, GlobeLock, OctagonAlert, TriangleAlert },
+    components: { GaCheckbox, GaFormInfo, GaFormNest, GlobeLock, OctagonAlert, TriangleAlert },
     template: `
     <div :style="{
       display: 'flex',
@@ -175,10 +175,10 @@ export const Examples: Story = {
       }">
         <ga-checkbox error>I agree to the <a href="#">terms</a> and <a href="#">conditions</a>. (error)</ga-checkbox>
 
-        <ga-form-detail>
+        <ga-form-info>
           <template #icon><octagon-alert strokeWidth="2.5" color="var(--ga-color-error)"/></template>
           Error message goes here and is present in two lines in this case<br>but it can be short an concise and show in one line.
-        </ga-form-detail>
+        </ga-form-info>
       </div>
 
       <div :style="{
@@ -187,7 +187,7 @@ export const Examples: Story = {
         gap: 'var(--ga-size-spacing-02)'
       }">
         <ga-checkbox label='The checkbox component offers a clear depiction of a binary choice, enabling users to select from several options or toggle a single option on or off.' />
-        <ga-form-detail>This callout ensures that the check mark is explained in even more detail.</ga-form-detail>
+        <ga-form-info>This callout ensures that the check mark is explained in even more detail.</ga-form-info>
       </div>
 
       <div :style="{
@@ -236,7 +236,7 @@ export const Examples: Story = {
         gap: 'var(--ga-size-spacing-02)'
       }">
         <ga-checkbox :modelValue="true" disabled label='Receive security updates via email' />
-        <ga-form-detail label='Only sent when major security flaws detected on your account.' />
+        <ga-form-info label='Only sent when major security flaws detected on your account.' />
       </div>
 
       <div :style="{
@@ -264,9 +264,9 @@ export const Examples: Story = {
           </template>
         </ga-form-nest>
 
-        <ga-form-detail label='All messages are SSL secured.'>
+        <ga-form-info label='All messages are SSL secured.'>
           <template #icon><globe-lock /></template>
-        </ga-form-detail>
+        </ga-form-info>
       </div>
 
       <div :style="{
@@ -288,9 +288,9 @@ export const Examples: Story = {
           <ga-checkbox error label='Expense requests' />
         </div>
 
-        <ga-form-detail label='You need to select at least one document type.'>
+        <ga-form-info label='You need to select at least one document type.'>
           <template #icon><octagon-alert strokeWidth="2.5" color="var(--ga-color-error)" /></template>
-        </ga-form-detail>
+        </ga-form-info>
       </div>
 
       <div :style="{
@@ -312,9 +312,9 @@ export const Examples: Story = {
           <ga-checkbox label='Expense requests' />
         </div>
 
-        <ga-form-detail label='Vodafone ASA did not sent any credit notes so far.'>
+        <ga-form-info label='Vodafone ASA did not sent any credit notes so far.'>
           <template #icon><triangle-alert strokeWidth="2.5" color="var(--ga-color-warning)" /></template>
-        </ga-form-detail>
+        </ga-form-info>
       </div>
     </div>
     `,
