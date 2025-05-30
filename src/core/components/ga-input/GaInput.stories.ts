@@ -73,7 +73,7 @@ export const Examples: Story = {
   render: () => ({
     components: { GaInput, Search },
     template: `
-      <div :style="{display:'flex',flexDirection:'column',gap:'16px',width:'300px'}">
+      <div style="display: flex; flex-direction: column; gap: 16px; width: 300px;">
         <ga-input placeholder="Basic input" />
 
         <ga-input placeholder="With prefix icon">
