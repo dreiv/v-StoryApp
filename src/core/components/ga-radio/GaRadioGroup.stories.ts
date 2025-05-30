@@ -13,9 +13,7 @@ const meta = {
     (story) => ({
       components: { story },
       template: `
-        <div
-          style="display: flex; flex-wrap: wrap; align-items: center; gap: var(--ga-size-spacing-03); padding: var(--ga-size-spacing-05);"
-        >
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: var(--ga-size-spacing-03); padding: var(--ga-size-spacing-05);" >
           <story />
         </div>`,
     }),

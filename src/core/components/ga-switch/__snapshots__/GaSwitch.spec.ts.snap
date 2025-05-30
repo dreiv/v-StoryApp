@@ -4,7 +4,8 @@ exports[`Switch > should be disabled when disabled prop is true 1`] = `
 "<label class="mock-input"><input type="checkbox" class="native" disabled="">
   <div class="marker">
     <anonymous-stub class="checked" size="16"></anonymous-stub>
-  </div><span class="label"></span>
+  </div>
+  <!--v-if-->
 </label>"
 `;
 
@@ -12,7 +13,8 @@ exports[`Switch > should render correctly with default props 1`] = `
 "<label class="mock-input"><input type="checkbox" class="native">
   <div class="marker">
     <anonymous-stub class="checked" size="16"></anonymous-stub>
-  </div><span class="label"></span>
+  </div>
+  <!--v-if-->
 </label>"
 `;
 
@@ -36,6 +38,7 @@ exports[`Switch > should render with an error prop 1`] = `
 "<label class="mock-input mock-error" aria-invalid="true" aria-errormessage="Test Error"><input type="checkbox" class="native">
   <div class="marker">
     <anonymous-stub class="checked" size="16"></anonymous-stub>
-  </div><span class="label"></span>
+  </div>
+  <!--v-if-->
 </label>"
 `;

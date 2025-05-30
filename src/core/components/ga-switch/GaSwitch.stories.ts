@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import { CircleCheck, OctagonAlert, TriangleAlert } from 'lucide-vue-next'
 
 import { type FormInputProps } from '@/core/composables/useFormInput'
+import GaFormField from '../ga-form-field/GaFormField.vue'
 import GaFormInfo from '../GaFormInfo.vue'
 import GaSwitch from './GaSwitch.vue'
 
@@ -12,9 +13,7 @@ const meta = {
     (story) => ({
       components: { story },
       template: `
-        <div
-          style="display: flex; flex-wrap: wrap; align-items: center; gap: var(--ga-size-spacing-03); padding: var(--ga-size-spacing-05);"
-        >
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: var(--ga-size-spacing-03); padding: var(--ga-size-spacing-05);" >
           <story />
         </div>`,
     }),
@@ -60,9 +59,7 @@ const createStory = (variation: SwitchVariation): Story => ({
     template: `
       <ga-switch v-bind="args" />
       <ga-switch v-bind="args" disabled />
-      <ga-switch v-bind="args">
-        {{ args.default || 'With Label' }}
-      </ga-switch>
+      <ga-switch v-bind="args">{{ args.default || 'With Label' }}</ga-switch>
     `,
     setup: () => ({ args }),
   }),
@@ -80,7 +77,7 @@ export const Examples: Story = {
   args: {},
   parameters: { controls: { disable: true } },
   render: () => ({
-    components: { GaSwitch, GaFormInfo, CircleCheck, OctagonAlert, TriangleAlert },
+    components: { GaSwitch, GaFormField, GaFormInfo, CircleCheck, OctagonAlert, TriangleAlert },
     template: `
       <div style="display: flex; flex-direction: column; gap: var(--ga-size-spacing-06);">
         <ga-switch disabled>
@@ -98,7 +95,7 @@ export const Examples: Story = {
           <span style="font-size: var(--ga-text-sm-font-size);">Hint is an accessible way to provide <strong>additional information</strong> that might help the user.</span>
         </ga-switch>
 
-        <ga-switch label="Set invoice date automatically" modelValue='true' v-tooltip.top-start="'Automatic date'" />
+        <ga-switch label="Set invoice date automatically" modelValue='true' tooltip="Automatic date" />
 
         <ga-switch modelValue='true'>
           Daily invoice reminders<br />
@@ -122,10 +119,9 @@ export const Examples: Story = {
           </ga-form-info>
         </ga-switch>
 
-        <div style="display: flex; flex-direction: column; gap: var(--ga-size-spacing-03);">
-          <h3 style="text-decoration: underline wavy;">Weekly reminders</h3>
-          <ga-switch modelValue='true' label="On">
-        </div>
+        <ga-form-field label="Weekly reminders" tooltip="Enabling weekly reminders will send a summary of all pending tasks and upcoming deadlines to your registered email address every Monday at 8:00 AM">
+          <ga-switch modelValue='true' label="On" />
+        </ga-form-field>
 
         <ga-switch modelValue='true' error>
           Fraud detection<br />
