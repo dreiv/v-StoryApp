@@ -13,13 +13,7 @@ const meta = {
       components: { story },
       template: `
         <div
-          :style="{
-            display: 'flex',
-            flexWrap: 'wrap',
-            alignItems: 'center',
-            gap: 'var(--ga-size-spacing-03)',
-            padding: 'var(--ga-size-spacing-05)'
-          }"
+          style="display: flex; flex-wrap: wrap; align-items: center; gap: var(--ga-size-spacing-03); padding: var(--ga-size-spacing-05);"
         >
           <story />
         </div>`,
@@ -88,24 +82,20 @@ export const Examples: Story = {
   render: () => ({
     components: { GaSwitch, GaFormInfo, CircleCheck, OctagonAlert, TriangleAlert },
     template: `
-      <div :style="{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 'var(--ga-size-spacing-06)'
-      }">
+      <div style="display: flex; flex-direction: column; gap: var(--ga-size-spacing-06);">
         <ga-switch disabled>
           Set invoice date automatically.<br />
-          <span :style="{fontSize:'var(--ga-text-sm-font-size)'}">Hint is an accessible way to provide additional information that might help the user.</span>
+          <span style="font-size: var(--ga-text-sm-font-size);">Hint is an accessible way to provide additional information that might help the user.</span>
         </ga-switch>
 
         <ga-switch disabled modelValue='true'>
           Set invoice date automatically.<br />
-          <span :style="{fontSize:'var(--ga-text-sm-font-size)'}">Hint is an accessible way to provide additional information that might help the user.</span>
+          <span style="font-size: var(--ga-text-sm-font-size);">Hint is an accessible way to provide additional information that might help the user.</span>
         </ga-switch>
 
         <ga-switch>
           Set invoice date automatically.<br />
-          <span :style="{fontSize:'var(--ga-text-sm-font-size)'}">Hint is an accessible way to provide <strong>additional information</strong> that might help the user.</span>
+          <span style="font-size: var(--ga-text-sm-font-size);">Hint is an accessible way to provide <strong>additional information</strong> that might help the user.</span>
         </ga-switch>
 
         <ga-switch label="Set invoice date automatically" modelValue='true' v-tooltip.top-start="'Automatic date'" />
@@ -132,12 +122,8 @@ export const Examples: Story = {
           </ga-form-info>
         </ga-switch>
 
-        <div :style="{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 'var(--ga-size-spacing-03)'
-        }">
-          <h3 :style="{textDecoration:'underline wavy'}">Weekly reminders</h3>
+        <div style="display: flex; flex-direction: column; gap: var(--ga-size-spacing-03);">
+          <h3 style="text-decoration: underline wavy;">Weekly reminders</h3>
           <ga-switch modelValue='true' label="On">
         </div>
 

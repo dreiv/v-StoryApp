@@ -14,13 +14,7 @@ const meta = {
       components: { story },
       template: `
         <div
-          :style="{
-            display: 'flex',
-            flexWrap: 'wrap',
-            alignItems: 'center',
-            gap: 'var(--ga-size-spacing-03)',
-            padding: 'var(--ga-size-spacing-05)'
-          }"
+          style="display: flex; flex-wrap: wrap; align-items: center; gap: var(--ga-size-spacing-03); padding: var(--ga-size-spacing-05);"
         >
           <story />
         </div>`,

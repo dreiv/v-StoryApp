@@ -13,7 +13,7 @@ const meta = {
   decorators: [
     (story) => ({
       components: { story },
-      template: `<div :style="{display: 'flex',justifyContent: 'center',gap: '8px'}"><story /></div>`,
+      template: `<div style="display: flex; justify-content: center; gap: 8px;"><story /></div>`,
     }),
   ],
   tags: ['autodocs'],
@@ -56,7 +56,7 @@ export const Examples: Story = {
     components: { GaTooltip, GaButton, GaInput, CircleHelp, PlusIcon },
     directives: { tooltip },
     template: `
-      <div :style="{display:'flex',alignItems:'center',flexDirection:'column',gap:'16px'}">
+      <div style="display: flex; align-items: center; flex-direction: column; gap: 16px;">
         <ga-tooltip>
           <ga-input placeholder="Hover me!" />
 
