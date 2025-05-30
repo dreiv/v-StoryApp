@@ -3,6 +3,7 @@ import { computed, provide, useCssModule, reactive } from 'vue'
 import type { vTooltip } from 'floating-vue'
 
 import { uniqueId } from '@/core/utils/uniqueId'
+import GaFormInfo from '../GaFormInfo.vue'
 import { formFieldKey, type FormFieldContext } from './types'
 
 export interface FormFieldProps extends FormFieldContext {
@@ -46,7 +47,7 @@ const classes = computed(() => [style.formField, { [style.disabled]: disabled }]
     <slot />
 
     <div :class="$style.info" v-if="$slots.info || info">
-      <slot name="info">{{ info }}</slot>
+      <slot name="info"><ga-form-info :label="info" /></slot>
     </div>
   </div>
 </template>
@@ -57,7 +58,7 @@ const classes = computed(() => [style.formField, { [style.disabled]: disabled }]
   flex-direction: column;
   gap: var(--ga-size-spacing-03);
 
-  &.disabled > .label {
+  &.disabled {
     color: var(--ga-color-text-disabled);
   }
 }
@@ -96,10 +97,5 @@ const classes = computed(() => [style.formField, { [style.disabled]: disabled }]
   font-size: var(--ga-text-xs-font-size);
   line-height: var(--ga-text-xs-line-height);
   letter-spacing: var(--ga-text-xs-tracking);
-}
-
-:global(.v-popper--has-tooltip) {
-  text-decoration: underline dotted 2px;
-  text-underline-offset: 0.2em;
 }
 </style>

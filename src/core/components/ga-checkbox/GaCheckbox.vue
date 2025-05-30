@@ -42,6 +42,7 @@ defineExpose({ inputRef })
   display: inline-flex;
   position: relative;
   gap: var(--ga-size-spacing-01);
+  width: fit-content;
 
   user-select: none;
 }

@@ -57,4 +57,9 @@ defineProps<{ content?: string }>()
     border-color: var(--ga-color-surface-action-hover);
   }
 }
+
+.v-popper--has-tooltip {
+  text-decoration: underline dotted 2px;
+  text-underline-offset: 0.25em;
+}
 </style>
