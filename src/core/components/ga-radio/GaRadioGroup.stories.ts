@@ -29,7 +29,7 @@ const meta = {
   tags: ['autodocs'],
   argTypes: {
     modelValue: { control: 'text', description: 'The selected radio value.' },
-    title: { control: 'text', description: 'The title of the radio group.' },
+    label: { control: 'text', description: 'The label of the radio group.' },
     direction: {
       control: 'select',
       options: ['vertical', 'horizontal'],
@@ -50,70 +50,61 @@ export const Examples: Story = {
   render: () => ({
     components: { GaFormInfo, GaRadio, GaRadioGroup, ChartSpline, OctagonAlert, TriangleAlert },
     template: `
-      <div :style="{display:'flex',flexWrap:'wrap',gap:'var(--ga-size-spacing-06)',maxWidth:'960px'}">
-        <ga-radio-group title="Payment frequency">
+      <div style="display: flex; flex-wrap: wrap; gap: var(--ga-size-spacing-06); max-width: 960px;">
+        <ga-radio-group label="Payment frequency">
           <ga-radio value="1" label='Daily' />
           <ga-radio value="2" label='Weekly' />
           <ga-radio value="3" label='Monthly' />
           <ga-radio value="4" label='Annually' />
         </ga-radio-group>
 
-        <ga-radio-group title="Financial goals setting">
+        <ga-radio-group label="Financial goals setting">
           <ga-radio value="1" label='Retirement planning' checked />
           <ga-radio value="2" label='Debt reduction' />
           <ga-radio value="3" label='Company savings' />
         </ga-radio-group>
 
-        <ga-radio-group title="Account alert notifications">
+        <ga-radio-group label="Account alert notifications">
           <ga-radio value="1" disabled>
             Push notification<br/>
-            <span :style="{fontSize:'var(--ga-text-sm-font-size)'}">Linked with Expense mobile application</span>
+            <span style="font-size: var(--ga-text-sm-font-size);">Linked with Expense mobile application</span>
           </ga-radio>
           <ga-radio value="2">
             Email notification<br/>
-            <span :style="{fontSize:'var(--ga-text-sm-font-size)'}">To john.smith@mail.com</span>
+            <span style="font-size: var(--ga-text-sm-font-size);">To john.smith@mail.com</span>
           </ga-radio>
           <ga-radio value="3">
             SMS notification<br/>
-            <span :style="{fontSize:'var(--ga-text-sm-font-size)'}">Your phone number +40914 31 914</span>
+            <span style="font-size: var(--ga-text-sm-font-size);">Your phone number +40914 31 914</span>
           </ga-radio>
         </ga-radio-group>
 
-        <ga-radio-group>
-          <template #title>
-            Portfolio view filter<br />
-            <span :style="{fontSize:'var(--ga-text-sm-font-size)'}">Primary view of this filter</span>
-          </template>
-
+        <ga-radio-group label="Portfolio view filter" callout="Primary view of this filter">
           <ga-radio value="1" label='Overall performance' checked disabled />
           <ga-radio value="2" label='Sector allocation' />
           <ga-radio value="3" label='Asset allocation' />
         </ga-radio-group>
 
-        <div :style="{display:'flex',flexDirection:'column',gap:'var(--ga-size-spacing-03)'}">
-          <ga-radio-group title='Risk tolerance level'>
+        <div style="display: flex; flex-direction: column; gap: var(--ga-size-spacing-03);">
+          <ga-radio-group label='Risk tolerance level'>
             <ga-radio value="1" label='Conservative' checked />
             <ga-radio value="2" label='Moderate' />
             <ga-radio value="3" label='Aggressive' />
           </ga-radio-group>
+
           <ga-form-info label="Risk factors affect algorithmic payments as well">
             <template #icon><chart-spline /></template>
           </ga-form-info>
         </div>
 
-        <ga-radio-group direction="horizontal">
-          <template #title>
-            Portfolio view filter<br />
-            <span :style="{fontSize:'var(--ga-text-sm-font-size)'}">Primary view of this filter</span>
-          </template>
-
+        <ga-radio-group direction="horizontal" label="Portfolio view filter" callout="Primary view of this filter">
           <ga-radio value="1" label='Overall performance' checked />
           <ga-radio value="2" label='Sector allocation' />
           <ga-radio value="3" label='Asset allocation' />
         </ga-radio-group>
 
-        <div :style="{display:'flex',flexDirection:'column',gap:'var(--ga-size-spacing-03)'}">
-          <ga-radio-group title='Risk tolerance level' direction="horizontal">
+        <div style="display: flex; flex-direction: column; gap: var(--ga-size-spacing-03);">
+          <ga-radio-group label='Risk tolerance level' direction="horizontal">
             <ga-radio value="1" label='Conservative' checked />
             <ga-radio value="2" label='Moderate' />
             <ga-radio value="3" label='Aggressive' />
@@ -124,13 +115,8 @@ export const Examples: Story = {
           </ga-form-info>
         </div>
 
-        <div :style="{display:'flex',flexDirection:'column',gap:'var(--ga-size-spacing-03)'}">
-          <ga-radio-group>
-            <template #title>
-              Document type (error)<br />
-              <span :style="{fontSize:'var(--ga-text-sm-font-size)'}">Documents with this workflow applied automatically</span>
-            </template>
-
+        <div style="display: flex; flex-direction: column; gap: var(--ga-size-spacing-03);">
+          <ga-radio-group label="Document type" state="(error)" callout="Documents with this workflow applied automatically">
             <ga-radio value="1" label='Invoices' error />
             <ga-radio value="2" label='Cost requests' error />
             <ga-radio value="3" label='Credit notes' error />
@@ -141,13 +127,8 @@ export const Examples: Story = {
           </ga-form-info>
         </div>
 
-        <div :style="{display:'flex',flexDirection:'column',gap:'var(--ga-size-spacing-03)'}">
-          <ga-radio-group direction="horizontal">
-            <template #title>
-              Document type (error)<br />
-              <span :style="{fontSize:'var(--ga-text-sm-font-size)'}">Documents with this workflow applied automatically</span>
-            </template>
-
+        <div style="display: flex; flex-direction: column; gap: var(--ga-size-spacing-03);">
+          <ga-radio-group direction="horizontal" label="Document type" state="(error)" callout="Documents with this workflow applied automatically">
             <ga-radio value="1" label='Invoices' error />
             <ga-radio value="2" label='Cost requests' error />
             <ga-radio value="3" label='Credit notes' error />
@@ -158,13 +139,8 @@ export const Examples: Story = {
           </ga-form-info>
         </div>
 
-        <div :style="{display:'flex',flexDirection:'column',gap:'var(--ga-size-spacing-03)'}">
-          <ga-radio-group>
-            <template #title>
-              Document type<br />
-              <span :style="{fontSize:'var(--ga-text-sm-font-size)'}">Documents with this workflow applied automatically</span>
-            </template>
-
+        <div style="display: flex; flex-direction: column; gap: var(--ga-size-spacing-03);">
+          <ga-radio-group label="Document type" callout="Documents with this workflow applied automatically">
             <ga-radio value="1" label='Invoices' />
             <ga-radio value="2" label='Cost requests' checked />
             <ga-radio value="3" label='Credit notes' />
@@ -175,13 +151,8 @@ export const Examples: Story = {
           </ga-form-info>
         </div>
 
-        <div :style="{display:'flex',flexDirection:'column',gap:'var(--ga-size-spacing-03)'}">
-          <ga-radio-group direction="horizontal">
-            <template #title>
-              Document type<br />
-              <span :style="{fontSize:'var(--ga-text-sm-font-size)'}">Documents with this workflow applied automatically</span>
-            </template>
-
+        <div style="display: flex; flex-direction: column; gap: var(--ga-size-spacing-03);">
+          <ga-radio-group direction="horizontal" label="Document type" callout="Documents with this workflow applied automatically">
             <ga-radio value="1" label='Invoices' />
             <ga-radio value="2" label='Cost requests' checked />
             <ga-radio value="3" label='Credit notes' />

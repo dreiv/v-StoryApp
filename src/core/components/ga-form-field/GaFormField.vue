@@ -14,6 +14,9 @@ export interface FormFieldProps extends FormFieldContext {
 
 const { id = uniqueId('form-field'), disabled, error } = defineProps<FormFieldProps>()
 
+const style = useCssModule()
+const classes = computed(() => [style.formField, { [style.disabled]: disabled }])
+
 provide(
   formFieldKey,
   reactive({
@@ -26,9 +29,6 @@ provide(
     },
   }),
 )
-
-const style = useCssModule()
-const classes = computed(() => [style.formField, { [style.disabled]: disabled }])
 </script>
 
 <template>
@@ -69,7 +69,6 @@ const classes = computed(() => [style.formField, { [style.disabled]: disabled }]
   padding-inline: var(--ga-size-spacing-02);
 
   width: fit-content;
-  height: 1.25rem; /* TODO: fix */
 
   &:focus-within {
     outline: var(--ga-size-border-width-md) solid var(--ga-color-border-focus);
@@ -80,12 +79,13 @@ const classes = computed(() => [style.formField, { [style.disabled]: disabled }]
 .text {
   outline: none;
   font-weight: var(--ga-font-weight-medium);
-  line-height: 1.25rem; /* TODO: fix */
+  font-size: var(--ga-text-md-font-size);
+  line-height: var(--ga-text-md-line-height);
 }
 
 .state {
   font-size: var(--ga-text-sm-font-size);
-  line-height: 1.25rem; /* TODO: fix */
+  line-height: var(--ga-text-sm-line-height);
 }
 
 .info {

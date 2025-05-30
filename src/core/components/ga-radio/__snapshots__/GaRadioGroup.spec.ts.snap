@@ -2,23 +2,78 @@
 
 exports[`RadioGroup > should render correctly with default props 1`] = `
 "<fieldset class="group">
-  <legend class="title"></legend>
-  <div class="content"></div>
-</fieldset>"
-`;
-
-exports[`RadioGroup > should render with title slot when provided 1`] = `
-"<fieldset class="group">
-  <legend class="title">
-    <div class="custom-title">Custom Title</div>
+  <legend class="legend">
+    <div class="label"><span class="text"></span>
+      <!--v-if-->
+    </div>
+    <!--v-if-->
   </legend>
   <div class="content"></div>
 </fieldset>"
 `;
 
-exports[`RadioGroup > should render with title when provided 1`] = `
+exports[`RadioGroup > should render with callout slot when provided 1`] = `
 "<fieldset class="group">
-  <legend class="title">Test Title</legend>
+  <legend class="legend">
+    <div class="label"><span class="text"></span>
+      <!--v-if-->
+    </div><span class="callout"><div class="custom-callout">Custom Callout</div></span>
+  </legend>
+  <div class="content"></div>
+</fieldset>"
+`;
+
+exports[`RadioGroup > should render with callout when provided 1`] = `
+"<fieldset class="group">
+  <legend class="legend">
+    <div class="label"><span class="text"></span>
+      <!--v-if-->
+    </div><span class="callout">Test Callout</span>
+  </legend>
+  <div class="content"></div>
+</fieldset>"
+`;
+
+exports[`RadioGroup > should render with label slot when provided 1`] = `
+"<fieldset class="group">
+  <legend class="legend">
+    <div class="label"><span class="text"><div class="custom-label">Custom Label</div></span>
+      <!--v-if-->
+    </div>
+    <!--v-if-->
+  </legend>
+  <div class="content"></div>
+</fieldset>"
+`;
+
+exports[`RadioGroup > should render with label when provided 1`] = `
+"<fieldset class="group">
+  <legend class="legend">
+    <div class="label"><span class="text">Test Label</span>
+      <!--v-if-->
+    </div>
+    <!--v-if-->
+  </legend>
+  <div class="content"></div>
+</fieldset>"
+`;
+
+exports[`RadioGroup > should render with state slot when provided 1`] = `
+"<fieldset class="group">
+  <legend class="legend">
+    <div class="label"><span class="text"></span><span class="state"><div class="custom-state">Custom State</div></span></div>
+    <!--v-if-->
+  </legend>
+  <div class="content"></div>
+</fieldset>"
+`;
+
+exports[`RadioGroup > should render with state when provided 1`] = `
+"<fieldset class="group">
+  <legend class="legend">
+    <div class="label"><span class="text"></span><span class="state">Test State</span></div>
+    <!--v-if-->
+  </legend>
   <div class="content"></div>
 </fieldset>"
 `;
