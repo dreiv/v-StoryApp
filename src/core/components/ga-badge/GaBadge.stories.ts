@@ -126,15 +126,8 @@ export const Examples: Story = {
   render: () => ({
     components: { GaBadge, BellIcon, BellDot, MailIcon },
     template: `
-      <div :style="{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 'var(--ga-size-spacing-06)'
-      }">
-        <div :style="{
-          display: 'flex',
-          gap: '16px'
-        }">
+      <div style="display: flex; flex-direction: column; gap: var(--ga-size-spacing-06);">
+        <div style="display: flex; gap: 16px;">
           <ga-badge>25</ga-badge>
           <ga-badge inverted>99</ga-badge>
           <ga-badge muted>7</ga-badge>
@@ -144,168 +137,81 @@ export const Examples: Story = {
           <ga-badge success>+25K</ga-badge>
         </div>
 
-        <div :style="{
-          display: 'flex',
-          flexWrap: 'wrap',
-          alignItems: 'center',
-          gap: '16px'
-        }">
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px;">
           <div><ga-badge success /> User online</div>
           <div><ga-badge disabled /> User offline</div>
           <div><ga-badge information /> Last sync was <a href='#'>13 minutes ago</a></div>
           <div><ga-badge error /> Retrieval error (timeout)</div>
         </div>
 
-        <div :style="{
-          display: 'flex',
-          gap: '16px'
-        }">
-          <div :style="{
-            position: 'relative'
-          }">
+        <div style="display: flex; gap: 16px;">
+          <div style="position: relative;">
             <bell-dot />
-            <ga-badge success style="position: absolute; top: 4px; right: 2px" />
+            <ga-badge success style="position: absolute; top: 4px; right: 2px;" />
           </div>
-          <div :style="{
-            position: 'relative'
-          }">
+          <div style="position: relative;">
             <bell-dot />
-            <ga-badge warning style="position: absolute; top: 4px; right: 2px" />
+            <ga-badge warning style="position: absolute; top: 4px; right: 2px;" />
           </div>
-          <div :style="{
-            position: 'relative'
-          }">
+          <div style="position: relative;">
             <bell-dot />
-            <ga-badge information style="position: absolute; top: 4px; right: 2px" />
+            <ga-badge information style="position: absolute; top: 4px; right: 2px;" />
           </div>
-          <div :style="{
-            position: 'relative'
-          }">
+          <div style="position: relative;">
             <bell-dot />
-            <ga-badge error style="position: absolute; top: 4px; right: 2px" />
+            <ga-badge error style="position: absolute; top: 4px; right: 2px;" />
           </div>
         </div>
 
-        <div :style="{
-          display: 'flex',
-          gap: '16px'
-        }">
-          <div :style="{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 'var(--ga-size-spacing-03)'
-          }">
+        <div style="display: flex; gap: 16px;">
+          <div style="display: flex; align-items: center; gap: var(--ga-size-spacing-03);">
             <bell-icon /><ga-badge>99+</ga-badge>
           </div>
-          <div :style="{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 'var(--ga-size-spacing-03)'
-          }">
+          <div style="display: flex; align-items: center; gap: var(--ga-size-spacing-03);">
             <bell-icon /><ga-badge inverted>99+</ga-badge>
           </div>
-          <div :style="{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 'var(--ga-size-spacing-03)'
-          }">
+          <div style="display: flex; align-items: center; gap: var(--ga-size-spacing-03);">
             <mail-icon /><ga-badge>123456</ga-badge>
           </div>
-          <div :style="{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 'var(--ga-size-spacing-03)'
-          }">
+          <div style="display: flex; align-items: center; gap: var(--ga-size-spacing-03);">
             <mail-icon /><ga-badge inverted>123456</ga-badge>
           </div>
         </div>
 
-        <div :style="{
-          display: 'flex',
-          flexWrap: 'wrap',
-          gap: '16px'
-        }">
-          <div :style="{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 'var(--ga-size-spacing-03)'
-          }">
+        <div style="display: flex; flex-wrap: wrap; gap: 16px;">
+          <div style="display: flex; align-items: center; gap: var(--ga-size-spacing-03);">
             <span>12 new incidents detected</span><ga-badge error>12 ↓</ga-badge>
           </div>
-          <div :style="{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 'var(--ga-size-spacing-03)'
-          }">
+          <div style="display: flex; align-items: center; gap: var(--ga-size-spacing-03);">
             <span>New sales</span><ga-badge success>4.2K ↑</ga-badge>
           </div>
-          <div :style="{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 'var(--ga-size-spacing-03)'
-          }">
+          <div style="display: flex; align-items: center; gap: var(--ga-size-spacing-03);">
             <span>Missing payments</span><ga-badge warning>9</ga-badge>
           </div>
-          <div :style="{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 'var(--ga-size-spacing-03)'
-          }">
+          <div style="display: flex; align-items: center; gap: var(--ga-size-spacing-03);">
             <span>Revenue increased by <a href='#'>789.00 NOK</a></span><ga-badge information>5.4%</ga-badge>
           </div>
         </div>
 
-        <div :style="{
-          display: 'flex',
-          gap: '16px',
-          width: '96px',
-          backgroundColor: 'var(--ga-color-surface-action)',
-          padding: '16px',
-          borderRadius: 'var(--ga-radius)'
-        }">
+        <div style="display: flex; gap: 16px; width: 96px; background-color: var(--ga-color-surface-action); padding: 16px; border-radius: var(--ga-radius);">
           <ga-badge inverted>99</ga-badge>
           <ga-badge muted>99</ga-badge>
         </div>
 
-        <div :style="{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 'var(--ga-size-spacing-03)',
-          width: '240px'
-        }">
-          <div :style="{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between'
-          }">
+        <div style="display: flex; flex-direction: column; gap: var(--ga-size-spacing-03); width: 240px;">
+          <div style="display: flex; align-items: center; justify-content: space-between;">
             <span>Personal Inbox</span><ga-badge inverted>32</ga-badge>
           </div>
-          <div :style="{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between'
-          }">
+          <div style="display: flex; align-items: center; justify-content: space-between;">
             <span>Invoices</span><ga-badge muted>32</ga-badge>
           </div>
-          <div :style="{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between'
-          }">
+          <div style="display: flex; align-items: center; justify-content: space-between;">
             <span>Credit notes</span><ga-badge disabled inverted>32</ga-badge>
           </div>
-          <div :style="{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between'
-          }">
+          <div style="display: flex; align-items: center; justify-content: space-between;">
             <span>Leave requests</span><ga-badge>32</ga-badge>
           </div>
-          <div :style="{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between'
-          }">
+          <div style="display: flex; align-items: center; justify-content: space-between;">
             <span>Expense claim</span><ga-badge disabled>0</ga-badge>
           </div>
         </div>
