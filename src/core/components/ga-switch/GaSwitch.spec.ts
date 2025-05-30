@@ -7,8 +7,14 @@ vi.mock('@/core/constants')
 describe('Switch', () => {
   let wrapper: VueWrapper
 
+  const globalOptions = {
+    directives: {
+      tooltip: vi.fn(), // Mock for v-tooltip
+    },
+  }
+
   beforeEach(() => {
-    wrapper = shallowMount(GaSwitch)
+    wrapper = shallowMount(GaSwitch, { global: globalOptions })
   })
 
   it('should render correctly with default props', () => {
@@ -16,13 +22,19 @@ describe('Switch', () => {
   })
 
   it('should render correctly with label prop', () => {
-    wrapper = shallowMount(GaSwitch, { props: { label: 'Toggle feature' } })
+    wrapper = shallowMount(GaSwitch, {
+      props: { label: 'Toggle feature' },
+      global: globalOptions,
+    })
     expect(wrapper.html()).toMatchSnapshot()
     expect(wrapper.text()).toContain('Toggle feature')
   })
 
   it('should render correctly with default slot', () => {
-    wrapper = shallowMount(GaSwitch, { slots: { default: 'Custom Label Content' } })
+    wrapper = shallowMount(GaSwitch, {
+      slots: { default: 'Custom Label Content' },
+      global: globalOptions,
+    })
     expect(wrapper.html()).toMatchSnapshot()
     expect(wrapper.text()).toContain('Custom Label Content')
   })

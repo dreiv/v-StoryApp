@@ -1,0 +1,7 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`GaSelectCaption > should render correctly with title prop 1`] = `"<caption class="caption">My Caption Title</caption>"`;
+
+exports[`GaSelectCaption > should render title slot content instead of title prop if provided 1`] = `"<caption class="caption"><span class="custom-caption-slot">Slot Title</span></caption>"`;
+
+exports[`GaSelectCaption > should render with default slot if no title prop or slot is provided 1`] = `"<caption class="caption"></caption>"`;

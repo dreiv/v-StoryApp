@@ -1,0 +1,11 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`GaFormNest > should render correctly with both default and nested slots 1`] = `
+"Default Slot Content
+<div class="nested">Nested Slot Content</div>"
+`;
+
+exports[`GaFormNest > should render correctly with only the default slot 1`] = `
+"Default Slot Content
+<!--v-if-->"
+`;

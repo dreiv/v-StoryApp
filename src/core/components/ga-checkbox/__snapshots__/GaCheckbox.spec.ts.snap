@@ -53,3 +53,23 @@ exports[`Checkbox > should render with error styling when error prop is true 1`]
   <!--v-if-->
 </label>"
 `;
+
+exports[`Checkbox > should render with state prop when provided 1`] = `
+"<label class="mock-input"><input type="checkbox" class="native">
+  <div class="marker">
+    <anonymous-stub class="checked" size="12" stroke-width="4"></anonymous-stub>
+    <anonymous-stub class="indeterminate" size="12" stroke-width="4"></anonymous-stub>
+  </div>
+  <div class="label"><span class="text">Required Label</span><span class="state">Test State</span></div>
+</label>"
+`;
+
+exports[`Checkbox > should render with state slot when provided 1`] = `
+"<label class="mock-input"><input type="checkbox" class="native">
+  <div class="marker">
+    <anonymous-stub class="checked" size="12" stroke-width="4"></anonymous-stub>
+    <anonymous-stub class="indeterminate" size="12" stroke-width="4"></anonymous-stub>
+  </div>
+  <div class="label"><span class="text">Required Label</span><span class="state"><div class="custom-state">Custom State</div></span></div>
+</label>"
+`;

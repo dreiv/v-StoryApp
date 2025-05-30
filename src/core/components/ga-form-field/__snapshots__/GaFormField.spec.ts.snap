@@ -1,0 +1,57 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`GaFormField > should apply disabled class when disabled prop is true 1`] = `
+"<div class="formField disabled">
+  <!--v-if--><input type="text">
+  <!--v-if-->
+</div>"
+`;
+
+exports[`GaFormField > should render correctly with default props and slot 1`] = `
+"<div class="formField">
+  <!--v-if--><input type="text">
+  <!--v-if-->
+</div>"
+`;
+
+exports[`GaFormField > should render info via prop 1`] = `
+"<div class="formField">
+  <!--v-if--><input type="text">
+  <div class="info">Test Info</div>
+</div>"
+`;
+
+exports[`GaFormField > should render info via slot 1`] = `
+"<div class="formField">
+  <!--v-if--><input type="text">
+  <div class="info"><span class="custom-info">Custom Info</span></div>
+</div>"
+`;
+
+exports[`GaFormField > should render label via prop 1`] = `
+"<div class="formField"><label class="label" for="form-field-2"><span class="text">Test Label</span>
+    <!--v-if-->
+  </label><input type="text">
+  <!--v-if-->
+</div>"
+`;
+
+exports[`GaFormField > should render label via slot 1`] = `
+"<div class="formField"><label class="label" for="form-field-3"><span class="text"><span class="custom-label">Custom Label</span></span>
+    <!--v-if-->
+  </label><input type="text">
+  <!--v-if-->
+</div>"
+`;
+
+exports[`GaFormField > should render state via prop 1`] = `
+"<div class="formField"><label class="label" for="form-field-6"><span class="text">Test Label</span><span class="state">Optional</span></label><input type="text">
+  <!--v-if-->
+</div>"
+`;
+
+exports[`GaFormField > should render state via slot 1`] = `
+"<div class="formField"><label class="label" for="form-field-7"><span class="text">Test Label</span><span class="state"><span class="custom-state">Custom State</span></span></label><input type="text">
+  <!--v-if-->
+</div>"
+`;
