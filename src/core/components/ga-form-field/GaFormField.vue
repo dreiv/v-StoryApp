@@ -3,7 +3,6 @@ import { computed, provide, useCssModule, reactive } from 'vue'
 import type { vTooltip } from 'floating-vue'
 
 import { uniqueId } from '@/core/utils/uniqueId'
-import GaFormInfo from '../GaFormInfo.vue'
 import { formFieldKey, type FormFieldContext } from './types'
 
 export interface FormFieldProps extends FormFieldContext {
@@ -47,7 +46,7 @@ const classes = computed(() => [style.formField, { [style.disabled]: disabled }]
     <slot />
 
     <div :class="$style.info" v-if="$slots.info || info">
-      <slot name="info"><ga-form-info :label="info" /></slot>
+      <slot name="info">{{ info }}</slot>
     </div>
   </div>
 </template>

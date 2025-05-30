@@ -174,8 +174,13 @@ export const Examples: Story = {
         </template>
       </ga-form-field>
 
-      <ga-form-field info="This callout ensures that the check mark is explained in even more detail.">
+      <ga-form-field>
         <ga-checkbox label='The checkbox component offers a clear depiction of a binary choice,enabling users to select from several options or toggle a single option on or off.' />
+         <template #info>
+          <ga-form-info label='This callout ensures that the check mark is explained in even more detail.'>
+            <template #icon> </template>
+          </ga-form-info>
+        </template>
       </ga-form-field>
 
       <div style="display: flex; flex-direction: column; gap: var(--ga-size-spacing-03);">
@@ -210,8 +215,13 @@ export const Examples: Story = {
         </ga-form-nest>
       </div>
 
-      <ga-form-field disabled info="Only sent when major security flaws detected on your account.">
+      <ga-form-field disabled>
         <ga-checkbox disabled :modelValue="true" label='Receive security updates via email' />
+        <template #info>
+          <ga-form-info label="Only sent when major security flaws detected on your account.">
+            <template #icon> </template>
+          </ga-form-info>
+        </template>
       </ga-form-field>
 
       <div style="display: flex; flex-direction: column; gap: var(--ga-size-spacing-03);">
