@@ -14,7 +14,7 @@ const meta = {
   decorators: [
     (story) => ({
       components: { story },
-      template: `<div :style="{display: 'flex',justifyContent: 'center',gap: '8px'}"><story /></div>`,
+      template: `<div style="display: flex; justify-content: center"><story /></div>`,
     }),
   ],
   tags: ['autodocs'],
