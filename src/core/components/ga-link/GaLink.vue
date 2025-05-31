@@ -51,6 +51,37 @@ const attributes = computed(() => ({
   font-size: var(--ga-text-md-font-size);
   line-height: var(--ga-text-md-line-height);
   text-decoration: inherit;
+
+  &.disabled {
+    cursor: not-allowed;
+    color: var(--ga-color-text-disabled);
+
+    & .link_icon {
+      color: var(--ga-color-icon-disabled);
+    }
+  }
+
+  &:not(.disabled) {
+    &:visited {
+      color: var(--ga-color-text-link-visited);
+      text-decoration-color: var(--ga-color-text-link-visited);
+    }
+
+    &:hover {
+      color: var(--ga-color-text-action-hover);
+      text-decoration: underline 1px solid var(--ga-color-primary-90);
+    }
+
+    &:active {
+      color: var(--ga-color-text-action);
+      text-decoration-color: var(--ga-color-text-action);
+    }
+
+    &:focus-visible {
+      outline: var(--ga-size-border-width-md) solid var(--ga-color-border-focus);
+      outline-offset: var(--ga-size-spacing-01);
+    }
+  }
 }
 
 .sm {
@@ -65,34 +96,5 @@ const attributes = computed(() => ({
 
 .inline {
   text-decoration: underline 1px solid var(--ga-color-primary-90);
-}
-
-.disabled {
-  cursor: not-allowed;
-  color: var(--ga-color-text-disabled);
-}
-
-.disabled .link_icon {
-  color: var(--ga-color-icon-disabled);
-}
-
-.link:not(.disabled):visited {
-  color: var(--ga-color-text-link-visited);
-  text-decoration-color: var(--ga-color-text-link-visited);
-}
-
-.link:not(.disabled):hover {
-  color: var(--ga-color-text-action-hover);
-  text-decoration: underline 1px solid var(--ga-color-primary-90);
-}
-
-.link:not(.disabled):active {
-  color: var(--ga-color-text-action);
-  text-decoration-color: var(--ga-color-text-action);
-}
-
-.link:not(.disabled):focus-visible {
-  outline: var(--ga-size-border-width-md) solid var(--ga-color-border-focus);
-  outline-offset: var(--ga-size-spacing-01);
 }
 </style>
