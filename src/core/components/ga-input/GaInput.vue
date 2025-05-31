@@ -9,13 +9,14 @@ import {
 } from 'vue'
 import { formFieldKey } from '../ga-form-field/types'
 
-defineOptions({ inheritAttrs: false })
-
 export interface GaInputProps extends /* @vue-ignore */ InputHTMLAttributes {
   id?: string
   error?: boolean
   success?: boolean
 }
+
+defineOptions({ inheritAttrs: false })
+
 const { id, error, disabled, success } = defineProps<GaInputProps>()
 const inputRef = useTemplateRef<HTMLElement>('inputRef')
 const style = useCssModule()
