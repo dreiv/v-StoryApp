@@ -67,7 +67,11 @@ const attributes = computed(() => ({
 
     &:hover {
       color: var(--ga-color-text-action-hover);
-      text-decoration: underline 1px solid var(--ga-color-primary-90);
+      text-decoration: underline var(--ga-size-border-width-sm) solid var(--ga-color-primary-90);
+
+      &.inline {
+        text-decoration-thickness: var(--ga-size-border-width-md);
+      }
     }
 
     &:active {
@@ -93,6 +97,6 @@ const attributes = computed(() => ({
 }
 
 .inline {
-  text-decoration: underline 1px solid var(--ga-color-primary-90);
+  text-decoration: underline var(--ga-size-border-width-sm) solid var(--ga-color-primary-90);
 }
 </style>
