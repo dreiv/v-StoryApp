@@ -1,10 +1,16 @@
 <script setup lang="ts">
 import { useTemplateRef } from 'vue'
 import { CheckIcon } from 'lucide-vue-next'
+import type { vTooltip } from 'floating-vue'
 import { useFormInput, type FormInputProps } from '@/core/composables/useFormInput'
 
 defineOptions({ inheritAttrs: false })
-const props = defineProps<FormInputProps>()
+
+export interface SwitchProps extends FormInputProps {
+  tooltip?: typeof vTooltip
+}
+
+const props = defineProps<SwitchProps>()
 
 const { classes, aria } = useFormInput(props)
 const inputRef = useTemplateRef<HTMLElement>('inputRef')
@@ -15,12 +21,19 @@ defineExpose({ inputRef })
 
 <template>
   <label :class="classes" v-bind="aria">
-    <input ref="inputRef" type="checkbox" :class="$style.native" v-model="model" v-bind="$attrs" />
+    <input
+      ref="inputRef"
+      type="checkbox"
+      :class="$style.native"
+      v-model="model"
+      v-tooltip="tooltip"
+      v-bind="$attrs"
+    />
     <div :class="$style.marker">
       <CheckIcon :class="$style.checked" :size="16" />
     </div>
 
-    <span :class="$style.label">
+    <span :class="$style.label" v-if="$slots.default || label">
       <slot>{{ label }}</slot>
     </span>
   </label>
@@ -167,9 +180,5 @@ defineExpose({ inputRef })
   line-height: var(--ga-text-md-line-height);
   font-family: var(--ga-font-family-primary);
   letter-spacing: var(--ga-text-md-tracking);
-
-  &:empty {
-    display: none;
-  }
 }
 </style>

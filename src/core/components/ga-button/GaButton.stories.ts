@@ -6,7 +6,7 @@ import {
   EllipsisIcon,
   FilterX,
   FolderSync,
-  MailIcon,
+  Inbox,
   SquarePlus,
   ThumbsDown,
   ThumbsUp,
@@ -165,53 +165,33 @@ export const Examples: Story = {
       EllipsisIcon,
       FilterX,
       FolderSync,
-      MailIcon,
+      Inbox,
       SquarePlus,
       ThumbsDown,
       ThumbsUp,
     },
     template: `
-      <div :style="{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 'var(--ga-size-spacing-06)'
-      }">
-        <div :style="{
-          display: 'flex',
-          gap: 'var(--ga-size-spacing-03)'
-        }">
+      <div style="display: flex; flex-direction: column; gap: var(--ga-size-spacing-06);">
+        <div style="display: flex; gap: var(--ga-size-spacing-03);">
           <ga-button primary>Upload document</ga-button>
           <ga-button>Cancel</ga-button>
           <ga-button primary>Add more <square-plus /></ga-button>
         </div>
 
-        <div :style="{
-          display: 'flex',
-          gap: 'var(--ga-size-spacing-03)'
-        }">
+        <div style="display: flex; gap: var(--ga-size-spacing-03);">
           <ga-button primary>Inbox <ga-badge inverted>99</ga-badge></ga-button>
           <ga-button>Inbox <ga-badge inverted>99</ga-badge></ga-button>
           <ga-button ghost>Inbox <ga-badge inverted>99</ga-badge></ga-button>
         </div>
 
-        <div :style="{
-          display: 'flex',
-          gap: 'var(--ga-size-spacing-03)'
-        }">
-          <ga-button primary><mail-icon />Inbox <ga-badge inverted>99</ga-badge></ga-button>
-          <ga-button><mail-icon />Inbox <ga-badge inverted>99</ga-badge></ga-button>
-          <ga-button ghost><mail-icon />Inbox <ga-badge inverted>99</ga-badge></ga-button>
+        <div style="display: flex; gap: var(--ga-size-spacing-03);">
+          <ga-button primary><inbox />Inbox <ga-badge inverted>99</ga-badge></ga-button>
+          <ga-button><inbox />Inbox <ga-badge inverted>99</ga-badge></ga-button>
+          <ga-button ghost><inbox />Inbox <ga-badge inverted>99</ga-badge></ga-button>
         </div>
 
-        <div :style="{
-          display: 'flex',
-          justifyContent: 'space-between',
-          gap: 'var(--ga-size-spacing-03)'
-        }">
-          <div :style="{
-            display: 'flex',
-            gap: 'var(--ga-size-spacing-03)'
-          }">
+        <div style="display: flex; justify-content: space-between; gap: var(--ga-size-spacing-03);">
+          <div style="display: flex; gap: var(--ga-size-spacing-03);">
             <ga-button primary icon><download-icon /></ga-button>
             <ga-button icon><ellipsis-icon /></ga-button>
             <ga-button icon ghost><folder-sync /></ga-button>
@@ -219,11 +199,7 @@ export const Examples: Story = {
           <ga-button primary><download-icon /> Download as PDF <chevron-down /></ga-button>
         </div>
 
-        <div :style="{
-          display: 'flex',
-          justifyContent: 'space-between',
-          gap: 'var(--ga-size-spacing-03)'
-        }">
+        <div style="display: flex; justify-content: space-between; gap: var(--ga-size-spacing-03);">
           <ga-tooltip content="Payment cannot be accepted without bank login.">
             <ga-button primary disabled>Accept payment</ga-button>
           </ga-tooltip>
@@ -233,47 +209,25 @@ export const Examples: Story = {
           </ga-button>
         </div>
 
-        <div :style="{
-          display: 'flex',
-          justifyContent: 'space-between',
-          gap: 'var(--ga-size-spacing-03)'
-        }">
-          <div :style="{
-            display: 'flex',
-            gap: 'var(--ga-size-spacing-03)'
-          }">
+        <div style="display: flex; justify-content: space-between; gap: var(--ga-size-spacing-03);">
+          <div style="display: flex; gap: var(--ga-size-spacing-03);">
             <ga-button primary>Review estimate</ga-button>
             <ga-button><filter-x />Clear estimate</ga-button>
           </div>
-          <div :style="{
-            display: 'flex',
-            gap: 'var(--ga-size-spacing-03)'
-          }">
+          <div style="display: flex; gap: var(--ga-size-spacing-03);">
             <ga-button><thumbs-up size="16" strokeWidth="2.5"/> 1</ga-button>
             <ga-button><thumbs-down size="16" strokeWidth="2.5"/> 0</ga-button>
           </div>
         </div>
 
-        <div :style="{
-          display: 'flex',
-          gap: 'var(--ga-size-spacing-03)'
-        }">
+        <div style="display: flex; gap: var(--ga-size-spacing-03);">
           <ga-button primary>Save and attach</ga-button>
           <ga-button ghost><arrow-left />Back</ga-button>
         </div>
 
-        <div :style="{
-          display: 'flex',
-          justifyContent: 'space-between',
-          gap: 'var(--ga-size-spacing-03)',
-          backgroundColor: 'var(--ga-color-surface-page)',
-          padding: '24px'
-        }">
+        <div style="display: flex; justify-content: space-between; gap: var(--ga-size-spacing-03); background-color: var(--ga-color-surface-page); padding: 24px;">
           <ga-button ghost>Complete later</ga-button>
-          <div :style="{
-            display: 'flex',
-            gap: 'var(--ga-size-spacing-03)'
-          }">
+          <div style="display: flex; gap: var(--ga-size-spacing-03);">
             <ga-button primary>Next step</ga-button>
             <ga-button><filter-x />Previous step</ga-button>
           </div>

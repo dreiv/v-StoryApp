@@ -15,11 +15,7 @@ const meta = {
       components: { story },
       template: `
       <div
-        :style="{
-          display:'flex',
-          justifyContent:'center',
-          gap:'var(--ga-size-spacing-03)',
-        }"
+        style="display: flex; justify-content: center; gap: var(--ga-size-spacing-03);"
       >
         <story />
       </div>`,
@@ -46,7 +42,7 @@ export const Examples: Story = {
     components: { GaButton, GaSelect, GaSelectCaption, GaSelectItem, ChevronDown },
     data: () => ({ selected: { value: 2, label: 'Option 2: Selected Item' } }),
     template: `
-      <div :style="{display:'flex',alignItems:'center',flexDirection:'column',gap:'16px'}">
+      <div style="display: flex; align-items: center; flex-direction: column; gap: 16px;">
         <ga-select label='Click me to see options!' v-model='selected'>
           <ga-select-caption title='Options' />
           <ga-select-item :value='1' label='Option 1: Basic Item' disabled />

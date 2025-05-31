@@ -6,13 +6,16 @@ import { uniqueId } from '@/core/utils/uniqueId'
 import { formFieldKey, type FormFieldContext } from './types'
 
 export interface FormFieldProps extends FormFieldContext {
-  label?: string
-  definition?: typeof vTooltip
-  state?: string
   info?: string
+  label?: string
+  state?: string
+  tooltip?: typeof vTooltip
 }
 
 const { id = uniqueId('form-field'), disabled, error } = defineProps<FormFieldProps>()
+
+const style = useCssModule()
+const classes = computed(() => [style.formField, { [style.disabled]: disabled }])
 
 provide(
   formFieldKey,
@@ -26,15 +29,12 @@ provide(
     },
   }),
 )
-
-const style = useCssModule()
-const classes = computed(() => [style.formField, { [style.disabled]: disabled }])
 </script>
 
 <template>
   <div :class="classes">
     <label :class="$style.label" v-if="$slots.label || label" :for="id">
-      <span :class="$style.text" v-tooltip="definition" :tabindex="definition && 0">
+      <span :class="$style.text" v-tooltip="tooltip" :tabindex="tooltip && 0">
         <slot name="label">{{ label }}</slot>
       </span>
 
@@ -57,7 +57,7 @@ const classes = computed(() => [style.formField, { [style.disabled]: disabled }]
   flex-direction: column;
   gap: var(--ga-size-spacing-03);
 
-  &.disabled > .label {
+  &.disabled {
     color: var(--ga-color-text-disabled);
   }
 }
@@ -69,7 +69,6 @@ const classes = computed(() => [style.formField, { [style.disabled]: disabled }]
   padding-inline: var(--ga-size-spacing-02);
 
   width: fit-content;
-  height: 1.25rem; /* TODO: fix */
 
   &:focus-within {
     outline: var(--ga-size-border-width-md) solid var(--ga-color-border-focus);
@@ -80,12 +79,13 @@ const classes = computed(() => [style.formField, { [style.disabled]: disabled }]
 .text {
   outline: none;
   font-weight: var(--ga-font-weight-medium);
-  line-height: 1.25rem; /* TODO: fix */
+  font-size: var(--ga-text-md-font-size);
+  line-height: var(--ga-text-md-line-height);
 }
 
 .state {
   font-size: var(--ga-text-sm-font-size);
-  line-height: 1.25rem; /* TODO: fix */
+  line-height: var(--ga-text-sm-line-height);
 }
 
 .info {
@@ -96,10 +96,5 @@ const classes = computed(() => [style.formField, { [style.disabled]: disabled }]
   font-size: var(--ga-text-xs-font-size);
   line-height: var(--ga-text-xs-line-height);
   letter-spacing: var(--ga-text-xs-tracking);
-}
-
-:global(.v-popper--has-tooltip) {
-  text-decoration: underline dotted 2px;
-  text-underline-offset: 0.2em;
 }
 </style>

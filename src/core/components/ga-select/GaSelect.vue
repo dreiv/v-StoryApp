@@ -33,7 +33,6 @@ const { focusedItem, registerChild, unregisterChild, handleKeyDown } = useSelect
 )
 
 provide(selectKey, { focusedItem, model, onChange, registerChild, unregisterChild })
-
 defineExpose({ buttonRef })
 </script>
 

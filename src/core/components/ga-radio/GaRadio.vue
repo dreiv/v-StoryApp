@@ -28,7 +28,7 @@ defineExpose({ inputRef })
     />
     <div :class="$style.marker" />
 
-    <span :class="$style.label">
+    <span :class="$style.label" v-if="$slots.default || label">
       <slot>{{ label }}</slot>
     </span>
   </label>
@@ -146,9 +146,5 @@ defineExpose({ inputRef })
   line-height: var(--ga-text-md-line-height);
   font-family: var(--ga-font-family-primary);
   letter-spacing: var(--ga-text-md-tracking);
-
-  &:empty {
-    display: none;
-  }
 }
 </style>

@@ -1,0 +1,25 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`GaFormInfo > should render correctly with default props 1`] = `
+"<div class="container">
+  <div class="iconWrapper"></div>
+</div>"
+`;
+
+exports[`GaFormInfo > should render correctly with default slot 1`] = `
+"<div class="container">
+  <div class="iconWrapper"></div>Default Slot Content
+</div>"
+`;
+
+exports[`GaFormInfo > should render correctly with icon slot 1`] = `
+"<div class="container">
+  <div class="iconWrapper"><svg></svg></div>
+</div>"
+`;
+
+exports[`GaFormInfo > should render correctly with label prop 1`] = `
+"<div class="container">
+  <div class="iconWrapper"></div>Test Label
+</div>"
+`;

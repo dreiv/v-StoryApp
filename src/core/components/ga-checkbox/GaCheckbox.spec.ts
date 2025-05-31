@@ -26,6 +26,21 @@ describe('Checkbox', () => {
     expect(wrapper.text()).toContain('Mock Content')
   })
 
+  it('should render with state prop when provided', async () => {
+    await wrapper.setProps({ label: 'Required Label', state: 'Test State' })
+    expect(wrapper.text()).toContain('Test State')
+    expect(wrapper.html()).toMatchSnapshot()
+  })
+
+  it('should render with state slot when provided', () => {
+    wrapper = shallowMount(GaCheckbox, {
+      props: { label: 'Required Label' },
+      slots: { state: '<div class="custom-state">Custom State</div>' },
+    })
+    expect(wrapper.find('.custom-state').exists()).toBe(true)
+    expect(wrapper.html()).toMatchSnapshot()
+  })
+
   it.each([
     { state: 'checked', props: { modelValue: true }, className: '.checked' },
     { state: 'indeterminate', props: { indeterminate: true }, className: '.indeterminate' },

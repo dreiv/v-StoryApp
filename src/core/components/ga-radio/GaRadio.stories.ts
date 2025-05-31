@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
-import { OctagonAlert, TriangleAlert } from 'lucide-vue-next'
+import { OctagonAlert } from 'lucide-vue-next'
 
 import { type FormInputProps } from '@/core/composables/useFormInput'
 import GaFormInfo from '../GaFormInfo.vue'
@@ -13,18 +13,7 @@ const meta = {
   decorators: [
     (story) => ({
       components: { story },
-      template: `
-        <div
-          :style="{
-            display: 'flex',
-            flexWrap: 'wrap',
-            alignItems: 'center',
-            gap: 'var(--ga-size-spacing-03)',
-            padding: 'var(--ga-size-spacing-05)'
-          }"
-        >
-          <story />
-        </div>`,
+      template: `<div style="display: flex; align-items: center; gap: var(--ga-size-spacing-03)"><story /></div>`,
     }),
   ],
   tags: ['autodocs'],
@@ -68,18 +57,13 @@ const createStory = (variation: RadioVariation): Story => {
         render: (args) => ({
           components: { GaRadio, GaRadioGroup, GaFormInfo, OctagonAlert },
           template: `
-            <div :style="{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 'var(--ga-size-spacing-03)'
-            }">
+            <div style="display: flex; flex-direction: column; gap: var(--ga-size-spacing-03);">
               <ga-radio-group direction="vertical">
                 <ga-radio value="option1">I agree to the <a href="#">terms</a> and <a href="#">conditions</a>.</ga-radio>
                 <ga-radio value="option2">I disagree with the terms.</ga-radio>
               </ga-radio-group>
-              <ga-form-info>
+              <ga-form-info label="You must agree to the terms to continue.">
                 <template #icon><octagon-alert strokeWidth="2.5" color="var(--ga-color-error)"/></template>
-                You must agree to the terms to continue.
               </ga-form-info>
             </div>
           `,
@@ -112,96 +96,6 @@ const stories: { [key: string]: Story } = {}
 variations.forEach((variation) => {
   stories[variation.name] = createStory(variation)
 })
-
-/**
- * Allows users to select a single option from multiple choices, typically used in forms for mutually exclusive selections.
- */
-export const Examples: Story = {
-  args: {},
-  parameters: { controls: { disable: true } },
-  render: () => ({
-    components: { GaRadio, GaRadioGroup, GaFormInfo, OctagonAlert, TriangleAlert },
-    template: `
-    <div :style="{
-      display: 'flex',
-      flexDirection: 'column',
-      gap: 'var(--ga-size-spacing-06)'
-    }">
-      <div :style="{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 'var(--ga-size-spacing-03)'
-      }">
-        <h3>Color preference</h3>
-        <ga-radio-group modelValue="blue" direction="vertical">
-          <ga-radio value="blue">Blue</ga-radio>
-          <ga-radio value="red">Red</ga-radio>
-          <ga-radio value="green">Green</ga-radio>
-        </ga-radio-group>
-      </div>
-
-      <div :style="{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 'var(--ga-size-spacing-03)'
-      }">
-        <h3>Payment method</h3>
-        <ga-radio-group modelValue="cc" direction="vertical">
-          <ga-radio value="cc">Credit Card</ga-radio>
-          <ga-radio value="pp">PayPal</ga-radio>
-          <ga-radio value="bt" disabled>Bank Transfer (unavailable)</ga-radio>
-        </ga-radio-group>
-      </div>
-
-      <div :style="{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 'var(--ga-size-spacing-03)'
-      }">
-        <h3>Notification preference</h3>
-        <ga-radio-group direction="vertical">
-          <ga-radio value="all">All notifications</ga-radio>
-          <ga-radio value="important">Important only</ga-radio>
-          <ga-radio value="none">None</ga-radio>
-        </ga-radio-group>
-        <ga-form-info label="Choose how you want to be notified about changes." />
-      </div>
-
-      <div :style="{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 'var(--ga-size-spacing-02)'
-      }">
-        <h3>Priority (Error state)</h3>
-        <ga-radio-group direction="horizontal">
-          <ga-radio value="low" error>Low</ga-radio>
-          <ga-radio value="medium" error>Medium</ga-radio>
-          <ga-radio value="high" error>High</ga-radio>
-        </ga-radio-group>
-        <ga-form-info label="You must select a priority level.">
-          <template #icon><octagon-alert strokeWidth="2.5" color="var(--ga-color-error)" /></template>
-        </ga-form-info>
-      </div>
-
-      <div :style="{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 'var(--ga-size-spacing-02)'
-      }">
-        <h3>Delivery options</h3>
-        <ga-radio-group modelValue="standard" direction="vertical">
-          <ga-radio value="express">Express delivery (2-3 days)</ga-radio>
-          <ga-radio value="standard">Standard delivery (5-7 days)</ga-radio>
-          <ga-radio value="economy">Economy delivery (7-14 days)</ga-radio>
-        </ga-radio-group>
-        <ga-form-info label="Express delivery is not available for your location.">
-          <template #icon><triangle-alert strokeWidth="2.5" color="var(--ga-color-warning)" /></template>
-        </ga-form-info>
-      </div>
-    </div>
-    `,
-  }),
-}
 
 export const Default: Story = stories.Default
 export const Checked: Story = stories.Checked

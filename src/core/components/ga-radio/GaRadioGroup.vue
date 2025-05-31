@@ -4,7 +4,9 @@ import { uniqueId } from '@/core/utils/uniqueId'
 import { radioGroupKey } from './types'
 
 export interface RadioGroupProps {
-  title?: string
+  label?: string
+  callout?: string
+  state?: string
   name?: string
   direction?: 'horizontal' | 'vertical'
 }
@@ -20,8 +22,20 @@ provide(radioGroupKey, { name, model })
 
 <template>
   <fieldset :class="$style.group">
-    <legend :class="$style.title">
-      <slot name="title">{{ title }}</slot>
+    <legend :class="$style.legend">
+      <div :class="$style.label">
+        <span :class="$style.text">
+          <slot name="label">{{ label }}</slot>
+        </span>
+
+        <span :class="$style.state" v-if="$slots.state || state">
+          <slot name="state">{{ state }}</slot>
+        </span>
+      </div>
+
+      <span :class="$style.callout" v-if="$slots.callout || callout">
+        <slot name="callout">{{ callout }}</slot>
+      </span>
     </legend>
 
     <div :class="classes">
@@ -37,16 +51,32 @@ provide(radioGroupKey, { name, model })
   padding: 0;
 }
 
-.title {
+.legend {
   padding-left: 0;
-
-  font-weight: var(--font-weight-medium);
-  line-height: var(--text-md--line-height);
-  font-family: var(--default-font-family);
 
   &:not(:empty) {
     margin-bottom: var(--ga-size-spacing-03);
   }
+}
+
+.label {
+  display: flex;
+  gap: var(--ga-size-spacing-02);
+}
+
+.callout {
+  font-size: var(--ga-text-sm-font-size);
+  line-height: var(--ga-text-sm-line-height);
+}
+
+.text {
+  font-weight: var(--ga-font-weight-medium);
+  line-height: var(--ga-text-md-line-height);
+}
+
+.state {
+  font-size: var(--ga-text-sm-font-size);
+  line-height: var(--ga-text-sm-line-height);
 }
 
 .content {
