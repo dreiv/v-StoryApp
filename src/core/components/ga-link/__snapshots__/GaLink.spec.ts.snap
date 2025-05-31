@@ -1,0 +1,21 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`GaLink > should apply the disabled class and aria-disabled attribute when disabled prop is true 1`] = `"<a class="link disabled" aria-disabled="true"></a>"`;
+
+exports[`GaLink > should apply the inline class when inline prop is true 1`] = `"<a class="link inline"></a>"`;
+
+exports[`GaLink > should apply the lg class when size prop is %s 1`] = `"<a class="link lg"></a>"`;
+
+exports[`GaLink > should apply the sm class when size prop is %s 1`] = `"<a class="link sm"></a>"`;
+
+exports[`GaLink > should pass href attribute 1`] = `"<a class="link" href="#test"></a>"`;
+
+exports[`GaLink > should render correctly with default props 1`] = `"<a class="link"></a>"`;
+
+exports[`GaLink > should render correctly with default slot 1`] = `"<a class="link">Slot Link</a>"`;
+
+exports[`GaLink > should render correctly with text prop 1`] = `"<a class="link">Test Link</a>"`;
+
+exports[`GaLink > should render prefix slot 1`] = `"<a class="link"><span data-test="prefix">prefix</span></a>"`;
+
+exports[`GaLink > should render suffix slot 1`] = `"<a class="link"><span data-test="suffix">suffix</span></a>"`;
