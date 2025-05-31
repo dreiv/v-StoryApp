@@ -53,7 +53,7 @@ export const WithLeadingIcon: Story = {
   render: (args) => ({
     components: { GaLink, ArrowLeft },
     setup: () => ({ args }),
-    template: '<ga-link v-bind="args"><template #prefix><arrow-left /></template></ga-link>',
+    template: '<ga-link v-bind="args"><arrow-left /> {{ text }}</ga-link>',
   }),
   args: { text: 'Leading Icon' },
 }
@@ -62,7 +62,7 @@ export const WithTrailingIcon: Story = {
   render: (args) => ({
     components: { GaLink, ArrowRight },
     setup: () => ({ args }),
-    template: '<ga-link v-bind="args"><template #suffix><arrow-right /></template></ga-link>',
+    template: '<ga-link v-bind="args">{{ text }} <arrow-right /></ga-link>',
   }),
   args: { text: 'Trailing Icon' },
 }

@@ -44,15 +44,6 @@ describe('GaLink', () => {
     expect(wrapper.attributes('href')).toBeUndefined()
   })
 
-  it.each(['prefix', 'suffix'])('should render %s slot', (place) => {
-    wrapper = shallowMount(GaLink, {
-      slots: { [place]: `<span data-test="${place}">${place}</span>` },
-    })
-    expect(wrapper.find(`[data-test="${place}"]`).exists()).toBe(true)
-    expect(wrapper.text()).toContain(place)
-    expect(wrapper.html()).toMatchSnapshot()
-  })
-
   it('should pass href attribute', () => {
     wrapper = shallowMount(GaLink, { attrs: { href: '#test' } })
     expect(wrapper.attributes('href')).toBe('#test')

@@ -30,9 +30,7 @@ const attributes = computed(() => ({
 
 <template>
   <a :class="classes" v-bind="attributes">
-    <slot name="prefix" />
     <slot>{{ text }}</slot>
-    <slot name="suffix" />
   </a>
 </template>
 
