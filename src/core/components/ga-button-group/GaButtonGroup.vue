@@ -1,16 +1,22 @@
 <script setup lang="ts">
 import { provide } from 'vue'
+import { uniqueId } from '@/core/utils/uniqueId'
 import { buttonGroupKey } from './types'
 
+export interface ButtonGroupProps {
+  name?: string
+}
+
+const { name = uniqueId('group') } = defineProps<ButtonGroupProps>()
 const model = defineModel<string>({ default: '' })
 
-provide(buttonGroupKey, { model })
+provide(buttonGroupKey, { name, model })
 </script>
 
 <template>
-  <div :class="$style.group">
+  <fieldset :class="$style.group">
     <slot />
-  </div>
+  </fieldset>
 </template>
 
 <style module>

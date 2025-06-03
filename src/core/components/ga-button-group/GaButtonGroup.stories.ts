@@ -25,7 +25,7 @@ export const Examples: Story = {
   render: () => ({
     components: { GaButtonGroup, GaSegmentButton, ChevronDown },
     setup() {
-      const selected = ref('1')
+      const selected = ref('2')
       return { selected }
     },
     template: `

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { computed, inject, useCssModule } from 'vue'
-import GaButton from '../ga-button/GaButton.vue'
 import { buttonGroupKey } from './types'
 
 export interface SegmentButtonProps {
@@ -13,14 +12,20 @@ const group = inject(buttonGroupKey)
 if (!group) throw new Error('GaSegmentButton must be used inside a GaButtonGroup')
 
 const classes = computed(() => [style.button, { [style.selected]: value === group?.model?.value }])
-
-function handleClick() {
-  if (group?.model && value !== undefined) group.model.value = value
-}
 </script>
 
 <template>
-  <ga-button :class="classes" @click="handleClick"><slot /></ga-button>
+  <label :class="classes">
+    <input
+      type="radio"
+      :value
+      :name="group.name"
+      :checked="group.model.value === value"
+      @change="group.model.value = value as string"
+    />
+
+    <slot />
+  </label>
 </template>
 
 <style module>
