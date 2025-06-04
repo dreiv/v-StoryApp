@@ -8,7 +8,7 @@ export interface SegmentButtonProps {
   icon?: boolean
   disabled?: boolean
 }
-const { icon } = defineProps<SegmentButtonProps>()
+const { icon, value, disabled, label } = defineProps<SegmentButtonProps>()
 const inputRef = useTemplateRef<HTMLElement>('inputRef')
 
 const group = inject(buttonGroupKey)
@@ -26,7 +26,7 @@ defineExpose({ inputRef })
       ref="inputRef"
       type="radio"
       :class="$style.native"
-      :disabled
+      :disabled="disabled"
       :name="group.name"
       :checked="group.model.value === value"
       @change="group.model.value = value as string"
