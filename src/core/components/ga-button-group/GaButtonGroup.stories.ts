@@ -32,7 +32,8 @@ export const Examples: Story = {
       <ga-button-group v-model="selected">
         <ga-segment-button value="1">Option 1</ga-segment-button>
         <ga-segment-button value="2">Option 2</ga-segment-button>
-        <ga-segment-button value="3">Option 3</ga-segment-button>
+        <ga-segment-button value="3" disabled>Option 3</ga-segment-button>
+        <ga-segment-button value="4">Option 4</ga-segment-button>
       </ga-button-group>
     `,
   }),
