@@ -22,9 +22,11 @@ provide(buttonGroupKey, { name, model })
 <style module>
 .group {
   display: inline-flex;
+  flex-wrap: wrap;
   gap: var(--ga-size-spacing-01);
+
   border: var(--ga-size-border-width-sm) solid var(--ga-color-border-primary);
   border-radius: var(--ga-radius);
-  padding: var(--ga-size-spacing-02);
+  padding: var(--ga-size-spacing-01);
 }
 </style>
