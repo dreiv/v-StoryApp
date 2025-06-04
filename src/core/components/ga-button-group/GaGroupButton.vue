@@ -42,6 +42,7 @@ const classes = computed(() => [style.button, { [style.icon]: icon }])
 
   border-radius: var(--ga-radius);
   padding-inline: var(--ga-size-spacing-05);
+  min-width: 2.25rem; /* TODO: fix */
   height: 2.25rem; /* TODO: fix */
   user-select: none;
 
@@ -56,6 +57,7 @@ const classes = computed(() => [style.button, { [style.icon]: icon }])
 
   &:has(input:checked) {
     border-color: var(--ga-color-border-focus);
+    background-color: var(--ga-color-surface-primary);
   }
 
   &:has(input:not(:active, :disabled):is(:hover, :focus)) {
@@ -79,5 +81,9 @@ const classes = computed(() => [style.button, { [style.icon]: icon }])
 .icon {
   justify-content: center;
   padding: 0;
+
+  &:has(input:not(:active, :disabled):is(:hover)) {
+    color: var(--ga-color-icon-action-hover);
+  }
 }
 </style>
