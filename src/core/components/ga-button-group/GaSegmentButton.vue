@@ -1,19 +1,23 @@
 <script setup lang="ts">
-import { inject } from 'vue'
+import { computed, inject, useCssModule } from 'vue'
 import { buttonGroupKey } from './types'
 
 export interface SegmentButtonProps {
   value?: string | number
+  icon?: boolean
   disabled?: boolean
 }
-defineProps<SegmentButtonProps>()
+const { icon } = defineProps<SegmentButtonProps>()
 
 const group = inject(buttonGroupKey)
 if (!group) throw new Error('GaSegmentButton must be used inside a GaButtonGroup')
+
+const style = useCssModule()
+const classes = computed(() => [style.button, { [style.icon]: icon }])
 </script>
 
 <template>
-  <label :class="$style.button">
+  <label :class="classes">
     <input
       type="radio"
       :class="$style.native"
@@ -70,5 +74,10 @@ if (!group) throw new Error('GaSegmentButton must be used inside a GaButtonGroup
   opacity: 0;
   width: 0;
   height: 0;
+}
+
+.icon {
+  justify-content: center;
+  padding: 0;
 }
 </style>
