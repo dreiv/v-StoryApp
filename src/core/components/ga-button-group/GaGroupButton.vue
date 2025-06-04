@@ -1,34 +1,39 @@
 <script setup lang="ts">
-import { computed, inject, useCssModule } from 'vue'
+import { computed, inject, useCssModule, useTemplateRef } from 'vue'
 import { buttonGroupKey } from './types'
 
 export interface SegmentButtonProps {
   value?: string | number
+  label?: string
   icon?: boolean
   disabled?: boolean
 }
 const { icon } = defineProps<SegmentButtonProps>()
+const inputRef = useTemplateRef<HTMLElement>('inputRef')
 
 const group = inject(buttonGroupKey)
 if (!group) throw new Error('GaSegmentButton must be used inside a GaButtonGroup')
 
 const style = useCssModule()
 const classes = computed(() => [style.button, { [style.icon]: icon }])
+
+defineExpose({ inputRef })
 </script>
 
 <template>
   <label :class="classes">
     <input
+      ref="inputRef"
       type="radio"
       :class="$style.native"
-      :value
       :disabled
       :name="group.name"
       :checked="group.model.value === value"
       @change="group.model.value = value as string"
+      v-bind="$attrs"
     />
 
-    <slot />
+    <slot>{{ label }}</slot>
   </label>
 </template>
 
