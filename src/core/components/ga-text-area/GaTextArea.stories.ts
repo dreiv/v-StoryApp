@@ -1,6 +1,6 @@
-import type { ConcreteComponent } from 'vue'
+import { ref, type ConcreteComponent } from 'vue'
 import type { Meta, StoryObj } from '@storybook/vue3'
-import { GlobeLock } from 'lucide-vue-next'
+import { GlobeLock, OctagonAlert, TriangleAlert } from 'lucide-vue-next'
 
 import GaFormField from '../ga-form-field/GaFormField.vue'
 import GaFormInfo from '../GaFormInfo.vue'
@@ -43,7 +43,7 @@ const createStory = (variation: TextAreaVariation): Story => ({
   render: (args) => ({
     components: { GaTextArea },
     template: `
-      <div style="display: flex; flex-direction: column; gap: var(--ga-size-spacing-06);">
+      <div style="display: flex; flex: 1; flex-direction: column; gap: var(--ga-size-spacing-06);">
         <ga-text-area v-bind="args" />
         <ga-text-area v-bind="args" placeholder="Placeholder" />
       </div>
@@ -65,18 +65,25 @@ export const Examples: Story = {
       GaFormField,
       GaFormInfo,
       GlobeLock,
+      OctagonAlert,
+      TriangleAlert,
     },
     setup() {
-      const text =
-        'The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ in their grammar, their pronunciation and their most common words. Everyone realizes why a new common language would be desirable: one could refuse to pay expensive translators. To achieve this, it would be necessary to have uniform grammar, pronunciation and more common words. If several languages coalesce, the gram. The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ in their grammar, their pronunciation and their most common words. Everyone realizes why a new common language would be desirable: one could refuse to pay expensive translators. To achieve this, it would be necessary to have uniform grammar, pronunciation and more common words. If several languages coalesce, the gram.'
+      const text = ref(
+        'The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ in their grammar, their pronunciation and their most common words. Everyone realizes why a new common language would be desirable: one could refuse to pay expensive translators. To achieve this, it would be necessary to have uniform grammar, pronunciation and more common words. If several languages coalesce, the gram. The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ in their grammar, their pronunciation and their most common words. Everyone realizes why a new common language would be desirable: one could refuse to pay expensive translators.',
+      )
+
       return { text }
     },
     template: `
       <div style="display: flex; flex-direction: column; gap: 32px; flex: 1">
         <ga-text-area placeholder="Transaction description" />
-        <ga-form-field label="Detailed description">
-          <ga-text-area :modelValue="text" />
+        <ga-form-field label="Detailed description" style="position: relative">
+          <ga-text-area v-model="text" />
 
+          <span style="position: absolute; right: 0; top: 4px; color: var(--ga-color-text-secondary);">
+            {{ text.length }} / 1000
+          </span>
           <template #info>
             <ga-form-info label='This callout ensures that the check mark is explained in even more detail.'>
               <template #icon><globe-lock /></template>
@@ -84,9 +91,50 @@ export const Examples: Story = {
           </template>
         </ga-form-field>
 
-        <ga-text-area placeholder="With icon" iconLeft="chevron-down" />
-        <ga-text-area placeholder="Disabled text area" disabled />
-        <ga-text-area placeholder="Error text area" error />
+        <ga-form-field label="Share your feedback" style="position: relative">
+          <ga-text-area modelValue="This is the start of my sentence providing feedback" />
+
+          <span style="position: absolute; right: 0; top: 4px; color: var(--ga-color-text-secondary);">
+            51 / 250
+          </span>
+        </ga-form-field>
+
+        <ga-form-field label="Share your feedback" style="position: relative">
+          <ga-text-area modelValue="This is the start of my sentence providing feedback and will probably use this module in the future. My company loves it and this is good news for me and my colleagues for the first time in a long time." />
+
+          <span style="position: absolute; right: 0; top: 4px; color: var(--ga-color-text-secondary);">
+            202 / 250
+          </span>
+        </ga-form-field>
+
+        <ga-text-area disabled modelValue='Invoice processing paused: Access restricted currently. Contact admin for modifications. Ensure all entries are accurate before submitting for approval and avoid duplication. System access resumes after maintenance.' />
+
+        <ga-form-field label="Workflow description" tooltip="Provide a clear and concise description of the workflow. This helps users understand the process and ensures consistency across tasks." style="position: relative">
+          <ga-text-area modelValue="Initiate invoice creation, capture and verify all details, obtain necessary approvals, send to client, track payment status, reconcile transactions, and archive. Ensure compliance and streamline with automation for efficiency." />
+
+          <span style="position: absolute; right: 0; top: 4px; color: var(--ga-color-text-secondary);">
+            226 / 250
+          </span>
+          <template #info>
+            <ga-form-info label='This callout ensures that the check mark is explained in even more detail.'>
+              <template #icon><triangle-alert color="var(--ga-color-warning)"/></template>
+            </ga-form-info>
+          </template>
+        </ga-form-field>
+
+        <ga-form-field label="Short description" state="(error)" style="position: relative">
+          <ga-text-area error v-model="text" />
+
+          <span style="position: absolute; right: 0; top: 4px; color: var(--ga-color-text-secondary);">
+            {{ text.length }} / 500
+          </span>
+          <template #info>
+            <ga-form-info>
+              <strong>{{ text.length }} / 500</strong> character count exceeded. Please be concise.
+              <template #icon><octagon-alert color="var(--ga-color-error)"/></template>
+            </ga-form-info>
+          </template>
+        </ga-form-field>
       </div>
     `,
   }),

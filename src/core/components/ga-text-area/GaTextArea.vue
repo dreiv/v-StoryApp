@@ -65,12 +65,6 @@ defineExpose({ inputRef })
     border-color: var(--ga-color-border-primary);
     background-color: var(--ga-color-surface-disabled);
     color: var(--ga-color-text-disable-selected);
-
-    &:not(:placeholder-shown) {
-      border-color: var(--ga-color-surface-disable-selected);
-      background-color: var(--ga-color-surface-disable-selected);
-      color: var(--ga-color-text-on-action);
-    }
   }
 
   &:focus:not(.error, .success) {
@@ -81,10 +75,7 @@ defineExpose({ inputRef })
   &.error {
     outline: 1px solid var(--ga-color-border-error);
     border-color: var(--ga-color-border-error);
-
-    &:not(:placeholder-shown) {
-      border-color: var(--ga-color-surface-error);
-    }
+    background-color: var(--ga-color-surface-error);
   }
 }
 </style>
