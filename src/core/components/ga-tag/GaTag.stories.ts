@@ -1,12 +1,12 @@
-import type { ConcreteComponent } from 'vue'
+import type { FunctionalComponent } from 'vue'
 import type { Meta, StoryObj } from '@storybook/vue3'
-import { ChevronDown } from 'lucide-vue-next'
+import { CircleCheck, TriangleAlert, PlusIcon, InfoIcon } from 'lucide-vue-next'
 
 import GaButton from '../ga-button/GaButton.vue'
 import GaTag, { type TagProps } from './GaTag.vue'
 
 const meta = {
-  component: GaTag as unknown as ConcreteComponent,
+  component: GaTag,
   title: 'Molecules/Tag',
   decorators: [
     (story) => ({
@@ -22,17 +22,17 @@ type Story = StoryObj<typeof meta>
 
 interface TagVariation {
   name: 'Default' | 'Information' | 'Error' | 'Warning' | 'Success' | 'Disabled'
+  icon?: FunctionalComponent
   props: TagProps & { default?: string }
-  customRender?: boolean
 }
 
 const variations: TagVariation[] = [
-  { name: 'Default', props: {} },
-  { name: 'Information', props: { information: true } },
-  { name: 'Error', props: { error: true } },
-  { name: 'Warning', props: { warning: true } },
-  { name: 'Success', props: { success: true } },
-  { name: 'Disabled', props: { disabled: true } },
+  { name: 'Default', props: { icon: PlusIcon } },
+  { name: 'Information', props: { icon: InfoIcon, information: true } },
+  { name: 'Error', props: { icon: InfoIcon, error: true } },
+  { name: 'Warning', props: { icon: TriangleAlert, warning: true } },
+  { name: 'Success', props: { icon: CircleCheck, success: true } },
+  { name: 'Disabled', props: { icon: CircleCheck, disabled: true } },
 ]
 
 const createStory = (variation: TagVariation): Story => ({
@@ -56,7 +56,7 @@ variations.forEach((variation) => {
 export const Examples: Story = {
   parameters: { controls: { disable: true } },
   render: () => ({
-    components: { GaTag, GaButton, ChevronDown },
+    components: { GaTag, GaButton },
     template: `
       <ga-tag>Default</ga-tag>
     `,

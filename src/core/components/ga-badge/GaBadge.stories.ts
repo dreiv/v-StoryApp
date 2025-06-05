@@ -83,7 +83,6 @@ interface BadgeVariation {
     | 'Disabled'
     | 'DisabledInverted'
   props: BadgeProps & { default?: string }
-  customRender?: boolean
 }
 
 const variations: BadgeVariation[] = [

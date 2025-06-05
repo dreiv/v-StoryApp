@@ -3,6 +3,7 @@ import { computed, useCssModule } from 'vue'
 
 export interface TagProps {
   is?: string | object
+  icon?: string | object
   label?: string
   success?: boolean
   information?: boolean
@@ -37,7 +38,9 @@ const classes = computed(() => {
 
 <template>
   <component :is :class="classes">
+    <component :is="icon" v-if="icon" :class="$style.icon" :size="16" />
     <slot>{{ label }}</slot>
+    <slot name="after" />
   </component>
 </template>
 
@@ -56,29 +59,60 @@ const classes = computed(() => {
   letter-spacing: var(--ga-text-sm-tracking);
 }
 
+.default {
+  border: var(--ga-size-border-width-sm) solid var(--ga-color-border-action);
+  background-color: var(--ga-color-surface-primary);
+  color: var(--ga-color-text-action);
+}
+
 .success {
   border: var(--ga-size-border-width-sm) solid var(--ga-color-border-success);
   background-color: var(--ga-color-utility-green-light);
   color: var(--ga-color-text-success);
+
+  .icon {
+    color: var(--ga-color-icon-success);
+  }
 }
+
 .information {
   border: var(--ga-size-border-width-sm) solid var(--ga-color-border-information);
   background-color: var(--ga-color-utility-blue-light);
   color: var(--ga-color-text-information);
+
+  .icon {
+    color: var(--ga-color-icon-information);
+  }
 }
+
 .error {
   border: var(--ga-size-border-width-sm) solid var(--ga-color-border-error);
   background-color: var(--ga-color-utility-red-light);
   color: var(--ga-color-text-error);
+
+  .icon {
+    color: var(--ga-color-icon-error);
+  }
 }
+
 .warning {
   border: var(--ga-size-border-width-sm) solid var(--ga-color-border-warning);
   background-color: var(--ga-color-utility-orange-light);
   color: var(--ga-color-text-warning);
+
+  .icon {
+    color: var(--ga-color-icon-warning);
+  }
 }
+
 .disabled {
   cursor: not-allowed;
+  border: var(--ga-size-border-width-sm) solid var(--ga-color-border-disabled);
   background-color: var(--ga-color-surface-disabled);
   color: var(--ga-color-text-disable-selected);
+
+  .icon {
+    color: var(--ga-color-icon-on-disabled);
+  }
 }
 </style>
