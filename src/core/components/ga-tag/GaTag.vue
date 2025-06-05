@@ -55,4 +55,30 @@ const classes = computed(() => {
   line-height: var(--ga-text-sm-line-height);
   letter-spacing: var(--ga-text-sm-tracking);
 }
+
+.success {
+  border: var(--ga-size-border-width-sm) solid var(--ga-color-border-success);
+  background-color: var(--ga-color-utility-green-light);
+  color: var(--ga-color-text-success);
+}
+.information {
+  border: var(--ga-size-border-width-sm) solid var(--ga-color-border-information);
+  background-color: var(--ga-color-utility-blue-light);
+  color: var(--ga-color-text-information);
+}
+.error {
+  border: var(--ga-size-border-width-sm) solid var(--ga-color-border-error);
+  background-color: var(--ga-color-utility-red-light);
+  color: var(--ga-color-text-error);
+}
+.warning {
+  border: var(--ga-size-border-width-sm) solid var(--ga-color-border-warning);
+  background-color: var(--ga-color-utility-orange-light);
+  color: var(--ga-color-text-warning);
+}
+.disabled {
+  cursor: not-allowed;
+  background-color: var(--ga-color-surface-disabled);
+  color: var(--ga-color-text-disable-selected);
+}
 </style>

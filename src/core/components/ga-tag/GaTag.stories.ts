@@ -41,7 +41,7 @@ const createStory = (variation: TagVariation): Story => ({
     components: { GaTag },
     template: `
       <ga-tag v-bind="args">
-        ${args.default || 'Text'}
+        ${args.default || variation.name}
       </ga-tag>
     `,
     setup: () => ({ args }),
