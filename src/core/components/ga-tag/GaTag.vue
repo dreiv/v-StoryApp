@@ -76,10 +76,15 @@ const is = computed(() => (interactive || afterIcon ? 'button' : 'span'))
 
 <template>
   <component :is :class="classes" :disabled>
-    <component :is="beforeIcon" v-if="beforeIcon" :class="$style.beforeIcon" :size="14" />
+    <slot name="before-icon">
+      <component :is="beforeIcon" v-if="beforeIcon" :class="$style.beforeIcon" :size="14" />
+    </slot>
     <slot>{{ label }}</slot>
+
     <span v-if="separator" :class="$style.separator" />
-    <component :is="afterIcon" v-if="afterIcon" :class="$style.afterIcon" :size="14" />
+    <slot name="after-icon">
+      <component :is="afterIcon" v-if="afterIcon" :class="$style.afterIcon" :size="14" />
+    </slot>
   </component>
 </template>
 
