@@ -4,7 +4,9 @@ import { computed, useCssModule } from 'vue'
 export interface TagProps {
   beforeIcon?: string | object
   afterIcon?: string | object
+  separator?: boolean
   interactive?: boolean
+  selected?: boolean
   label?: string
   success?: boolean
   information?: boolean
@@ -13,7 +15,8 @@ export interface TagProps {
   disabled?: boolean
 }
 
-const { disabled, error, information, interactive, success, warning } = defineProps<TagProps>()
+const { disabled, error, information, interactive, selected, success, warning } =
+  defineProps<TagProps>()
 const style = useCssModule()
 
 const classes = computed(() => {
@@ -21,6 +24,9 @@ const classes = computed(() => {
 
   if (interactive) {
     classList.push(style.interactive)
+    if (selected) {
+      classList.push(style.selected)
+    }
   }
 
   if (disabled) {
@@ -43,9 +49,10 @@ const classes = computed(() => {
 
 <template>
   <component :is="interactive ? 'button' : 'span'" :class="classes">
-    <component :is="beforeIcon" v-if="beforeIcon" :class="$style.beforeIcon" :size="16" />
+    <component :is="beforeIcon" v-if="beforeIcon" :class="$style.beforeIcon" :size="14" />
     <slot>{{ label }}</slot>
-    <component :is="afterIcon" v-if="afterIcon" :class="$style.afterIcon" :size="16" />
+    <span v-if="separator" :class="$style.separator" />
+    <component :is="afterIcon" v-if="afterIcon" :class="$style.afterIcon" :size="14" />
   </component>
 </template>
 
@@ -70,6 +77,12 @@ const classes = computed(() => {
   color: var(--ga-color-text-action);
 }
 
+.separator {
+  background-color: var(--ga-color-border-disabled);
+  width: 1px;
+  height: 100%;
+}
+
 .success {
   border: var(--ga-size-border-width-sm) solid var(--ga-color-border-success);
   background-color: var(--ga-color-utility-green-light);
@@ -81,7 +94,9 @@ const classes = computed(() => {
 }
 
 .interactive {
-  border-style: dashed;
+  &:not(.selected) {
+    border-style: dashed;
+  }
 
   &:enabled {
     cursor: pointer;

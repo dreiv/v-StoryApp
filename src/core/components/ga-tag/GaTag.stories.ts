@@ -1,8 +1,7 @@
 import type { FunctionalComponent } from 'vue'
 import type { Meta, StoryObj } from '@storybook/vue3'
-import { CircleCheck, TriangleAlert, PlusIcon, InfoIcon } from 'lucide-vue-next'
+import { CircleCheck, TriangleAlert, PlusIcon, InfoIcon, XIcon } from 'lucide-vue-next'
 
-import GaButton from '../ga-button/GaButton.vue'
 import GaTag, { type TagProps } from './GaTag.vue'
 
 const meta = {
@@ -11,7 +10,7 @@ const meta = {
   decorators: [
     (story) => ({
       components: { story },
-      template: `<div style="display: flex; justify-content: center; gap: 8px;"><story /></div>`,
+      template: `<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;"><story /></div>`,
     }),
   ],
   tags: ['autodocs'],
@@ -21,14 +20,13 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 interface TagVariation {
-  name: 'Default' | 'Interactive' | 'Information' | 'Error' | 'Warning' | 'Success' | 'Disabled'
+  name: 'Default' | 'Information' | 'Error' | 'Warning' | 'Success' | 'Disabled'
   icon?: FunctionalComponent
   props: TagProps & { default?: string }
 }
 
 const variations: TagVariation[] = [
   { name: 'Default', props: { beforeIcon: PlusIcon } },
-  { name: 'Interactive', props: { interactive: true } },
   { name: 'Information', props: { beforeIcon: InfoIcon, information: true } },
   { name: 'Error', props: { beforeIcon: InfoIcon, error: true } },
   { name: 'Warning', props: { beforeIcon: TriangleAlert, warning: true } },
@@ -44,8 +42,15 @@ const createStory = (variation: TagVariation): Story => ({
       <ga-tag v-bind="args">
         ${args.default || variation.name}
       </ga-tag>
+      <ga-tag v-bind="args" :beforeIcon="" :afterIcon="xIcon">
+        ${args.default || variation.name}
+      </ga-tag>
+
+      <ga-tag v-bind="args" separator :afterIcon="xIcon">
+        ${args.default || variation.name}
+      </ga-tag>
     `,
-    setup: () => ({ args }),
+    setup: () => ({ args, xIcon: XIcon }),
   }),
 })
 
@@ -57,7 +62,7 @@ variations.forEach((variation) => {
 export const Examples: Story = {
   parameters: { controls: { disable: true } },
   render: () => ({
-    components: { GaTag, GaButton },
+    components: { GaTag },
     template: `
       <ga-tag>Default</ga-tag>
     `,
@@ -65,7 +70,20 @@ export const Examples: Story = {
 }
 
 export const Default: Story = stories.Default
-export const Interactive: Story = stories.Interactive
+export const Interactive: Story = {
+  parameters: { controls: { disable: true } },
+  render: () => ({
+    components: { GaTag, XIcon },
+    template: `
+      <ga-tag interactive :beforeIcon="plus">Default</ga-tag>
+      <ga-tag interactive separator :afterIcon="xIcon">With Separator</ga-tag>
+      <ga-tag interactive :beforeIcon="plus" disabled>Disabled</ga-tag>
+      <ga-tag interactive :beforeIcon="plus" selected>Selected</ga-tag>
+      <ga-tag interactive :beforeIcon="plus" selected disabled>Selected Disabled</ga-tag>
+    `,
+    setup: () => ({ xIcon: XIcon, plus: PlusIcon }),
+  }),
+}
 export const Information: Story = stories.Information
 export const Error: Story = stories.Error
 export const Warning: Story = stories.Warning
