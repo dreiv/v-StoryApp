@@ -139,7 +139,7 @@ const is = computed(() => (interactive || afterIcon ? 'button' : 'span'))
     cursor: pointer;
   }
 
-  &:not(:active, :disabled):is(:hover) {
+  &:not(:active, :disabled):is(:hover, :focus) {
     background-color: var(--ga-color-surface-action-hover-2);
 
     .beforeIcon,
