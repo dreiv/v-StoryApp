@@ -94,7 +94,13 @@ const handleKeyup = (event: KeyboardEvent) => {
 
     <span v-if="separator" :class="$style.separator" />
     <slot name="after-icon">
-      <component :is="afterIcon" v-if="afterIcon" :class="$style.afterIcon" :size="14" />
+      <component
+        :is="afterIcon"
+        v-if="afterIcon"
+        :class="$style.afterIcon"
+        :size="14"
+        @click="$emit('onDelete')"
+      />
     </slot>
   </component>
 </template>
