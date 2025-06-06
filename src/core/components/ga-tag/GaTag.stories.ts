@@ -21,18 +21,19 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 interface TagVariation {
-  name: 'Default' | 'Information' | 'Error' | 'Warning' | 'Success' | 'Disabled'
+  name: 'Default' | 'Interactive' | 'Information' | 'Error' | 'Warning' | 'Success' | 'Disabled'
   icon?: FunctionalComponent
   props: TagProps & { default?: string }
 }
 
 const variations: TagVariation[] = [
-  { name: 'Default', props: { icon: PlusIcon } },
-  { name: 'Information', props: { icon: InfoIcon, information: true } },
-  { name: 'Error', props: { icon: InfoIcon, error: true } },
-  { name: 'Warning', props: { icon: TriangleAlert, warning: true } },
-  { name: 'Success', props: { icon: CircleCheck, success: true } },
-  { name: 'Disabled', props: { icon: CircleCheck, disabled: true } },
+  { name: 'Default', props: { beforeIcon: PlusIcon } },
+  { name: 'Interactive', props: { interactive: true } },
+  { name: 'Information', props: { beforeIcon: InfoIcon, information: true } },
+  { name: 'Error', props: { beforeIcon: InfoIcon, error: true } },
+  { name: 'Warning', props: { beforeIcon: TriangleAlert, warning: true } },
+  { name: 'Success', props: { beforeIcon: CircleCheck, success: true } },
+  { name: 'Disabled', props: { beforeIcon: CircleCheck, disabled: true } },
 ]
 
 const createStory = (variation: TagVariation): Story => ({
@@ -64,6 +65,7 @@ export const Examples: Story = {
 }
 
 export const Default: Story = stories.Default
+export const Interactive: Story = stories.Interactive
 export const Information: Story = stories.Information
 export const Error: Story = stories.Error
 export const Warning: Story = stories.Warning

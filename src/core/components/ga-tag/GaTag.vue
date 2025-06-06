@@ -2,8 +2,9 @@
 import { computed, useCssModule } from 'vue'
 
 export interface TagProps {
-  is?: string | object
-  icon?: string | object
+  beforeIcon?: string | object
+  afterIcon?: string | object
+  interactive?: boolean
   label?: string
   success?: boolean
   information?: boolean
@@ -12,11 +13,15 @@ export interface TagProps {
   disabled?: boolean
 }
 
-const { is = 'span', disabled, information, error, warning, success } = defineProps<TagProps>()
+const { disabled, error, information, interactive, success, warning } = defineProps<TagProps>()
 const style = useCssModule()
 
 const classes = computed(() => {
   const classList = [style.tag]
+
+  if (interactive) {
+    classList.push(style.interactive)
+  }
 
   if (disabled) {
     classList.push(style.disabled)
@@ -37,10 +42,10 @@ const classes = computed(() => {
 </script>
 
 <template>
-  <component :is :class="classes">
-    <component :is="icon" v-if="icon" :class="$style.icon" :size="16" />
+  <component :is="interactive ? 'button' : 'span'" :class="classes">
+    <component :is="beforeIcon" v-if="beforeIcon" :class="$style.beforeIcon" :size="16" />
     <slot>{{ label }}</slot>
-    <slot name="after" />
+    <component :is="afterIcon" v-if="afterIcon" :class="$style.afterIcon" :size="16" />
   </component>
 </template>
 
@@ -70,8 +75,33 @@ const classes = computed(() => {
   background-color: var(--ga-color-utility-green-light);
   color: var(--ga-color-text-success);
 
-  .icon {
+  .beforeIcon {
     color: var(--ga-color-icon-success);
+  }
+}
+
+.interactive {
+  border-style: dashed;
+
+  &:enabled {
+    cursor: pointer;
+  }
+
+  &:focus-visible {
+    outline: var(--ga-size-border-width-md) solid var(--ga-color-border-focus);
+    outline-offset: var(--ga-size-spacing-01);
+  }
+
+  &:not(:active, :disabled):is(:hover, :focus) {
+    background-color: var(--ga-color-surface-action-hover-2);
+
+    .beforeIcon {
+      color: var(--ga-color-icon-action-hover);
+    }
+  }
+
+  &:disabled {
+    cursor: not-allowed;
   }
 }
 
@@ -80,7 +110,7 @@ const classes = computed(() => {
   background-color: var(--ga-color-utility-blue-light);
   color: var(--ga-color-text-information);
 
-  .icon {
+  .beforeIcon {
     color: var(--ga-color-icon-information);
   }
 }
@@ -90,7 +120,7 @@ const classes = computed(() => {
   background-color: var(--ga-color-utility-red-light);
   color: var(--ga-color-text-error);
 
-  .icon {
+  .beforeIcon {
     color: var(--ga-color-icon-error);
   }
 }
@@ -100,7 +130,7 @@ const classes = computed(() => {
   background-color: var(--ga-color-utility-orange-light);
   color: var(--ga-color-text-warning);
 
-  .icon {
+  .beforeIcon {
     color: var(--ga-color-icon-warning);
   }
 }
@@ -111,7 +141,7 @@ const classes = computed(() => {
   background-color: var(--ga-color-surface-disabled);
   color: var(--ga-color-text-disable-selected);
 
-  .icon {
+  .beforeIcon {
     color: var(--ga-color-icon-on-disabled);
   }
 }
