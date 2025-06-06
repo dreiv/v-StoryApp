@@ -101,7 +101,7 @@ const is = computed(() => (interactive || afterIcon ? 'button' : 'span'))
     outline-offset: var(--ga-size-spacing-01);
   }
 
-  &:enabled:hover {
+  &:enabled:is(:hover, :focus) {
     .afterIcon {
       color: var(--ga-color-icon-action-hover);
     }
