@@ -28,8 +28,18 @@ export interface TagProps {
     | 'disabled'
 }
 
-const { disabled, error, information, interactive, selected, success, warning, utility } =
-  defineProps<TagProps>()
+defineEmits(['onDelete'])
+const {
+  afterIcon,
+  disabled,
+  error,
+  information,
+  interactive,
+  selected,
+  success,
+  utility,
+  warning,
+} = defineProps<TagProps>()
 const style = useCssModule()
 
 const classes = computed(() => {
@@ -62,10 +72,14 @@ const classes = computed(() => {
 
   return classList
 })
+
+const is = computed(() => {
+  return interactive || afterIcon ? 'button' : 'span'
+})
 </script>
 
 <template>
-  <component :is="interactive ? 'button' : 'span'" :class="classes" :disabled>
+  <component :is :class="classes" :disabled>
     <component :is="beforeIcon" v-if="beforeIcon" :class="$style.beforeIcon" :size="14" />
     <slot>{{ label }}</slot>
     <span v-if="separator" :class="$style.separator" />
@@ -85,6 +99,11 @@ const classes = computed(() => {
 
   font-size: var(--ga-text-sm-font-size);
   letter-spacing: var(--ga-text-sm-tracking);
+
+  &:focus-visible {
+    outline: var(--ga-size-border-width-md) solid var(--ga-color-border-focus);
+    outline-offset: var(--ga-size-spacing-01);
+  }
 }
 
 .default {
@@ -116,11 +135,6 @@ const classes = computed(() => {
 
   &:enabled {
     cursor: pointer;
-  }
-
-  &:focus-visible {
-    outline: var(--ga-size-border-width-md) solid var(--ga-color-border-focus);
-    outline-offset: var(--ga-size-spacing-01);
   }
 
   &:not(:active, :disabled):is(:hover) {
@@ -256,12 +270,6 @@ const classes = computed(() => {
   &.orange {
     border-color: var(--ga-color-utility-orange);
     background-color: var(--ga-color-utility-orange-light);
-  }
-
-  &.disabled {
-    border-color: var(--ga-color-border-disabled);
-    background-color: var(--ga-color-surface-disabled);
-    color: var(--ga-color-text-disable-selected);
   }
 }
 </style>

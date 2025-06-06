@@ -95,7 +95,7 @@ export const Utility: Story = {
   render: () => ({
     components: { GaTag },
     template: `
-      <ga-tag utility='grey' :beforeIcon="plus">Default</ga-tag>
+      <ga-tag utility='grey' :beforeIcon="plus" interactive>Default</ga-tag>
       <ga-tag utility='indigo'>Indigo</ga-tag>
       <ga-tag utility='teal'>Teal</ga-tag>
       <ga-tag utility='lime'>Lime</ga-tag>
