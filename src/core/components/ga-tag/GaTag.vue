@@ -129,7 +129,7 @@ const is = computed(() => {
 }
 
 .interactive {
-  &:not(.selected) {
+  &:not(.selected, .utility) {
     border-style: dashed;
   }
 
