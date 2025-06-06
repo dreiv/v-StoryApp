@@ -2,12 +2,12 @@
 import { computed, useCssModule } from 'vue'
 
 export interface TagProps {
+  label?: string
   beforeIcon?: string | object
   afterIcon?: string | object
   separator?: boolean
   interactive?: boolean
   selected?: boolean
-  label?: string
   success?: boolean
   information?: boolean
   error?: boolean
@@ -51,9 +51,7 @@ const classes = computed(() => {
 
   if (interactive) {
     classList.push(style.interactive)
-    if (selected) {
-      classList.push(style.selected)
-    }
+    if (selected) classList.push(style.selected)
   }
 
   if (disabled) {
@@ -73,9 +71,7 @@ const classes = computed(() => {
   return classList
 })
 
-const is = computed(() => {
-  return interactive || afterIcon ? 'button' : 'span'
-})
+const is = computed(() => (interactive || afterIcon ? 'button' : 'span'))
 </script>
 
 <template>
@@ -103,6 +99,12 @@ const is = computed(() => {
   &:focus-visible {
     outline: var(--ga-size-border-width-md) solid var(--ga-color-border-focus);
     outline-offset: var(--ga-size-spacing-01);
+  }
+
+  &:enabled:hover {
+    .afterIcon {
+      color: var(--ga-color-icon-action-hover);
+    }
   }
 }
 
