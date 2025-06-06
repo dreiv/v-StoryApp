@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, useCssModule } from 'vue'
+import { computed, useCssModule, useTemplateRef } from 'vue'
 
 export interface TagProps {
   label?: string
@@ -28,7 +28,7 @@ export interface TagProps {
     | 'disabled'
 }
 
-defineEmits(['onDelete'])
+const emit = defineEmits(['onDelete'])
 const {
   afterIcon,
   disabled,
@@ -41,6 +41,8 @@ const {
   warning,
 } = defineProps<TagProps>()
 const style = useCssModule()
+
+const componentRef = useTemplateRef<HTMLElement>('componentRef')
 
 const classes = computed(() => {
   const classList = [style.tag]
@@ -72,10 +74,19 @@ const classes = computed(() => {
 })
 
 const is = computed(() => (interactive || afterIcon ? 'button' : 'span'))
+
+const handleKeyup = (event: KeyboardEvent) => {
+  if (disabled) return
+  if (event.key === 'Backspace' || event.key === 'Delete') {
+    emit('onDelete')
+  } else if (event.key === 'Escape' && componentRef.value) {
+    componentRef.value.blur()
+  }
+}
 </script>
 
 <template>
-  <component :is :class="classes" :disabled>
+  <component :is :class="classes" :disabled @keyup="handleKeyup" ref="componentRef">
     <slot name="before-icon">
       <component :is="beforeIcon" v-if="beforeIcon" :class="$style.beforeIcon" :size="14" />
     </slot>
@@ -108,6 +119,7 @@ const is = computed(() => (interactive || afterIcon ? 'button' : 'span'))
 
   &:enabled:is(:hover, :focus) {
     .afterIcon {
+      cursor: pointer;
       color: var(--ga-color-icon-action-hover);
     }
   }
