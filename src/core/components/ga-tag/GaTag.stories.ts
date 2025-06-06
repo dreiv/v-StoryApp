@@ -73,7 +73,7 @@ export const Default: Story = stories.Default
 export const Interactive: Story = {
   parameters: { controls: { disable: true } },
   render: () => ({
-    components: { GaTag, XIcon },
+    components: { GaTag },
     template: `
       <ga-tag interactive :beforeIcon="plus">Default</ga-tag>
       <ga-tag interactive separator :afterIcon="xIcon">With Separator</ga-tag>
@@ -89,3 +89,25 @@ export const Error: Story = stories.Error
 export const Warning: Story = stories.Warning
 export const Success: Story = stories.Success
 export const Disabled: Story = stories.Disabled
+
+export const Utility: Story = {
+  parameters: { controls: { disable: true } },
+  render: () => ({
+    components: { GaTag },
+    template: `
+      <ga-tag utility='grey' :beforeIcon="plus">Default</ga-tag>
+      <ga-tag utility='indigo'>Indigo</ga-tag>
+      <ga-tag utility='teal'>Teal</ga-tag>
+      <ga-tag utility='lime'>Lime</ga-tag>
+      <ga-tag utility='purple'>Purple</ga-tag>
+      <ga-tag utility='pink'>Pink</ga-tag>
+      <ga-tag utility='rose'>Rose</ga-tag>
+      <ga-tag utility='yellow'>Yellow</ga-tag>
+      <ga-tag utility='blue'>Blue</ga-tag>
+      <ga-tag utility='green'>Green</ga-tag>
+      <ga-tag utility='orange'>Orange</ga-tag>
+      <ga-tag utility='disabled'>Disabled</ga-tag>
+    `,
+    setup: () => ({ plus: PlusIcon }),
+  }),
+}

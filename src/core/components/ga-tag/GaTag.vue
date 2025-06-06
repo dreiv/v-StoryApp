@@ -13,14 +13,31 @@ export interface TagProps {
   error?: boolean
   warning?: boolean
   disabled?: boolean
+  utility?:
+    | 'grey'
+    | 'indigo'
+    | 'teal'
+    | 'lime'
+    | 'purple'
+    | 'pink'
+    | 'rose'
+    | 'yellow'
+    | 'blue'
+    | 'green'
+    | 'orange'
+    | 'disabled'
 }
 
-const { disabled, error, information, interactive, selected, success, warning } =
+const { disabled, error, information, interactive, selected, success, warning, utility } =
   defineProps<TagProps>()
 const style = useCssModule()
 
 const classes = computed(() => {
   const classList = [style.tag]
+
+  if (utility) {
+    classList.push(style.utility, style[utility])
+  }
 
   if (interactive) {
     classList.push(style.interactive)
@@ -48,7 +65,7 @@ const classes = computed(() => {
 </script>
 
 <template>
-  <component :is="interactive ? 'button' : 'span'" :class="classes">
+  <component :is="interactive ? 'button' : 'span'" :class="classes" :disabled>
     <component :is="beforeIcon" v-if="beforeIcon" :class="$style.beforeIcon" :size="14" />
     <slot>{{ label }}</slot>
     <span v-if="separator" :class="$style.separator" />
@@ -67,7 +84,6 @@ const classes = computed(() => {
   padding: var(--ga-size-spacing-02) var(--ga-size-spacing-03);
 
   font-size: var(--ga-text-sm-font-size);
-  line-height: var(--ga-text-sm-line-height);
   letter-spacing: var(--ga-text-sm-tracking);
 }
 
@@ -107,16 +123,36 @@ const classes = computed(() => {
     outline-offset: var(--ga-size-spacing-01);
   }
 
-  &:not(:active, :disabled):is(:hover, :focus) {
+  &:not(:active, :disabled):is(:hover) {
     background-color: var(--ga-color-surface-action-hover-2);
 
-    .beforeIcon {
+    .beforeIcon,
+    .afterIcon {
       color: var(--ga-color-icon-action-hover);
     }
   }
 
   &:disabled {
     cursor: not-allowed;
+    border-color: var(--ga-color-surface-disable-selected);
+    background-color: var(--ga-color-surface-disable-selected);
+    color: var(--ga-color-text-on-action);
+
+    .beforeIcon,
+    .afterIcon {
+      color: var(--ga-color-icon-on-primary);
+    }
+
+    &:not(.selected) {
+      border-color: var(--ga-color-border-disabled);
+      background-color: var(--ga-color-surface-primary);
+      color: var(--ga-color-text-disabled);
+
+      .beforeIcon,
+      .afterIcon {
+        color: var(--ga-color-icon-disabled);
+      }
+    }
   }
 }
 
@@ -151,13 +187,81 @@ const classes = computed(() => {
 }
 
 .disabled {
-  cursor: not-allowed;
   border: var(--ga-size-border-width-sm) solid var(--ga-color-border-disabled);
   background-color: var(--ga-color-surface-disabled);
   color: var(--ga-color-text-disable-selected);
 
   .beforeIcon {
     color: var(--ga-color-icon-on-disabled);
+  }
+}
+
+.utility {
+  border-radius: var(--ga-radius);
+
+  .beforeIcon {
+    color: var(--ga-color-text-body);
+  }
+
+  &.grey {
+    border-color: var(--ga-color-utility-grey);
+    background-color: var(--ga-color-utility-grey-light);
+  }
+
+  &.indigo {
+    border-color: var(--ga-color-utility-indigo);
+    background-color: var(--ga-color-utility-indigo-light);
+  }
+
+  &.teal {
+    border-color: var(--ga-color-utility-teal);
+    background-color: var(--ga-color-utility-teal-light);
+  }
+
+  &.lime {
+    border-color: var(--ga-color-utility-lime);
+    background-color: var(--ga-color-utility-lime-light);
+  }
+
+  &.purple {
+    border-color: var(--ga-color-utility-purple);
+    background-color: var(--ga-color-utility-purple-light);
+  }
+
+  &.pink {
+    border-color: var(--ga-color-utility-pink);
+    background-color: var(--ga-color-utility-pink-light);
+  }
+
+  &.rose {
+    border-color: var(--ga-color-utility-rose);
+    background-color: var(--ga-color-utility-rose-light);
+  }
+
+  &.yellow {
+    border-color: var(--ga-color-utility-yellow);
+    background-color: var(--ga-color-utility-yellow-light);
+  }
+
+  &.blue {
+    border-color: var(--ga-color-utility-blue);
+    background-color: var(--ga-color-utility-blue-light);
+  }
+
+  &.green {
+    border-color: var(--ga-color-utility-green);
+    background-color: var(--ga-color-utility-green-light);
+  }
+
+  &.orange {
+    border-color: var(--ga-color-utility-orange);
+    background-color: var(--ga-color-utility-orange-light);
+  }
+
+  &.disabled {
+    border-color: var(--ga-color-border-disabled);
+    background-color: var(--ga-color-surface-disabled);
+    color: var(--ga-color-text-disable-selected);
   }
 }
 </style>
