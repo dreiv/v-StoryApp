@@ -1,6 +1,15 @@
 <script setup lang="ts">
-import { computed, provide, ref, onMounted, onUnmounted, watch, nextTick, useCssModule } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
+import {
+  computed,
+  inject,
+  nextTick,
+  onMounted,
+  onUnmounted,
+  provide,
+  ref,
+  useCssModule,
+  watch,
+} from 'vue'
 import { uniqueId } from '@/core/utils/uniqueId'
 import { Menu } from 'floating-vue'
 import { ChevronDown } from 'lucide-vue-next'
@@ -34,8 +43,12 @@ const props = withDefaults(defineProps<TabsProps>(), {
 const emit = defineEmits(['change'])
 const model = defineModel<string>()
 
-const router = props.useRouterLinks ? useRouter() : undefined
-const route = props.useRouterLinks ? useRoute() : undefined
+// These will be undefined if Vue Router isn't installed
+const router = inject<{
+  push: (to: string | object) => void
+  currentRoute: { value: { path: string } }
+}>('router')
+const route = router?.currentRoute
 const style = useCssModule()
 
 // Internal state
@@ -61,8 +74,10 @@ const allTabs = computed(() => {
 // Handle router integration if enabled
 if (props.useRouterLinks && route) {
   watch(
-    () => route.path,
+    () => route.value?.path,
     (newPath) => {
+      if (!newPath) return
+
       const matchingTab = allTabs.value.find((tab) => {
         if (typeof tab.to === 'string') {
           return tab.to === newPath
@@ -113,7 +128,11 @@ function setActiveTab(id: string) {
 
   // Handle router navigation if enabled
   if (props.useRouterLinks && router && tab.to) {
-    router.push(tab.to)
+    try {
+      router.push(tab.to)
+    } catch (e) {
+      console.warn('Failed to navigate with Vue Router:', e)
+    }
   }
 }
 
@@ -223,12 +242,12 @@ const tabsClasses = computed(() =>
       <!-- Direct child tabs from slots or props -->
       <template v-for="tab in visibleTabs" :key="tab.id">
         <component
-          :is="tab.to && props.useRouterLinks ? 'router-link' : 'button'"
+          :is="tab.to && props.useRouterLinks && router ? 'router-link' : 'button'"
           :class="[
             style.tab,
             { [style.active]: tab.id === activeTabId, [style.disabled]: tab.disabled },
           ]"
-          :to="tab.to && props.useRouterLinks ? tab.to : undefined"
+          :to="tab.to && props.useRouterLinks && router ? tab.to : undefined"
           :disabled="tab.disabled"
           :data-tab-id="tab.id"
           @click="!tab.disabled && setActiveTab(tab.id as string)"
