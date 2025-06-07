@@ -40,7 +40,7 @@ const visibleTabs = ref<TabProps[]>([])
 const overflowTabs = ref<TabProps[]>([])
 const tabsRef = ref<HTMLElement | null>(null)
 const tabsContainerRef = ref<HTMLElement | null>(null)
-const resizeObserver = ref<ResizeObserver | null>(null)
+let resizeObserver: ResizeObserver
 
 // Generate or use provided tabs
 const allTabs = computed(() =>
@@ -155,19 +155,14 @@ onMounted(() => {
   nextTick(() => {
     if (!tabsContainerRef.value) return
 
-    resizeObserver.value = new ResizeObserver(() => {
-      calculateVisibleTabs()
-    })
-
-    resizeObserver.value.observe(tabsContainerRef.value)
+    resizeObserver = new ResizeObserver(calculateVisibleTabs)
+    resizeObserver.observe(tabsContainerRef.value)
     calculateVisibleTabs()
   })
 })
 
 onUnmounted(() => {
-  if (resizeObserver.value) {
-    resizeObserver.value.disconnect()
-  }
+  resizeObserver?.disconnect()
 })
 
 // Recalculate visible tabs when tabs change
@@ -178,15 +173,14 @@ watch(
   },
 )
 
-// Classes computed property
-const tabsClasses = computed(() =>
+const classes = computed(() =>
   [style.tabs, align === 'center' && style.center, align === 'end' && style.end].filter(Boolean),
 )
 </script>
 
 <template>
   <div :class="style.container" ref="tabsContainerRef">
-    <div :class="tabsClasses" ref="tabsRef">
+    <div :class="classes" ref="tabsRef">
       <!-- Direct child tabs from slots or props -->
       <template v-for="tab in visibleTabs" :key="tab.id">
         <component
