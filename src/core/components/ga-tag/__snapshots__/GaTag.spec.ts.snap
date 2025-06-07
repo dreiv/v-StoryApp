@@ -1,0 +1,7 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`GaTag > should render correctly with default props 1`] = `"<span class="tag default" disabled="false"><!--v-if--><!--v-if--><!--v-if--></span>"`;
+
+exports[`GaTag > should render correctly with default slot content 1`] = `"<span class="tag default" disabled="false"><!--v-if-->Custom Label<!--v-if--><!--v-if--></span>"`;
+
+exports[`GaTag > should render correctly with label prop 1`] = `"<span class="tag default" disabled="false"><!--v-if-->Test Tag<!--v-if--><!--v-if--></span>"`;
