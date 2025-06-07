@@ -1,6 +1,17 @@
 import type { FunctionalComponent } from 'vue'
 import type { Meta, StoryObj } from '@storybook/vue3'
-import { CircleCheck, TriangleAlert, PlusIcon, InfoIcon, XIcon } from 'lucide-vue-next'
+import {
+  ChevronsUpDown,
+  CircleCheck,
+  CircleUserRound,
+  EyeIcon,
+  InfoIcon,
+  OctagonAlert,
+  PlusIcon,
+  TriangleAlert,
+  TruckIcon,
+  XIcon,
+} from 'lucide-vue-next'
 
 import GaTag, { type TagProps } from './GaTag.vue'
 
@@ -28,7 +39,7 @@ interface TagVariation {
 const variations: TagVariation[] = [
   { name: 'Default', props: { beforeIcon: PlusIcon } },
   { name: 'Information', props: { beforeIcon: InfoIcon, information: true } },
-  { name: 'Error', props: { beforeIcon: InfoIcon, error: true } },
+  { name: 'Error', props: { beforeIcon: OctagonAlert, error: true } },
   { name: 'Warning', props: { beforeIcon: TriangleAlert, warning: true } },
   { name: 'Success', props: { beforeIcon: CircleCheck, success: true } },
   { name: 'Disabled', props: { beforeIcon: CircleCheck, disabled: true } },
@@ -62,9 +73,71 @@ variations.forEach((variation) => {
 export const Examples: Story = {
   parameters: { controls: { disable: true } },
   render: () => ({
-    components: { GaTag },
+    components: { GaTag, TriangleAlert },
+    setup: () => {
+      return {
+        alert: TriangleAlert,
+        check: CircleCheck,
+        error: OctagonAlert,
+        eye: EyeIcon,
+        info: InfoIcon,
+        plus: PlusIcon,
+        truck: TruckIcon,
+        upDown: ChevronsUpDown,
+        user: CircleUserRound,
+        xIcon: XIcon,
+      }
+    },
     template: `
-      <ga-tag>Default</ga-tag>
+    <div style="display: flex; flex-direction: column; gap: var(--ga-size-spacing-06);">
+      <div style="display: flex; gap: var(--ga-size-spacing-03);">
+        <ga-tag :beforeIcon="plus" interactive>Add skill</ga-tag>
+        <ga-tag interactive>Add skill</ga-tag>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: var(--ga-size-spacing-03);">
+        <ga-tag :beforeIcon="user" interactive>Bart Simpson</ga-tag>
+        <ga-tag :beforeIcon="user" :afterIcon="xIcon" interactive selected separator>Bart Simpson</ga-tag>
+        <ga-tag :beforeIcon="user" interactive selected>Bart Simpson</ga-tag>
+        <ga-tag interactive selected>Bart Simpson</ga-tag>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: var(--ga-size-spacing-03);">
+        <ga-tag interactive>Equinor</ga-tag>
+        <ga-tag interactive>Norsk Hydro asa</ga-tag>
+        <ga-tag interactive selected :afterIcon="xIcon">Telenor asa</ga-tag>
+        <ga-tag interactive selected separator :afterIcon="xIcon">Aker asa</ga-tag>
+        <ga-tag interactive warning :beforeIcon="alert" :afterIcon="xIcon">Orkla asa</ga-tag>
+        <ga-tag interactive>Aker Kværner asa</ga-tag>
+        <ga-tag interactive selected separator :afterIcon="xIcon">Total E&P Norge as</ga-tag>
+        <ga-tag disabled>Visma Software AS</ga-tag>
+        <ga-tag interactive>ExxonMobil Exploration and Production Norway as</ga-tag>
+      </div>
+
+      <div style="display: flex; gap: var(--ga-size-spacing-03);">
+        <ga-tag disabled>Fraud detection</ga-tag>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: var(--ga-size-spacing-03);">
+        <ga-tag information :beforeIcon="info">Administration only</ga-tag>
+        <ga-tag error :beforeIcon="error">Credit notes</ga-tag>
+        <ga-tag success :beforeIcon="check">Compliance passed</ga-tag>
+        <ga-tag warning :beforeIcon="alert">4-eyes approval</ga-tag>
+      </div>
+
+      <div style="display: flex; gap: var(--ga-size-spacing-03);">
+        <ga-tag interactive selected disabled>Read-only</ga-tag>
+        <ga-tag interactive selected disabled :beforeIcon="eye">Read-only</ga-tag>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: var(--ga-size-spacing-03);">
+        <ga-tag information :beforeIcon="info">Pending approval</ga-tag>
+        <ga-tag error :beforeIcon="error">Approved</ga-tag>
+        <ga-tag success :beforeIcon="check">Rejected</ga-tag>
+        <ga-tag warning :beforeIcon="alert">Overdue</ga-tag>
+        <ga-tag utility="grey" :beforeIcon="truck" :afterIcon="upDown">Wrong address</ga-tag>
+      </div>
+    </div>
     `,
   }),
 }

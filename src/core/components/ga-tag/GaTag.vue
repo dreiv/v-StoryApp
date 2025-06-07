@@ -118,6 +118,8 @@ const handleKeyup = (event: KeyboardEvent) => {
   font-size: var(--ga-text-sm-font-size);
   letter-spacing: var(--ga-text-sm-tracking);
 
+  white-space: nowrap;
+
   &:focus-visible {
     outline: var(--ga-size-border-width-md) solid var(--ga-color-border-focus);
     outline-offset: var(--ga-size-spacing-01);
@@ -154,7 +156,7 @@ const handleKeyup = (event: KeyboardEvent) => {
 }
 
 .interactive {
-  &:not(.selected, .utility) {
+  &.default:not(.selected, .utility) {
     border-style: dashed;
   }
 
