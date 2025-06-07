@@ -81,7 +81,7 @@ export const CustomTrigger: Story = {
     template: `
       <div style="display: flex; align-items: center; flex-direction: column; gap: 16px;">
         <ga-select v-model="selected">
-          <template #trigger="{ shown, model, label, 'ref-el': setRef, toggle, aria }">
+          <template #trigger="{ shown, model, label, 'ref-el': setRef, aria }">
             <ga-tag
               :ref="setRef"
               :label="model?.label || 'Select an option'"

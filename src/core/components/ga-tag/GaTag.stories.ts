@@ -28,6 +28,8 @@ import {
   XIcon,
 } from 'lucide-vue-next'
 
+import GaSelect from '../ga-select/GaSelect.vue'
+import GaSelectItem from '../ga-select/GaSelectItem.vue'
 import GaTag, { type TagProps } from './GaTag.vue'
 
 const meta = {
@@ -88,7 +90,7 @@ variations.forEach((variation) => {
 export const Examples: Story = {
   parameters: { controls: { disable: true } },
   render: () => ({
-    components: { GaTag, TriangleAlert },
+    components: { GaTag, GaSelect, GaSelectItem },
     setup: () => {
       interface BartTag {
         id: number
@@ -98,6 +100,11 @@ export const Examples: Story = {
         separator?: boolean
         hasDelete?: boolean
       }
+
+      const selected = ref<{ value: number; label: string }>({
+        value: 1,
+        label: 'Wrong address',
+      })
 
       const bartSimpsonTags = ref<BartTag[]>([
         { id: 1, label: 'Bart Simpson', icon: CircleUserRound, selected: false },
@@ -125,6 +132,7 @@ export const Examples: Story = {
       }
 
       return {
+        selected,
         bartSimpsonTags,
         toggleSelected,
         handleDelete,
@@ -209,7 +217,24 @@ export const Examples: Story = {
         <ga-tag error :beforeIcon="error">Approved</ga-tag>
         <ga-tag success :beforeIcon="check">Rejected</ga-tag>
         <ga-tag warning :beforeIcon="alert">Overdue</ga-tag>
-        <ga-tag utility="grey" interactive :beforeIcon="truck" :afterIcon="upDown">Wrong address</ga-tag>
+        <ga-select v-model="selected">
+          <template #trigger="{ shown, model, label, 'ref-el': setRef, aria }">
+            <ga-tag
+              :ref="setRef"
+              :label="model?.label || 'Wrong address'"
+              :beforeIcon="truck"
+              :afterIcon="upDown"
+              utility="grey"
+              interactive
+              v-bind="aria"
+            />
+          </template>
+
+          <ga-select-item :value="1" label="Wrong address" />
+          <ga-select-item :value="2" label="An Item" />
+          <ga-select-item :value="3" label="Another Item" />
+          <ga-select-item :value="4" label="Yet another Item" />
+        </ga-select>
       </div>
 
        <div style="display: flex; flex-direction: column; align-items: start; gap: var(--ga-size-spacing-03);">
