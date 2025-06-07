@@ -31,7 +31,7 @@ const props = withDefaults(defineProps<TabsProps>(), {
   align: 'start',
 })
 
-const emit = defineEmits(['update:modelValue', 'change'])
+const emit = defineEmits(['change'])
 const model = defineModel<string>()
 
 const router = props.useRouterLinks ? useRouter() : undefined
@@ -109,7 +109,6 @@ function setActiveTab(id: string) {
     model.value = id
   }
 
-  emit('update:modelValue', id)
   emit('change', id)
 
   // Handle router navigation if enabled
