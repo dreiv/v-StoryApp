@@ -163,13 +163,13 @@ export const Examples: Story = {
         <ga-tag error :beforeIcon="error">Approved</ga-tag>
         <ga-tag success :beforeIcon="check">Rejected</ga-tag>
         <ga-tag warning :beforeIcon="alert">Overdue</ga-tag>
-        <ga-tag utility="grey" :beforeIcon="truck" :afterIcon="upDown">Wrong address</ga-tag>
+        <ga-tag utility="grey" interactive :beforeIcon="truck" :afterIcon="upDown">Wrong address</ga-tag>
       </div>
 
        <div style="display: flex; flex-direction: column; align-items: start; gap: var(--ga-size-spacing-03);">
-        <ga-tag utility="grey" :beforeIcon="truck">Shipment wrong address</ga-tag>
-        <ga-tag utility="grey" :afterIcon="upDown">Wholesale</ga-tag>
-        <ga-tag utility="grey" :beforeIcon="wand" :afterIcon="upDown">Wholesale</ga-tag>
+        <ga-tag utility="grey" interactive :beforeIcon="truck">Shipment wrong address</ga-tag>
+        <ga-tag utility="grey" interactive :afterIcon="upDown">Wholesale</ga-tag>
+        <ga-tag utility="grey" interactive :beforeIcon="wand" :afterIcon="upDown">Wholesale</ga-tag>
       </div>
 
       <div style="display: flex; flex-wrap: wrap; gap: var(--ga-size-spacing-03);">
@@ -183,6 +183,66 @@ export const Examples: Story = {
         <ga-tag utility="blue" :beforeIcon="lightbulb" separator :afterIcon="xIcon">Utilities</ga-tag>
         <ga-tag utility="blue" :beforeIcon="tag" separator :afterIcon="xIcon">Equipment rental</ga-tag>
         <ga-tag utility="blue" :beforeIcon="microscope" separator :afterIcon="xIcon">Training & development</ga-tag>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: var(--ga-size-spacing-03);">
+        <ga-tag utility="indigo" label="Office supplies"/>
+        <ga-tag utility="teal" label="Meals & entertainment"/>
+        <ga-tag utility="lime" label="Travel & lodging"/>
+        <ga-tag utility="purple" label="Employee salaries"/>
+        <ga-tag utility="pink" label="Software subscriptions"/>
+        <ga-tag utility="rose" label="Professional services"/>
+        <ga-tag utility="green" label="Utilities"/>
+        <ga-tag utility="yellow" label="Equipment rental"/>
+        <ga-tag utility="orange" label="Training & development"/>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: var(--ga-size-spacing-03);">
+        <ga-tag utility="indigo" separator :afterIcon="xIcon" label="Office supplies"/>
+        <ga-tag utility="teal" separator :afterIcon="xIcon" label="Meals & entertainment"/>
+        <ga-tag utility="lime" separator :afterIcon="xIcon" label="Travel & lodging"/>
+        <ga-tag utility="purple" separator :afterIcon="xIcon" label="Employee salaries"/>
+        <ga-tag utility="pink" separator :afterIcon="xIcon" label="Software subscriptions"/>
+        <ga-tag utility="rose" separator :afterIcon="xIcon" label="Professional services"/>
+        <ga-tag utility="green" separator :afterIcon="xIcon" label="Utilities"/>
+        <ga-tag utility="yellow" separator :afterIcon="xIcon" label="Equipment rental"/>
+        <ga-tag utility="orange" separator :afterIcon="xIcon" label="Training & development"/>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: var(--ga-size-spacing-03);">
+        <ga-tag utility="indigo" :beforeIcon="briefcase" label="Office supplies"/>
+        <ga-tag utility="teal" :beforeIcon="dollar" label="Meals & entertainment"/>
+        <ga-tag utility="lime" :beforeIcon="mapPin" label="Travel & lodging"/>
+        <ga-tag utility="purple" :beforeIcon="user" label="Employee salaries"/>
+        <ga-tag utility="pink" :beforeIcon="code" label="Software subscriptions"/>
+        <ga-tag utility="rose" :beforeIcon="shield" label="Professional services"/>
+        <ga-tag utility="green" :beforeIcon="lightbulb" label="Utilities"/>
+        <ga-tag utility="yellow" :beforeIcon="tag" label="Equipment rental"/>
+        <ga-tag utility="orange" :beforeIcon="microscope" label="Training & development"/>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: var(--ga-size-spacing-03);">
+        <ga-tag utility="grey" interactive label="Office supplies"/>
+        <ga-tag utility="grey" interactive label="Meals & entertainment"/>
+        <ga-tag utility="grey" interactive label="Travel & lodging"/>
+        <ga-tag utility="grey" interactive label="Employee salaries"/>
+        <ga-tag utility="grey" interactive label="Software subscriptions"/>
+        <ga-tag utility="grey" interactive label="Professional services"/>
+        <ga-tag utility="grey" interactive label="Utilities"/>
+        <ga-tag utility="grey" interactive label="Equipment rental"/>
+        <ga-tag utility="grey" interactive label="Training & development"/>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: var(--ga-size-spacing-03);">
+        <ga-tag utility="grey" interactive separator :afterIcon="xIcon" label="Office supplies"/>
+        <ga-tag utility="grey" interactive separator :afterIcon="xIcon" label="Meals & entertainment"/>
+        <ga-tag utility="grey" interactive separator :afterIcon="xIcon" label="Travel & lodging"/>
+        <ga-tag utility="grey" interactive separator :afterIcon="xIcon" label="Employee salaries"/>
+        <ga-tag utility="grey" interactive separator :afterIcon="xIcon" label="Software subscriptions"/>
+        <ga-tag utility="grey" interactive separator :afterIcon="xIcon" label="Professional services"/>
+        <ga-tag utility="grey" interactive separator :afterIcon="xIcon" label="Utilities"/>
+        <ga-tag utility="grey" interactive separator :afterIcon="xIcon" label="Equipment rental"/>
+        <ga-tag utility="grey" interactive separator :afterIcon="xIcon" label="Training & development"/>
       </div>
     </div>
     `,
