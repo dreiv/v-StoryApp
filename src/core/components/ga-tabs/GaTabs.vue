@@ -16,25 +16,12 @@ import { ChevronDown } from 'lucide-vue-next'
 import { tabsKey, type TabProps } from './types'
 
 export interface TabsProps {
-  /**
-   * Array of tabs to display
-   */
   tabs?: TabProps[]
-  /**
-   * Whether to use router for navigation
-   */
   useRouterLinks?: boolean
-  /**
-   * Whether to align tabs to the start, center or end
-   */
   align?: 'start' | 'center' | 'end'
 }
 
-const props = withDefaults(defineProps<TabsProps>(), {
-  tabs: () => [],
-  useRouterLinks: false,
-  align: 'start',
-})
+const { tabs = [], useRouterLinks = false, align = 'start' } = defineProps<TabsProps>()
 
 const emit = defineEmits(['change'])
 const model = defineModel<string>({ default: '' })
@@ -56,35 +43,26 @@ const tabsContainerRef = ref<HTMLElement | null>(null)
 const resizeObserver = ref<ResizeObserver | null>(null)
 
 // Generate or use provided tabs
-const allTabs = computed(() => {
-  if (props.tabs.length) {
-    return props.tabs.map((tab) => ({
-      ...tab,
-      id: tab.id || uniqueId('tab-'),
-    }))
-  }
-  return registeredTabs.value
-})
+const allTabs = computed(() =>
+  tabs.length
+    ? tabs.map((tab) => ({ ...tab, id: tab.id || uniqueId('tab-') }))
+    : registeredTabs.value,
+)
 
 // Handle router integration if enabled
-if (props.useRouterLinks && route) {
+if (useRouterLinks && route) {
   watch(
     () => route.value?.path,
     (newPath) => {
       if (!newPath) return
 
-      const matchingTab = allTabs.value.find((tab) => {
-        if (typeof tab.to === 'string') {
-          return tab.to === newPath
-        } else if (tab.to && typeof tab.to === 'object' && 'path' in tab.to) {
-          return tab.to.path === newPath
-        }
-        return false
-      })
+      const matchingTab = allTabs.value.find(
+        (tab) =>
+          (typeof tab.to === 'string' && tab.to === newPath) ||
+          (tab.to && typeof tab.to === 'object' && 'path' in tab.to && tab.to.path === newPath),
+      )
 
-      if (matchingTab) {
-        setActiveTab(matchingTab.id as string)
-      }
+      if (matchingTab) setActiveTab(matchingTab.id as string)
     },
     { immediate: true },
   )
@@ -100,15 +78,13 @@ provide(tabsKey, {
 
 function setActiveTab(id: string) {
   const tab = allTabs.value.find((t) => t.id === id)
-
   if (!tab || tab.disabled) return
 
   model.value = id
-
   emit('change', id)
 
   // Handle router navigation if enabled
-  if (props.useRouterLinks && router && tab.to) {
+  if (useRouterLinks && router && tab.to) {
     try {
       router.push(tab.to)
     } catch (e) {
@@ -118,14 +94,9 @@ function setActiveTab(id: string) {
 }
 
 function registerTab(tab: TabProps) {
-  const newTab = {
-    ...tab,
-    id: tab.id || uniqueId('tab-'),
-  }
-
+  const newTab = { ...tab, id: tab.id || uniqueId('tab-') }
   registeredTabs.value.push(newTab)
 
-  // If it's the first tab and no active tab is set, make it active
   if (registeredTabs.value.length === 1 && !model.value) {
     setActiveTab(newTab.id as string)
   }
@@ -133,9 +104,7 @@ function registerTab(tab: TabProps) {
 
 function unregisterTab(id: string) {
   const index = registeredTabs.value.findIndex((t) => t.id === id)
-  if (index !== -1) {
-    registeredTabs.value.splice(index, 1)
-  }
+  if (index !== -1) registeredTabs.value.splice(index, 1)
 }
 
 function calculateVisibleTabs() {
@@ -211,9 +180,7 @@ watch(
 
 // Classes computed property
 const tabsClasses = computed(() =>
-  [style.tabs, props.align === 'center' && style.center, props.align === 'end' && style.end].filter(
-    Boolean,
-  ),
+  [style.tabs, align === 'center' && style.center, align === 'end' && style.end].filter(Boolean),
 )
 </script>
 
@@ -223,9 +190,9 @@ const tabsClasses = computed(() =>
       <!-- Direct child tabs from slots or props -->
       <template v-for="tab in visibleTabs" :key="tab.id">
         <component
-          :is="tab.to && props.useRouterLinks && router ? 'router-link' : 'button'"
+          :is="tab.to && useRouterLinks && router ? 'router-link' : 'button'"
           :class="[style.tab, { [style.active]: tab.id === model, [style.disabled]: tab.disabled }]"
-          :to="tab.to && props.useRouterLinks && router ? tab.to : undefined"
+          :to="tab.to && useRouterLinks && router ? tab.to : undefined"
           :disabled="tab.disabled"
           :data-tab-id="tab.id"
           @click="!tab.disabled && setActiveTab(tab.id as string)"
