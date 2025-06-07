@@ -106,6 +106,13 @@ export const Examples: Story = {
         label: 'Wrong address',
       })
 
+      const selectItems = [
+        { value: 1, label: 'Wrong address' },
+        { value: 2, label: 'An Item' },
+        { value: 3, label: 'Another Item' },
+        { value: 4, label: 'Yet another Item' },
+      ]
+
       const bartSimpsonTags = ref<BartTag[]>([
         { id: 1, label: 'Bart Simpson', icon: CircleUserRound, selected: false },
         {
@@ -133,6 +140,7 @@ export const Examples: Story = {
 
       return {
         selected,
+        selectItems,
         bartSimpsonTags,
         toggleSelected,
         handleDelete,
@@ -230,10 +238,12 @@ export const Examples: Story = {
             />
           </template>
 
-          <ga-select-item :value="1" label="Wrong address" />
-          <ga-select-item :value="2" label="An Item" />
-          <ga-select-item :value="3" label="Another Item" />
-          <ga-select-item :value="4" label="Yet another Item" />
+          <ga-select-item
+            v-for="item in selectItems"
+            :key="item.value"
+            :value="item.value"
+            :label="(item.value === selected.value ? '✅ ' : '') + item.label"
+          />
         </ga-select>
       </div>
 
