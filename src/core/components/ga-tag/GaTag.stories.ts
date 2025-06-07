@@ -1,13 +1,26 @@
 import type { FunctionalComponent } from 'vue'
 import type { Meta, StoryObj } from '@storybook/vue3'
 import {
+  BriefcaseIcon,
   ChevronsUpDown,
   CircleCheck,
   CircleUserRound,
+  CodeIcon,
+  CreditCardIcon,
+  DollarSignIcon,
   EyeIcon,
   InfoIcon,
+  LeafIcon,
+  LightbulbIcon,
+  MapPinIcon,
+  MessageSquareIcon,
+  MicroscopeIcon,
   OctagonAlert,
+  PaletteIcon,
   PlusIcon,
+  ShieldIcon,
+  TagIcon,
+  TicketIcon,
   TriangleAlert,
   TruckIcon,
   WandSparkles,
@@ -78,11 +91,24 @@ export const Examples: Story = {
     setup: () => {
       return {
         alert: TriangleAlert,
+        briefcase: BriefcaseIcon,
         check: CircleCheck,
+        code: CodeIcon,
+        creditCard: CreditCardIcon,
+        dollar: DollarSignIcon,
         error: OctagonAlert,
         eye: EyeIcon,
         info: InfoIcon,
+        leaf: LeafIcon,
+        lightbulb: LightbulbIcon,
+        mapPin: MapPinIcon,
+        message: MessageSquareIcon,
+        microscope: MicroscopeIcon,
+        palette: PaletteIcon,
         plus: PlusIcon,
+        shield: ShieldIcon,
+        tag: TagIcon,
+        ticket: TicketIcon,
         truck: TruckIcon,
         upDown: ChevronsUpDown,
         user: CircleUserRound,
@@ -94,7 +120,7 @@ export const Examples: Story = {
     <div style="display: flex; flex-direction: column; gap: var(--ga-size-spacing-06);">
       <div style="display: flex; gap: var(--ga-size-spacing-03);">
         <ga-tag :beforeIcon="plus" interactive>Add skill</ga-tag>
-        <ga-tag interactive>Add skill</ga-tag>
+        <ga-tag :beforeIcon="lightbulb" interactive>Add skill</ga-tag>
       </div>
 
       <div style="display: flex; flex-wrap: wrap; gap: var(--ga-size-spacing-03);">
@@ -105,19 +131,19 @@ export const Examples: Story = {
       </div>
 
       <div style="display: flex; flex-wrap: wrap; gap: var(--ga-size-spacing-03);">
-        <ga-tag interactive>Equinor</ga-tag>
-        <ga-tag interactive>Norsk Hydro asa</ga-tag>
-        <ga-tag interactive selected :afterIcon="xIcon">Telenor asa</ga-tag>
+        <ga-tag interactive :beforeIcon="briefcase">Equinor</ga-tag>
+        <ga-tag interactive :beforeIcon="shield">Norsk Hydro asa</ga-tag>
+        <ga-tag interactive selected :beforeIcon="message" :afterIcon="xIcon">Telenor asa</ga-tag>
         <ga-tag interactive selected separator :afterIcon="xIcon">Aker asa</ga-tag>
         <ga-tag interactive warning :beforeIcon="alert" :afterIcon="xIcon">Orkla asa</ga-tag>
-        <ga-tag interactive>Aker Kværner asa</ga-tag>
-        <ga-tag interactive selected separator :afterIcon="xIcon">Total E&P Norge as</ga-tag>
-        <ga-tag disabled>Visma Software AS</ga-tag>
-        <ga-tag interactive>ExxonMobil Exploration and Production Norway as</ga-tag>
+        <ga-tag interactive :beforeIcon="tag">Aker Kværner asa</ga-tag>
+        <ga-tag interactive selected separator :beforeIcon="dollar" :afterIcon="xIcon">Total E&P Norge as</ga-tag>
+        <ga-tag disabled :beforeIcon="code">Visma Software AS</ga-tag>
+        <ga-tag interactive :beforeIcon="truck">ExxonMobil Exploration and Production Norway as</ga-tag>
       </div>
 
       <div style="display: flex; gap: var(--ga-size-spacing-03);">
-        <ga-tag disabled>Fraud detection</ga-tag>
+        <ga-tag disabled :beforeIcon="shield">Fraud detection</ga-tag>
       </div>
 
       <div style="display: flex; flex-wrap: wrap; gap: var(--ga-size-spacing-03);">
@@ -147,16 +173,16 @@ export const Examples: Story = {
       </div>
 
       <div style="display: flex; flex-wrap: wrap; gap: var(--ga-size-spacing-03);">
-        <ga-tag utility="blue" separator :afterIcon="xIcon">Office supplies</ga-tag>
-        <ga-tag utility="blue" separator :afterIcon="xIcon">Meals & entertainment</ga-tag>
-        <ga-tag utility="blue" separator :afterIcon="xIcon">Travel & lodging</ga-tag>
-        <ga-tag utility="blue" separator :afterIcon="xIcon">Employee salaries</ga-tag>
-        <ga-tag utility="blue" separator :afterIcon="xIcon">Software subscriptions</ga-tag>
-        <ga-tag utility="blue" separator :afterIcon="xIcon">Professional services</ga-tag>
-        <ga-tag utility="blue" separator :afterIcon="xIcon">Marketing & advertising</ga-tag>
-        <ga-tag utility="blue" separator :afterIcon="xIcon">Utilities</ga-tag>
-        <ga-tag utility="blue" separator :afterIcon="xIcon">Equipment rental</ga-tag>
-        <ga-tag utility="blue" separator :afterIcon="xIcon">Training & development</ga-tag>
+        <ga-tag utility="blue" :beforeIcon="briefcase" separator :afterIcon="xIcon">Office supplies</ga-tag>
+        <ga-tag utility="blue" :beforeIcon="dollar" separator :afterIcon="xIcon">Meals & entertainment</ga-tag>
+        <ga-tag utility="blue" :beforeIcon="mapPin" separator :afterIcon="xIcon">Travel & lodging</ga-tag>
+        <ga-tag utility="blue" :beforeIcon="user" separator :afterIcon="xIcon">Employee salaries</ga-tag>
+        <ga-tag utility="blue" :beforeIcon="code" separator :afterIcon="xIcon">Software subscriptions</ga-tag>
+        <ga-tag utility="blue" :beforeIcon="shield" separator :afterIcon="xIcon">Professional services</ga-tag>
+        <ga-tag utility="blue" :beforeIcon="palette" separator :afterIcon="xIcon">Marketing & advertising</ga-tag>
+        <ga-tag utility="blue" :beforeIcon="lightbulb" separator :afterIcon="xIcon">Utilities</ga-tag>
+        <ga-tag utility="blue" :beforeIcon="tag" separator :afterIcon="xIcon">Equipment rental</ga-tag>
+        <ga-tag utility="blue" :beforeIcon="microscope" separator :afterIcon="xIcon">Training & development</ga-tag>
       </div>
     </div>
     `,
@@ -190,18 +216,33 @@ export const Utility: Story = {
     components: { GaTag },
     template: `
       <ga-tag utility='grey' :beforeIcon="plus" interactive>Default</ga-tag>
-      <ga-tag utility='indigo'>Indigo</ga-tag>
-      <ga-tag utility='teal'>Teal</ga-tag>
-      <ga-tag utility='lime'>Lime</ga-tag>
-      <ga-tag utility='purple'>Purple</ga-tag>
-      <ga-tag utility='pink'>Pink</ga-tag>
-      <ga-tag utility='rose'>Rose</ga-tag>
-      <ga-tag utility='yellow'>Yellow</ga-tag>
-      <ga-tag utility='blue'>Blue</ga-tag>
-      <ga-tag utility='green'>Green</ga-tag>
-      <ga-tag utility='orange'>Orange</ga-tag>
-      <ga-tag utility='disabled'>Disabled</ga-tag>
+      <ga-tag utility='indigo' :beforeIcon="code">Indigo</ga-tag>
+      <ga-tag utility='teal' :beforeIcon="microscope">Teal</ga-tag>
+      <ga-tag utility='lime' :beforeIcon="leaf">Lime</ga-tag>
+      <ga-tag utility='purple' :beforeIcon="briefcase">Purple</ga-tag>
+      <ga-tag utility='pink' :beforeIcon="palette">Pink</ga-tag>
+      <ga-tag utility='rose' :beforeIcon="ticket">Rose</ga-tag>
+      <ga-tag utility='yellow' :beforeIcon="dollar">Yellow</ga-tag>
+      <ga-tag utility='blue' :beforeIcon="shield">Blue</ga-tag>
+      <ga-tag utility='green' :beforeIcon="tag">Green</ga-tag>
+      <ga-tag utility='orange' :beforeIcon="mapPin">Orange</ga-tag>
+      <ga-tag utility='disabled' :beforeIcon="creditCard">Disabled</ga-tag>
     `,
-    setup: () => ({ plus: PlusIcon }),
+    setup: () => ({
+      plus: PlusIcon,
+      code: CodeIcon,
+      microscope: MicroscopeIcon,
+      leaf: LeafIcon,
+      briefcase: BriefcaseIcon,
+      palette: PaletteIcon,
+      ticket: TicketIcon,
+      dollar: DollarSignIcon,
+      shield: ShieldIcon,
+      tag: TagIcon,
+      mapPin: MapPinIcon,
+      creditCard: CreditCardIcon,
+      lightbulb: LightbulbIcon,
+      message: MessageSquareIcon,
+    }),
   }),
 }
