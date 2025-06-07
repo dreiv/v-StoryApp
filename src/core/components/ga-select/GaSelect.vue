@@ -8,6 +8,20 @@ import { selectKey } from './types'
 import { useSelectLogic } from './useSelectLogic'
 import type { SelectItemProps } from './GaSelectItem.vue'
 
+/**
+ * Props for the GaSelect component
+ *
+ * The component supports the following slots:
+ * - default: Contains the select items (GaSelectItem components)
+ * - label: Content for the default button trigger label
+ * - trigger: Custom trigger element replacing the default button.
+ *   This slot receives props:
+ *   - shown: boolean - Whether the dropdown is open
+ *   - model: SelectItemProps - The currently selected item
+ *   - label: string - The label prop passed to the select
+ *   - ref-el: function - Use this to set the button reference for keyboard navigation
+ *   - aria: object - ARIA attributes for accessibility
+ */
 export interface SelectProps {
   label?: string
 }
@@ -38,7 +52,23 @@ defineExpose({ buttonRef })
 
 <template>
   <dropdown v-model:shown="shown" @keydown="handleKeyDown" @blur="shown = false" no-auto-focus>
-    <ga-button ref="buttonRef" aria-haspopup="listbox" :aria-expanded="shown" v-bind="$attrs">
+    <template v-if="$slots.trigger">
+      <slot
+        name="trigger"
+        :shown="shown"
+        :model="model"
+        :label="label"
+        :ref-el="(el: HTMLButtonElement) => (buttonRef = el)"
+        :aria="{ 'aria-haspopup': 'listbox', 'aria-expanded': shown }"
+      />
+    </template>
+    <ga-button
+      v-else
+      ref="buttonRef"
+      aria-haspopup="listbox"
+      :aria-expanded="shown"
+      v-bind="$attrs"
+    >
       <slot name="label">{{ model?.label ? model?.label : label }}</slot>
       <component :is="shown ? ChevronUp : ChevronDown" />
     </ga-button>
