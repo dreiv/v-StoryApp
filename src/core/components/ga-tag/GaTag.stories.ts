@@ -10,6 +10,7 @@ import {
   PlusIcon,
   TriangleAlert,
   TruckIcon,
+  WandSparkles,
   XIcon,
 } from 'lucide-vue-next'
 
@@ -85,6 +86,7 @@ export const Examples: Story = {
         truck: TruckIcon,
         upDown: ChevronsUpDown,
         user: CircleUserRound,
+        wand: WandSparkles,
         xIcon: XIcon,
       }
     },
@@ -136,6 +138,25 @@ export const Examples: Story = {
         <ga-tag success :beforeIcon="check">Rejected</ga-tag>
         <ga-tag warning :beforeIcon="alert">Overdue</ga-tag>
         <ga-tag utility="grey" :beforeIcon="truck" :afterIcon="upDown">Wrong address</ga-tag>
+      </div>
+
+       <div style="display: flex; flex-direction: column; align-items: start; gap: var(--ga-size-spacing-03);">
+        <ga-tag utility="grey" :beforeIcon="truck">Shipment wrong address</ga-tag>
+        <ga-tag utility="grey" :afterIcon="upDown">Wholesale</ga-tag>
+        <ga-tag utility="grey" :beforeIcon="wand" :afterIcon="upDown">Wholesale</ga-tag>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: var(--ga-size-spacing-03);">
+        <ga-tag utility="blue" separator :afterIcon="xIcon">Office supplies</ga-tag>
+        <ga-tag utility="blue" separator :afterIcon="xIcon">Meals & entertainment</ga-tag>
+        <ga-tag utility="blue" separator :afterIcon="xIcon">Travel & lodging</ga-tag>
+        <ga-tag utility="blue" separator :afterIcon="xIcon">Employee salaries</ga-tag>
+        <ga-tag utility="blue" separator :afterIcon="xIcon">Software subscriptions</ga-tag>
+        <ga-tag utility="blue" separator :afterIcon="xIcon">Professional services</ga-tag>
+        <ga-tag utility="blue" separator :afterIcon="xIcon">Marketing & advertising</ga-tag>
+        <ga-tag utility="blue" separator :afterIcon="xIcon">Utilities</ga-tag>
+        <ga-tag utility="blue" separator :afterIcon="xIcon">Equipment rental</ga-tag>
+        <ga-tag utility="blue" separator :afterIcon="xIcon">Training & development</ga-tag>
       </div>
     </div>
     `,
