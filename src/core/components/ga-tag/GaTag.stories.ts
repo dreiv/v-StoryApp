@@ -1,4 +1,5 @@
 import type { FunctionalComponent } from 'vue'
+import { ref } from 'vue'
 import type { Meta, StoryObj } from '@storybook/vue3'
 import {
   BriefcaseIcon,
@@ -89,7 +90,44 @@ export const Examples: Story = {
   render: () => ({
     components: { GaTag, TriangleAlert },
     setup: () => {
+      interface BartTag {
+        id: number
+        label: string
+        icon?: FunctionalComponent
+        selected: boolean
+        separator?: boolean
+        hasDelete?: boolean
+      }
+
+      const bartSimpsonTags = ref<BartTag[]>([
+        { id: 1, label: 'Bart Simpson', icon: CircleUserRound, selected: false },
+        {
+          id: 2,
+          label: 'Bart Simpson',
+          icon: CircleUserRound,
+          selected: true,
+          separator: true,
+          hasDelete: true,
+        },
+        { id: 3, label: 'Bart Simpson', icon: CircleUserRound, selected: true },
+        { id: 4, label: 'Bart Simpson', selected: false },
+      ])
+
+      const toggleSelected = (tag: BartTag) => {
+        tag.selected = !tag.selected
+      }
+
+      const handleDelete = (tagId: number) => {
+        const index = bartSimpsonTags.value.findIndex((tag) => tag.id === tagId)
+        if (index !== -1) {
+          bartSimpsonTags.value.splice(index, 1)
+        }
+      }
+
       return {
+        bartSimpsonTags,
+        toggleSelected,
+        handleDelete,
         alert: TriangleAlert,
         briefcase: BriefcaseIcon,
         check: CircleCheck,
@@ -118,16 +156,24 @@ export const Examples: Story = {
     },
     template: `
     <div style="display: flex; flex-direction: column; gap: var(--ga-size-spacing-06);">
+      <fieldset style="display: flex; flex-wrap: wrap; gap: var(--ga-size-spacing-03);">
+        <legend>Interactive tags with delete</legend>
+        <ga-tag
+          v-for="tag in bartSimpsonTags"
+          :key="tag.id"
+          :beforeIcon="tag.icon"
+          :afterIcon="tag.hasDelete ? xIcon : undefined"
+          interactive
+          :selected="tag.selected"
+          :separator="tag.separator"
+          @click="toggleSelected(tag)"
+          @onDelete="handleDelete(tag.id)"
+        >{{ tag.label }}</ga-tag>
+      </fieldset>
+
       <div style="display: flex; gap: var(--ga-size-spacing-03);">
         <ga-tag :beforeIcon="plus" interactive>Add skill</ga-tag>
         <ga-tag :beforeIcon="lightbulb" interactive>Add skill</ga-tag>
-      </div>
-
-      <div style="display: flex; flex-wrap: wrap; gap: var(--ga-size-spacing-03);">
-        <ga-tag :beforeIcon="user" interactive>Bart Simpson</ga-tag>
-        <ga-tag :beforeIcon="user" :afterIcon="xIcon" interactive selected separator>Bart Simpson</ga-tag>
-        <ga-tag :beforeIcon="user" interactive selected>Bart Simpson</ga-tag>
-        <ga-tag interactive selected>Bart Simpson</ga-tag>
       </div>
 
       <div style="display: flex; flex-wrap: wrap; gap: var(--ga-size-spacing-03);">
