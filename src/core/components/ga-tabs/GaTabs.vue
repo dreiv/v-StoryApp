@@ -21,10 +21,6 @@ export interface TabsProps {
    */
   tabs?: TabProps[]
   /**
-   * ID of the initially active tab
-   */
-  modelValue?: string
-  /**
    * Whether to use router for navigation
    */
   useRouterLinks?: boolean
@@ -55,7 +51,7 @@ const style = useCssModule()
 const registeredTabs = ref<TabProps[]>([])
 const visibleTabs = ref<TabProps[]>([])
 const overflowTabs = ref<TabProps[]>([])
-const activeTabId = ref<string>(model?.value || props.modelValue || '')
+const activeTabId = ref<string>(model?.value || '')
 const tabsRef = ref<HTMLElement | null>(null)
 const tabsContainerRef = ref<HTMLElement | null>(null)
 const resizeObserver = ref<ResizeObserver | null>(null)
