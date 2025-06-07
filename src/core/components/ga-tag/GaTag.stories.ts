@@ -147,10 +147,10 @@ export const Examples: Story = {
       </div>
 
       <div style="display: flex; flex-wrap: wrap; gap: var(--ga-size-spacing-03);">
-        <ga-tag information :beforeIcon="info">Administration only</ga-tag>
-        <ga-tag error :beforeIcon="error">Credit notes</ga-tag>
-        <ga-tag success :beforeIcon="check">Compliance passed</ga-tag>
-        <ga-tag warning :beforeIcon="alert">4-eyes approval</ga-tag>
+        <ga-tag information :beforeIcon="info" :afterIcon="xIcon">Administration only</ga-tag>
+        <ga-tag error :beforeIcon="error" :afterIcon="xIcon">Credit notes</ga-tag>
+        <ga-tag success :beforeIcon="check" :afterIcon="xIcon">Compliance passed</ga-tag>
+        <ga-tag warning :beforeIcon="alert" :afterIcon="xIcon">4-eyes approval</ga-tag>
       </div>
 
       <div style="display: flex; gap: var(--ga-size-spacing-03);">

@@ -247,56 +247,100 @@ const handleKeyup = (event: KeyboardEvent) => {
   &.grey {
     border-color: var(--ga-color-utility-grey);
     background-color: var(--ga-color-utility-grey-light);
+
+    .separator {
+      background-color: var(--ga-color-utility-grey);
+    }
   }
 
   &.indigo {
     border-color: var(--ga-color-utility-indigo);
     background-color: var(--ga-color-utility-indigo-light);
+
+    .separator {
+      background-color: var(--ga-color-utility-indigo);
+    }
   }
 
   &.teal {
     border-color: var(--ga-color-utility-teal);
     background-color: var(--ga-color-utility-teal-light);
+
+    .separator {
+      background-color: var(--ga-color-utility-teal);
+    }
   }
 
   &.lime {
     border-color: var(--ga-color-utility-lime);
     background-color: var(--ga-color-utility-lime-light);
+
+    .separator {
+      background-color: var(--ga-color-utility-lime);
+    }
   }
 
   &.purple {
     border-color: var(--ga-color-utility-purple);
     background-color: var(--ga-color-utility-purple-light);
+
+    .separator {
+      background-color: var(--ga-color-utility-purple);
+    }
   }
 
   &.pink {
     border-color: var(--ga-color-utility-pink);
     background-color: var(--ga-color-utility-pink-light);
+
+    .separator {
+      background-color: var(--ga-color-utility-pink);
+    }
   }
 
   &.rose {
     border-color: var(--ga-color-utility-rose);
     background-color: var(--ga-color-utility-rose-light);
+
+    .separator {
+      background-color: var(--ga-color-utility-rose);
+    }
   }
 
   &.yellow {
     border-color: var(--ga-color-utility-yellow);
     background-color: var(--ga-color-utility-yellow-light);
+
+    .separator {
+      background-color: var(--ga-color-utility-yellow);
+    }
   }
 
   &.blue {
     border-color: var(--ga-color-utility-blue);
     background-color: var(--ga-color-utility-blue-light);
+
+    .separator {
+      background-color: var(--ga-color-utility-blue);
+    }
   }
 
   &.green {
     border-color: var(--ga-color-utility-green);
     background-color: var(--ga-color-utility-green-light);
+
+    .separator {
+      background-color: var(--ga-color-utility-green);
+    }
   }
 
   &.orange {
     border-color: var(--ga-color-utility-orange);
     background-color: var(--ga-color-utility-orange-light);
+
+    .separator {
+      background-color: var(--ga-color-utility-orange);
+    }
   }
 }
 </style>
