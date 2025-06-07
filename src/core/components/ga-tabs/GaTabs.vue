@@ -37,7 +37,7 @@ const props = withDefaults(defineProps<TabsProps>(), {
 })
 
 const emit = defineEmits(['change'])
-const model = defineModel<string>()
+const model = defineModel<string>({ default: '' })
 
 // These will be undefined if Vue Router isn't installed
 const router = inject<{
@@ -51,7 +51,6 @@ const style = useCssModule()
 const registeredTabs = ref<TabProps[]>([])
 const visibleTabs = ref<TabProps[]>([])
 const overflowTabs = ref<TabProps[]>([])
-const activeTabId = ref<string>(model?.value || '')
 const tabsRef = ref<HTMLElement | null>(null)
 const tabsContainerRef = ref<HTMLElement | null>(null)
 const resizeObserver = ref<ResizeObserver | null>(null)
@@ -91,20 +90,9 @@ if (props.useRouterLinks && route) {
   )
 }
 
-// Watch for model/value changes
-watch(
-  () => model?.value,
-  (newValue) => {
-    if (newValue && newValue !== activeTabId.value) {
-      setActiveTab(newValue)
-    }
-  },
-)
-
 // Provide context for child components
 provide(tabsKey, {
-  activeTab: activeTabId.value,
-  setActiveTab,
+  model,
   registerTab,
   unregisterTab,
   isOverflowTab: (id: string) => overflowTabs.value.some((tab) => tab.id === id),
@@ -115,10 +103,7 @@ function setActiveTab(id: string) {
 
   if (!tab || tab.disabled) return
 
-  activeTabId.value = id
-  if (model.value !== undefined) {
-    model.value = id
-  }
+  model.value = id
 
   emit('change', id)
 
@@ -141,7 +126,7 @@ function registerTab(tab: TabProps) {
   registeredTabs.value.push(newTab)
 
   // If it's the first tab and no active tab is set, make it active
-  if (registeredTabs.value.length === 1 && !activeTabId.value) {
+  if (registeredTabs.value.length === 1 && !model.value) {
     setActiveTab(newTab.id as string)
   }
 }
@@ -239,10 +224,7 @@ const tabsClasses = computed(() =>
       <template v-for="tab in visibleTabs" :key="tab.id">
         <component
           :is="tab.to && props.useRouterLinks && router ? 'router-link' : 'button'"
-          :class="[
-            style.tab,
-            { [style.active]: tab.id === activeTabId, [style.disabled]: tab.disabled },
-          ]"
+          :class="[style.tab, { [style.active]: tab.id === model, [style.disabled]: tab.disabled }]"
           :to="tab.to && props.useRouterLinks && router ? tab.to : undefined"
           :disabled="tab.disabled"
           :data-tab-id="tab.id"
@@ -267,7 +249,7 @@ const tabsClasses = computed(() =>
               :key="tab.id"
               :class="[
                 style.overflowTab,
-                { [style.active]: tab.id === activeTabId, [style.disabled]: tab.disabled },
+                { [style.active]: tab.id === model, [style.disabled]: tab.disabled },
               ]"
               @click="!tab.disabled && setActiveTab(tab.id as string)"
             >

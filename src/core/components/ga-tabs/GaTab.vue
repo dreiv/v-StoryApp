@@ -68,7 +68,7 @@ onBeforeUnmount(() => {
 // Determine if the tab is active
 const isActive = computed(() => {
   if (parent) {
-    return parent.activeTab === props.id
+    return parent.model.value === props.id
   }
   return props.active
 })
@@ -87,7 +87,7 @@ function handleClick() {
   emit('click')
 
   if (parent) {
-    parent.setActiveTab(props.id)
+    parent.model.value = props.id
   }
 }
 

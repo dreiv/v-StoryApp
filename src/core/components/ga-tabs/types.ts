@@ -1,3 +1,5 @@
+import type { Ref } from 'vue'
+
 export const tabsKey = Symbol('tabs')
 
 export interface TabProps {
@@ -9,8 +11,7 @@ export interface TabProps {
 }
 
 export interface TabsContext {
-  activeTab: string
-  setActiveTab: (id: string) => void
+  model: Ref<string>
   registerTab: (tab: TabProps) => void
   unregisterTab: (id: string) => void
   isOverflowTab: (id: string) => boolean
