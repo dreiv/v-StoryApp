@@ -1,0 +1,9 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`GroupButton > should render correctly with default props 1`] = `"<label class="button"><input type="radio" class="native" name="mockName"></label>"`;
+
+exports[`GroupButton > should render correctly with default slot 1`] = `"<label class="button"><input type="radio" class="native" name="mockName">Custom Button Content</label>"`;
+
+exports[`GroupButton > should render correctly with label prop 1`] = `"<label class="button"><input type="radio" class="native" name="mockName">Button option</label>"`;
+
+exports[`GroupButton > should render with icon style when icon prop is true 1`] = `"<label class="button icon"><input type="radio" class="native" name="mockName"></label>"`;

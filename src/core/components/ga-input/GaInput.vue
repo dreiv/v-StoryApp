@@ -18,7 +18,7 @@ export interface GaInputProps extends /* @vue-ignore */ InputHTMLAttributes {
 defineOptions({ inheritAttrs: false })
 
 const { id, error, disabled, success } = defineProps<GaInputProps>()
-const inputRef = useTemplateRef<HTMLElement>('inputRef')
+const inputRef = useTemplateRef<HTMLInputElement>('inputRef')
 const style = useCssModule()
 const attrs = useAttrs()
 const model = defineModel<string>()

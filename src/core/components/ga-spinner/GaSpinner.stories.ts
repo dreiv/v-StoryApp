@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import { CircleCheck, OctagonAlert } from 'lucide-vue-next'
 import GaSpinner, { type SpinnerProps } from './GaSpinner.vue'
 

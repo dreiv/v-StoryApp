@@ -1,4 +1,4 @@
-import { type Preview, setup } from '@storybook/vue3'
+import { type Preview, setup } from '@storybook/vue3-vite'
 import { App } from 'vue'
 
 import floating from '../src/plugins/floatingVue'

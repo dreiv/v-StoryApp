@@ -1,5 +1,5 @@
 import type { ConcreteComponent } from 'vue'
-import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import { ChevronDown } from 'lucide-vue-next'
 
 import GaButton from '../ga-button/GaButton.vue'
