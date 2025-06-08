@@ -23,6 +23,12 @@ const stories = {
       template: `<ga-avatar content="AV" />`,
     }),
   },
+  Disabled: {
+    render: () => ({
+      components: { GaAvatar },
+      template: `<ga-avatar interactive disabled content="AV" />`,
+    }),
+  },
   Sizes: {
     render: () => ({
       components: { GaAvatar },
@@ -123,6 +129,7 @@ const stories = {
 }
 
 export const Default = stories.Default
+export const Disabled = stories.Disabled
 export const Sizes = stories.Sizes
 export const WithContent = stories.WithContent
 export const Interactive = stories.Interactive

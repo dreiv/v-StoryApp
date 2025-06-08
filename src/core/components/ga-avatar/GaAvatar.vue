@@ -97,7 +97,9 @@ const imageError = ref(false)
 }
 
 .interactive {
-  cursor: pointer;
+  &:enabled {
+    cursor: pointer;
+  }
 
   &:focus-visible {
     outline: var(--ga-size-border-width-md) solid var(--ga-color-border-focus);
@@ -111,6 +113,17 @@ const imageError = ref(false)
     &.icon {
       border-color: var(--ga-color-icon-action-hover);
       color: var(--ga-color-icon-action-hover);
+    }
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    border-color: var(--ga-color-border-disabled);
+    background-color: var(--ga-color-surface-disabled);
+    color: var(--ga-color-text-on-disabled);
+
+    &.icon {
+      color: var(--ga-color-icon-on-disabled);
     }
   }
 }
