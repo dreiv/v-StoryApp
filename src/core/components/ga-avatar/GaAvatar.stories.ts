@@ -46,8 +46,25 @@ const stories = {
       `,
     }),
   },
+  Interactive: {
+    render: () => ({
+      components: { GaAvatar },
+      template: `
+        <div style="display: flex; flex-direction: row; gap: 16px;">
+          <ga-avatar content="JD" interactive alt="John Doe's profile" @click="handleClick" />
+          <ga-avatar content="AV" interactive size="large" alt="Alex Vance's profile" @click="handleClick" />
+        </div>
+      `,
+      methods: {
+        handleClick() {
+          alert('Avatar clicked!')
+        },
+      },
+    }),
+  },
 }
 
 export const Default = stories.Default
 export const Sizes = stories.Sizes
 export const WithContent = stories.WithContent
+export const Interactive = stories.Interactive

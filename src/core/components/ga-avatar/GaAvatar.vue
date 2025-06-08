@@ -1,16 +1,28 @@
 <script setup lang="ts">
+import { computed, useCssModule } from 'vue'
+
 export interface GaAvatarProps {
   size?: 'small' | 'medium' | 'large'
   content?: string
+  interactive?: boolean
 }
 
-const { size = 'medium', content } = defineProps<GaAvatarProps>()
+const { size = 'medium', content, interactive } = defineProps<GaAvatarProps>()
+const style = useCssModule()
+
+const is = computed(() => (interactive ? 'button' : 'div'))
+const classes = computed(() => {
+  const classList = [style.avatar, style[size]]
+  if (interactive) classList.push(style.interactive)
+
+  return classList
+})
 </script>
 
 <template>
-  <div :class="[$style.avatar, $style[size]]">
+  <component :is :class="classes">
     {{ content }}
-  </div>
+  </component>
 </template>
 
 <style module>
@@ -49,5 +61,19 @@ const { size = 'medium', content } = defineProps<GaAvatarProps>()
 
   font-size: var(--ga-text-2xl-font-size);
   line-height: var(--ga-text-2xl-line-height);
+}
+
+.interactive {
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: var(--ga-size-border-width-md) solid var(--ga-color-border-focus);
+    outline-offset: var(--ga-size-spacing-01);
+  }
+
+  &:not(:active, :disabled):is(:hover, :focus) {
+    background-color: var(--ga-color-border-action-hover-2);
+    color: var(--ga-color-text-action);
+  }
 }
 </style>
