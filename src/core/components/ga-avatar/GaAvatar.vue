@@ -2,7 +2,7 @@
 import { computed, useCssModule, ref, useSlots } from 'vue'
 
 export interface GaAvatarProps {
-  size?: 'small' | 'medium' | 'large'
+  size?: 'extra-small' | 'small' | 'medium' | 'large'
   content?: string
   interactive?: boolean
   icon?: string
@@ -23,7 +23,7 @@ const classes = computed(() => {
   return classList
 })
 
-const iconSizes = { small: 12, medium: 16, large: 24 }
+const iconSizes = { 'extra-small': 10, small: 12, medium: 16, large: 24 }
 const iconSize = computed(() => iconSizes[size])
 
 const imageError = ref(false)
@@ -72,6 +72,15 @@ const imageError = ref(false)
   height: 100%;
   object-fit: cover;
   object-position: center;
+}
+
+.extra-small {
+  width: var(--ga-size-spacing-05);
+  height: var(--ga-size-spacing-05);
+
+  font-weight: var(--ga-font-weight-medium);
+  font-size: var(--ga-text-xs-font-size);
+  line-height: var(--ga-text-xs-line-height);
 }
 
 .small {

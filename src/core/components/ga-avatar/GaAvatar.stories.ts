@@ -34,6 +34,7 @@ const stories = {
       components: { GaAvatar },
       template: `
         <div style="display: flex; align-items: center; gap: 16px;">
+          <ga-avatar size="extra-small" content="s" />
           <ga-avatar size="small" content="S" />
           <ga-avatar size="medium" content="M" />
           <ga-avatar size="large" content="L" />
@@ -74,6 +75,7 @@ const stories = {
       components: { GaAvatar },
       template: `
         <div style="display: flex; flex-direction: row; gap: 16px;">
+          <ga-avatar :icon="User" size="extra-small" alt="User icon" />
           <ga-avatar :icon="User" size="small" alt="User icon" />
           <ga-avatar :icon="User" alt="User icon" />
           <ga-avatar :icon="Settings" size="large" alt="Settings" />
