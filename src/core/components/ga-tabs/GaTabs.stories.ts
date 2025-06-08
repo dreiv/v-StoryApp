@@ -7,11 +7,11 @@ import GaTab from './GaTab.vue'
 
 const meta = {
   component: GaTabs as unknown as ConcreteComponent,
-  title: 'Molecules/Tabs',
+  title: 'Molecules/Tabs 🚧',
   decorators: [
     (story) => ({
       components: { story },
-      template: `<div style="display: flex; flex-direction: column; width: 100%; max-width: 900px;"><story /></div>`,
+      template: `<div style="display: flex; flex-direction: column; width: 100%;"><story /></div>`,
     }),
   ],
   tags: ['autodocs'],
@@ -260,6 +260,48 @@ export const WithGaTabComponents: Story = {
           <div v-if="activeTab === 'tab3'">
             <h3>Settings Content</h3>
             <p>This is the content for the Settings tab.</p>
+          </div>
+        </ga-tabs>
+      </div>
+    `,
+  }),
+}
+
+/**
+ * Example with many GaTab components to demonstrate the overflow behavior
+ */
+export const WithGaTabOverflow: Story = {
+  parameters: { controls: { disable: true } },
+  render: () => ({
+    components: { GaTabs, GaTab },
+    setup() {
+      return { Home, User, Settings, Mail, Bell, FileText }
+    },
+    data: () => ({ activeTab: 'tab1' }),
+    template: `
+      <div>
+        <p>Resize the browser to see overflow behavior with GaTab components</p>
+        <ga-tabs v-model="activeTab">
+          <template #tabs>
+            <ga-tab id="tab1" label="Home" :icon="Home"></ga-tab>
+            <ga-tab id="tab2" label="Profile" :icon="User"></ga-tab>
+            <ga-tab id="tab3" label="Settings" :icon="Settings"></ga-tab>
+            <ga-tab id="tab4" label="Messages" :icon="Mail"></ga-tab>
+            <ga-tab id="tab5" label="Notifications" :icon="Bell"></ga-tab>
+            <ga-tab id="tab6" label="Dashboard" :icon="Home"></ga-tab>
+            <ga-tab id="tab7" label="Analytics" :icon="User"></ga-tab>
+            <ga-tab id="tab8" label="Reports" :icon="FileText"></ga-tab>
+            <ga-tab id="tab9" label="Documents" :icon="FileText"></ga-tab>
+            <ga-tab id="tab10" label="Archive" :icon="FileText"></ga-tab>
+          </template>
+
+          <div v-if="activeTab === 'tab1'" style="padding: 16px;">
+            <h3>Home Content</h3>
+            <p>This is the content for the Home tab.</p>
+          </div>
+          <div v-else style="padding: 16px;">
+            <h3>Content for {{ activeTab }}</h3>
+            <p>This is the content for the selected tab.</p>
           </div>
         </ga-tabs>
       </div>

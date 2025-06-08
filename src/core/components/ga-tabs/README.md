@@ -1,4 +1,4 @@
-# GaTabs Component
+﻿# GaTabs Component
 
 A customizable and responsive tabs component for Vue 3 with support for router integration and overflow handling.
 
@@ -50,10 +50,14 @@ This approach gives you more flexibility with individual tabs:
 ```vue
 <template>
   <ga-tabs v-model="activeTab">
-    <ga-tab id="tab1" label="Home" :icon="Home" />
-    <ga-tab id="tab2" label="Profile" :icon="User" />
-    <ga-tab id="tab3" label="Settings" :icon="Settings" />
+    <!-- Place GaTab components in the tabs slot -->
+    <template #tabs>
+      <ga-tab id="tab1" label="Home" :icon="Home" />
+      <ga-tab id="tab2" label="Profile" :icon="User" />
+      <ga-tab id="tab3" label="Settings" :icon="Settings" />
+    </template>
 
+    <!-- Tab content is placed in the default slot -->
     <div v-if="activeTab === 'tab1'">Home content</div>
     <div v-if="activeTab === 'tab2'">Profile content</div>
     <div v-if="activeTab === 'tab3'">Settings content</div>
@@ -102,3 +106,10 @@ const activeTab = ref('tab1')
 - Support for icons in tabs
 - Disabled tab states
 - Two usage patterns (props or child components)
+
+## Important Notes
+
+1. When using GaTab components, do not provide the `tabs` prop to avoid duplicated tabs.
+2. When using GaTab components, place them in the `tabs` slot (not the default slot).
+3. Tab content should always be placed in the default slot (not a named slot).
+4. The overflow functionality works with both approaches (using `tabs` prop or GaTab components).

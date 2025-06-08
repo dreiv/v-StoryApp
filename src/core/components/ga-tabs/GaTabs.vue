@@ -126,6 +126,11 @@ function calculateVisibleTabs() {
   visibleTabs.value = [...allTabs.value]
   overflowTabs.value = []
 
+  if (tabElements.length === 0) {
+    console.debug('No tab elements found for overflow calculation')
+    return
+  }
+
   // Skip calculation if we have enough space for all tabs
   const allTabsWidth = tabElements.reduce((sum, el) => sum + (el as HTMLElement).offsetWidth, 0)
   if (allTabsWidth + 10 <= containerWidth) return // 10px buffer
@@ -135,9 +140,16 @@ function calculateVisibleTabs() {
   const tabsToShow = []
   const tabsToOverflow = []
 
+  // Identify all the tab IDs in the DOM
+  const tabIds = tabElements.map((el) => el.getAttribute('data-tab-id')).filter(Boolean) as string[]
+
+  // Get tabs that have corresponding DOM elements
+  // This works for both approaches (tabs prop and GaTab components)
+  const tabsWithElements = allTabs.value.filter((tab) => tabIds.includes(tab.id as string))
+
   // Calculate which tabs fit in the container
-  for (let i = 0; i < allTabs.value.length; i++) {
-    const tab = allTabs.value[i]
+  for (let i = 0; i < tabsWithElements.length; i++) {
+    const tab = tabsWithElements[i]
     const tabEl = tabElements.find((el) => el.getAttribute('data-tab-id') === tab.id) as HTMLElement
 
     if (!tabEl) continue
@@ -185,18 +197,23 @@ const classes = computed(() => [style.tabs, style[align], keyLine && style.keyLi
 <template>
   <div :class="style.container" ref="tabsContainerRef">
     <div :class="classes" ref="tabsRef">
-      <template v-for="tab in visibleTabs" :key="tab.id">
-        <component
-          :is="tab.to && useRouterLinks && router ? 'router-link' : 'button'"
-          :class="[style.tab, { [style.active]: tab.id === model, [style.disabled]: tab.disabled }]"
-          :to="tab.to && useRouterLinks && router ? tab.to : undefined"
-          :disabled="tab.disabled"
-          :data-tab-id="tab.id"
-          @click="!tab.disabled && setActiveTab(tab.id as string)"
-        >
-          <component :is="tab.icon" v-if="tab.icon" :size="16" :class="style.icon" />
-          {{ tab.label }}
-        </component>
+      <template v-if="tabs && tabs.length > 0">
+        <template v-for="tab in visibleTabs" :key="tab.id">
+          <component
+            :is="tab.to && useRouterLinks && router ? 'router-link' : 'button'"
+            :class="[
+              style.tab,
+              { [style.active]: tab.id === model, [style.disabled]: tab.disabled },
+            ]"
+            :to="tab.to && useRouterLinks && router ? tab.to : undefined"
+            :disabled="tab.disabled"
+            :data-tab-id="tab.id"
+            @click="!tab.disabled && setActiveTab(tab.id as string)"
+          >
+            <component :is="tab.icon" v-if="tab.icon" :size="16" :class="style.icon" />
+            {{ tab.label }}
+          </component>
+        </template>
       </template>
 
       <slot name="tabs" />

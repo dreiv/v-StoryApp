@@ -57,8 +57,7 @@ const isActive = computed(() => {
 // Compute classes based on state
 const classes = computed(() => [
   style.tab,
-  isActive.value && style.active,
-  props.disabled && style.disabled,
+  { [style.active]: isActive.value, [style.disabled]: props.disabled },
 ])
 
 // Handle click events
@@ -72,15 +71,24 @@ function handleClick() {
   }
 }
 
+// Get access to router if available
+const router = inject<{
+  push: (to: string | object) => void
+  currentRoute: { value: { path: string } }
+}>('router')
+
+// Determine if we should use router links
+const useRouterLink = computed(() => !!props.to && !!router)
+
 // Determine the component to render (router-link or button)
-const component = computed(() => (props.to ? RouterLink : 'button'))
+const component = computed(() => (useRouterLink.value ? RouterLink : 'button'))
 </script>
 
 <template>
   <component
     :is="component"
-    v-bind="props.to ? { to: props.to } : {}"
     :class="classes"
+    :to="props.to && useRouterLink ? props.to : undefined"
     :disabled="props.disabled"
     :data-tab-id="props.id"
     @click="handleClick"
@@ -97,39 +105,36 @@ const component = computed(() => (props.to ? RouterLink : 'button'))
   position: relative;
   align-items: center;
   gap: var(--ga-size-spacing-02);
-  transition: color 0.2s ease;
+
   cursor: pointer;
   border: none;
+  border-bottom: var(--ga-size-spacing-02) solid transparent;
   background: transparent;
-  padding: var(--ga-size-spacing-03) var(--ga-size-spacing-04);
-  color: var(--ga-color-text-secondary);
+  padding: var(--ga-size-spacing-03) var(--ga-size-spacing-05) var(--ga-size-spacing-02);
+  height: var(--ga-size-spacing-07);
+  color: var(--ga-color-text-action);
+
   font-weight: var(--ga-font-weight-medium);
-  font-size: var(--ga-text-sm-font-size);
+  font-size: var(--ga-text-md-font-size);
+  line-height: var(--ga-text-md-line-height);
+  font-family: var(--ga-font-family-primary);
+  letter-spacing: var(--ga-text-md-tracking);
   text-decoration: none;
   white-space: nowrap;
 }
 
 .tab:hover:not(.disabled) {
-  color: var(--ga-color-text-primary);
+  border-color: var(--ga-color-border-action-hover);
 }
 
 .tab.active {
-  color: var(--ga-color-text-primary);
-}
-
-.tab.active::after {
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  background-color: var(--ga-color-primary);
-  width: 100%;
-  height: 2px;
-  content: '';
+  border-color: var(--ga-color-border-action);
+  font-weight: var(--ga-font-weight-semibold);
 }
 
 .tab.disabled {
-  opacity: 0.5;
   cursor: not-allowed;
+  color: var(--ga-color-text-disabled);
 }
 
 .icon {
