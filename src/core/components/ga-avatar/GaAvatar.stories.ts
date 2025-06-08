@@ -15,7 +15,6 @@ const meta = {
 
 export default meta
 
-// Define sizing examples for the avatar
 const stories = {
   Default: {
     render: () => ({

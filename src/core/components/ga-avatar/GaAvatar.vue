@@ -18,28 +18,36 @@ const { size = 'medium', content } = defineProps<GaAvatarProps>()
   display: inline-flex;
   justify-content: center;
   align-items: center;
+
+  border: var(--ga-size-border-width-sm) solid var(--ga-color-border-primary);
   border-radius: var(--ga-radius-round);
-  background-color: var(--ga-color-surface-action);
-  color: var(--ga-color-text-on-action);
-  font-weight: var(--ga-font-weight-medium);
-  font-family: var(--ga-font-family-primary);
+  background-color: var(--ga-color-surface-primary);
+  color: var(---ga-color-text-headings);
+
+  font-weight: var(--ga-font-weight-bold);
 }
 
 .small {
   width: var(--ga-size-spacing-06);
   height: var(--ga-size-spacing-06);
+
   font-size: var(--ga-text-sm-font-size);
+  line-height: var(--ga-text-sm-line-height);
 }
 
 .medium {
   width: var(--ga-size-spacing-08);
   height: var(--ga-size-spacing-08);
-  font-size: var(--ga-text-md-font-size);
+
+  font-size: var(--ga-text-lg-font-size);
+  line-height: var(--ga-text-lg-line-height);
 }
 
 .large {
   width: var(--ga-size-spacing-10);
   height: var(--ga-size-spacing-10);
-  font-size: var(--ga-text-lg-font-size);
+
+  font-size: var(--ga-text-2xl-font-size);
+  line-height: var(--ga-text-2xl-line-height);
 }
 </style>
