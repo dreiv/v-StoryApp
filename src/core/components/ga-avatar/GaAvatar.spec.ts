@@ -55,4 +55,21 @@ describe('GaAvatar', () => {
     // Should show the fallback content
     expect(wrapper.text()).toBe('AV')
   })
+
+  it('should add hasImage class when image prop is provided and image loads successfully', async () => {
+    wrapper = shallowMount(GaAvatar, { props: { image: 'https://example.com/avatar.jpg' } })
+    expect(wrapper.classes()).toContain('hasImage')
+  })
+
+  it('should render overlay div for interactive images', async () => {
+    wrapper = shallowMount(GaAvatar, {
+      props: {
+        image: 'https://example.com/avatar.jpg',
+        interactive: true,
+      },
+    })
+
+    const overlay = wrapper.find('.overlay')
+    expect(overlay.exists()).toBe(true)
+  })
 })

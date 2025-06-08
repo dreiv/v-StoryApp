@@ -126,6 +126,34 @@ const stories = {
       setup: () => ({ CheckCircle, handleClick: () => alert('Avatar clicked!') }),
     }),
   },
+  DisabledWithImages: {
+    render: () => ({
+      components: { GaAvatar },
+      template: `
+        <div style="display: flex; flex-direction: row; gap: 16px;">
+          <ga-avatar
+            content="AV"
+            interactive
+            disabled
+            alt="Disabled text avatar"
+          />
+          <ga-avatar
+            :icon="User"
+            interactive
+            disabled
+            alt="Disabled icon avatar"
+          />
+          <ga-avatar
+            image="https://i.pravatar.cc/150?img=32"
+            interactive
+            disabled
+            alt="Disabled image avatar"
+          />
+        </div>
+      `,
+      setup: () => ({ User }),
+    }),
+  },
 }
 
 export const Default = stories.Default
@@ -137,3 +165,4 @@ export const WithIcons = stories.WithIcons
 export const WithImages = stories.WithImages
 export const WithImageFallback = stories.WithImageFallback
 export const InteractiveWithIconOrImage = stories.Interactive_WithIconOrImage
+export const DisabledWithImages = stories.DisabledWithImages
