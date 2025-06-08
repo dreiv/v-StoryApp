@@ -1,13 +1,16 @@
 <script setup lang="ts">
-import { computed, useCssModule } from 'vue'
+import { computed, useCssModule, ref } from 'vue'
 
 export interface GaAvatarProps {
   size?: 'small' | 'medium' | 'large'
   content?: string
   interactive?: boolean
+  icon?: string
+  image?: string
+  alt?: string
 }
 
-const { size = 'medium', content, interactive } = defineProps<GaAvatarProps>()
+const { size = 'medium', content, interactive, icon, image, alt } = defineProps<GaAvatarProps>()
 const style = useCssModule()
 
 const is = computed(() => (interactive ? 'button' : 'div'))
@@ -17,11 +20,31 @@ const classes = computed(() => {
 
   return classList
 })
+
+const iconSizes = { small: 12, medium: 16, large: 24 }
+const iconSize = computed(() => iconSizes[size])
+
+const imageError = ref(false)
+const showDefaultContent = computed(() => !image || imageError.value)
 </script>
 
 <template>
-  <component :is :class="classes">
-    {{ content }}
+  <component :is :class="classes" :aria-label="alt">
+    <img
+      v-if="image"
+      :src="image"
+      :alt="alt || 'Avatar'"
+      :class="$style.image"
+      @error="imageError = true"
+    />
+
+    <template v-if="showDefaultContent">
+      <slot name="icon">
+        <component v-if="icon" :is="icon" :size="iconSize" />
+      </slot>
+
+      <slot>{{ content }}</slot>
+    </template>
   </component>
 </template>
 
@@ -34,9 +57,18 @@ const classes = computed(() => {
   border: var(--ga-size-border-width-sm) solid var(--ga-color-border-primary);
   border-radius: var(--ga-radius-round);
   background-color: var(--ga-color-surface-primary);
-  color: var(---ga-color-text-headings);
 
+  padding: 0;
+  overflow: hidden;
+  color: var(--ga-color-text-headings);
   font-weight: var(--ga-font-weight-bold);
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .small {
