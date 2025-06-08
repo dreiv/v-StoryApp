@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, useCssModule, ref } from 'vue'
+import { computed, useCssModule, ref, useSlots } from 'vue'
 
 export interface GaAvatarProps {
   size?: 'small' | 'medium' | 'large'
@@ -12,11 +12,13 @@ export interface GaAvatarProps {
 
 const { size = 'medium', content, interactive, icon, image, alt } = defineProps<GaAvatarProps>()
 const style = useCssModule()
+const slots = useSlots()
 
 const is = computed(() => (interactive ? 'button' : 'div'))
 const classes = computed(() => {
   const classList = [style.avatar, style[size]]
   if (interactive) classList.push(style.interactive)
+  if (icon || slots.icon) classList.push(style.icon)
 
   return classList
 })
@@ -105,6 +107,11 @@ const imageError = ref(false)
   &:not(:active, :disabled):is(:hover, :focus) {
     background-color: var(--ga-color-border-action-hover-2);
     color: var(--ga-color-text-action);
+
+    &.icon {
+      border-color: var(--ga-color-icon-action-hover);
+      color: var(--ga-color-icon-action-hover);
+    }
   }
 }
 </style>
