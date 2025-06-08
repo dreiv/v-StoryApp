@@ -17,7 +17,6 @@ const slots = useSlots()
 const is = computed(() => (interactive ? 'button' : 'div'))
 const classes = computed(() => {
   const classList = [style.avatar, style[size]]
-  if (hasImage.value) classList.push(style.hasImage)
   if (icon || slots.icon) classList.push(style.icon)
   if (interactive) classList.push(style.interactive)
 
@@ -28,15 +27,17 @@ const iconSizes = { small: 12, medium: 16, large: 24 }
 const iconSize = computed(() => iconSizes[size])
 
 const imageError = ref(false)
-const hasImage = computed(() => Boolean(image && !imageError.value))
 </script>
 
 <template>
   <component :is :class="classes" :aria-label="alt">
-    <div v-if="hasImage" :class="$style.imageContainer">
-      <img :src="image" :alt="alt || 'Avatar'" :class="$style.image" @error="imageError = true" />
-      <div v-if="interactive" :class="$style.overlay"></div>
-    </div>
+    <img
+      v-if="image && !imageError"
+      :src="image"
+      :alt="alt || 'Avatar'"
+      :class="$style.image"
+      @error="imageError = true"
+    />
 
     <template v-else>
       <slot name="icon">
@@ -51,6 +52,7 @@ const hasImage = computed(() => Boolean(image && !imageError.value))
 <style module>
 .avatar {
   display: inline-flex;
+  position: relative;
   justify-content: center;
   align-items: center;
 
@@ -64,28 +66,12 @@ const hasImage = computed(() => Boolean(image && !imageError.value))
   font-weight: var(--ga-font-weight-bold);
 }
 
-.imageContainer {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
 .image {
+  transition: filter 0.2s ease; /** TODO: Find common solution for transitions */
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
-}
-
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  transition: background-color 0.2s ease; /** TODO: Find common solution for transitions */
-  background-color: transparent;
-  width: 100%;
-  height: 100%;
 }
 
 .small {
@@ -131,12 +117,8 @@ const hasImage = computed(() => Boolean(image && !imageError.value))
       color: var(--ga-color-icon-action-hover);
     }
 
-    &.hasImage {
-      background-color: transparent;
-
-      .overlay {
-        background-color: rgba(0, 0, 0, 0.1);
-      }
+    .image {
+      filter: brightness(0.9) contrast(1.1);
     }
   }
 
@@ -150,17 +132,8 @@ const hasImage = computed(() => Boolean(image && !imageError.value))
       color: var(--ga-color-icon-on-disabled);
     }
 
-    &.hasImage {
-      background-color: transparent;
-
-      .image {
-        opacity: 0.6;
-        filter: grayscale(70%);
-      }
-
-      .overlay {
-        background-color: rgba(0, 0, 0, 0.1);
-      }
+    .image {
+      filter: grayscale(70%) opacity(0.6);
     }
   }
 }

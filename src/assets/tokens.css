@@ -123,7 +123,7 @@
   --ga-color-text-information: var(--ga-color-primary-90);
   --ga-color-text-link-visited: var(--ga-color-purple-80);
   --ga-color-text-on-action: var(--ga-color-secondary-10);
-  --ga-color-text-on-disabled: var(--ga-color-primary-70);
+  --ga-color-text-on-disabled: var(--ga-color-neutral-60);
   --ga-color-text-success: var(--ga-color-primary-90);
   --ga-color-text-warning: var(--ga-color-primary-90);
   --ga-color-utility-blue: var(--ga-color-blue-40);
