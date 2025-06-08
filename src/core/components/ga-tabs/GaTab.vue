@@ -2,33 +2,14 @@
 import { computed, inject, onBeforeUnmount, onMounted, useTemplateRef, useCssModule } from 'vue'
 import { RouterLink } from 'vue-router'
 import { uniqueId } from '@/core/utils/uniqueId'
-import { tabsKey } from './types'
-import type { TabsContext } from './types'
+import { tabsKey, type TabsContext } from './types'
 
 export interface TabProps {
-  /**
-   * Unique identifier for the tab
-   */
   id?: string
-  /**
-   * Display label for the tab
-   */
   label: string
-  /**
-   * Whether the tab is active
-   */
   active?: boolean
-  /**
-   * Whether the tab is disabled
-   */
   disabled?: boolean
-  /**
-   * Path for router integration (if using with router)
-   */
   to?: string | object
-  /**
-   * An optional icon to display in the tab
-   */
   icon?: unknown
 }
 

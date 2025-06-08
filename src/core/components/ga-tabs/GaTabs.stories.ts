@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import { Home, Settings, User, Mail, Bell, FileText } from 'lucide-vue-next'
 
 import GaTabs from './GaTabs.vue'
+import GaTab from './GaTab.vue'
 
 const meta = {
   component: GaTabs as unknown as ConcreteComponent,
@@ -221,6 +222,44 @@ export const RouterExample: Story = {
           <div style="padding: 16px; background-color: #f5f5f5; border-radius: 4px;">
             <p>Router view would render here based on the current route</p>
             <p>In an actual application, you would use &lt;router-view&gt;</p>
+          </div>
+        </ga-tabs>
+      </div>
+    `,
+  }),
+}
+
+/**
+ * Example of tabs using GaTab components as children.
+ * This approach gives more flexibility for customizing individual tabs.
+ */
+export const WithGaTabComponents: Story = {
+  parameters: { controls: { disable: true } },
+  render: () => ({
+    components: { GaTabs, GaTab },
+    setup: () => ({ Home, User, Settings }),
+    data: () => ({ activeTab: 'tab1' }),
+    template: `
+      <div>
+        <p>This example shows how to use GaTab components as children of GaTabs</p>
+        <ga-tabs v-model="activeTab">
+          <template #tabs>
+            <ga-tab id="tab1" label="Home" :icon="Home"></ga-tab>
+            <ga-tab id="tab2" label="Profile" :icon="User"></ga-tab>
+            <ga-tab id="tab3" label="Settings" :icon="Settings"></ga-tab>
+          </template>
+
+          <div v-if="activeTab === 'tab1'">
+            <h3>Home Content</h3>
+            <p>This is the content for the Home tab.</p>
+          </div>
+          <div v-if="activeTab === 'tab2'">
+            <h3>Profile Content</h3>
+            <p>This is the content for the Profile tab.</p>
+          </div>
+          <div v-if="activeTab === 'tab3'">
+            <h3>Settings Content</h3>
+            <p>This is the content for the Settings tab.</p>
           </div>
         </ga-tabs>
       </div>

@@ -17,11 +17,17 @@ import { tabsKey, type TabProps } from './types'
 
 export interface TabsProps {
   tabs?: TabProps[]
+  keyLine?: boolean
   useRouterLinks?: boolean
   align?: 'start' | 'center' | 'end'
 }
 
-const { tabs = [], useRouterLinks = false, align = 'start' } = defineProps<TabsProps>()
+const {
+  tabs = [],
+  useRouterLinks = false,
+  align = 'start',
+  keyLine = true,
+} = defineProps<TabsProps>()
 
 const emit = defineEmits(['change'])
 const model = defineModel<string>({ default: '' })
@@ -173,15 +179,12 @@ watch(
   },
 )
 
-const classes = computed(() =>
-  [style.tabs, align === 'center' && style.center, align === 'end' && style.end].filter(Boolean),
-)
+const classes = computed(() => [style.tabs, style[align], keyLine && style.keyLine])
 </script>
 
 <template>
   <div :class="style.container" ref="tabsContainerRef">
     <div :class="classes" ref="tabsRef">
-      <!-- Direct child tabs from slots or props -->
       <template v-for="tab in visibleTabs" :key="tab.id">
         <component
           :is="tab.to && useRouterLinks && router ? 'router-link' : 'button'"
@@ -196,7 +199,8 @@ const classes = computed(() =>
         </component>
       </template>
 
-      <!-- Overflow tabs dropdown -->
+      <slot name="tabs" />
+
       <Menu v-if="overflowTabs.length > 0" :class="style.moreMenu">
         <button :class="style.moreButton">
           More
@@ -222,7 +226,6 @@ const classes = computed(() =>
       </Menu>
     </div>
 
-    <!-- Tab content -->
     <div :class="style.content">
       <slot />
     </div>
@@ -233,15 +236,18 @@ const classes = computed(() =>
 .container {
   display: flex;
   flex-direction: column;
-  width: 100%;
 }
 
 .tabs {
   display: flex;
   position: relative;
   align-items: center;
-  border-bottom: 1px solid var(--ga-color-border-subtle);
+  gap: var(--ga-size-spacing-04);
   overflow: hidden;
+
+  &.keyLine {
+    border-bottom: var(--ga-size-border-width-sm) solid var(--ga-color-border-primary);
+  }
 }
 
 .tab {
@@ -249,43 +255,35 @@ const classes = computed(() =>
   position: relative;
   align-items: center;
   gap: var(--ga-size-spacing-02);
-  transition: color 0.2s ease;
+
   cursor: pointer;
   border: none;
+  border-bottom: var(--ga-size-spacing-02) solid transparent;
   background: transparent;
-  padding: var(--ga-size-spacing-03) var(--ga-size-spacing-04);
-  color: var(--ga-color-text-secondary);
+  padding: var(--ga-size-spacing-03) var(--ga-size-spacing-05) var(--ga-size-spacing-02);
+  height: var(--ga-size-spacing-07);
+  color: var(--ga-color-text-action);
+
   font-weight: var(--ga-font-weight-medium);
-  font-size: var(--ga-text-sm-font-size);
-  text-decoration: none;
+  font-size: var(--ga-text-md-font-size);
+  line-height: var(--ga-text-md-line-height);
+  font-family: var(--ga-font-family-primary);
+  letter-spacing: var(--ga-text-md-tracking);
   white-space: nowrap;
-}
 
-.tab:hover:not(.disabled) {
-  color: var(--ga-color-text-primary);
-}
+  &:enabled:hover {
+    border-color: var(--ga-color-border-action-hover);
+  }
 
-.tab.active {
-  color: var(--ga-color-text-primary);
-}
+  &.active {
+    border-color: var(--ga-color-border-action);
+    font-weight: var(--ga-font-weight-semibold);
+  }
 
-.tab.active::after {
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  background-color: var(--ga-color-primary);
-  width: 100%;
-  height: 2px;
-  content: '';
-}
-
-.tab.disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.icon {
-  color: currentColor;
+  &.disabled {
+    cursor: not-allowed;
+    color: var(--ga-color-text-disabled);
+  }
 }
 
 .center {
@@ -300,6 +298,7 @@ const classes = computed(() =>
   padding: var(--ga-size-spacing-04) 0;
 }
 
+/* Style for more button */
 .moreButton {
   display: flex;
   align-items: center;
