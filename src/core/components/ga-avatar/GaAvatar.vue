@@ -25,20 +25,19 @@ const iconSizes = { small: 12, medium: 16, large: 24 }
 const iconSize = computed(() => iconSizes[size])
 
 const imageError = ref(false)
-const showDefaultContent = computed(() => !image || imageError.value)
 </script>
 
 <template>
   <component :is :class="classes" :aria-label="alt">
     <img
-      v-if="image"
+      v-if="image && !imageError"
       :src="image"
       :alt="alt || 'Avatar'"
       :class="$style.image"
       @error="imageError = true"
     />
 
-    <template v-if="showDefaultContent">
+    <template v-else>
       <slot name="icon">
         <component v-if="icon" :is="icon" :size="iconSize" />
       </slot>

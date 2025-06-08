@@ -3,6 +3,5 @@
 exports[`GaAvatar > should render correctly 1`] = `
 "<div class="avatar medium">
   <!--v-if-->
-  <!--v-if-->
 </div>"
 `;
