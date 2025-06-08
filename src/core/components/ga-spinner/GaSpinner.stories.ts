@@ -18,7 +18,7 @@ const meta = {
   argTypes: {
     size: {
       control: 'select',
-      options: ['sm', 'default', 'lg'],
+      options: ['small', 'medium', 'large'],
       description: 'The size of the spinner.',
     },
     direction: {
@@ -45,8 +45,8 @@ interface SpinnerVariation {
 
 const variations: SpinnerVariation[] = [
   { name: 'Default', props: {} },
-  { name: 'Small', props: { size: 'sm' } },
-  { name: 'Large', props: { size: 'lg' } },
+  { name: 'Small', props: { size: 'small' } },
+  { name: 'Large', props: { size: 'large' } },
   { name: 'Label', props: { label: 'with Label' } },
   { name: 'LabelVertical', props: { label: 'with Label', direction: 'vertical' } },
 ]
@@ -78,8 +78,8 @@ export const Examples: Story = {
     template: `
       <div style="display: flex; flex-direction: column; gap: var(--ga-size-spacing-06);">
         <div style="display: flex; flex-direction: column; gap: var(--ga-size-spacing-03);">
-          <ga-spinner size='sm' label='Fetching dashboard data' />
-          <ga-spinner label='File loaded successfully.'>
+          <ga-spinner size='small' label='Fetching dashboard data' />
+          <ga-spinner size="medium" label='File loaded successfully.'>
             <template #icon><circle-check size="16" color="var(--ga-color-icon-success)" /></template>
           </ga-spinner>
           <ga-spinner label='Error while loading file. Please try again.' errorMessage='Error while loading file. Please try again.' error>
@@ -87,25 +87,24 @@ export const Examples: Story = {
           </ga-spinner>
         </div>
 
-        <div style="display: flex; gap: var(--ga-size-spacing-03);">
-          <ga-spinner size="lg" label="Loading..." direction="vertical" />
-          <ga-spinner label="Loading..." direction="vertical" />
-          <ga-spinner size="sm" label="Loading..." direction="vertical" />
+        <div style="display: flex; align-items: flex-start; gap: var(--ga-size-spacing-03);">
+          <ga-spinner size="small" label="Small" direction="vertical" />
+          <ga-spinner size="medium" label="Medium" direction="vertical" />
+          <ga-spinner size="large" label="Large" direction="vertical" />
         </div>
 
         <div style="display: flex; justify-content: center; padding: 32px; background: var(--ga-color-surface-page);">
-          <ga-spinner size="lg" direction="vertical" />
+          <ga-spinner size="large" direction="vertical" />
         </div>
 
         <div style="display: flex; justify-content: center; padding: 32px; background: #6F768791;">
-          <ga-spinner size="lg" direction="vertical" />
+          <ga-spinner size="large" direction="vertical" />
         </div>
       </div>
     `,
   }),
 }
 
-export const Default: Story = stories.Default
 export const Small: Story = stories.Small
 export const Large: Story = stories.Large
 export const Label: Story = stories.Label

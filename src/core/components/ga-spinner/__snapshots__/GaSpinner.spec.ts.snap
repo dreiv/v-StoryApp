@@ -1,37 +1,37 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Spinner > should render correctly with default props 1`] = `
-"<div class="container"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" stroke-width="6.4" class="icon">
+"<div class="container"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" stroke-width="6.4" class="icon medium">
     <defs>
       <circle id="circle" cx="16" cy="16" r="12.8" fill="none"></circle>
     </defs>
     <use href="#circle" stroke="var(--ga-color-secondary)"></use>
     <use href="#circle" class="spinner" stroke="var(--ga-color-primary-70)" stroke-linecap="round" stroke-dasharray="21 84"></use>
-  </svg><span class="label"></span></div>"
+  </svg><span class="label medium"></span></div>"
 `;
 
 exports[`Spinner > should render correctly with default slot content 1`] = `
-"<div class="container"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" stroke-width="6.4" class="icon">
+"<div class="container"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" stroke-width="6.4" class="icon medium">
     <defs>
       <circle id="circle" cx="16" cy="16" r="12.8" fill="none"></circle>
     </defs>
     <use href="#circle" stroke="var(--ga-color-secondary)"></use>
     <use href="#circle" class="spinner" stroke="var(--ga-color-primary-70)" stroke-linecap="round" stroke-dasharray="21 84"></use>
-  </svg><span class="label">Custom loading message</span></div>"
+  </svg><span class="label medium">Custom loading message</span></div>"
 `;
 
 exports[`Spinner > should render correctly with icon slot content 1`] = `
 "<div class="container">
-  <div class="custom-icon">⚙️</div><span class="label"></span>
+  <div class="custom-icon">⚙️</div><span class="label medium"></span>
 </div>"
 `;
 
 exports[`Spinner > should render correctly with label prop 1`] = `
-"<div class="container" aria-label="Loading data"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" stroke-width="6.4" class="icon">
+"<div class="container" aria-label="Loading data"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" stroke-width="6.4" class="icon medium">
     <defs>
       <circle id="circle" cx="16" cy="16" r="12.8" fill="none"></circle>
     </defs>
     <use href="#circle" stroke="var(--ga-color-secondary)"></use>
     <use href="#circle" class="spinner" stroke="var(--ga-color-primary-70)" stroke-linecap="round" stroke-dasharray="21 84"></use>
-  </svg><span class="label">Loading data</span></div>"
+  </svg><span class="label medium">Loading data</span></div>"
 `;

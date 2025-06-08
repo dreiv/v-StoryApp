@@ -3,14 +3,14 @@ import { useCssModule, computed, type AnchorHTMLAttributes, useAttrs } from 'vue
 
 export interface GaLinkProps extends /* @vue-ignore */ AnchorHTMLAttributes {
   text?: string
-  size?: 'sm' | 'lg'
+  size?: 'small' | 'medium' | 'large'
   inline?: boolean
   disabled?: boolean
 }
 
 defineOptions({ inheritAttrs: false })
 
-const { size, inline, disabled } = defineProps<GaLinkProps>()
+const { size = 'medium', inline, disabled } = defineProps<GaLinkProps>()
 const style = useCssModule()
 const attrs = useAttrs()
 
@@ -86,12 +86,17 @@ const attributes = computed(() => ({
   }
 }
 
-.sm {
+.small {
   font-size: var(--ga-text-sm-font-size);
   line-height: var(--ga-text-sm-line-height);
 }
 
-.lg {
+.medium {
+  font-size: var(--ga-text-md-font-size);
+  line-height: var(--ga-text-md-line-height);
+}
+
+.large {
   font-size: var(--ga-text-lg-font-size);
   line-height: var(--ga-text-lg-line-height);
 }

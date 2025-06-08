@@ -21,12 +21,15 @@ describe('GaLink', () => {
     expect(wrapper.text()).toContain('Slot Link')
   })
 
-  it.each(['sm', 'lg'])('should apply the %s class when size prop is %s', async (size) => {
-    wrapper = shallowMount(GaLink)
-    await wrapper.setProps({ size })
+  it.each(['small', 'medium', 'large'])(
+    'should apply the %s class when size prop is %s',
+    async (size) => {
+      wrapper = shallowMount(GaLink)
+      await wrapper.setProps({ size })
 
-    expect(wrapper.classes()).toContain(size)
-  })
+      expect(wrapper.classes()).toContain(size)
+    },
+  )
 
   it('should apply the inline class when inline prop is true', async () => {
     wrapper = shallowMount(GaLink)

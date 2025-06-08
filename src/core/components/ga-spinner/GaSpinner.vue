@@ -4,7 +4,7 @@ import { Hourglass } from 'lucide-vue-next'
 import { type FormInputProps } from '@/core/composables/useFormInput'
 
 export interface SpinnerProps extends FormInputProps {
-  size?: 'sm' | 'default' | 'lg'
+  size?: 'small' | 'medium' | 'large'
   direction?: 'horizontal' | 'vertical'
 }
 
@@ -30,7 +30,7 @@ onUnmounted(() => {
 })
 
 const {
-  size = 'default',
+  size = 'medium',
   direction = 'horizontal',
   error,
   errorMessage,
@@ -38,23 +38,9 @@ const {
 } = defineProps<SpinnerProps>()
 const style = useCssModule()
 
-const iconClasses = computed(() => {
-  const classList = [style.icon]
+const iconClasses = computed(() => [style.icon, style[size]])
 
-  if (size === 'sm') classList.push(style.small)
-  if (size === 'lg') classList.push(style.large)
-
-  return classList
-})
-
-const labelClasses = computed(() => {
-  const classList = [style.label]
-
-  if (size === 'sm') classList.push(style.small)
-  if (size === 'lg') classList.push(style.large)
-
-  return classList
-})
+const labelClasses = computed(() => [style.label, style[size]])
 
 const containerClasses = computed(() => {
   const classList = [style.container]
@@ -121,6 +107,7 @@ const aria = computed(() => ({
     width: var(--ga-size-spacing-05);
     height: var(--ga-size-spacing-05);
   }
+
   &.large {
     width: var(--ga-size-spacing-09);
     height: var(--ga-size-spacing-09);
@@ -153,7 +140,7 @@ const aria = computed(() => ({
   }
 }
 
-.vertical .label {
+.label {
   &.small {
     font-size: var(--ga-text-xs-font-size);
     line-height: var(--ga-text-xs-line-height);

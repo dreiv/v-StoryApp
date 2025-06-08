@@ -55,14 +55,10 @@ describe('Spinner', () => {
     expect(wrapper.find('.container').classes()).toContain('vertical')
   })
 
-  it('should apply the correct size classes', async () => {
-    await wrapper.setProps({ size: 'sm' })
-    expect(wrapper.find('.icon').classes()).toContain('small')
-    expect(wrapper.find('.label').classes()).toContain('small')
-
-    await wrapper.setProps({ size: 'lg' })
-    expect(wrapper.find('.icon').classes()).toContain('large')
-    expect(wrapper.find('.label').classes()).toContain('large')
+  it.each(['small', 'large'])('should apply the correct size classes for %s size', async (size) => {
+    await wrapper.setProps({ size })
+    expect(wrapper.find('.icon').classes()).toContain(size)
+    expect(wrapper.find('.label').classes()).toContain(size)
   })
 
   it('should pass aria attributes', async () => {

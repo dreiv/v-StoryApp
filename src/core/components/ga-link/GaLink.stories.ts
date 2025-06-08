@@ -8,7 +8,7 @@ const meta: Meta<typeof GaLink> = {
   argTypes: {
     size: {
       control: { type: 'select' },
-      options: ['sm', 'lg'],
+      options: ['small', 'medium', 'large'],
       description: 'The size of the link.',
     },
     text: {
@@ -49,24 +49,38 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = { args: {} }
 export const Inline: Story = { args: { inline: true } }
 
+export const Sizes: Story = {
+  parameters: { controls: { disable: true } },
+  render: () => ({
+    components: { GaLink },
+    template: `
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <ga-link size="small">Small Link</ga-link>
+          <ga-link size="medium">Medium Link</ga-link>
+          <ga-link size="large">Large Link</ga-link>
+        </div>
+      </div>
+    `,
+  }),
+}
+
 export const WithLeadingIcon: Story = {
   render: (args) => ({
     components: { GaLink, ArrowLeft },
     setup: () => ({ args }),
-    template: '<ga-link v-bind="args"><arrow-left /> {{ text }}</ga-link>',
+    template: '<ga-link v-bind="args"><arrow-left /> Leading Icon</ga-link>',
   }),
-  args: { text: 'Leading Icon' },
 }
 
 export const WithTrailingIcon: Story = {
   render: (args) => ({
     components: { GaLink, ArrowRight },
     setup: () => ({ args }),
-    template: '<ga-link v-bind="args">{{ text }} <arrow-right /></ga-link>',
+    template: '<ga-link v-bind="args">Trailing Icon <arrow-right /></ga-link>',
   }),
-  args: { text: 'Trailing Icon' },
 }
 
 export const Disabled: Story = { args: { disabled: true } }
-export const Small: Story = { args: { size: 'sm' } }
-export const Large: Story = { args: { size: 'lg' } }
+export const Small: Story = { args: { size: 'small' } }
+export const Large: Story = { args: { size: 'large' } }
