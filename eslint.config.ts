@@ -41,7 +41,7 @@ export default defineConfigWithVueTs(
     files: ['e2e/**/*.{spec}.{ts}'],
   },
 
-  ...pluginStorybook.configs['flat/recommended'],
-  ...pluginOxlint.configs['flat/recommended'],
+  pluginStorybook.configs['flat/recommended'],
+  pluginOxlint.configs['flat/recommended'],
   skipFormatting, // Formatting rules - ALWAYS LAST
 )

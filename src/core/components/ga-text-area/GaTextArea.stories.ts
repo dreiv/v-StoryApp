@@ -1,5 +1,5 @@
 import { ref, type ConcreteComponent } from 'vue'
-import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import { GlobeLock, OctagonAlert, TriangleAlert } from 'lucide-vue-next'
 
 import GaFormField from '../ga-form-field/GaFormField.vue'

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import { ArrowLeft, ArrowRight } from 'lucide-vue-next'
 import GaLink from './GaLink.vue'
 

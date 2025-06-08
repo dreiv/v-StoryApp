@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import { Search } from 'lucide-vue-next'
 
 import GaInput, { type GaInputProps } from './GaInput.vue'

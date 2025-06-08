@@ -1,6 +1,6 @@
 import type { FunctionalComponent } from 'vue'
 import { ref } from 'vue'
-import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import {
   BriefcaseIcon,
   ChevronsUpDown,

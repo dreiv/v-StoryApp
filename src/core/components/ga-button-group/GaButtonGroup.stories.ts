@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import { ChartSpline, LayoutList, MonitorIcon, SmartphoneIcon, TableIcon } from 'lucide-vue-next'
 
 import GaButtonGroup from './GaButtonGroup.vue'

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import { BellIcon, BellDot, MailIcon } from 'lucide-vue-next'
 
 import GaBadge, { type BadgeProps } from './GaBadge.vue'

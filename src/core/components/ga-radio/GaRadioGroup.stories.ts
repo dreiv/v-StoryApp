@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import { ChartSpline, OctagonAlert, TriangleAlert } from 'lucide-vue-next'
 
 import GaFormInfo from '../GaFormInfo.vue'

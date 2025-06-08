@@ -1,5 +1,5 @@
 import type { ConcreteComponent } from 'vue'
-import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import { Home, Settings, User, Mail, Bell, FileText } from 'lucide-vue-next'
 
 import GaTabs from './GaTabs.vue'
