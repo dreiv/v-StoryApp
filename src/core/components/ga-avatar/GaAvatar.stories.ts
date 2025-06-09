@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite'
-import GaAvatar from './GaAvatar.vue'
 import { User, CheckCircle, AlertCircle, PlusCircle, Mail, UserPlus } from 'lucide-vue-next'
+
+import GaBadge from '../ga-badge/GaBadge.vue'
+import GaAvatar from './GaAvatar.vue'
 
 const meta = {
   component: GaAvatar,
@@ -120,7 +122,7 @@ export const InteractivityStates: Story = {
 
 export const StatusVariations: Story = {
   render: () => ({
-    components: { GaAvatar },
+    components: { GaAvatar, GaBadge },
     setup() {
       const handleStatusClick = () => alert('Status clicked!')
       const handleClick = () => alert('Avatar clicked!')
@@ -178,9 +180,7 @@ export const StatusVariations: Story = {
             </template>
           </ga-avatar>
           <ga-avatar :icon="User">
-            <template #status>
-              <div style="width: 8px; height: 8px; background-color: #44b700; border-radius: 50%;"></div>
-            </template>
+            <template #status><ga-badge success /></template>
           </ga-avatar>
           <ga-avatar image="https://i.pravatar.cc/100?img=30">
             <template #status>
