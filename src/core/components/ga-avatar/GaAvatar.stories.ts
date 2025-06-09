@@ -158,17 +158,17 @@ export const StatusVariations: Story = {
         <div style="display: flex; align-items: center; gap: 16px;">
           <span style="width: 180px; font-weight: bold;">Non-interactive Status:</span>
 
-          <ga-avatar content="AV" :statusIcon="CheckCircle" :statusInteractive="false" />
-          <ga-avatar :icon="User" :statusIcon="CheckCircle" :statusInteractive="false" />
-          <ga-avatar image="https://i.pravatar.cc/100?img=15" :statusIcon="CheckCircle" :statusInteractive="false" />
+          <ga-avatar content="AV" :statusIcon="CheckCircle" />
+          <ga-avatar :icon="User" :statusIcon="CheckCircle" />
+          <ga-avatar image="https://i.pravatar.cc/100?img=15" :statusIcon="CheckCircle" />
         </div>
 
         <div style="display: flex; align-items: center; gap: 16px;">
           <span style="width: 180px; font-weight: bold;">Disabled Status:</span>
 
-          <ga-avatar content="AV" :statusIcon="AlertCircle" disabled />
-          <ga-avatar :icon="User" :statusIcon="PlusCircle" disabled />
-          <ga-avatar image="https://i.pravatar.cc/100?img=25" :statusIcon="Mail" disabled />
+          <ga-avatar content="AV" :statusIcon="AlertCircle" statusInteractive disabled />
+          <ga-avatar :icon="User" :statusIcon="PlusCircle" statusInteractive disabled />
+          <ga-avatar image="https://i.pravatar.cc/100?img=25" :statusIcon="Mail" statusInteractive disabled />
         </div>
 
         <div style="display: flex; align-items: center; gap: 16px;">
@@ -222,7 +222,6 @@ export const UseCaseExamples: Story = {
             <ga-avatar
               image="https://i.pravatar.cc/100?img=36"
               interactive
-              :statusInteractive="false"
               alt="Jane Smith"
               @click="handleClick"
             >

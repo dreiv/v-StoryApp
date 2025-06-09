@@ -24,7 +24,6 @@ const {
   statusIcon,
   image,
   alt,
-  disabled,
 } = defineProps<GaAvatarProps>()
 
 const style = useCssModule()
