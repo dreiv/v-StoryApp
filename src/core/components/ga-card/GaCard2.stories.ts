@@ -5,7 +5,7 @@ import GaCard from './GaCard2.vue'
 
 const meta = {
   component: GaCard,
-  title: 'Molecules/Card',
+  title: 'Molecules/Card2',
   parameters: { layout: 'centered' },
   decorators: [
     (story) => ({
