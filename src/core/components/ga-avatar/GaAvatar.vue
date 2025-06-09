@@ -104,6 +104,7 @@ const imageError = ref(false)
   transition: all 0.2s ease; /** TODO: Find common solution for transitions */
 
   cursor: pointer;
+  box-shadow: 0 0 0 var(--ga-size-border-width-md) var(--ga-color-surface-primary);
   border: var(--ga-size-border-width-sm) solid var(--ga-color-border-primary);
   border-radius: var(--ga-radius-round);
   background-color: var(--ga-color-surface-primary);
@@ -116,7 +117,7 @@ const imageError = ref(false)
     outline-offset: var(--ga-size-spacing-01);
   }
 
-  &:hover:not(:disabled) {
+  &:not(:active, :disabled):is(:hover, :focus) {
     transform: scale(1.1);
     border-color: var(--ga-color-border-action-hover);
     background-color: var(--ga-color-border-action-hover-2);
