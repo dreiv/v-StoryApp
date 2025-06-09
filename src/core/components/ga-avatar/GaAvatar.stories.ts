@@ -1,215 +1,177 @@
-import type { Meta } from '@storybook/vue3-vite'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import GaAvatar from './GaAvatar.vue'
-import { User, Settings, CheckCircle, AlertCircle, PlusCircle, Mail } from 'lucide-vue-next'
+import { User, CheckCircle, AlertCircle, PlusCircle, Mail, UserPlus } from 'lucide-vue-next'
 
 const meta = {
   component: GaAvatar,
   title: 'Molecules/Avatar',
-  decorators: [
-    (story) => ({
-      components: { story },
-      template: `<div style="display: flex; justify-content: center; gap: 8px;"><story /></div>`,
-    }),
-  ],
   tags: ['autodocs'],
+  argTypes: {
+    size: {
+      control: 'select',
+      options: ['extra-small', 'small', 'medium', 'large'],
+      description: 'Size of the avatar',
+      table: {
+        defaultValue: { summary: 'medium' },
+      },
+    },
+    interactive: {
+      control: 'boolean',
+      description: 'Whether the avatar is clickable',
+    },
+    statusInteractive: {
+      control: 'boolean',
+      description: 'Whether the status is clickable',
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'Whether the avatar is disabled',
+    },
+  },
 } satisfies Meta<typeof GaAvatar>
 
 export default meta
+type Story = StoryObj<typeof GaAvatar>
 
-const stories = {
-  Default: {
-    render: () => ({
-      components: { GaAvatar },
-      template: `<ga-avatar content="AV" />`,
-    }),
-  },
-  Disabled: {
-    render: () => ({
-      components: { GaAvatar },
-      template: `<ga-avatar interactive disabled content="AV" />`,
-    }),
-  },
-  Sizes: {
-    render: () => ({
-      components: { GaAvatar },
-      template: `
+export const Default: Story = { args: { content: 'AV' } }
+
+export const WithFallback: Story = {
+  render: () => ({
+    components: { GaAvatar },
+    template: `<ga-avatar image="https://invalid-url.com/image.jpg" content="AV" alt="Avatar with fallback" />`,
+  }),
+}
+
+export const SizeVariations: Story = {
+  render: () => ({
+    components: { GaAvatar },
+    setup: () => ({ User }),
+    template: `
+      <div style="display: flex; flex-direction: column; gap: 24px;">
         <div style="display: flex; align-items: center; gap: 16px;">
-          <ga-avatar size="extra-small" content="s" />
-          <ga-avatar size="small" content="S" />
-          <ga-avatar size="medium" content="M" />
-          <ga-avatar size="large" content="L" />
-        </div>
-      `,
-    }),
-  },
-  WithContent: {
-    render: () => ({
-      components: { GaAvatar },
-      template: `
-        <div style="display: flex; flex-direction: column; gap: 16px;">
-          <ga-avatar content="AV" />
-          <ga-avatar content="JD" />
-          <ga-avatar content="UI" />
-        </div>
-      `,
-    }),
-  },
-  Interactive: {
-    render: () => ({
-      components: { GaAvatar },
-      template: `
-        <div style="display: flex; flex-direction: row; gap: 16px;">
-          <ga-avatar content="JD" interactive alt="John Doe's profile" @click="handleClick" />
-          <ga-avatar content="AV" interactive size="large" alt="Alex Vance's profile" @click="handleClick" />
-        </div>
-      `,
-      methods: {
-        handleClick() {
-          alert('Avatar clicked!')
-        },
-      },
-    }),
-  },
-  WithIcons: {
-    render: () => ({
-      components: { GaAvatar },
-      template: `
-        <div style="display: flex; flex-direction: row; gap: 16px;">
-          <ga-avatar :icon="User" size="extra-small" alt="User icon" />
-          <ga-avatar :icon="User" size="small" alt="User icon" />
-          <ga-avatar :icon="User" alt="User icon" />
-          <ga-avatar :icon="Settings" size="large" alt="Settings" />
-        </div>
-      `,
-      setup: () => ({ User, Settings, CheckCircle }),
-    }),
-  },
-  WithImages: {
-    render: () => ({
-      components: { GaAvatar },
-      template: `
-        <div style="display: flex; flex-direction: row; gap: 16px;">
-          <ga-avatar image="https://i.pravatar.cc/100?img=3" size="small" alt="Avatar image small" />
-          <ga-avatar image="https://i.pravatar.cc/150?img=8" alt="Avatar image medium" />
-          <ga-avatar image="https://i.pravatar.cc/200?img=12" size="large" alt="Avatar image large" />
-        </div>
-      `,
-    }),
-  },
-  WithImageFallback: {
-    render: () => ({
-      components: { GaAvatar },
-      template: `
-        <div style="display: flex; flex-direction: row; gap: 16px;">
-          <ga-avatar image="https://invalid-url.com/image.jpg" content="AV" alt="Avatar with fallback" />
-        </div>
-      `,
-    }),
-  },
-  Interactive_WithIconOrImage: {
-    render: () => ({
-      components: { GaAvatar, CheckCircle },
-      template: `
-        <div style="display: flex; flex-direction: row; gap: 16px;">
-          <ga-avatar
-            :icon="CheckCircle"
-            interactive
-            alt="Complete action"
-            @click="handleClick"
-          />
-          <ga-avatar
-            image="https://i.pravatar.cc/150?img=20"
-            interactive
-            alt="User profile"
-            @click="handleClick"
-          />
-        </div>
-      `,
-      setup: () => ({ CheckCircle, handleClick: () => alert('Avatar clicked!') }),
-    }),
-  },
-  DisabledWithImages: {
-    render: () => ({
-      components: { GaAvatar },
-      template: `
-        <div style="display: flex; flex-direction: row; gap: 16px;">
-          <ga-avatar
-            content="AV"
-            interactive
-            disabled
-            alt="Disabled text avatar"
-          />
-          <ga-avatar
-            :icon="User"
-            interactive
-            disabled
-            alt="Disabled icon avatar"
-          />
-          <ga-avatar
-            image="https://i.pravatar.cc/150?img=32"
-            interactive
-            disabled
-            alt="Disabled image avatar"
-          />
-        </div>
-      `,
-      setup: () => ({ User }),
-    }),
-  },
-  WithStatus: {
-    render: () => ({
-      components: { GaAvatar },
-      template: `
-        <div style="display: flex; flex-direction: row; gap: 16px;">
-          <ga-avatar
-            content="AV"
-            :statusIcon="AlertCircle"
-            statusAriaLabel="Avatar has alerts"
-            @statusClick="handleStatusClick"
-          />
-          <ga-avatar
-            :icon="User"
-            :statusIcon="PlusCircle"
-            statusAriaLabel="Add user to team"
-            @statusClick="handleStatusClick"
-          />
-          <ga-avatar
-            image="https://i.pravatar.cc/150?img=7"
-            :statusIcon="Mail"
-            statusAriaLabel="Message user"
-            @statusClick="handleStatusClick"
-          />
-        </div>
-      `,
-      setup() {
-        const handleStatusClick = () => {
-          alert('Status clicked!')
-        }
+          <span style="width: 120px; font-weight: bold;">Content:</span>
 
-        return { AlertCircle, PlusCircle, User, Mail, handleStatusClick }
-      },
-    }),
-  },
-  DisabledStatus: {
-    render: () => ({
-      components: { GaAvatar },
-      template: `
-        <div style="display: flex; flex-direction: row; gap: 16px;">
-          <ga-avatar
-            content="AV"
-            :statusIcon="AlertCircle"
-            disabled
-          />
+          <ga-avatar size="extra-small" content="XS" />
+          <ga-avatar size="small" content="SM" />
+          <ga-avatar size="medium" content="MD" />
+          <ga-avatar size="large" content="LG" />
         </div>
-      `,
-      setup: () => ({ AlertCircle }),
-    }),
-  },
-  CustomStatusContent: {
-    render: () => ({
-      components: { GaAvatar },
-      template: `
-        <div style="display: flex; flex-direction: row; gap: 16px;">
+
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <span style="width: 120px; font-weight: bold;">Icons:</span>
+
+          <ga-avatar size="extra-small" :icon="User" alt="User icon" />
+          <ga-avatar size="small" :icon="User" alt="User icon" />
+          <ga-avatar size="medium" :icon="User" alt="User icon" />
+          <ga-avatar size="large" :icon="User" alt="User icon" />
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <span style="width: 120px; font-weight: bold;">Images:</span>
+
+          <ga-avatar size="extra-small" image="https://i.pravatar.cc/100?img=3" alt="Avatar image" />
+          <ga-avatar size="small" image="https://i.pravatar.cc/100?img=8" alt="Avatar image" />
+          <ga-avatar size="medium" image="https://i.pravatar.cc/100?img=12" alt="Avatar image" />
+          <ga-avatar size="large" image="https://i.pravatar.cc/100?img=20" alt="Avatar image" />
+        </div>
+      </div>
+    `,
+  }),
+}
+
+export const InteractivityStates: Story = {
+  render: () => ({
+    components: { GaAvatar },
+    setup() {
+      return {
+        User,
+        handleClick: () => alert('Avatar clicked!'),
+      }
+    },
+    template: `
+      <div style="display: flex; flex-direction: column; gap: 24px;">
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <span style="width: 120px; font-weight: bold;">Normal:</span>
+
+          <ga-avatar content="AV" alt="Avatar" />
+          <ga-avatar :icon="User" alt="User" />
+          <ga-avatar image="https://i.pravatar.cc/100?img=11" alt="Avatar image" />
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <span style="width: 120px; font-weight: bold;">Interactive:</span>
+
+          <ga-avatar content="AV" interactive alt="Avatar" @click="handleClick" />
+          <ga-avatar :icon="User" interactive alt="User" @click="handleClick" />
+          <ga-avatar image="https://i.pravatar.cc/100?img=22" interactive alt="Avatar image" @click="handleClick" />
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <span style="width: 120px; font-weight: bold;">Disabled:</span>
+
+          <ga-avatar content="AV" interactive disabled alt="Avatar" />
+          <ga-avatar :icon="User" interactive disabled alt="User" />
+          <ga-avatar image="https://i.pravatar.cc/100?img=33" interactive disabled alt="Avatar image" />
+        </div>
+      </div>
+    `,
+  }),
+}
+
+export const StatusVariations: Story = {
+  render: () => ({
+    components: { GaAvatar },
+    setup() {
+      const handleStatusClick = () => alert('Status clicked!')
+      const handleClick = () => alert('Avatar clicked!')
+
+      return {
+        User,
+        AlertCircle,
+        PlusCircle,
+        Mail,
+        CheckCircle,
+        handleStatusClick,
+        handleClick,
+      }
+    },
+    template: `
+      <div style="display: flex; flex-direction: column; gap: 24px;">
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <span style="width: 180px; font-weight: bold;">Interactive Status:</span>
+
+          <ga-avatar content="AV" :statusIcon="AlertCircle" statusInteractive @statusClick="handleStatusClick" />
+          <ga-avatar :icon="User" :statusIcon="PlusCircle" statusInteractive @statusClick="handleStatusClick" />
+          <ga-avatar image="https://i.pravatar.cc/100?img=7" :statusIcon="Mail" statusInteractive @statusClick="handleStatusClick" />
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <span style="width: 180px; font-weight: bold;">Both Interactive:</span>
+
+          <ga-avatar content="AV" interactive :statusIcon="AlertCircle" statusInteractive @click="handleClick" @statusClick="handleStatusClick" />
+          <ga-avatar :icon="User" interactive :statusIcon="PlusCircle" statusInteractive @click="handleClick" @statusClick="handleStatusClick" />
+          <ga-avatar image="https://i.pravatar.cc/100?img=18" interactive :statusIcon="Mail" statusInteractive @click="handleClick" @statusClick="handleStatusClick" />
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <span style="width: 180px; font-weight: bold;">Non-interactive Status:</span>
+
+          <ga-avatar content="AV" :statusIcon="CheckCircle" :statusInteractive="false" />
+          <ga-avatar :icon="User" :statusIcon="CheckCircle" :statusInteractive="false" />
+          <ga-avatar image="https://i.pravatar.cc/100?img=15" :statusIcon="CheckCircle" :statusInteractive="false" />
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <span style="width: 180px; font-weight: bold;">Disabled Status:</span>
+
+          <ga-avatar content="AV" :statusIcon="AlertCircle" disabled />
+          <ga-avatar :icon="User" :statusIcon="PlusCircle" disabled />
+          <ga-avatar image="https://i.pravatar.cc/100?img=25" :statusIcon="Mail" disabled />
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <span style="width: 180px; font-weight: bold;">Custom Status Content:</span>
+
           <ga-avatar content="AV">
             <template #status>
               <span style="font-size: 9px; font-weight: bold;">99+</span>
@@ -220,26 +182,108 @@ const stories = {
               <div style="width: 8px; height: 8px; background-color: #44b700; border-radius: 50%;"></div>
             </template>
           </ga-avatar>
-          <ga-avatar image="https://i.pravatar.cc/150?img=3">
+          <ga-avatar image="https://i.pravatar.cc/100?img=30">
             <template #status>
               <span style="font-size: 9px; color: #f44336;">5</span>
             </template>
           </ga-avatar>
         </div>
-      `,
-      setup: () => ({ User }),
-    }),
-  },
+
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <span style="width: 180px; font-weight: bold;">Size Variations:</span>
+
+          <ga-avatar size="small" content="S" :statusIcon="PlusCircle" statusInteractive @statusClick="handleStatusClick" />
+          <ga-avatar size="medium" content="M" :statusIcon="PlusCircle" statusInteractive @statusClick="handleStatusClick" />
+          <ga-avatar size="large" content="L" :statusIcon="PlusCircle" statusInteractive @statusClick="handleStatusClick" />
+        </div>
+      </div>
+    `,
+  }),
 }
 
-export const Default = stories.Default
-export const Disabled = stories.Disabled
-export const Sizes = stories.Sizes
-export const WithContent = stories.WithContent
-export const Interactive = stories.Interactive
-export const WithIcons = stories.WithIcons
-export const WithImages = stories.WithImages
-export const WithImageFallback = stories.WithImageFallback
-export const WithStatus = stories.WithStatus
-export const DisabledStatus = stories.DisabledStatus
-export const CustomStatusContent = stories.CustomStatusContent
+// Comprehensive showcase with real-world examples
+export const UseCaseExamples: Story = {
+  render: () => ({
+    components: { GaAvatar },
+    setup() {
+      return {
+        User,
+        UserPlus,
+        CheckCircle,
+        handleClick: () => alert('Avatar clicked!'),
+        handleStatusClick: () => alert('Status clicked!'),
+      }
+    },
+    template: `
+      <div style="display: flex; flex-direction: column; gap: 32px;">
+        <div style="border: 1px solid #eee; border-radius: 8px; padding: 16px;">
+          <h3 style="margin-top: 0; margin-bottom: 16px;">Message Conversation</h3>
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <ga-avatar
+              image="https://i.pravatar.cc/100?img=36"
+              interactive
+              :statusInteractive="false"
+              alt="Jane Smith"
+              @click="handleClick"
+            >
+              <template #status>
+                <div style="width: 8px; height: 8px; background-color: #44b700; border-radius: 50%;"></div>
+              </template>
+            </ga-avatar>
+            <div>
+              <div style="font-weight: bold;">Jane Smith</div>
+              <div style="font-size: 0.9em; color: #666;">Online</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="border: 1px solid #eee; border-radius: 8px; padding: 16px;">
+          <h3 style="margin-top: 0; margin-bottom: 16px;">Team Members</h3>
+          <div style="display: flex; align-items: center; gap: 12px; justify-content: space-between;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <ga-avatar content="JS" size="small" alt="John Smith" />
+              <ga-avatar content="AM" size="small" alt="Alice Miller" />
+              <ga-avatar content="RJ" size="small" alt="Robert Johnson" />
+              <ga-avatar content="EW" size="small" alt="Emma Wilson" />
+            </div>
+            <ga-avatar
+              :icon="UserPlus"
+              size="small"
+              interactive
+              alt="Add team member"
+              @click="handleClick"
+            />
+          </div>
+        </div>
+
+        <div style="border: 1px solid #eee; border-radius: 8px; padding: 16px;">
+          <h3 style="margin-top: 0; margin-bottom: 16px;">Notification Center</h3>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <ga-avatar
+                image="https://i.pravatar.cc/100?img=42"
+                size="small"
+                :statusIcon="Mail"
+                statusInteractive
+                alt="New message from Tom"
+                @statusClick="handleStatusClick"
+              />
+              <div>Tom Wright sent you a message</div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <ga-avatar
+                :icon="User"
+                size="small"
+                :statusIcon="AlertCircle"
+                statusInteractive
+                alt="Friend request"
+                @statusClick="handleStatusClick"
+              />
+              <div>New friend request</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `,
+  }),
+}
