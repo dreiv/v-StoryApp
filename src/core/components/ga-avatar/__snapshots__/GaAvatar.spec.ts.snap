@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`GaAvatar > should render correctly 1`] = `
+exports[`GaAvatar > should render correctly with default props 1`] = `
 "<div class="avatar medium" disabled="false">
   <!--v-if-->
   <!--v-if-->
