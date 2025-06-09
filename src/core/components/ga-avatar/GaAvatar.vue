@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { computed, useCssModule, ref, useSlots } from 'vue'
 
+const ICON_SIZES = { 'extra-small': 10, small: 12, medium: 16, large: 24 }
+
 export interface GaAvatarProps {
   size?: 'extra-small' | 'small' | 'medium' | 'large'
   content?: string
@@ -21,26 +23,26 @@ const {
   statusIcon,
   image,
   alt,
+  disabled,
 } = defineProps<GaAvatarProps>()
 
 const style = useCssModule()
 const slots = useSlots()
+const imageError = ref(false)
 
 const is = computed(() => (interactive ? 'button' : 'div'))
-const classes = computed(() => {
-  const classList = [style.avatar, style[size]]
-  if (icon || slots.icon) classList.push(style.icon)
-  if (interactive) classList.push(style.interactive)
+const classes = computed(() =>
+  [
+    style.avatar,
+    style[size],
+    (icon || slots.icon) && style.icon,
+    interactive && style.interactive,
+  ].filter(Boolean),
+)
 
-  return classList
-})
-
-const iconSizes = { 'extra-small': 10, small: 12, medium: 16, large: 24 }
-const iconSize = computed(() => iconSizes[size])
-const hasImage = computed(() => image && !imageError.value)
-const hasStatus = computed(() => (statusIcon || slots.status) && size !== 'extra-small')
-
-const imageError = ref(false)
+const iconSize = computed(() => ICON_SIZES[size])
+const hasImage = computed(() => Boolean(image && !imageError.value))
+const hasStatus = computed(() => Boolean((statusIcon || slots.status) && size !== 'extra-small'))
 </script>
 
 <template>
@@ -78,8 +80,8 @@ const imageError = ref(false)
   border: var(--ga-size-border-width-sm) solid var(--ga-color-border-primary);
   border-radius: var(--ga-radius-round);
   background-color: var(--ga-color-surface-primary);
-
   padding: 0;
+
   color: var(--ga-color-text-headings);
   font-weight: var(--ga-font-weight-bold);
 }
@@ -108,8 +110,8 @@ const imageError = ref(false)
   border: var(--ga-size-border-width-sm) solid var(--ga-color-border-primary);
   border-radius: var(--ga-radius-round);
   background-color: var(--ga-color-surface-primary);
-
   padding: var(--ga-size-spacing-01);
+
   color: var(--ga-color-icon-primary);
 
   &:focus-visible {
