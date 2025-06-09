@@ -1,0 +1,9 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`GaAvatarGroup > should render correctly with default props 1`] = `
+"<div class="group" style="--avatar-width: 40px; --avatar-overlap: 20px; --border-thickness: 2px;">
+  <!-- Regular slot for child avatars -->
+  <!-- Overflow indicator -->
+  <!--v-if-->
+</div>"
+`;
