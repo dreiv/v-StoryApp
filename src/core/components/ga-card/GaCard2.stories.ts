@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import { ChevronRight, Settings, Star, Plus, Info } from 'lucide-vue-next'
 
-import GaCard from './GaCard.vue'
+import GaCard from './GaCard2.vue'
 
 const meta = {
   component: GaCard,

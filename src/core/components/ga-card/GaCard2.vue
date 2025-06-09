@@ -18,10 +18,7 @@ const emit = defineEmits<{
   (e: 'update:expanded', value: boolean): void
 }>()
 
-// Define model value for selected state (checkbox) when selectable is true
 const selected = defineModel<boolean>('selected', { default: false })
-
-// Define model value for expanded state
 const modelExpanded = defineModel<boolean>('expanded', { default: false })
 
 // Watch for expanded prop changes and update modelExpanded
