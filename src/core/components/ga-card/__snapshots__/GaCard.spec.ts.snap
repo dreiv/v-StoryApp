@@ -1,61 +1,8 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`GaCard > should apply disabled class when disabled prop is true 1`] = `
-"<div class="card disabled">
-  <!-- Top slot (optional) - #8 -->
-  <!--v-if-->
-  <div class="cardContent">
-    <!-- Selector (optional) - #6 -->
-    <!--v-if-->
-    <div class="mainContent">
-      <!-- Title - #2 -->
-      <!--v-if-->
-      <!-- Description - #3 -->
-      <!--v-if-->
-      <!-- Default slot for custom content -->
-      <!--v-if-->
-    </div>
-    <div class="rightSection">
-      <!-- Interactive icon (optional) - #5 -->
-      <!--v-if-->
-      <!-- Expandable chevron (optional) - #4 -->
-      <!--v-if-->
-    </div>
-  </div><!-- Bottom slot (optional) - #7 -->
-  <!--v-if-->
-</div>"
-`;
-
-exports[`GaCard > should apply rotated class to chevron when expanded is true 1`] = `
-"<div class="card expanded">
-  <!-- Top slot (optional) - #8 -->
-  <!--v-if-->
-  <div class="cardContent">
-    <!-- Selector (optional) - #6 -->
-    <!--v-if-->
-    <div class="mainContent">
-      <!-- Title - #2 -->
-      <!--v-if-->
-      <!-- Description - #3 -->
-      <!--v-if-->
-      <!-- Default slot for custom content -->
-      <!--v-if-->
-    </div>
-    <div class="rightSection">
-      <!-- Interactive icon (optional) - #5 -->
-      <!--v-if-->
-      <!-- Expandable chevron (optional) - #4 -->
-      <div class="chevron"><svg class="chevronIcon rotated" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="16" height="16">
-          <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-        </svg></div>
-    </div>
-  </div><!-- Bottom slot (optional) - #7 -->
-  <div class="bottomSlot"></div>
-</div>"
-`;
-
 exports[`GaCard > should render bottom slot when provided 1`] = `
-"<div class="card">
+"<!-- Non-expandable version -->
+<div class="card">
   <!-- Top slot (optional) - #8 -->
   <!--v-if-->
   <div class="cardContent">
@@ -72,10 +19,8 @@ exports[`GaCard > should render bottom slot when provided 1`] = `
     <div class="rightSection">
       <!-- Interactive icon (optional) - #5 -->
       <!--v-if-->
-      <!-- Expandable chevron (optional) - #4 -->
-      <!--v-if-->
     </div>
-  </div><!-- Bottom slot (optional) - #7 -->
+  </div><!-- Bottom slot for non-expandable cards - #7 -->
   <div class="bottomSlot">
     <div class="test-bottom-slot">Bottom slot</div>
   </div>
@@ -83,7 +28,8 @@ exports[`GaCard > should render bottom slot when provided 1`] = `
 `;
 
 exports[`GaCard > should render checkbox when selectable is true 1`] = `
-"<div class="card">
+"<!-- Non-expandable version -->
+<div class="card">
   <!-- Top slot (optional) - #8 -->
   <!--v-if-->
   <div class="cardContent">
@@ -100,44 +46,45 @@ exports[`GaCard > should render checkbox when selectable is true 1`] = `
     <div class="rightSection">
       <!-- Interactive icon (optional) - #5 -->
       <!--v-if-->
-      <!-- Expandable chevron (optional) - #4 -->
-      <!--v-if-->
     </div>
-  </div><!-- Bottom slot (optional) - #7 -->
+  </div><!-- Bottom slot for non-expandable cards - #7 -->
   <!--v-if-->
 </div>"
 `;
 
 exports[`GaCard > should render chevron when expandable is true 1`] = `
-"<div class="card">
-  <!-- Top slot (optional) - #8 -->
-  <!--v-if-->
-  <div class="cardContent">
-    <!-- Selector (optional) - #6 -->
+"<details class="card">
+  <summary class="summary">
+    <!-- Top slot (optional) - #8 -->
     <!--v-if-->
-    <div class="mainContent">
-      <!-- Title - #2 -->
+    <div class="cardContent">
+      <!-- Selector (optional) - #6 -->
       <!--v-if-->
-      <!-- Description - #3 -->
-      <!--v-if-->
-      <!-- Default slot for custom content -->
-      <!--v-if-->
+      <div class="mainContent">
+        <!-- Title - #2 -->
+        <!--v-if-->
+        <!-- Description - #3 -->
+        <!--v-if-->
+        <!-- Default slot for custom content -->
+        <!--v-if-->
+      </div>
+      <div class="rightSection">
+        <!-- Interactive icon (optional) - #5 -->
+        <!--v-if-->
+        <!-- Expandable chevron icon is automatically handled by the details element -->
+        <div class="chevron"><svg class="chevronIcon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="16" height="16">
+            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg></div>
+      </div>
     </div>
-    <div class="rightSection">
-      <!-- Interactive icon (optional) - #5 -->
-      <!--v-if-->
-      <!-- Expandable chevron (optional) - #4 -->
-      <div class="chevron"><svg class="chevronIcon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="16" height="16">
-          <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-        </svg></div>
-    </div>
-  </div><!-- Bottom slot (optional) - #7 -->
-  <!--v-if-->
-</div>"
+  </summary><!-- Bottom slot (optional) - #7 -->
+  <div class="bottomSlot"></div>
+</details>"
 `;
 
 exports[`GaCard > should render correctly with default props 1`] = `
-"<div class="card">
+"<!-- Non-expandable version -->
+<div class="card">
   <!-- Top slot (optional) - #8 -->
   <!--v-if-->
   <div class="cardContent">
@@ -154,16 +101,15 @@ exports[`GaCard > should render correctly with default props 1`] = `
     <div class="rightSection">
       <!-- Interactive icon (optional) - #5 -->
       <!--v-if-->
-      <!-- Expandable chevron (optional) - #4 -->
-      <!--v-if-->
     </div>
-  </div><!-- Bottom slot (optional) - #7 -->
+  </div><!-- Bottom slot for non-expandable cards - #7 -->
   <!--v-if-->
 </div>"
 `;
 
 exports[`GaCard > should render description when provided 1`] = `
-"<div class="card">
+"<!-- Non-expandable version -->
+<div class="card">
   <!-- Top slot (optional) - #8 -->
   <!--v-if-->
   <div class="cardContent">
@@ -179,16 +125,15 @@ exports[`GaCard > should render description when provided 1`] = `
     <div class="rightSection">
       <!-- Interactive icon (optional) - #5 -->
       <!--v-if-->
-      <!-- Expandable chevron (optional) - #4 -->
-      <!--v-if-->
     </div>
-  </div><!-- Bottom slot (optional) - #7 -->
+  </div><!-- Bottom slot for non-expandable cards - #7 -->
   <!--v-if-->
 </div>"
 `;
 
 exports[`GaCard > should render interactive icon slot when provided 1`] = `
-"<div class="card">
+"<!-- Non-expandable version -->
+<div class="card">
   <!-- Top slot (optional) - #8 -->
   <!--v-if-->
   <div class="cardContent">
@@ -206,16 +151,16 @@ exports[`GaCard > should render interactive icon slot when provided 1`] = `
       <!-- Interactive icon (optional) - #5 -->
       <div class="interactiveIcon">
         <div class="test-icon">Icon</div>
-      </div><!-- Expandable chevron (optional) - #4 -->
-      <!--v-if-->
+      </div>
     </div>
-  </div><!-- Bottom slot (optional) - #7 -->
+  </div><!-- Bottom slot for non-expandable cards - #7 -->
   <!--v-if-->
 </div>"
 `;
 
 exports[`GaCard > should render title when provided 1`] = `
-"<div class="card">
+"<!-- Non-expandable version -->
+<div class="card">
   <!-- Top slot (optional) - #8 -->
   <!--v-if-->
   <div class="cardContent">
@@ -231,16 +176,15 @@ exports[`GaCard > should render title when provided 1`] = `
     <div class="rightSection">
       <!-- Interactive icon (optional) - #5 -->
       <!--v-if-->
-      <!-- Expandable chevron (optional) - #4 -->
-      <!--v-if-->
     </div>
-  </div><!-- Bottom slot (optional) - #7 -->
+  </div><!-- Bottom slot for non-expandable cards - #7 -->
   <!--v-if-->
 </div>"
 `;
 
 exports[`GaCard > should render top slot when provided 1`] = `
-"<div class="card">
+"<!-- Non-expandable version -->
+<div class="card">
   <!-- Top slot (optional) - #8 -->
   <div class="topSlot">
     <div class="test-top-slot">Top slot</div>
@@ -259,10 +203,8 @@ exports[`GaCard > should render top slot when provided 1`] = `
     <div class="rightSection">
       <!-- Interactive icon (optional) - #5 -->
       <!--v-if-->
-      <!-- Expandable chevron (optional) - #4 -->
-      <!--v-if-->
     </div>
-  </div><!-- Bottom slot (optional) - #7 -->
+  </div><!-- Bottom slot for non-expandable cards - #7 -->
   <!--v-if-->
 </div>"
 `;

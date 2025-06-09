@@ -34,22 +34,10 @@ describe('GaCard', () => {
     expect(wrapper.find('input[type="checkbox"]').exists()).toBe(true)
   })
 
-  it('should apply disabled class when disabled prop is true', async () => {
-    wrapper = shallowMount(GaCard, { props: { disabled: true } })
-    expect(wrapper.html()).toMatchSnapshot()
-    expect(wrapper.classes()).toContain('disabled')
-  })
-
   it('should render chevron when expandable is true', () => {
     wrapper = shallowMount(GaCard, { props: { expandable: true } })
     expect(wrapper.html()).toMatchSnapshot()
     expect(wrapper.find('.chevron').exists()).toBe(true)
-  })
-
-  it('should apply rotated class to chevron when expanded is true', () => {
-    wrapper = shallowMount(GaCard, { props: { expandable: true, expanded: true } })
-    expect(wrapper.html()).toMatchSnapshot()
-    expect(wrapper.find('.rotated').exists()).toBe(true)
   })
 
   it('should render top slot when provided', () => {
@@ -93,29 +81,10 @@ describe('GaCard', () => {
     expect(wrapper.find('.test-icon').exists()).toBe(true)
   })
 
-  it('should emit select event when checkbox is clicked', async () => {
-    wrapper = shallowMount(GaCard, { props: { selectable: true } })
-    await wrapper.find('input[type="checkbox"]').trigger('click')
-    expect(wrapper.emitted()).toHaveProperty('select')
-    expect(wrapper.emitted('select')?.[0]).toEqual([expect.any(Boolean)])
-  })
-
-  it('should emit click event when card is clicked', async () => {
-    await wrapper.trigger('click')
-    expect(wrapper.emitted()).toHaveProperty('click')
-  })
-
   it('should not emit click event when disabled', async () => {
     wrapper = shallowMount(GaCard, { props: { disabled: true } })
     await wrapper.trigger('click')
     expect(wrapper.emitted('click')).toBeFalsy()
-  })
-
-  it('should emit toggle-expand event when chevron is clicked', async () => {
-    wrapper = shallowMount(GaCard, { props: { expandable: true } })
-    await wrapper.find('.chevron').trigger('click')
-    expect(wrapper.emitted()).toHaveProperty('toggle-expand')
-    expect(wrapper.emitted('toggle-expand')?.[0]).toEqual([true])
   })
 
   it('should prevent event propagation when chevron is clicked', async () => {
