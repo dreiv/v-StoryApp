@@ -8,6 +8,7 @@ export interface GaAvatarProps {
   content?: string
   interactive?: boolean
   icon?: string
+  statusInteractive?: boolean
   statusIcon?: string
   image?: string
   alt?: string
@@ -30,7 +31,6 @@ const style = useCssModule()
 const slots = useSlots()
 const imageError = ref(false)
 
-const is = computed(() => (interactive ? 'button' : 'div'))
 const classes = computed(() =>
   [
     style.avatar,
@@ -46,7 +46,7 @@ const hasStatus = computed(() => Boolean((statusIcon || slots.status) && size !=
 </script>
 
 <template>
-  <component :is :class="classes" :aria-label="alt" :disabled>
+  <component :is="interactive ? 'button' : 'div'" :class="classes" :aria-label="alt" :disabled>
     <img v-if="hasImage" :src="image" :alt :class="$style.image" @error="imageError = true" />
 
     <template v-else>
@@ -57,16 +57,17 @@ const hasStatus = computed(() => Boolean((statusIcon || slots.status) && size !=
       <slot>{{ content }}</slot>
     </template>
 
-    <button
+    <component
       v-if="hasStatus"
-      :class="style.status"
-      @click.stop="emit('statusClick', $event)"
-      :disabled
+      :is="statusInteractive ? 'button' : 'div'"
+      :class="[style.status, statusInteractive && style.statusInteractive]"
+      @click.stop="statusInteractive && emit('statusClick', $event)"
+      :disabled="disabled"
     >
       <slot name="status">
         <component v-if="statusIcon" :is="statusIcon" :size="iconSize / 1.5" />
       </slot>
-    </button>
+    </component>
   </component>
 </template>
 
@@ -105,7 +106,6 @@ const hasStatus = computed(() => Boolean((statusIcon || slots.status) && size !=
   align-items: center;
   transition: all 0.2s ease; /** TODO: Find common solution for transitions */
 
-  cursor: pointer;
   box-shadow: 0 0 0 var(--ga-size-border-width-md) var(--ga-color-surface-primary);
   border: var(--ga-size-border-width-sm) solid var(--ga-color-border-primary);
   border-radius: var(--ga-radius-round);
@@ -119,18 +119,24 @@ const hasStatus = computed(() => Boolean((statusIcon || slots.status) && size !=
     outline-offset: var(--ga-size-spacing-01);
   }
 
-  &:not(:active, :disabled):is(:hover, :focus) {
-    transform: scale(1.1);
-    border-color: var(--ga-color-border-action-hover);
-    background-color: var(--ga-color-border-action-hover-2);
-    color: var(--ga-color-icon-action-hover);
-  }
-
   &:disabled {
     cursor: not-allowed;
     border-color: var(--ga-color-border-disabled);
     background-color: var(--ga-color-surface-disabled);
     color: var(--ga-color-icon-on-disabled);
+  }
+
+  &.statusInteractive {
+    &:enabled {
+      cursor: pointer;
+    }
+
+    &:not(:active, :disabled):is(:hover, :focus) {
+      transform: scale(1.1);
+      border-color: var(--ga-color-border-action-hover);
+      background-color: var(--ga-color-border-action-hover-2);
+      color: var(--ga-color-icon-action-hover);
+    }
   }
 }
 

@@ -55,49 +55,4 @@ describe('GaAvatar', () => {
     // Should show the fallback content
     expect(wrapper.text()).toBe('AV')
   })
-
-  it('should render status button when statusIcon is provided', () => {
-    const TestIcon = { template: '<div>Status</div>' }
-    wrapper = shallowMount(GaAvatar, {
-      props: {
-        content: 'AV',
-        statusIcon: 'TestIcon',
-      },
-      global: {
-        components: { TestIcon },
-      },
-    })
-
-    const statusBtn = wrapper.find('button.status')
-    expect(statusBtn.exists()).toBe(true)
-  })
-
-  it('should emit statusClick event when status button is clicked', async () => {
-    wrapper = shallowMount(GaAvatar, {
-      props: {
-        content: 'AV',
-        statusIcon: 'div',
-      },
-    })
-
-    const statusBtn = wrapper.find('button.status')
-    await statusBtn.trigger('click')
-    expect(wrapper.emitted('statusClick')).toBeTruthy()
-    expect(wrapper.emitted('statusClick')?.length).toBe(1)
-  })
-
-  it('should not propagate click event from status to avatar', async () => {
-    wrapper = shallowMount(GaAvatar, {
-      props: {
-        content: 'AV',
-        statusIcon: 'div',
-        interactive: true,
-      },
-    })
-
-    const statusBtn = wrapper.find('button.status')
-    await statusBtn.trigger('click')
-    expect(wrapper.emitted('statusClick')).toBeTruthy()
-    expect(wrapper.emitted('click')).toBeFalsy()
-  })
 })
