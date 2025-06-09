@@ -1,6 +1,6 @@
 import type { Meta } from '@storybook/vue3-vite'
 import GaAvatar from './GaAvatar.vue'
-import { User, Settings, CheckCircle } from 'lucide-vue-next'
+import { User, Settings, CheckCircle, AlertCircle, PlusCircle, Mail } from 'lucide-vue-next'
 
 const meta = {
   component: GaAvatar,
@@ -156,6 +156,80 @@ const stories = {
       setup: () => ({ User }),
     }),
   },
+  WithStatus: {
+    render: () => ({
+      components: { GaAvatar },
+      template: `
+        <div style="display: flex; flex-direction: row; gap: 16px;">
+          <ga-avatar
+            content="AV"
+            :statusIcon="AlertCircle"
+            statusAriaLabel="Avatar has alerts"
+            @statusClick="handleStatusClick"
+          />
+          <ga-avatar
+            :icon="User"
+            :statusIcon="PlusCircle"
+            statusAriaLabel="Add user to team"
+            @statusClick="handleStatusClick"
+          />
+          <ga-avatar
+            image="https://i.pravatar.cc/150?img=7"
+            :statusIcon="Mail"
+            statusAriaLabel="Message user"
+            @statusClick="handleStatusClick"
+          />
+        </div>
+      `,
+      setup() {
+        const handleStatusClick = () => {
+          alert('Status clicked!')
+        }
+
+        return { AlertCircle, PlusCircle, User, Mail, handleStatusClick }
+      },
+    }),
+  },
+  DisabledStatus: {
+    render: () => ({
+      components: { GaAvatar },
+      template: `
+        <div style="display: flex; flex-direction: row; gap: 16px;">
+          <ga-avatar
+            content="AV"
+            :statusIcon="AlertCircle"
+            disabled
+          />
+        </div>
+      `,
+      setup: () => ({ AlertCircle }),
+    }),
+  },
+  CustomStatusContent: {
+    render: () => ({
+      components: { GaAvatar },
+      template: `
+        <div style="display: flex; flex-direction: row; gap: 16px;">
+          <ga-avatar content="AV">
+            <template #status>
+              <span style="font-size: 9px; font-weight: bold;">99+</span>
+            </template>
+          </ga-avatar>
+          <ga-avatar :icon="User">
+            <template #status>
+              <div style="width: 8px; height: 8px; background-color: #44b700; border-radius: 50%;"></div>
+            </template>
+          </ga-avatar>
+          <ga-avatar image="https://i.pravatar.cc/150?img=3">
+            <template #status>
+              <span style="font-size: 9px; color: #f44336;">5</span>
+            </template>
+          </ga-avatar>
+        </div>
+      `,
+      setup: () => ({ User }),
+    }),
+  },
 }
 
 export const Default = stories.Default
@@ -166,5 +240,6 @@ export const Interactive = stories.Interactive
 export const WithIcons = stories.WithIcons
 export const WithImages = stories.WithImages
 export const WithImageFallback = stories.WithImageFallback
-export const InteractiveWithIconOrImage = stories.Interactive_WithIconOrImage
-export const DisabledWithImages = stories.DisabledWithImages
+export const WithStatus = stories.WithStatus
+export const DisabledStatus = stories.DisabledStatus
+export const CustomStatusContent = stories.CustomStatusContent
