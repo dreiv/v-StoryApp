@@ -20,6 +20,10 @@ defineProps<GaCardProps>()
       </slot>
     </header>
     <slot />
+
+    <div v-if="$slots.interactive" :class="$style.interactive">
+      <slot name="interactive" />
+    </div>
   </div>
 </template>
 
@@ -50,6 +54,9 @@ defineProps<GaCardProps>()
 .actions {
   display: flex;
   align-items: center;
-  gap: var(--ga-size-spacing-03);
+  gap: var(--ga-size-spacing-05);
+}
+
+.interactive {
 }
 </style>
