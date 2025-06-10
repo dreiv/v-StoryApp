@@ -9,7 +9,15 @@ defineProps<GaCardProps>()
 <template>
   <div :class="$style.card">
     <header v-if="$slots.header || title" :class="$style.header">
-      <slot name="header">{{ title }}</slot>
+      <slot name="header">
+        <slot name="title">
+          <span :class="$style.title">{{ title }}</span>
+        </slot>
+
+        <div v-if="$slots.actions" :class="$style.actions">
+          <slot name="actions" />
+        </div>
+      </slot>
     </header>
     <slot />
   </div>
@@ -27,9 +35,21 @@ defineProps<GaCardProps>()
 }
 
 .header {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--ga-size-spacing-05);
+}
+
+.title {
   font-weight: var(--ga-font-weight-bold);
   font-size: var(--ga-text-md-font-size);
   line-height: var(--ga-text-md-line-height);
   letter-spacing: var(--ga-text-md-tracking);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--ga-size-spacing-03);
 }
 </style>
