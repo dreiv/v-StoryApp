@@ -26,7 +26,7 @@ export const Basic: Story = {
     components: { GaCard },
     setup: () => ({ args }),
     template: `
-      <ga-card v-bind="args">
+      <ga-card v-bind="args" title="Card Title">
         card content
       </ga-card>
     `,
