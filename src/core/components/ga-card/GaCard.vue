@@ -19,7 +19,8 @@ defineProps<GaCardProps>()
         </div>
       </slot>
     </header>
-    <slot />
+
+    <div v-if="$slots.default"><slot /></div>
 
     <div v-if="$slots.interactive" :class="$style.interactive">
       <slot name="interactive" />
@@ -58,5 +59,7 @@ defineProps<GaCardProps>()
 }
 
 .interactive {
+  display: flex;
+  justify-content: end;
 }
 </style>

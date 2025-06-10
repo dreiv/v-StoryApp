@@ -31,8 +31,7 @@ export const Basic: Story = {
     setup: () => ({ args }),
     template: `
       <ga-card v-bind="args" title="Card Title">
-        lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
         <template #actions>
           <ga-checkbox />
